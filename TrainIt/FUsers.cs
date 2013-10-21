@@ -16,6 +16,7 @@ namespace TrainIt
     {
         string connString = TrainItLibrary.Utilities.GetConnString();
         Boolean onEdition = false; //Used to indicate wether or not we are in edit mode
+        Boolean savePass = false;
         Users aUser = new Users(-1, "", "", DateTime.Now, "", "", "", "");
         int userIDToUpdate = -1;
 
@@ -23,6 +24,7 @@ namespace TrainIt
         {
             InitializeComponent();
             tslConnString.Text = connString;
+            tslUser.Text = "Usuario="+TrainItLibrary.Global.usuario;
             setNormalMode();       
      }
 
@@ -34,7 +36,7 @@ namespace TrainIt
 
             if (this.dgvUsers.RowCount > 0)
             {
-                //Takes the userID of the firs
+                //Takes the userID of the first
                 int userID = Convert.ToInt32(dgvUsers[0, dgvUsers.CurrentRow.Index].Value);
 
                 //Find the User and load into aUser
@@ -127,6 +129,7 @@ namespace TrainIt
             tsBtnDelete.Enabled = false;
             tsBtnSave.Enabled = true;
             tsBtnCancel.Enabled = true;
+            btnChangePassword.Enabled = false;
 
             txtFirstName.ReadOnly = false;
             txtSecondName.ReadOnly = false;
@@ -154,6 +157,7 @@ namespace TrainIt
             tsBtnDelete.Enabled = true;
             tsBtnSave.Enabled = false;
             tsBtnCancel.Enabled = false;
+            btnChangePassword.Enabled = false;
 
             txtFirstName.ReadOnly = true;
             txtSecondName.ReadOnly = true;
@@ -166,6 +170,8 @@ namespace TrainIt
             txtConfirm.Visible = false;
 
             dgvUsers.Enabled = true;
+
+            savePass = false;
         }
 
         private void clearUserTextBoxes()
@@ -274,14 +280,17 @@ namespace TrainIt
             userIDToUpdate = -1;
 
             //Set userID to -1;
-            txtUserID.Text = "-1";
+            txtUserID.Text = "";
 
             //Allow to write password
             txtUserPass.ReadOnly = false;
             txtConfirm.ReadOnly = false;
 
             //Reset user data 
-            aUser = aUser.Reset(aUser);
+            aUser = aUser.Reset();
+
+            //Put focus on first component
+            txtFirstName.Focus();
         }
 
         private void tsBtnEdit_Click(object sender, EventArgs e)
@@ -301,6 +310,12 @@ namespace TrainIt
                 //Not allow to update userPass
                 txtUserPass.ReadOnly = true;
                 txtConfirm.ReadOnly = true;
+
+                //Énables button to change password
+                btnChangePassword.Enabled = true;
+
+                //Put focus on first component
+                txtFirstName.Focus();
             }
         }
 
@@ -308,75 +323,114 @@ namespace TrainIt
         {
             if (dgvUsers.RowCount > 0)
             {
-                int position = dgvUsers.CurrentRow.Index;
-                int totalRegs = dgvUsers.RowCount;
-                if (position + 1 == totalRegs) position--;
-
-                //Delete data.
-                int res = aUser.deleteUserByUserID(connString, aUser.userID);
-
-                if (dgvUsers.RowCount > 0)
+                DialogResult valor = MessageBox.Show("Va a borrar el usuario seleccionado.\n ¿Esta seguro de hacerlo?", "Atención...", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (valor == DialogResult.OK)
                 {
-                    //Update data grid.
-                    LoadDataInGrid(this.dgvUsers);
+                    int position = dgvUsers.CurrentRow.Index;
+                    int totalRegs = dgvUsers.RowCount;
+                    if (position + 1 == totalRegs) position--;
 
-                    //Moves to position near deleted
-                    dgvUsers.CurrentCell = dgvUsers[0, position];
+                    //Delete data.
+                    int res = aUser.deleteUserByUserID(connString, aUser.userID);
 
-                    //Load data from user in position
-                    int userIDToFind = Convert.ToInt32(dgvUsers[0, position].Value);
-                    aUser = aUser.findUserByUserID(connString, userIDToFind);
+                    if (dgvUsers.RowCount > 0)
+                    {
+                        //Update data grid.
+                        LoadDataInGrid(this.dgvUsers);
+
+                        //Moves to position near deleted
+                        dgvUsers.CurrentCell = dgvUsers[0, position];
+
+                        //Load data from user in position
+                        int userIDToFind = Convert.ToInt32(dgvUsers[0, position].Value);
+                        aUser = aUser.findUserByUserID(connString, userIDToFind);
+                    }
+                    else
+                    {
+                        aUser = aUser.LoadData(-1, "", "", DateTime.Now, "", "", "", "");
+                    }
+                    //Load Data in boxes
+                    LoadDataInBoxes(aUser);
+
+                    //Put form in normal mode.
+                    setNormalMode();
+                    userIDToUpdate = -1;
                 }
-                else
-                {
-                    aUser = aUser.loadData(-1, "", "", DateTime.Now, "", "", "", "");
-                }
-                //Load Data in boxes
-                LoadDataInBoxes(aUser);
-
-                //Put form in normal mode.
-                setNormalMode();
-                userIDToUpdate = -1;
             }
         }
 
         private void tsBtnSave_Click(object sender, EventArgs e)
         {
-            int position = 0;
+            //Verify all data is correct.
+            Users tempUser = new Users(-1, txtFirstName.Text, txtSecondName.Text, dtpBDate.Value, txtUserName.Text, txtUserPass.Text, txtConfirm.Text, txtMail.Text);
+            int verifyResult = tempUser.checkUserData(connString);
 
-            if (userIDToUpdate == -1)
-            { //New
-                //Takes position
-                position = dgvUsers.RowCount;
+            //if update and user find, verify must be ok
+            if ((userIDToUpdate != -1) && (verifyResult == -2))
+                verifyResult = 1;
 
-                //Load data into aUSer
-                aUser = aUser.loadData(-1, txtFirstName.Text, txtSecondName.Text, dtpBDate.Value, txtUserName.Text, txtUserPass.Text, txtConfirm.Text, txtMail.Text);
+            //if data verification is ok, then we can save.
+            if (verifyResult == 1)
+            {
+                int position = 0;
+                if (userIDToUpdate == -1)
+                { //New user
+                    //Takes position
+                    position = dgvUsers.RowCount;
 
-                //save data into BD
-                aUser = aUser.saveUserData(aUser, connString);
+                    //Load data into aUSer
+                    aUser = aUser.LoadData(-1, txtFirstName.Text, txtSecondName.Text, dtpBDate.Value, txtUserName.Text, txtUserPass.Text, txtConfirm.Text, txtMail.Text);
+
+                    //save data into BD
+                    aUser = aUser.saveUserData(connString);
+                }
+                else
+                {//Update existing user
+
+                    //Take actual position
+                    position = dgvUsers.CurrentRow.Index;
+
+                    //Load data into aUSer
+                    aUser = aUser.LoadData(userIDToUpdate, txtFirstName.Text, txtSecondName.Text, dtpBDate.Value, txtUserName.Text, txtUserPass.Text, txtConfirm.Text, txtMail.Text);
+
+                    //save data into BD
+                    aUser = aUser.updateUserData(connString, savePass);
+                }
+
+                //Reload data into grid
+                LoadDataInGrid(dgvUsers);
+
+                //Goes to the position
+                dgvUsers.CurrentCell = dgvUsers[0, position];
+
+                //Loads data into boxes
+                LoadDataInBoxes(aUser);
+
+                //Enable normal mode.
+                setNormalMode();
             }
-            else
-            { //Update
-                position = dgvUsers.CurrentRow.Index;
-
-                //Load data into aUSer
-                aUser = aUser.loadData(userIDToUpdate, txtFirstName.Text, txtSecondName.Text, dtpBDate.Value, txtUserName.Text, txtUserPass.Text, txtConfirm.Text, txtMail.Text);
-
-                //save data into BD
-                aUser = aUser.updateUserData(aUser, connString, userIDToUpdate);
+            else //There is an error in data to save.
+            {
+                switch (verifyResult)
+                {
+                    case -1: //userName is missing.
+                        MessageBox.Show("Falta el nombre usuario que se usará para entrar al sistema.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtUserName.Focus();
+                        break;
+                    case -2://userName exists in data base.
+                        MessageBox.Show("Ya existe ese nombre de ususario en la base de datos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtUserName.Focus();
+                        break;
+                    case -3://Password lenght is less than 8 characters.
+                        MessageBox.Show("El password debe tener una longitud mínima de ocho caracteres.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtUserPass.Focus();
+                        break;
+                    case -4://Password and confirm are differents.
+                        MessageBox.Show("El password y la confirmación son diferentes.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtUserPass.Focus();
+                        break;
+                }
             }
-
-            //Reload data into grid
-            LoadDataInGrid(dgvUsers);
-
-            //Goes to the position
-            dgvUsers.CurrentCell = dgvUsers[0, position];
-
-            //Loads data into boxes
-            LoadDataInBoxes(aUser);
-
-            //Enable normal mode.
-            setNormalMode();
         }
 
         private void tsBtnCancel_Click(object sender, EventArgs e)
@@ -412,6 +466,33 @@ namespace TrainIt
 
                 //Loads data into boxes
                 LoadDataInBoxes(aUser);
+            }
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            //Check if user is admin, because is the only user with permission to change passwords.
+            if (TrainItLibrary.Global.usuario == "admin")
+            {
+
+                DialogResult result = MessageBox.Show("Solo puede fijar una contraseña nueva.\n" +
+                                                      "Si habilita esta opción podrá introducir una contraseña nueva perdiendo la anterior. No podrá editar la existente. \n\n" +
+                                                      "¿Desea continuar adelante con el cambio de contraseña?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                if (result == DialogResult.OK)
+                {
+                    //Enables password change.
+                    txtUserPass.ReadOnly = false;
+                    txtConfirm.ReadOnly = false;
+                    laConfirm.Visible = true;
+                    txtConfirm.Visible = true;
+                    btnChangePassword.Enabled = false;
+
+                    savePass = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Solo Solo el usuario admin puede hacer un cambio de contraseña.", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
             }
         }
 

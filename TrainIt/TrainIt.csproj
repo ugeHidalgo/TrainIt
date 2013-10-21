@@ -63,6 +63,18 @@
     <Compile Include="FMaterial.Designer.cs">
       <DependentUpon>FMaterial.cs</DependentUpon>
     </Compile>
+    <Compile Include="FSports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FSports.Designer.cs">
+      <DependentUpon>FSports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FSportTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FSportTypes.Designer.cs">
+      <DependentUpon>FSportTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="FUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +96,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FMaterial.resx">
       <DependentUpon>FMaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSports.resx">
+      <DependentUpon>FSports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FSportTypes.resx">
+      <DependentUpon>FSportTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FUsers.resx">
       <DependentUpon>FUsers.cs</DependentUpon>

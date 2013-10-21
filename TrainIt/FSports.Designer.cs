@@ -1,6 +1,6 @@
 ﻿namespace TrainIt
 {
-    partial class FMaterial
+    partial class FSports
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMaterial));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FSports));
             this.toolS1 = new System.Windows.Forms.ToolStrip();
             this.tsBtnFirst = new System.Windows.Forms.ToolStripButton();
             this.tsBtnPrevious = new System.Windows.Forms.ToolStripButton();
@@ -64,7 +64,7 @@
             this.tsBtnCancel});
             this.toolS1.Location = new System.Drawing.Point(0, 0);
             this.toolS1.Name = "toolS1";
-            this.toolS1.Size = new System.Drawing.Size(465, 25);
+            this.toolS1.Size = new System.Drawing.Size(529, 25);
             this.toolS1.TabIndex = 2;
             this.toolS1.Text = "toolStrip1";
             // 
@@ -164,9 +164,9 @@
             this.statusS1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tslUser,
             this.tslConnString});
-            this.statusS1.Location = new System.Drawing.Point(0, 309);
+            this.statusS1.Location = new System.Drawing.Point(0, 321);
             this.statusS1.Name = "statusS1";
-            this.statusS1.Size = new System.Drawing.Size(465, 22);
+            this.statusS1.Size = new System.Drawing.Size(529, 22);
             this.statusS1.TabIndex = 3;
             this.statusS1.Text = "statusStrip1";
             // 
@@ -182,15 +182,15 @@
             this.tslConnString.Size = new System.Drawing.Size(79, 17);
             this.tslConnString.Text = "Conn String : ";
             // 
-            // FMaterial
+            // FSports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 331);
+            this.ClientSize = new System.Drawing.Size(529, 343);
             this.Controls.Add(this.statusS1);
             this.Controls.Add(this.toolS1);
-            this.Name = "FMaterial";
-            this.Text = "Materiales";
+            this.Name = "FSports";
+            this.Text = "Deportes";
             this.toolS1.ResumeLayout(false);
             this.toolS1.PerformLayout();
             this.statusS1.ResumeLayout(false);
@@ -217,6 +217,5 @@
         private System.Windows.Forms.StatusStrip statusS1;
         private System.Windows.Forms.ToolStripStatusLabel tslUser;
         private System.Windows.Forms.ToolStripStatusLabel tslConnString;
-
     }
 }

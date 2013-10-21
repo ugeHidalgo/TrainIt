@@ -10,20 +10,15 @@ using System.Windows.Forms;
 
 namespace TrainIt
 {
-    public partial class FMaterial : Form
+    public partial class FSports : Form
     {
         string connString = TrainItLibrary.Utilities.GetConnString();
 
-        public FMaterial()
+        public FSports()
         {
             InitializeComponent();
             tslConnString.Text = connString;
             tslUser.Text = "Usuario=" + TrainItLibrary.Global.usuario;
-        }
-
-        private void FMaterial_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
         }
     }
 }

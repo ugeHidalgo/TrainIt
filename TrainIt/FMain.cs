@@ -20,7 +20,9 @@ namespace TrainIt
             timer1.Enabled = true;
             FLogin fLogin = new FLogin();
             fLogin.ShowDialog();
+            TrainItLibrary.Global.usuario=fLogin.userNameGiven;
             tslConnStr.Text = connString;
+            tslAppUser.Text = "Usuario=" + TrainItLibrary.Global.usuario; 
         }
 
         //Controla la salida de la aplicación
@@ -29,13 +31,6 @@ namespace TrainIt
             DialogResult valor;
             valor = MessageBox.Show("¿Desea salir de la aplicacón?", "Atencíón", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             e.Cancel = (valor == DialogResult.Cancel);                
-        }
-
-
-        //Cierra la aplicación.
-        private void mSSalir_Click(object sender, EventArgs e)
-        {
-            Close();
         }
 
         //Reloj de la aplicación para la hora y fecha
@@ -50,13 +45,40 @@ namespace TrainIt
             //mSMaterial.Enabled = false;
             FMaterial fMaterial = new FMaterial();
             //fMaterial.MdiParent = this;
-            fMaterial.ShowDialog();            
+            fMaterial.ShowDialog();
         }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        private void msUsuarios_Click(object sender, EventArgs e)
         {
             FUsers fUsers = new FUsers();
-            fUsers.Show();
+            fUsers.ShowDialog();
         }
+
+        private void msDeportes_Click(object sender, EventArgs e)
+        {
+            FSports fSports = new FSports();
+            fSports.ShowDialog();
+        }
+
+        private void msTiposDeportes_Click(object sender, EventArgs e)
+        {
+            FSportTypes fSportTypes = new FSportTypes();
+            fSportTypes.ShowDialog();
+        }
+        
+        private void mSSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void tsBtnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
+
+
+
     }
 }

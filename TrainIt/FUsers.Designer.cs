@@ -40,20 +40,6 @@
             this.statusS1 = new System.Windows.Forms.StatusStrip();
             this.tslConnString = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolS1 = new System.Windows.Forms.ToolStrip();
-            this.trainITDataSet = new TrainIt.TrainITDataSet();
-            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.usersTableAdapter = new TrainIt.TrainITDataSetTableAdapters.UsersTableAdapter();
-            this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
-            this.txtUserID = new System.Windows.Forms.TextBox();
-            this.txtFirstName = new System.Windows.Forms.TextBox();
-            this.txtSecondName = new System.Windows.Forms.TextBox();
-            this.dtpBDate = new System.Windows.Forms.DateTimePicker();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.laConfirm = new System.Windows.Forms.Label();
-            this.txtConfirm = new System.Windows.Forms.TextBox();
-            this.txtUserName = new System.Windows.Forms.TextBox();
-            this.txtUserPass = new System.Windows.Forms.TextBox();
-            this.txtMail = new System.Windows.Forms.TextBox();
             this.tsBtnFirst = new System.Windows.Forms.ToolStripButton();
             this.tsBtnPrevious = new System.Windows.Forms.ToolStripButton();
             this.tsTxtPosition = new System.Windows.Forms.ToolStripTextBox();
@@ -65,6 +51,21 @@
             this.tsBtnDelete = new System.Windows.Forms.ToolStripButton();
             this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
             this.tsBtnCancel = new System.Windows.Forms.ToolStripButton();
+            this.trainITDataSet = new TrainIt.TrainITDataSet();
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.usersTableAdapter = new TrainIt.TrainITDataSetTableAdapters.UsersTableAdapter();
+            this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
+            this.txtUserID = new System.Windows.Forms.TextBox();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.txtSecondName = new System.Windows.Forms.TextBox();
+            this.dtpBDate = new System.Windows.Forms.DateTimePicker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnChangePassword = new System.Windows.Forms.Button();
+            this.laConfirm = new System.Windows.Forms.Label();
+            this.txtConfirm = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.txtUserPass = new System.Windows.Forms.TextBox();
+            this.txtMail = new System.Windows.Forms.TextBox();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,6 +73,7 @@
             this.UserLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userBDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tslUser = new System.Windows.Forms.ToolStripStatusLabel();
             userIDLabel = new System.Windows.Forms.Label();
             userFirstNameLabel = new System.Windows.Forms.Label();
             userSecondNameLabel = new System.Windows.Forms.Label();
@@ -160,6 +162,7 @@
             // statusS1
             // 
             this.statusS1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tslUser,
             this.tslConnString});
             this.statusS1.Location = new System.Drawing.Point(0, 544);
             this.statusS1.Name = "statusS1";
@@ -192,133 +195,6 @@
             this.toolS1.Size = new System.Drawing.Size(692, 25);
             this.toolS1.TabIndex = 1;
             this.toolS1.Text = "toolStrip1";
-            // 
-            // trainITDataSet
-            // 
-            this.trainITDataSet.DataSetName = "TrainITDataSet";
-            this.trainITDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // usersBindingSource
-            // 
-            this.usersBindingSource.DataMember = "Users";
-            this.usersBindingSource.DataSource = this.trainITDataSet;
-            // 
-            // usersTableAdapter
-            // 
-            this.usersTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.MaterialSessionTableAdapter = null;
-            this.tableAdapterManager.MaterialsTableAdapter = null;
-            this.tableAdapterManager.SessionsTableAdapter = null;
-            this.tableAdapterManager.SportsTableAdapter = null;
-            this.tableAdapterManager.SportTypesTableAdapter = null;
-            this.tableAdapterManager.TrainingsTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserRegsTableAdapter = null;
-            this.tableAdapterManager.UsersTableAdapter = this.usersTableAdapter;
-            // 
-            // txtUserID
-            // 
-            this.txtUserID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserID", true));
-            this.txtUserID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUserID.Location = new System.Drawing.Point(85, 60);
-            this.txtUserID.Name = "txtUserID";
-            this.txtUserID.ReadOnly = true;
-            this.txtUserID.Size = new System.Drawing.Size(147, 26);
-            this.txtUserID.TabIndex = 5;
-            this.txtUserID.TabStop = false;
-            // 
-            // txtFirstName
-            // 
-            this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFirstName.Location = new System.Drawing.Point(85, 94);
-            this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(147, 26);
-            this.txtFirstName.TabIndex = 7;
-            // 
-            // txtSecondName
-            // 
-            this.txtSecondName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserSecondName", true));
-            this.txtSecondName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSecondName.Location = new System.Drawing.Point(336, 95);
-            this.txtSecondName.Name = "txtSecondName";
-            this.txtSecondName.Size = new System.Drawing.Size(335, 26);
-            this.txtSecondName.TabIndex = 8;
-            // 
-            // dtpBDate
-            // 
-            this.dtpBDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.usersBindingSource, "UserBDate", true));
-            this.dtpBDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpBDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBDate.Location = new System.Drawing.Point(551, 128);
-            this.dtpBDate.Name = "dtpBDate";
-            this.dtpBDate.Size = new System.Drawing.Size(120, 26);
-            this.dtpBDate.TabIndex = 10;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.laConfirm);
-            this.groupBox1.Controls.Add(this.txtConfirm);
-            this.groupBox1.Controls.Add(this.txtUserName);
-            this.groupBox1.Controls.Add(userPassLabel);
-            this.groupBox1.Controls.Add(this.txtUserPass);
-            this.groupBox1.Controls.Add(userNameLabel);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(106, 172);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(414, 137);
-            this.groupBox1.TabIndex = 18;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Acceso al programa";
-            // 
-            // laConfirm
-            // 
-            this.laConfirm.AutoSize = true;
-            this.laConfirm.Location = new System.Drawing.Point(20, 97);
-            this.laConfirm.Name = "laConfirm";
-            this.laConfirm.Size = new System.Drawing.Size(134, 20);
-            this.laConfirm.TabIndex = 22;
-            this.laConfirm.Text = "Repetir Pasword :";
-            // 
-            // txtConfirm
-            // 
-            this.txtConfirm.Location = new System.Drawing.Point(160, 91);
-            this.txtConfirm.Name = "txtConfirm";
-            this.txtConfirm.PasswordChar = '*';
-            this.txtConfirm.Size = new System.Drawing.Size(202, 26);
-            this.txtConfirm.TabIndex = 13;
-            this.txtConfirm.Visible = false;
-            // 
-            // txtUserName
-            // 
-            this.txtUserName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserName", true));
-            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUserName.Location = new System.Drawing.Point(160, 25);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(202, 26);
-            this.txtUserName.TabIndex = 11;
-            // 
-            // txtUserPass
-            // 
-            this.txtUserPass.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserPass", true));
-            this.txtUserPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUserPass.Location = new System.Drawing.Point(160, 58);
-            this.txtUserPass.Name = "txtUserPass";
-            this.txtUserPass.PasswordChar = '*';
-            this.txtUserPass.Size = new System.Drawing.Size(202, 26);
-            this.txtUserPass.TabIndex = 12;
-            // 
-            // txtMail
-            // 
-            this.txtMail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserMail", true));
-            this.txtMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMail.Location = new System.Drawing.Point(85, 128);
-            this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(330, 26);
-            this.txtMail.TabIndex = 9;
             // 
             // tsBtnFirst
             // 
@@ -420,6 +296,145 @@
             this.tsBtnCancel.Text = "Cancelar edición de registro";
             this.tsBtnCancel.Click += new System.EventHandler(this.tsBtnCancel_Click);
             // 
+            // trainITDataSet
+            // 
+            this.trainITDataSet.DataSetName = "TrainITDataSet";
+            this.trainITDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataMember = "Users";
+            this.usersBindingSource.DataSource = this.trainITDataSet;
+            // 
+            // usersTableAdapter
+            // 
+            this.usersTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.MaterialSessionTableAdapter = null;
+            this.tableAdapterManager.MaterialsTableAdapter = null;
+            this.tableAdapterManager.SessionsTableAdapter = null;
+            this.tableAdapterManager.SportsTableAdapter = null;
+            this.tableAdapterManager.SportTypesTableAdapter = null;
+            this.tableAdapterManager.TrainingsTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserRegsTableAdapter = null;
+            this.tableAdapterManager.UsersTableAdapter = this.usersTableAdapter;
+            // 
+            // txtUserID
+            // 
+            this.txtUserID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserID", true));
+            this.txtUserID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserID.Location = new System.Drawing.Point(85, 60);
+            this.txtUserID.Name = "txtUserID";
+            this.txtUserID.ReadOnly = true;
+            this.txtUserID.Size = new System.Drawing.Size(147, 26);
+            this.txtUserID.TabIndex = 5;
+            this.txtUserID.TabStop = false;
+            // 
+            // txtFirstName
+            // 
+            this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFirstName.Location = new System.Drawing.Point(85, 94);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(147, 26);
+            this.txtFirstName.TabIndex = 7;
+            // 
+            // txtSecondName
+            // 
+            this.txtSecondName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserSecondName", true));
+            this.txtSecondName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSecondName.Location = new System.Drawing.Point(336, 95);
+            this.txtSecondName.Name = "txtSecondName";
+            this.txtSecondName.Size = new System.Drawing.Size(335, 26);
+            this.txtSecondName.TabIndex = 8;
+            // 
+            // dtpBDate
+            // 
+            this.dtpBDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.usersBindingSource, "UserBDate", true));
+            this.dtpBDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpBDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpBDate.Location = new System.Drawing.Point(551, 128);
+            this.dtpBDate.Name = "dtpBDate";
+            this.dtpBDate.Size = new System.Drawing.Size(120, 26);
+            this.dtpBDate.TabIndex = 10;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnChangePassword);
+            this.groupBox1.Controls.Add(this.laConfirm);
+            this.groupBox1.Controls.Add(this.txtConfirm);
+            this.groupBox1.Controls.Add(this.txtUserName);
+            this.groupBox1.Controls.Add(userPassLabel);
+            this.groupBox1.Controls.Add(this.txtUserPass);
+            this.groupBox1.Controls.Add(userNameLabel);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(106, 172);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(439, 137);
+            this.groupBox1.TabIndex = 18;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Acceso al programa";
+            // 
+            // btnChangePassword
+            // 
+            this.btnChangePassword.Enabled = false;
+            this.btnChangePassword.Image = ((System.Drawing.Image)(resources.GetObject("btnChangePassword.Image")));
+            this.btnChangePassword.Location = new System.Drawing.Point(368, 25);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(65, 59);
+            this.btnChangePassword.TabIndex = 23;
+            this.btnChangePassword.UseVisualStyleBackColor = true;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
+            // 
+            // laConfirm
+            // 
+            this.laConfirm.AutoSize = true;
+            this.laConfirm.Location = new System.Drawing.Point(20, 97);
+            this.laConfirm.Name = "laConfirm";
+            this.laConfirm.Size = new System.Drawing.Size(134, 20);
+            this.laConfirm.TabIndex = 22;
+            this.laConfirm.Text = "Repetir Pasword :";
+            // 
+            // txtConfirm
+            // 
+            this.txtConfirm.Location = new System.Drawing.Point(160, 91);
+            this.txtConfirm.Name = "txtConfirm";
+            this.txtConfirm.PasswordChar = '*';
+            this.txtConfirm.Size = new System.Drawing.Size(202, 26);
+            this.txtConfirm.TabIndex = 13;
+            this.txtConfirm.Visible = false;
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserName", true));
+            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserName.Location = new System.Drawing.Point(160, 25);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(202, 26);
+            this.txtUserName.TabIndex = 11;
+            // 
+            // txtUserPass
+            // 
+            this.txtUserPass.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserPass", true));
+            this.txtUserPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserPass.Location = new System.Drawing.Point(160, 58);
+            this.txtUserPass.Name = "txtUserPass";
+            this.txtUserPass.PasswordChar = '*';
+            this.txtUserPass.Size = new System.Drawing.Size(202, 26);
+            this.txtUserPass.TabIndex = 12;
+            // 
+            // txtMail
+            // 
+            this.txtMail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserMail", true));
+            this.txtMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMail.Location = new System.Drawing.Point(85, 128);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(330, 26);
+            this.txtMail.TabIndex = 9;
+            // 
             // dgvUsers
             // 
             this.dgvUsers.AllowUserToAddRows = false;
@@ -487,6 +502,12 @@
             this.userMail.Name = "userMail";
             this.userMail.ReadOnly = true;
             this.userMail.Width = 140;
+            // 
+            // tslUser
+            // 
+            this.tslUser.Name = "tslUser";
+            this.tslUser.Size = new System.Drawing.Size(53, 17);
+            this.tslUser.Text = "Usuario :";
             // 
             // FUsers
             // 
@@ -562,5 +583,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UserLastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn userBDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn userMail;
+        private System.Windows.Forms.Button btnChangePassword;
+        private System.Windows.Forms.ToolStripStatusLabel tslUser;
     }
 }

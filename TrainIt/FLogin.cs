@@ -15,6 +15,8 @@ namespace TrainIt
     {
         Boolean accessGranted = false;
         string connString = TrainItLibrary.Utilities.GetConnString();
+        public string userNameGiven = null;
+        string userPassGiven = null;
 
         public FLogin()
         {
@@ -27,8 +29,8 @@ namespace TrainIt
             Boolean sigue = true;
 
             //Takes user ID clicked
-            string userNameGiven = txtUser.Text;
-            string userPassGiven = txtPass.Text;
+            userNameGiven = txtUser.Text;
+            userPassGiven = txtPass.Text;
 
             //Verify if an user has been entered.
             if (userNameGiven=="")
@@ -48,6 +50,7 @@ namespace TrainIt
             if (sigue)
             {
                 accessGranted = true;
+                Global.usuario = userNameGiven;
                 Close();
             }
             else
@@ -81,7 +84,7 @@ namespace TrainIt
         private void laNewUser_Click(object sender, EventArgs e)
         {
             FUsers fUsers = new FUsers();
-            fUsers.Show();
+            fUsers.ShowDialog();
         }
 
         private void FLogin_FormClosing(object sender, FormClosingEventArgs e)

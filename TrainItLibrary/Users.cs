@@ -20,6 +20,19 @@ namespace TrainItLibrary
         public string userConfirmPassword;
         public string userMail;
 
+        public Users()
+        {
+            userID = -1;
+            userFirstName = null;
+            userSecondName = null;
+            userBDate = DateTime.Now;
+            userName = null;
+            userPass = null;
+            userConfirmPassword = null;
+            userMail = null;
+        }
+
+
         public Users(int UserID, string UserFirstName, string UserSecondName, DateTime UserBDate, String UserLoginName,
                      String UserPassword, String UserConfirmPassword, String UserMail)
         {
@@ -34,7 +47,7 @@ namespace TrainItLibrary
         }
 
         //Load data into a user object
-        public Users loadData(int UserID, string UserFirstName, string UserSecondName, DateTime UserBDate, String UserLoginName,
+        public Users LoadData(int UserID, string UserFirstName, string UserSecondName, DateTime UserBDate, String UserLoginName,
                      String UserPassword, String UserConfirmPassword, String UserMail)
         {
             Users aUser = new Users(UserID, UserFirstName, UserSecondName, UserBDate, UserLoginName, UserPassword, UserConfirmPassword, UserMail);
@@ -42,126 +55,148 @@ namespace TrainItLibrary
         }
 
         //Reset the user object
-        public Users Reset(Users aUser)
+        public Users Reset()
         {
-            aUser.userID = -1;
-            aUser.userFirstName = "";
-            aUser.userSecondName = "";
-            aUser.userBDate = DateTime.Now;
-            aUser.userName = "";
-            aUser.userPass = "";
-            aUser.userConfirmPassword = "";
-            aUser.userMail = "";
+            Users aUser = new Users();
             return aUser;
         }
 
         //Check user data
-        public int checkUserData(Users aUser)
-        { //0: ok, -1: missing user name, -1:pass and confirm not equal
-            int res = 0;
-            if (aUser.userName == "")
+        public int checkUserData(string connString)
+        { /*Verify the data to save:
+           *       1: Data is ok to save.
+           *      -1: userName is missing.
+           *      -2: userName exists in data base.
+           *      -3: Password lenght is less than 8 characters.
+           *      -4: Password and Confirm are differents.
+           */
+            int res = 1;            
+            Boolean sigue = true;
+            //Check if username is empty
+            if (userName == "")
+            {
                 res = -1;
-            else if (aUser.userPass!=aUser.userConfirmPassword)
-                        res = -2;
+                sigue = false;
+            }
+            
+            if (sigue)
+            {
+                Users aUser = findUserByUserName(connString, userName);
+                if (aUser.userID != -1)
+                { //user exits in DB
+                    sigue = false;
+                    res = -2;
+                }
+            }
+
+            if (sigue)
+            {
+                int lenghtPassword = userPass.Length;
+                if (lenghtPassword<8)
+                { //Password shorter than 8 characters
+                    sigue = false;
+                    res = -3;
+                }
+            }
+            
+            if (sigue && (userPass!=userConfirmPassword))
+                res = -4; //Password and confirm are differents           
+            
             return res;
         }
 
-        //Save an User object into BD using a connection
-        public Users saveUserData(Users aUser, string connString)
+        //Save an User object into BD using a connection, suposses data are checked with checkUserData.
+        public Users saveUserData(string connString)
         { //Return the user saved. If error return an empty user with userId=-1
-            int res = checkUserData(aUser);
-            if (res >= 0)
+            Users aUser = new Users();
+            using (SqlConnection conn = new SqlConnection(connString))
             {
-                using (SqlConnection conn = new SqlConnection(connString))
-                {
-                    string pass = aUser.userPass;
-                    string query = String.Format(@"INSERT INTO Users(UserFirstName, UserSecondName, UserBdate, UserName, UserPass, UserMail)
+                string pass = userPass;
+                string query = String.Format(@"INSERT INTO Users(UserFirstName, UserSecondName, UserBdate, UserName, UserPass, UserMail)
                                             VALUES(@userFirstName,@userSecondName,@userBDate,@userName,PwdEncrypt('{0}'),@userMail)", pass);
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@userFirstName", SqlDbType.VarChar));
+                    cmd.Parameters["@userFirstName"].Value = userFirstName;
+
+                    cmd.Parameters.Add(new SqlParameter("@userSecondName", SqlDbType.VarChar));
+                    cmd.Parameters["@userSecondName"].Value = userSecondName;
+
+                    cmd.Parameters.Add(new SqlParameter("@userBDate", SqlDbType.Date));
+                    cmd.Parameters["@userBDate"].Value = userBDate;
+
+                    cmd.Parameters.Add(new SqlParameter("@userName", SqlDbType.VarChar));
+                    cmd.Parameters["@userName"].Value = userName;
+
+                    cmd.Parameters.Add(new SqlParameter("@userMail", SqlDbType.VarChar));
+                    cmd.Parameters["@userMail"].Value = userMail;
+
+                    conn.Open();
+                    int res = cmd.ExecuteNonQuery();
+
+                    //Find the userID asigned.                        
+                    if (res >= 0)
                     {
-                        cmd.Parameters.Add(new SqlParameter("@userFirstName", SqlDbType.VarChar));
-                        cmd.Parameters["@userFirstName"].Value = aUser.userFirstName;
-
-                        cmd.Parameters.Add(new SqlParameter("@userSecondName", SqlDbType.VarChar));
-                        cmd.Parameters["@userSecondName"].Value = aUser.userSecondName;
-
-                        cmd.Parameters.Add(new SqlParameter("@userBDate", SqlDbType.Date));
-                        cmd.Parameters["@userBDate"].Value = aUser.userBDate;
-
-                        cmd.Parameters.Add(new SqlParameter("@userName", SqlDbType.VarChar));
-                        cmd.Parameters["@userName"].Value = aUser.userName;
-
-                        cmd.Parameters.Add(new SqlParameter("@userMail", SqlDbType.VarChar));
-                        cmd.Parameters["@userMail"].Value = aUser.userMail;
-
-                        conn.Open();
-                        res=cmd.ExecuteNonQuery(); 
-                       
-                        //Find the userID asigned.
-                        if (res > 0)
-                        {
-                            string user = aUser.userName;
-                            aUser = aUser.findUserByUserName(connString, user);
-                        }
-                        else
-                        {
-                            aUser = aUser.loadData(-1, "", "", DateTime.Now, "", "", "", "");
-                        }
-                    }
+                        string user = userName;
+                        aUser = aUser.findUserByUserName(connString, user);
+                    }                    
                 }
-            }
+            }      
             return aUser;
         }
-        
-        //Update an User object into BD using a connection and a userID
-        public Users updateUserData(Users aUser, string connString, int userID)
+
+        //Update an User object into BD using a connection and a userID, suposses data are checked with checkUserData.
+        public Users updateUserData(string connString, Boolean savePassword)
         { //Return the user updated. If error return an empty user with userID=-1
-            int res = checkUserData(aUser);
-            if (res < 0)
+            Users aUser = new Users();
+            using (SqlConnection conn = new SqlConnection(connString))
             {
-                using (SqlConnection conn = new SqlConnection(connString))
+                //string pass = userPass;
+                string query = null;
+
+                if (!savePassword)
                 {
-                    string pass = aUser.userPass;
-                    string query = @"UPDATE Users SET UserFirstName=@userFirstName, UserSecondName=@userSecondName, 
+                    query = @"UPDATE Users SET UserFirstName=@userFirstName, UserSecondName=@userSecondName, 
                               UserBdate=@userBDate, UserName=@userName , UserMail=@userMail
                                WHERE UserID=@userID";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                }
+                else
+                {
+                    query = String.Format(@"UPDATE Users SET UserFirstName=@userFirstName, UserSecondName=@userSecondName,
+                                                UserBdate=@userBDate, UserName=@userName, UserPass=PwdEncrypt('{0}'), UserMail=@userMail
+                                                WHERE UserID=@userID", userPass);
+                }
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.Int));
+                    cmd.Parameters["@userID"].Value = userID;
+
+                    cmd.Parameters.Add(new SqlParameter("@userFirstName", SqlDbType.VarChar));
+                    cmd.Parameters["@userFirstName"].Value = userFirstName;
+
+                    cmd.Parameters.Add(new SqlParameter("@userSecondName", SqlDbType.VarChar));
+                    cmd.Parameters["@userSecondName"].Value = userSecondName;
+
+                    cmd.Parameters.Add(new SqlParameter("@userBDate", SqlDbType.Date));
+                    cmd.Parameters["@userBDate"].Value = userBDate;
+
+                    cmd.Parameters.Add(new SqlParameter("@userName", SqlDbType.VarChar));
+                    cmd.Parameters["@userName"].Value = userName;
+
+                    cmd.Parameters.Add(new SqlParameter("@userMail", SqlDbType.VarChar));
+                    cmd.Parameters["@userMail"].Value = userMail;
+
+                    conn.Open();
+                    int res = cmd.ExecuteNonQuery();
+
+                    //Find the userID asigned.
+                    if (res > 0)
                     {
-                        cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.Int));
-                        cmd.Parameters["@userID"].Value = userID;
-
-                        cmd.Parameters.Add(new SqlParameter("@userFirstName", SqlDbType.VarChar));
-                        cmd.Parameters["@userFirstName"].Value = aUser.userFirstName;
-
-                        cmd.Parameters.Add(new SqlParameter("@userSecondName", SqlDbType.VarChar));
-                        cmd.Parameters["@userSecondName"].Value = aUser.userSecondName;
-
-                        cmd.Parameters.Add(new SqlParameter("@userBDate", SqlDbType.Date));
-                        cmd.Parameters["@userBDate"].Value = aUser.userBDate;
-
-                        cmd.Parameters.Add(new SqlParameter("@userName", SqlDbType.VarChar));
-                        cmd.Parameters["@userName"].Value = aUser.userName;
-
-                        cmd.Parameters.Add(new SqlParameter("@userMail", SqlDbType.VarChar));
-                        cmd.Parameters["@userMail"].Value = aUser.userMail;
-
-                        conn.Open();
-                        res = cmd.ExecuteNonQuery();
-
-                        //Find the userID asigned.
-                        if (res > 0)
-                        {
-                            aUser = aUser.findUserByUserID(connString, userID);
-                        }
-                        else
-                        {
-                            aUser = aUser.loadData(-1, "", "", DateTime.Now, "", "", "", "");
-                        }
+                        aUser = aUser.findUserByUserID(connString, userID);
                     }
                 }
-            }
+            }                       
             return aUser;
-
         }
 
         //Find an user into de DB. Given a user ID and returns all data into de Users object. If not find return a user with userID=-1.
@@ -185,6 +220,7 @@ namespace TrainItLibrary
                         aUser.userBDate = Convert.ToDateTime(reader.GetDateTime(3));
                         aUser.userName = reader.GetString(4);
                         aUser.userPass = reader.GetSqlBinary(5).ToString();
+                        aUser.userConfirmPassword = aUser.userPass;
                         aUser.userMail = reader.GetString(6);                        
                     }
                     reader.Close();                        
@@ -214,6 +250,7 @@ namespace TrainItLibrary
                         aUser.userBDate = Convert.ToDateTime(reader.GetDateTime(3));
                         aUser.userName = reader.GetString(4);
                         aUser.userPass = reader.GetSqlBinary(5).ToString();
+                        aUser.userConfirmPassword = aUser.userPass;
                         aUser.userMail = reader.GetString(6);
                     }
                     reader.Close();
@@ -226,7 +263,7 @@ namespace TrainItLibrary
         public int deleteUserByUserID(string connString, Int32 aUserID)
         { //Return 1 if deleted,-1 if any problem.
             int res = -1;
-            Users aUser = new Users(-1, "", "", DateTime.Now, "", "", "", "");
+            Users aUser = new Users();
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 string query = "delete from Users where UserID = @userID";

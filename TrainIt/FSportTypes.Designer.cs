@@ -1,6 +1,6 @@
 ﻿namespace TrainIt
 {
-    partial class FMaterial
+    partial class FSportTypes
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMaterial));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FSportTypes));
             this.toolS1 = new System.Windows.Forms.ToolStrip();
             this.tsBtnFirst = new System.Windows.Forms.ToolStripButton();
             this.tsBtnPrevious = new System.Windows.Forms.ToolStripButton();
@@ -44,8 +44,10 @@
             this.statusS1 = new System.Windows.Forms.StatusStrip();
             this.tslUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.tslConnString = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dgvSTypes = new System.Windows.Forms.DataGridView();
             this.toolS1.SuspendLayout();
             this.statusS1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSTypes)).BeginInit();
             this.SuspendLayout();
             // 
             // toolS1
@@ -64,7 +66,7 @@
             this.tsBtnCancel});
             this.toolS1.Location = new System.Drawing.Point(0, 0);
             this.toolS1.Name = "toolS1";
-            this.toolS1.Size = new System.Drawing.Size(465, 25);
+            this.toolS1.Size = new System.Drawing.Size(538, 25);
             this.toolS1.TabIndex = 2;
             this.toolS1.Text = "toolStrip1";
             // 
@@ -158,15 +160,16 @@
             this.tsBtnCancel.Name = "tsBtnCancel";
             this.tsBtnCancel.Size = new System.Drawing.Size(23, 22);
             this.tsBtnCancel.Text = "Cancelar edición de registro";
+            this.tsBtnCancel.Click += new System.EventHandler(this.tsBtnCancel_Click);
             // 
             // statusS1
             // 
             this.statusS1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tslUser,
             this.tslConnString});
-            this.statusS1.Location = new System.Drawing.Point(0, 309);
+            this.statusS1.Location = new System.Drawing.Point(0, 324);
             this.statusS1.Name = "statusS1";
-            this.statusS1.Size = new System.Drawing.Size(465, 22);
+            this.statusS1.Size = new System.Drawing.Size(538, 22);
             this.statusS1.TabIndex = 3;
             this.statusS1.Text = "statusStrip1";
             // 
@@ -182,19 +185,29 @@
             this.tslConnString.Size = new System.Drawing.Size(79, 17);
             this.tslConnString.Text = "Conn String : ";
             // 
-            // FMaterial
+            // dgvSTypes
+            // 
+            this.dgvSTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSTypes.Location = new System.Drawing.Point(72, 171);
+            this.dgvSTypes.Name = "dgvSTypes";
+            this.dgvSTypes.Size = new System.Drawing.Size(240, 150);
+            this.dgvSTypes.TabIndex = 4;
+            // 
+            // FSportTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 331);
+            this.ClientSize = new System.Drawing.Size(538, 346);
+            this.Controls.Add(this.dgvSTypes);
             this.Controls.Add(this.statusS1);
             this.Controls.Add(this.toolS1);
-            this.Name = "FMaterial";
-            this.Text = "Materiales";
+            this.Name = "FSportTypes";
+            this.Text = "Tipos de deporte";
             this.toolS1.ResumeLayout(false);
             this.toolS1.PerformLayout();
             this.statusS1.ResumeLayout(false);
             this.statusS1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSTypes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,6 +230,6 @@
         private System.Windows.Forms.StatusStrip statusS1;
         private System.Windows.Forms.ToolStripStatusLabel tslUser;
         private System.Windows.Forms.ToolStripStatusLabel tslConnString;
-
+        private System.Windows.Forms.DataGridView dgvSTypes;
     }
 }

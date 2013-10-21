@@ -33,5 +33,14 @@ namespace TrainItLibrary.Properties {
                 return ((string)(this["TrainITConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
+        public string appUser {
+            get {
+                return ((string)(this["appUser"]));
+            }
+        }
     }
 }

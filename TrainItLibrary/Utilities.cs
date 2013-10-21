@@ -18,6 +18,6 @@ namespace TrainItLibrary
             if (settings != null)
                 value = settings.ConnectionString;
             return value;
-        }
+        }        
     }
 }

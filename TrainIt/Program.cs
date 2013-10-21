@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace TrainIt
 {
     static class Program
-    {
+    {                
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
