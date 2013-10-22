@@ -16,7 +16,8 @@ namespace TrainIt
         Boolean accessGranted = false;
         string connString = TrainItLibrary.Utilities.GetConnString();
         public string userNameGiven = null;
-        string userPassGiven = null;
+        public int userIDGiven = -1;
+        string userPassGiven = null;        
 
         public FLogin()
         {
@@ -43,14 +44,17 @@ namespace TrainIt
             if (sigue)
             {
                 Users aUser = new Users(-1, "", "", DateTime.Now, "", "", "", "");
-                sigue = aUser.verifyPass (userNameGiven, userPassGiven, connString);    
+                aUser = aUser.verifyPass (userNameGiven, userPassGiven, connString);
+                userIDGiven = aUser.userID;
+                if (aUser.userID == -1)
+                    sigue = false;
             }
 
             //give or not access depending de result of the query
             if (sigue)
             {
                 accessGranted = true;
-                Global.usuario = userNameGiven;
+                Global.userNameWorking = userNameGiven;
                 Close();
             }
             else

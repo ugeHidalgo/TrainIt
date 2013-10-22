@@ -30,8 +30,6 @@ namespace TrainIt {
         
         private SessionsDataTable tableSessions;
         
-        private SportsDataTable tableSports;
-        
         private SportTypesDataTable tableSportTypes;
         
         private TrainingsDataTable tableTrainings;
@@ -44,13 +42,13 @@ namespace TrainIt {
         
         private global::System.Data.DataRelation relationFK_MaterialSession_Sessions;
         
-        private global::System.Data.DataRelation relationFK_Sessions_Sports;
+        private global::System.Data.DataRelation relationFK_Sessions_SportTypes;
         
         private global::System.Data.DataRelation relationFK_Sessions_Trainings;
         
-        private global::System.Data.DataRelation relationFK_Sports_SportTypes;
+        private global::System.Data.DataRelation relationFK_Sessions_Users;
         
-        private global::System.Data.DataRelation relationFK_SportTypes_SportTypes;
+        private global::System.Data.DataRelation relationFK_SportTypes_Users1;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -88,9 +86,6 @@ namespace TrainIt {
                 }
                 if ((ds.Tables["Sessions"] != null)) {
                     base.Tables.Add(new SessionsDataTable(ds.Tables["Sessions"]));
-                }
-                if ((ds.Tables["Sports"] != null)) {
-                    base.Tables.Add(new SportsDataTable(ds.Tables["Sports"]));
                 }
                 if ((ds.Tables["SportTypes"] != null)) {
                     base.Tables.Add(new SportTypesDataTable(ds.Tables["SportTypes"]));
@@ -149,16 +144,6 @@ namespace TrainIt {
         public SessionsDataTable Sessions {
             get {
                 return this.tableSessions;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SportsDataTable Sports {
-            get {
-                return this.tableSports;
             }
         }
         
@@ -278,9 +263,6 @@ namespace TrainIt {
                 if ((ds.Tables["Sessions"] != null)) {
                     base.Tables.Add(new SessionsDataTable(ds.Tables["Sessions"]));
                 }
-                if ((ds.Tables["Sports"] != null)) {
-                    base.Tables.Add(new SportsDataTable(ds.Tables["Sports"]));
-                }
                 if ((ds.Tables["SportTypes"] != null)) {
                     base.Tables.Add(new SportTypesDataTable(ds.Tables["SportTypes"]));
                 }
@@ -344,12 +326,6 @@ namespace TrainIt {
                     this.tableSessions.InitVars();
                 }
             }
-            this.tableSports = ((SportsDataTable)(base.Tables["Sports"]));
-            if ((initTable == true)) {
-                if ((this.tableSports != null)) {
-                    this.tableSports.InitVars();
-                }
-            }
             this.tableSportTypes = ((SportTypesDataTable)(base.Tables["SportTypes"]));
             if ((initTable == true)) {
                 if ((this.tableSportTypes != null)) {
@@ -376,10 +352,10 @@ namespace TrainIt {
             }
             this.relationFK_MaterialSession_Materials = this.Relations["FK_MaterialSession_Materials"];
             this.relationFK_MaterialSession_Sessions = this.Relations["FK_MaterialSession_Sessions"];
-            this.relationFK_Sessions_Sports = this.Relations["FK_Sessions_Sports"];
+            this.relationFK_Sessions_SportTypes = this.Relations["FK_Sessions_SportTypes"];
             this.relationFK_Sessions_Trainings = this.Relations["FK_Sessions_Trainings"];
-            this.relationFK_Sports_SportTypes = this.Relations["FK_Sports_SportTypes"];
-            this.relationFK_SportTypes_SportTypes = this.Relations["FK_SportTypes_SportTypes"];
+            this.relationFK_Sessions_Users = this.Relations["FK_Sessions_Users"];
+            this.relationFK_SportTypes_Users1 = this.Relations["FK_SportTypes_Users1"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -396,8 +372,6 @@ namespace TrainIt {
             base.Tables.Add(this.tableMaterialSession);
             this.tableSessions = new SessionsDataTable();
             base.Tables.Add(this.tableSessions);
-            this.tableSports = new SportsDataTable();
-            base.Tables.Add(this.tableSports);
             this.tableSportTypes = new SportTypesDataTable();
             base.Tables.Add(this.tableSportTypes);
             this.tableTrainings = new TrainingsDataTable();
@@ -414,22 +388,22 @@ namespace TrainIt {
                         this.tableSessions.SessionIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableMaterialSession.SessionIDColumn}, false);
             this.Relations.Add(this.relationFK_MaterialSession_Sessions);
-            this.relationFK_Sessions_Sports = new global::System.Data.DataRelation("FK_Sessions_Sports", new global::System.Data.DataColumn[] {
-                        this.tableSports.SportIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableSessions.SportIDColumn}, false);
-            this.Relations.Add(this.relationFK_Sessions_Sports);
+            this.relationFK_Sessions_SportTypes = new global::System.Data.DataRelation("FK_Sessions_SportTypes", new global::System.Data.DataColumn[] {
+                        this.tableSportTypes.SportTypeIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSessions.SportTypeIDColumn}, false);
+            this.Relations.Add(this.relationFK_Sessions_SportTypes);
             this.relationFK_Sessions_Trainings = new global::System.Data.DataRelation("FK_Sessions_Trainings", new global::System.Data.DataColumn[] {
                         this.tableTrainings.TrainIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableSessions.TrainIDColumn}, false);
             this.Relations.Add(this.relationFK_Sessions_Trainings);
-            this.relationFK_Sports_SportTypes = new global::System.Data.DataRelation("FK_Sports_SportTypes", new global::System.Data.DataColumn[] {
-                        this.tableSportTypes.SportTypeIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableSports.SportTypeIDColumn}, false);
-            this.Relations.Add(this.relationFK_Sports_SportTypes);
-            this.relationFK_SportTypes_SportTypes = new global::System.Data.DataRelation("FK_SportTypes_SportTypes", new global::System.Data.DataColumn[] {
-                        this.tableSportTypes.SportTypeIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableSportTypes.ParentSportTypeIDColumn}, false);
-            this.Relations.Add(this.relationFK_SportTypes_SportTypes);
+            this.relationFK_Sessions_Users = new global::System.Data.DataRelation("FK_Sessions_Users", new global::System.Data.DataColumn[] {
+                        this.tableUsers.UserIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSessions.UserIDColumn}, false);
+            this.Relations.Add(this.relationFK_Sessions_Users);
+            this.relationFK_SportTypes_Users1 = new global::System.Data.DataRelation("FK_SportTypes_Users1", new global::System.Data.DataColumn[] {
+                        this.tableUsers.UserIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSportTypes.UserIDColumn}, false);
+            this.Relations.Add(this.relationFK_SportTypes_Users1);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -447,12 +421,6 @@ namespace TrainIt {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeSessions() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeSports() {
             return false;
         }
         
@@ -543,9 +511,6 @@ namespace TrainIt {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void SessionsRowChangeEventHandler(object sender, SessionsRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void SportsRowChangeEventHandler(object sender, SportsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void SportTypesRowChangeEventHandler(object sender, SportTypesRowChangeEvent e);
@@ -1175,7 +1140,7 @@ namespace TrainIt {
             
             private global::System.Data.DataColumn columnUserID;
             
-            private global::System.Data.DataColumn columnSportID;
+            private global::System.Data.DataColumn columnSportTypeID;
             
             private global::System.Data.DataColumn columnCompetition;
             
@@ -1252,9 +1217,9 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SportIDColumn {
+            public global::System.Data.DataColumn SportTypeIDColumn {
                 get {
-                    return this.columnSportID;
+                    return this.columnSportTypeID;
                 }
             }
             
@@ -1359,12 +1324,12 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SessionsRow AddSessionsRow(TrainingsRow parentTrainingsRowByFK_Sessions_Trainings, int UserID, SportsRow parentSportsRowByFK_Sessions_Sports, short Competition, short Transition, double Distance, System.TimeSpan Time, short MedHR, short MaxHR, short Value, string Memo) {
+            public SessionsRow AddSessionsRow(TrainingsRow parentTrainingsRowByFK_Sessions_Trainings, UsersRow parentUsersRowByFK_Sessions_Users, SportTypesRow parentSportTypesRowByFK_Sessions_SportTypes, short Competition, short Transition, double Distance, System.TimeSpan Time, short MedHR, short MaxHR, short Value, string Memo) {
                 SessionsRow rowSessionsRow = ((SessionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
-                        UserID,
+                        null,
                         null,
                         Competition,
                         Transition,
@@ -1377,8 +1342,11 @@ namespace TrainIt {
                 if ((parentTrainingsRowByFK_Sessions_Trainings != null)) {
                     columnValuesArray[1] = parentTrainingsRowByFK_Sessions_Trainings[0];
                 }
-                if ((parentSportsRowByFK_Sessions_Sports != null)) {
-                    columnValuesArray[3] = parentSportsRowByFK_Sessions_Sports[0];
+                if ((parentUsersRowByFK_Sessions_Users != null)) {
+                    columnValuesArray[2] = parentUsersRowByFK_Sessions_Users[0];
+                }
+                if ((parentSportTypesRowByFK_Sessions_SportTypes != null)) {
+                    columnValuesArray[3] = parentSportTypesRowByFK_Sessions_SportTypes[0];
                 }
                 rowSessionsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSessionsRow);
@@ -1412,7 +1380,7 @@ namespace TrainIt {
                 this.columnSessionID = base.Columns["SessionID"];
                 this.columnTrainID = base.Columns["TrainID"];
                 this.columnUserID = base.Columns["UserID"];
-                this.columnSportID = base.Columns["SportID"];
+                this.columnSportTypeID = base.Columns["SportTypeID"];
                 this.columnCompetition = base.Columns["Competition"];
                 this.columnTransition = base.Columns["Transition"];
                 this.columnDistance = base.Columns["Distance"];
@@ -1432,8 +1400,8 @@ namespace TrainIt {
                 base.Columns.Add(this.columnTrainID);
                 this.columnUserID = new global::System.Data.DataColumn("UserID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUserID);
-                this.columnSportID = new global::System.Data.DataColumn("SportID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSportID);
+                this.columnSportTypeID = new global::System.Data.DataColumn("SportTypeID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSportTypeID);
                 this.columnCompetition = new global::System.Data.DataColumn("Competition", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCompetition);
                 this.columnTransition = new global::System.Data.DataColumn("Transition", typeof(short), null, global::System.Data.MappingType.Element);
@@ -1460,7 +1428,7 @@ namespace TrainIt {
                 this.columnSessionID.Unique = true;
                 this.columnTrainID.AllowDBNull = false;
                 this.columnUserID.AllowDBNull = false;
-                this.columnSportID.AllowDBNull = false;
+                this.columnSportTypeID.AllowDBNull = false;
                 this.columnMemo.MaxLength = 50;
             }
             
@@ -1593,317 +1561,6 @@ namespace TrainIt {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SportsDataTable : global::System.Data.TypedTableBase<SportsRow> {
-            
-            private global::System.Data.DataColumn columnSportID;
-            
-            private global::System.Data.DataColumn columnSportName;
-            
-            private global::System.Data.DataColumn columnSportTypeID;
-            
-            private global::System.Data.DataColumn columnMemo;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportsDataTable() {
-                this.TableName = "Sports";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal SportsDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected SportsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SportIDColumn {
-                get {
-                    return this.columnSportID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SportNameColumn {
-                get {
-                    return this.columnSportName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SportTypeIDColumn {
-                get {
-                    return this.columnSportTypeID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MemoColumn {
-                get {
-                    return this.columnMemo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportsRow this[int index] {
-                get {
-                    return ((SportsRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SportsRowChangeEventHandler SportsRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SportsRowChangeEventHandler SportsRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SportsRowChangeEventHandler SportsRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SportsRowChangeEventHandler SportsRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddSportsRow(SportsRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportsRow AddSportsRow(string SportName, SportTypesRow parentSportTypesRowByFK_Sports_SportTypes, string Memo) {
-                SportsRow rowSportsRow = ((SportsRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        SportName,
-                        null,
-                        Memo};
-                if ((parentSportTypesRowByFK_Sports_SportTypes != null)) {
-                    columnValuesArray[2] = parentSportTypesRowByFK_Sports_SportTypes[0];
-                }
-                rowSportsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSportsRow);
-                return rowSportsRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportsRow FindBySportID(int SportID) {
-                return ((SportsRow)(this.Rows.Find(new object[] {
-                            SportID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                SportsDataTable cln = ((SportsDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new SportsDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnSportID = base.Columns["SportID"];
-                this.columnSportName = base.Columns["SportName"];
-                this.columnSportTypeID = base.Columns["SportTypeID"];
-                this.columnMemo = base.Columns["Memo"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnSportID = new global::System.Data.DataColumn("SportID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSportID);
-                this.columnSportName = new global::System.Data.DataColumn("SportName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSportName);
-                this.columnSportTypeID = new global::System.Data.DataColumn("SportTypeID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSportTypeID);
-                this.columnMemo = new global::System.Data.DataColumn("Memo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMemo);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnSportID}, true));
-                this.columnSportID.AutoIncrement = true;
-                this.columnSportID.AutoIncrementSeed = -1;
-                this.columnSportID.AutoIncrementStep = -1;
-                this.columnSportID.AllowDBNull = false;
-                this.columnSportID.ReadOnly = true;
-                this.columnSportID.Unique = true;
-                this.columnSportName.AllowDBNull = false;
-                this.columnSportName.MaxLength = 10;
-                this.columnSportTypeID.AllowDBNull = false;
-                this.columnMemo.MaxLength = 50;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportsRow NewSportsRow() {
-                return ((SportsRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SportsRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(SportsRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.SportsRowChanged != null)) {
-                    this.SportsRowChanged(this, new SportsRowChangeEvent(((SportsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.SportsRowChanging != null)) {
-                    this.SportsRowChanging(this, new SportsRowChangeEvent(((SportsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.SportsRowDeleted != null)) {
-                    this.SportsRowDeleted(this, new SportsRowChangeEvent(((SportsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.SportsRowDeleting != null)) {
-                    this.SportsRowDeleting(this, new SportsRowChangeEvent(((SportsRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveSportsRow(SportsRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                TrainITDataSet ds = new TrainITDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SportsDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class SportTypesDataTable : global::System.Data.TypedTableBase<SportTypesRow> {
             
             private global::System.Data.DataColumn columnSportTypeID;
@@ -1913,6 +1570,8 @@ namespace TrainIt {
             private global::System.Data.DataColumn columnParentSportTypeID;
             
             private global::System.Data.DataColumn columnMemo;
+            
+            private global::System.Data.DataColumn columnUserID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1981,6 +1640,14 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UserIDColumn {
+                get {
+                    return this.columnUserID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2016,15 +1683,16 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportTypesRow AddSportTypesRow(string SportTypeName, SportTypesRow parentSportTypesRowByFK_SportTypes_SportTypes, string Memo) {
+            public SportTypesRow AddSportTypesRow(string SportTypeName, int ParentSportTypeID, string Memo, UsersRow parentUsersRowByFK_SportTypes_Users1) {
                 SportTypesRow rowSportTypesRow = ((SportTypesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         SportTypeName,
-                        null,
-                        Memo};
-                if ((parentSportTypesRowByFK_SportTypes_SportTypes != null)) {
-                    columnValuesArray[2] = parentSportTypesRowByFK_SportTypes_SportTypes[0];
+                        ParentSportTypeID,
+                        Memo,
+                        null};
+                if ((parentUsersRowByFK_SportTypes_Users1 != null)) {
+                    columnValuesArray[4] = parentUsersRowByFK_SportTypes_Users1[0];
                 }
                 rowSportTypesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSportTypesRow);
@@ -2059,6 +1727,7 @@ namespace TrainIt {
                 this.columnSportTypeName = base.Columns["SportTypeName"];
                 this.columnParentSportTypeID = base.Columns["ParentSportTypeID"];
                 this.columnMemo = base.Columns["Memo"];
+                this.columnUserID = base.Columns["UserID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2072,6 +1741,8 @@ namespace TrainIt {
                 base.Columns.Add(this.columnParentSportTypeID);
                 this.columnMemo = new global::System.Data.DataColumn("Memo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMemo);
+                this.columnUserID = new global::System.Data.DataColumn("UserID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnSportTypeID}, true));
                 this.columnSportTypeID.AutoIncrement = true;
@@ -2081,8 +1752,10 @@ namespace TrainIt {
                 this.columnSportTypeID.ReadOnly = true;
                 this.columnSportTypeID.Unique = true;
                 this.columnSportTypeName.AllowDBNull = false;
-                this.columnSportTypeName.MaxLength = 10;
-                this.columnMemo.MaxLength = 50;
+                this.columnSportTypeName.MaxLength = 50;
+                this.columnParentSportTypeID.AllowDBNull = false;
+                this.columnMemo.MaxLength = 2147483647;
+                this.columnUserID.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3468,12 +3141,12 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int SportID {
+            public int SportTypeID {
                 get {
-                    return ((int)(this[this.tableSessions.SportIDColumn]));
+                    return ((int)(this[this.tableSessions.SportTypeIDColumn]));
                 }
                 set {
-                    this[this.tableSessions.SportIDColumn] = value;
+                    this[this.tableSessions.SportTypeIDColumn] = value;
                 }
             }
             
@@ -3607,12 +3280,12 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportsRow SportsRow {
+            public SportTypesRow SportTypesRow {
                 get {
-                    return ((SportsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Sessions_Sports"])));
+                    return ((SportTypesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Sessions_SportTypes"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Sessions_Sports"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Sessions_SportTypes"]);
                 }
             }
             
@@ -3624,6 +3297,17 @@ namespace TrainIt {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Sessions_Trainings"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public UsersRow UsersRow {
+                get {
+                    return ((UsersRow)(this.GetParentRow(this.Table.ParentRelations["FK_Sessions_Users"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Sessions_Users"]);
                 }
             }
             
@@ -3738,104 +3422,6 @@ namespace TrainIt {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class SportsRow : global::System.Data.DataRow {
-            
-            private SportsDataTable tableSports;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal SportsRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSports = ((SportsDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int SportID {
-                get {
-                    return ((int)(this[this.tableSports.SportIDColumn]));
-                }
-                set {
-                    this[this.tableSports.SportIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string SportName {
-                get {
-                    return ((string)(this[this.tableSports.SportNameColumn]));
-                }
-                set {
-                    this[this.tableSports.SportNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int SportTypeID {
-                get {
-                    return ((int)(this[this.tableSports.SportTypeIDColumn]));
-                }
-                set {
-                    this[this.tableSports.SportTypeIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Memo {
-                get {
-                    try {
-                        return ((string)(this[this.tableSports.MemoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Memo\' in table \'Sports\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSports.MemoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportTypesRow SportTypesRow {
-                get {
-                    return ((SportTypesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Sports_SportTypes"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Sports_SportTypes"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMemoNull() {
-                return this.IsNull(this.tableSports.MemoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMemoNull() {
-                this[this.tableSports.MemoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SessionsRow[] GetSessionsRows() {
-                if ((this.Table.ChildRelations["FK_Sessions_Sports"] == null)) {
-                    return new SessionsRow[0];
-                }
-                else {
-                    return ((SessionsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Sessions_Sports"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class SportTypesRow : global::System.Data.DataRow {
             
             private SportTypesDataTable tableSportTypes;
@@ -3873,12 +3459,7 @@ namespace TrainIt {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int ParentSportTypeID {
                 get {
-                    try {
-                        return ((int)(this[this.tableSportTypes.ParentSportTypeIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ParentSportTypeID\' in table \'SportTypes\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableSportTypes.ParentSportTypeIDColumn]));
                 }
                 set {
                     this[this.tableSportTypes.ParentSportTypeIDColumn] = value;
@@ -3903,25 +3484,24 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportTypesRow SportTypesRowParent {
+            public int UserID {
                 get {
-                    return ((SportTypesRow)(this.GetParentRow(this.Table.ParentRelations["FK_SportTypes_SportTypes"])));
+                    return ((int)(this[this.tableSportTypes.UserIDColumn]));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_SportTypes_SportTypes"]);
+                    this[this.tableSportTypes.UserIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsParentSportTypeIDNull() {
-                return this.IsNull(this.tableSportTypes.ParentSportTypeIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetParentSportTypeIDNull() {
-                this[this.tableSportTypes.ParentSportTypeIDColumn] = global::System.Convert.DBNull;
+            public UsersRow UsersRow {
+                get {
+                    return ((UsersRow)(this.GetParentRow(this.Table.ParentRelations["FK_SportTypes_Users1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_SportTypes_Users1"]);
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3938,23 +3518,12 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportsRow[] GetSportsRows() {
-                if ((this.Table.ChildRelations["FK_Sports_SportTypes"] == null)) {
-                    return new SportsRow[0];
+            public SessionsRow[] GetSessionsRows() {
+                if ((this.Table.ChildRelations["FK_Sessions_SportTypes"] == null)) {
+                    return new SessionsRow[0];
                 }
                 else {
-                    return ((SportsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Sports_SportTypes"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportTypesRow[] GetSportTypesRows() {
-                if ((this.Table.ChildRelations["FK_SportTypes_SportTypes"] == null)) {
-                    return new SportTypesRow[0];
-                }
-                else {
-                    return ((SportTypesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SportTypes_SportTypes"])));
+                    return ((SessionsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Sessions_SportTypes"])));
                 }
             }
         }
@@ -4353,6 +3922,28 @@ namespace TrainIt {
             public void SetUserMailNull() {
                 this[this.tableUsers.UserMailColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SessionsRow[] GetSessionsRows() {
+                if ((this.Table.ChildRelations["FK_Sessions_Users"] == null)) {
+                    return new SessionsRow[0];
+                }
+                else {
+                    return ((SessionsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Sessions_Users"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SportTypesRow[] GetSportTypesRows() {
+                if ((this.Table.ChildRelations["FK_SportTypes_Users1"] == null)) {
+                    return new SportTypesRow[0];
+                }
+                else {
+                    return ((SportTypesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SportTypes_Users1"])));
+                }
+            }
         }
         
         /// <summary>
@@ -4443,40 +4034,6 @@ namespace TrainIt {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SessionsRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class SportsRowChangeEvent : global::System.EventArgs {
-            
-            private SportsRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportsRowChangeEvent(SportsRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -5440,7 +4997,7 @@ SELECT MatID, MatName, BuyDate, Cost, initTime, initDist FROM Materials WHERE (M
             tableMapping.ColumnMappings.Add("SessionID", "SessionID");
             tableMapping.ColumnMappings.Add("TrainID", "TrainID");
             tableMapping.ColumnMappings.Add("UserID", "UserID");
-            tableMapping.ColumnMappings.Add("SportID", "SportID");
+            tableMapping.ColumnMappings.Add("SportTypeID", "SportTypeID");
             tableMapping.ColumnMappings.Add("Competition", "Competition");
             tableMapping.ColumnMappings.Add("Transition", "Transition");
             tableMapping.ColumnMappings.Add("Distance", "Distance");
@@ -5452,12 +5009,12 @@ SELECT MatID, MatName, BuyDate, Cost, initTime, initDist FROM Materials WHERE (M
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Sessions] WHERE (([SessionID] = @Original_SessionID) AND ([TrainID] = @Original_TrainID) AND ([UserID] = @Original_UserID) AND ([SportID] = @Original_SportID) AND ((@IsNull_Competition = 1 AND [Competition] IS NULL) OR ([Competition] = @Original_Competition)) AND ((@IsNull_Transition = 1 AND [Transition] IS NULL) OR ([Transition] = @Original_Transition)) AND ((@IsNull_Distance = 1 AND [Distance] IS NULL) OR ([Distance] = @Original_Distance)) AND ((@IsNull_Time = 1 AND [Time] IS NULL) OR ([Time] = @Original_Time)) AND ((@IsNull_MedHR = 1 AND [MedHR] IS NULL) OR ([MedHR] = @Original_MedHR)) AND ((@IsNull_MaxHR = 1 AND [MaxHR] IS NULL) OR ([MaxHR] = @Original_MaxHR)) AND ((@IsNull_Value = 1 AND [Value] IS NULL) OR ([Value] = @Original_Value)) AND ((@IsNull_Memo = 1 AND [Memo] IS NULL) OR ([Memo] = @Original_Memo)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Sessions] WHERE (([SessionID] = @Original_SessionID) AND ([TrainID] = @Original_TrainID) AND ([UserID] = @Original_UserID) AND ([SportTypeID] = @Original_SportTypeID) AND ((@IsNull_Competition = 1 AND [Competition] IS NULL) OR ([Competition] = @Original_Competition)) AND ((@IsNull_Transition = 1 AND [Transition] IS NULL) OR ([Transition] = @Original_Transition)) AND ((@IsNull_Distance = 1 AND [Distance] IS NULL) OR ([Distance] = @Original_Distance)) AND ((@IsNull_Time = 1 AND [Time] IS NULL) OR ([Time] = @Original_Time)) AND ((@IsNull_MedHR = 1 AND [MedHR] IS NULL) OR ([MedHR] = @Original_MedHR)) AND ((@IsNull_MaxHR = 1 AND [MaxHR] IS NULL) OR ([MaxHR] = @Original_MaxHR)) AND ((@IsNull_Value = 1 AND [Value] IS NULL) OR ([Value] = @Original_Value)) AND ((@IsNull_Memo = 1 AND [Memo] IS NULL) OR ([Memo] = @Original_Memo)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SessionID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SessionID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TrainID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TrainID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Competition", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Competition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Transition", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -5476,12 +5033,12 @@ SELECT MatID, MatName, BuyDate, Cost, initTime, initDist FROM Materials WHERE (M
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Memo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Sessions] ([TrainID], [UserID], [SportID], [Competition], [Transition], [Distance], [Time], [MedHR], [MaxHR], [Value], [Memo]) VALUES (@TrainID, @UserID, @SportID, @Competition, @Transition, @Distance, @Time, @MedHR, @MaxHR, @Value, @Memo);
-SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, Time, MedHR, MaxHR, Value, Memo FROM Sessions WHERE (SessionID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Sessions] ([TrainID], [UserID], [SportTypeID], [Competition], [Transition], [Distance], [Time], [MedHR], [MaxHR], [Value], [Memo]) VALUES (@TrainID, @UserID, @SportTypeID, @Competition, @Transition, @Distance, @Time, @MedHR, @MaxHR, @Value, @Memo);
+SELECT SessionID, TrainID, UserID, SportTypeID, Competition, Transition, Distance, Time, MedHR, MaxHR, Value, Memo FROM Sessions WHERE (SessionID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TrainID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TrainID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Competition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Transition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Distance", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Distance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5492,12 +5049,12 @@ SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, T
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Memo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Sessions] SET [TrainID] = @TrainID, [UserID] = @UserID, [SportID] = @SportID, [Competition] = @Competition, [Transition] = @Transition, [Distance] = @Distance, [Time] = @Time, [MedHR] = @MedHR, [MaxHR] = @MaxHR, [Value] = @Value, [Memo] = @Memo WHERE (([SessionID] = @Original_SessionID) AND ([TrainID] = @Original_TrainID) AND ([UserID] = @Original_UserID) AND ([SportID] = @Original_SportID) AND ((@IsNull_Competition = 1 AND [Competition] IS NULL) OR ([Competition] = @Original_Competition)) AND ((@IsNull_Transition = 1 AND [Transition] IS NULL) OR ([Transition] = @Original_Transition)) AND ((@IsNull_Distance = 1 AND [Distance] IS NULL) OR ([Distance] = @Original_Distance)) AND ((@IsNull_Time = 1 AND [Time] IS NULL) OR ([Time] = @Original_Time)) AND ((@IsNull_MedHR = 1 AND [MedHR] IS NULL) OR ([MedHR] = @Original_MedHR)) AND ((@IsNull_MaxHR = 1 AND [MaxHR] IS NULL) OR ([MaxHR] = @Original_MaxHR)) AND ((@IsNull_Value = 1 AND [Value] IS NULL) OR ([Value] = @Original_Value)) AND ((@IsNull_Memo = 1 AND [Memo] IS NULL) OR ([Memo] = @Original_Memo)));
-SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, Time, MedHR, MaxHR, Value, Memo FROM Sessions WHERE (SessionID = @SessionID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Sessions] SET [TrainID] = @TrainID, [UserID] = @UserID, [SportTypeID] = @SportTypeID, [Competition] = @Competition, [Transition] = @Transition, [Distance] = @Distance, [Time] = @Time, [MedHR] = @MedHR, [MaxHR] = @MaxHR, [Value] = @Value, [Memo] = @Memo WHERE (([SessionID] = @Original_SessionID) AND ([TrainID] = @Original_TrainID) AND ([UserID] = @Original_UserID) AND ([SportTypeID] = @Original_SportTypeID) AND ((@IsNull_Competition = 1 AND [Competition] IS NULL) OR ([Competition] = @Original_Competition)) AND ((@IsNull_Transition = 1 AND [Transition] IS NULL) OR ([Transition] = @Original_Transition)) AND ((@IsNull_Distance = 1 AND [Distance] IS NULL) OR ([Distance] = @Original_Distance)) AND ((@IsNull_Time = 1 AND [Time] IS NULL) OR ([Time] = @Original_Time)) AND ((@IsNull_MedHR = 1 AND [MedHR] IS NULL) OR ([MedHR] = @Original_MedHR)) AND ((@IsNull_MaxHR = 1 AND [MaxHR] IS NULL) OR ([MaxHR] = @Original_MaxHR)) AND ((@IsNull_Value = 1 AND [Value] IS NULL) OR ([Value] = @Original_Value)) AND ((@IsNull_Memo = 1 AND [Memo] IS NULL) OR ([Memo] = @Original_Memo)));
+SELECT SessionID, TrainID, UserID, SportTypeID, Competition, Transition, Distance, Time, MedHR, MaxHR, Value, Memo FROM Sessions WHERE (SessionID = @SessionID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TrainID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TrainID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Competition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Transition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Distance", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Distance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5509,7 +5066,7 @@ SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, T
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SessionID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SessionID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TrainID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TrainID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Competition", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Competition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Transition", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -5542,8 +5099,8 @@ SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, T
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, Ti" +
-                "me, MedHR, MaxHR, Value, Memo FROM dbo.Sessions";
+            this._commandCollection[0].CommandText = "SELECT SessionID, TrainID, UserID, SportTypeID, Competition, Transition, Distance" +
+                ", Time, MedHR, MaxHR, Value, Memo FROM dbo.Sessions";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5604,11 +5161,11 @@ SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, T
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_SessionID, int Original_TrainID, int Original_UserID, int Original_SportID, global::System.Nullable<short> Original_Competition, global::System.Nullable<short> Original_Transition, global::System.Nullable<double> Original_Distance, global::System.Nullable<global::System.TimeSpan> Original_Time, global::System.Nullable<short> Original_MedHR, global::System.Nullable<short> Original_MaxHR, global::System.Nullable<short> Original_Value, string Original_Memo) {
+        public virtual int Delete(int Original_SessionID, int Original_TrainID, int Original_UserID, int Original_SportTypeID, global::System.Nullable<short> Original_Competition, global::System.Nullable<short> Original_Transition, global::System.Nullable<double> Original_Distance, global::System.Nullable<global::System.TimeSpan> Original_Time, global::System.Nullable<short> Original_MedHR, global::System.Nullable<short> Original_MaxHR, global::System.Nullable<short> Original_Value, string Original_Memo) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_SessionID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_TrainID));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_UserID));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_SportID));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_SportTypeID));
             if ((Original_Competition.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((short)(Original_Competition.Value));
@@ -5693,10 +5250,10 @@ SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, T
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int TrainID, int UserID, int SportID, global::System.Nullable<short> Competition, global::System.Nullable<short> Transition, global::System.Nullable<double> Distance, global::System.Nullable<global::System.TimeSpan> Time, global::System.Nullable<short> MedHR, global::System.Nullable<short> MaxHR, global::System.Nullable<short> Value, string Memo) {
+        public virtual int Insert(int TrainID, int UserID, int SportTypeID, global::System.Nullable<short> Competition, global::System.Nullable<short> Transition, global::System.Nullable<double> Distance, global::System.Nullable<global::System.TimeSpan> Time, global::System.Nullable<short> MedHR, global::System.Nullable<short> MaxHR, global::System.Nullable<short> Value, string Memo) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(TrainID));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(UserID));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(SportID));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(SportTypeID));
             if ((Competition.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((short)(Competition.Value));
             }
@@ -5768,7 +5325,7 @@ SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, T
         public virtual int Update(
                     int TrainID, 
                     int UserID, 
-                    int SportID, 
+                    int SportTypeID, 
                     global::System.Nullable<short> Competition, 
                     global::System.Nullable<short> Transition, 
                     global::System.Nullable<double> Distance, 
@@ -5780,7 +5337,7 @@ SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, T
                     int Original_SessionID, 
                     int Original_TrainID, 
                     int Original_UserID, 
-                    int Original_SportID, 
+                    int Original_SportTypeID, 
                     global::System.Nullable<short> Original_Competition, 
                     global::System.Nullable<short> Original_Transition, 
                     global::System.Nullable<double> Original_Distance, 
@@ -5792,7 +5349,7 @@ SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, T
                     int SessionID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(TrainID));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(UserID));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(SportID));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(SportTypeID));
             if ((Competition.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((short)(Competition.Value));
             }
@@ -5844,7 +5401,7 @@ SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, T
             this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_SessionID));
             this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_TrainID));
             this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_UserID));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_SportID));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_SportTypeID));
             if ((Original_Competition.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[16].Value = ((short)(Original_Competition.Value));
@@ -5933,7 +5490,7 @@ SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, T
         public virtual int Update(
                     int TrainID, 
                     int UserID, 
-                    int SportID, 
+                    int SportTypeID, 
                     global::System.Nullable<short> Competition, 
                     global::System.Nullable<short> Transition, 
                     global::System.Nullable<double> Distance, 
@@ -5945,7 +5502,7 @@ SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, T
                     int Original_SessionID, 
                     int Original_TrainID, 
                     int Original_UserID, 
-                    int Original_SportID, 
+                    int Original_SportTypeID, 
                     global::System.Nullable<short> Original_Competition, 
                     global::System.Nullable<short> Original_Transition, 
                     global::System.Nullable<double> Original_Distance, 
@@ -5954,370 +5511,7 @@ SELECT SessionID, TrainID, UserID, SportID, Competition, Transition, Distance, T
                     global::System.Nullable<short> Original_MaxHR, 
                     global::System.Nullable<short> Original_Value, 
                     string Original_Memo) {
-            return this.Update(TrainID, UserID, SportID, Competition, Transition, Distance, Time, MedHR, MaxHR, Value, Memo, Original_SessionID, Original_TrainID, Original_UserID, Original_SportID, Original_Competition, Original_Transition, Original_Distance, Original_Time, Original_MedHR, Original_MaxHR, Original_Value, Original_Memo, Original_SessionID);
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SportsTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public SportsTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Sports";
-            tableMapping.ColumnMappings.Add("SportID", "SportID");
-            tableMapping.ColumnMappings.Add("SportName", "SportName");
-            tableMapping.ColumnMappings.Add("SportTypeID", "SportTypeID");
-            tableMapping.ColumnMappings.Add("Memo", "Memo");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Sports] WHERE (([SportID] = @Original_SportID) AND ([SportName" +
-                "] = @Original_SportName) AND ([SportTypeID] = @Original_SportTypeID) AND ((@IsNu" +
-                "ll_Memo = 1 AND [Memo] IS NULL) OR ([Memo] = @Original_Memo)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Memo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Memo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Sports] ([SportName], [SportTypeID], [Memo]) VALUES (@SportNam" +
-                "e, @SportTypeID, @Memo);\r\nSELECT SportID, SportName, SportTypeID, Memo FROM Spor" +
-                "ts WHERE (SportID = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Memo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Sports] SET [SportName] = @SportName, [SportTypeID] = @SportTypeID, [Memo] = @Memo WHERE (([SportID] = @Original_SportID) AND ([SportName] = @Original_SportName) AND ([SportTypeID] = @Original_SportTypeID) AND ((@IsNull_Memo = 1 AND [Memo] IS NULL) OR ([Memo] = @Original_Memo)));
-SELECT SportID, SportName, SportTypeID, Memo FROM Sports WHERE (SportID = @SportID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Memo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Memo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Memo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "SportID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::TrainIt.Properties.Settings.Default.TrainITConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT SportID, SportName, SportTypeID, Memo FROM dbo.Sports";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(TrainITDataSet.SportsDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual TrainITDataSet.SportsDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            TrainITDataSet.SportsDataTable dataTable = new TrainITDataSet.SportsDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TrainITDataSet.SportsDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TrainITDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Sports");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_SportID, string Original_SportName, int Original_SportTypeID, string Original_Memo) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_SportID));
-            if ((Original_SportName == null)) {
-                throw new global::System.ArgumentNullException("Original_SportName");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_SportName));
-            }
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_SportTypeID));
-            if ((Original_Memo == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Memo));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string SportName, int SportTypeID, string Memo) {
-            if ((SportName == null)) {
-                throw new global::System.ArgumentNullException("SportName");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(SportName));
-            }
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(SportTypeID));
-            if ((Memo == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Memo));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string SportName, int SportTypeID, string Memo, int Original_SportID, string Original_SportName, int Original_SportTypeID, string Original_Memo, int SportID) {
-            if ((SportName == null)) {
-                throw new global::System.ArgumentNullException("SportName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(SportName));
-            }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(SportTypeID));
-            if ((Memo == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Memo));
-            }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_SportID));
-            if ((Original_SportName == null)) {
-                throw new global::System.ArgumentNullException("Original_SportName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_SportName));
-            }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_SportTypeID));
-            if ((Original_Memo == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Memo));
-            }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(SportID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string SportName, int SportTypeID, string Memo, int Original_SportID, string Original_SportName, int Original_SportTypeID, string Original_Memo) {
-            return this.Update(SportName, SportTypeID, Memo, Original_SportID, Original_SportName, Original_SportTypeID, Original_Memo, Original_SportID);
+            return this.Update(TrainID, UserID, SportTypeID, Competition, Transition, Distance, Time, MedHR, MaxHR, Value, Memo, Original_SessionID, Original_TrainID, Original_UserID, Original_SportTypeID, Original_Competition, Original_Transition, Original_Distance, Original_Time, Original_MedHR, Original_MaxHR, Original_Value, Original_Memo, Original_SessionID);
         }
     }
     
@@ -6446,41 +5640,40 @@ SELECT SportID, SportName, SportTypeID, Memo FROM Sports WHERE (SportID = @Sport
             tableMapping.ColumnMappings.Add("SportTypeName", "SportTypeName");
             tableMapping.ColumnMappings.Add("ParentSportTypeID", "ParentSportTypeID");
             tableMapping.ColumnMappings.Add("Memo", "Memo");
+            tableMapping.ColumnMappings.Add("UserID", "UserID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[SportTypes] WHERE (([SportTypeID] = @Original_SportTypeID) AND ([SportTypeName] = @Original_SportTypeName) AND ((@IsNull_ParentSportTypeID = 1 AND [ParentSportTypeID] IS NULL) OR ([ParentSportTypeID] = @Original_ParentSportTypeID)) AND ((@IsNull_Memo = 1 AND [Memo] IS NULL) OR ([Memo] = @Original_Memo)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[SportTypes] WHERE (([SportTypeID] = @Original_SportTypeID) AND" +
+                " ([SportTypeName] = @Original_SportTypeName) AND ([ParentSportTypeID] = @Origina" +
+                "l_ParentSportTypeID) AND ([UserID] = @Original_UserID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ParentSportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentSportTypeID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ParentSportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentSportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Memo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Memo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[SportTypes] ([SportTypeName], [ParentSportTypeID], [Memo]) VAL" +
-                "UES (@SportTypeName, @ParentSportTypeID, @Memo);\r\nSELECT SportTypeID, SportTypeN" +
-                "ame, ParentSportTypeID, Memo FROM SportTypes WHERE (SportTypeID = SCOPE_IDENTITY" +
-                "())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[SportTypes] ([SportTypeName], [ParentSportTypeID], [Memo], [UserID]) VALUES (@SportTypeName, @ParentSportTypeID, @Memo, @UserID);
+SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM SportTypes WHERE (SportTypeID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportTypeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ParentSportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentSportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Memo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[SportTypes] SET [SportTypeName] = @SportTypeName, [ParentSportTypeID] = @ParentSportTypeID, [Memo] = @Memo WHERE (([SportTypeID] = @Original_SportTypeID) AND ([SportTypeName] = @Original_SportTypeName) AND ((@IsNull_ParentSportTypeID = 1 AND [ParentSportTypeID] IS NULL) OR ([ParentSportTypeID] = @Original_ParentSportTypeID)) AND ((@IsNull_Memo = 1 AND [Memo] IS NULL) OR ([Memo] = @Original_Memo)));
-SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo FROM SportTypes WHERE (SportTypeID = @SportTypeID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[SportTypes] SET [SportTypeName] = @SportTypeName, [ParentSportTypeID] = @ParentSportTypeID, [Memo] = @Memo, [UserID] = @UserID WHERE (([SportTypeID] = @Original_SportTypeID) AND ([SportTypeName] = @Original_SportTypeName) AND ([ParentSportTypeID] = @Original_ParentSportTypeID) AND ([UserID] = @Original_UserID));
+SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM SportTypes WHERE (SportTypeID = @SportTypeID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportTypeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ParentSportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentSportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Memo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ParentSportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentSportTypeID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ParentSportTypeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentSportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Memo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Memo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportTypeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -6497,7 +5690,8 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo FROM SportTypes WHERE
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo FROM dbo.SportTypes";
+            this._commandCollection[0].CommandText = "SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM dbo.Sport" +
+                "Types";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -6558,7 +5752,7 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo FROM SportTypes WHERE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_SportTypeID, string Original_SportTypeName, global::System.Nullable<int> Original_ParentSportTypeID, string Original_Memo) {
+        public virtual int Delete(int Original_SportTypeID, string Original_SportTypeName, int Original_ParentSportTypeID, int Original_UserID) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_SportTypeID));
             if ((Original_SportTypeName == null)) {
                 throw new global::System.ArgumentNullException("Original_SportTypeName");
@@ -6566,22 +5760,8 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo FROM SportTypes WHERE
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_SportTypeName));
             }
-            if ((Original_ParentSportTypeID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_ParentSportTypeID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Memo == null)) {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_Memo));
-            }
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_ParentSportTypeID));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_UserID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6602,25 +5782,21 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo FROM SportTypes WHERE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string SportTypeName, global::System.Nullable<int> ParentSportTypeID, string Memo) {
+        public virtual int Insert(string SportTypeName, int ParentSportTypeID, string Memo, int UserID) {
             if ((SportTypeName == null)) {
                 throw new global::System.ArgumentNullException("SportTypeName");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(SportTypeName));
             }
-            if ((ParentSportTypeID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(ParentSportTypeID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(ParentSportTypeID));
             if ((Memo == null)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Memo));
             }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(UserID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6641,49 +5817,31 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo FROM SportTypes WHERE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string SportTypeName, global::System.Nullable<int> ParentSportTypeID, string Memo, int Original_SportTypeID, string Original_SportTypeName, global::System.Nullable<int> Original_ParentSportTypeID, string Original_Memo, int SportTypeID) {
+        public virtual int Update(string SportTypeName, int ParentSportTypeID, string Memo, int UserID, int Original_SportTypeID, string Original_SportTypeName, int Original_ParentSportTypeID, int Original_UserID, int SportTypeID) {
             if ((SportTypeName == null)) {
                 throw new global::System.ArgumentNullException("SportTypeName");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(SportTypeName));
             }
-            if ((ParentSportTypeID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(ParentSportTypeID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(ParentSportTypeID));
             if ((Memo == null)) {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Memo));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_SportTypeID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(UserID));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_SportTypeID));
             if ((Original_SportTypeName == null)) {
                 throw new global::System.ArgumentNullException("Original_SportTypeName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_SportTypeName));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_SportTypeName));
             }
-            if ((Original_ParentSportTypeID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ParentSportTypeID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Memo == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Memo));
-            }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(SportTypeID));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ParentSportTypeID));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_UserID));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(SportTypeID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6704,8 +5862,8 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo FROM SportTypes WHERE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string SportTypeName, global::System.Nullable<int> ParentSportTypeID, string Memo, int Original_SportTypeID, string Original_SportTypeName, global::System.Nullable<int> Original_ParentSportTypeID, string Original_Memo) {
-            return this.Update(SportTypeName, ParentSportTypeID, Memo, Original_SportTypeID, Original_SportTypeName, Original_ParentSportTypeID, Original_Memo, Original_SportTypeID);
+        public virtual int Update(string SportTypeName, int ParentSportTypeID, string Memo, int UserID, int Original_SportTypeID, string Original_SportTypeName, int Original_ParentSportTypeID, int Original_UserID) {
+            return this.Update(SportTypeName, ParentSportTypeID, Memo, UserID, Original_SportTypeID, Original_SportTypeName, Original_ParentSportTypeID, Original_UserID, Original_SportTypeID);
         }
     }
     
@@ -7972,8 +7130,6 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
         
         private SessionsTableAdapter _sessionsTableAdapter;
         
-        private SportsTableAdapter _sportsTableAdapter;
-        
         private SportTypesTableAdapter _sportTypesTableAdapter;
         
         private TrainingsTableAdapter _trainingsTableAdapter;
@@ -8036,20 +7192,6 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
             }
             set {
                 this._sessionsTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public SportsTableAdapter SportsTableAdapter {
-            get {
-                return this._sportsTableAdapter;
-            }
-            set {
-                this._sportsTableAdapter = value;
             }
         }
         
@@ -8140,10 +7282,6 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
                             && (this._sessionsTableAdapter.Connection != null))) {
                     return this._sessionsTableAdapter.Connection;
                 }
-                if (((this._sportsTableAdapter != null) 
-                            && (this._sportsTableAdapter.Connection != null))) {
-                    return this._sportsTableAdapter.Connection;
-                }
                 if (((this._sportTypesTableAdapter != null) 
                             && (this._sportTypesTableAdapter.Connection != null))) {
                     return this._sportTypesTableAdapter.Connection;
@@ -8182,9 +7320,6 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
                 if ((this._sessionsTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._sportsTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._sportTypesTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -8208,22 +7343,21 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(TrainITDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._sportTypesTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.SportTypes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    this.SortSelfReferenceRows(updatedRows, dataSet.Relations["FK_SportTypes_SportTypes"], false);
                     result = (result + this._sportTypesTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._sportsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Sports.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._sportsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -8272,15 +7406,6 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -8291,20 +7416,19 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(TrainITDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._sportTypesTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.SportTypes.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    this.SortSelfReferenceRows(addedRows, dataSet.Relations["FK_SportTypes_SportTypes"], false);
                     result = (result + this._sportTypesTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._sportsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Sports.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._sportsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -8348,14 +7472,6 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -8366,14 +7482,6 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(TrainITDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._usersTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._usersTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._userRegsTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.UserRegs.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -8414,20 +7522,19 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._sportsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Sports.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._sportsTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._sportTypesTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.SportTypes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    this.SortSelfReferenceRows(deletedRows, dataSet.Relations["FK_SportTypes_SportTypes"], true);
                     result = (result + this._sportTypesTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._usersTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._usersTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -8482,11 +7589,6 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
             }
             if (((this._sessionsTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._sessionsTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._sportsTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._sportsTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -8567,15 +7669,6 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
                     if (this._sessionsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._sessionsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._sessionsTableAdapter.Adapter);
-                    }
-                }
-                if ((this._sportsTableAdapter != null)) {
-                    revertConnections.Add(this._sportsTableAdapter, this._sportsTableAdapter.Connection);
-                    this._sportsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._sportsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._sportsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._sportsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._sportsTableAdapter.Adapter);
                     }
                 }
                 if ((this._sportTypesTableAdapter != null)) {
@@ -8683,10 +7776,6 @@ SELECT UserID, UserFirstName, UserSecondName, UserBDate, UserName, UserPass, Use
                 if ((this._sessionsTableAdapter != null)) {
                     this._sessionsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._sessionsTableAdapter]));
                     this._sessionsTableAdapter.Transaction = null;
-                }
-                if ((this._sportsTableAdapter != null)) {
-                    this._sportsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._sportsTableAdapter]));
-                    this._sportsTableAdapter.Transaction = null;
                 }
                 if ((this._sportTypesTableAdapter != null)) {
                     this._sportTypesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._sportTypesTableAdapter]));

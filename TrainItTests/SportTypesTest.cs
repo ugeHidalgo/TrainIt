@@ -145,5 +145,57 @@ namespace TrainItTests
             Assert.AreEqual(-1, aSportType.sportTypeID);
         }
 
+
+
+        [TestMethod]
+        public void SportType_Update()
+        {
+            //Create a SportType object
+            string sportTypeNameUsed = "Bicicleta";
+            int parentSportTypeIDUsed = 0;
+            string memoUsed = "Deportes de bicicleta";
+            int userIDUsed = 85;
+            SportTypes aSportType = new SportTypes();
+            aSportType = aSportType.LoadData(-1, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed);
+
+            //Save into BD obtaining the sportTypeID
+            aSportType = aSportType.SaveData(connString);
+            Assert.AreNotEqual(0, aSportType.sportTypeID);
+            Assert.AreNotEqual(0, aSportType.sportTypeID); //saving correct data            
+            int sportTypeIDUsed = aSportType.sportTypeID;
+
+            //Try to find and check values
+            aSportType = aSportType.FindSportTypeByName(connString);
+            Assert.AreNotEqual(-1, aSportType.sportTypeID);
+            Assert.AreEqual(sportTypeNameUsed, aSportType.sportTypeName);
+            Assert.AreEqual(parentSportTypeIDUsed, aSportType.parentSportTypeID);
+            Assert.AreEqual(memoUsed, aSportType.memo);
+            Assert.AreEqual(userIDUsed, aSportType.userID);
+
+            //Update values
+            sportTypeNameUsed = "Bike Updated";
+            parentSportTypeIDUsed = 0;
+            memoUsed = "Deportes de bicicleta updated";
+            userIDUsed = 85;
+            aSportType = aSportType.LoadData(sportTypeIDUsed, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed);
+            aSportType.UpdateData(connString);
+
+            //Try to find and check values
+            aSportType = aSportType.FindSportTypeByName(connString);
+            Assert.AreNotEqual(-1, aSportType.sportTypeID);
+            Assert.AreEqual(sportTypeNameUsed, aSportType.sportTypeName);
+            Assert.AreEqual(parentSportTypeIDUsed, aSportType.parentSportTypeID);
+            Assert.AreEqual(memoUsed, aSportType.memo);
+            Assert.AreEqual(userIDUsed, aSportType.userID);
+
+            //Deleting object previously saved
+            int res = aSportType.Delete(connString);
+            Assert.AreEqual(1, res);
+
+            //Try to find again after deleting
+            aSportType = aSportType.FindSportTypeByID(connString);
+            Assert.AreEqual(-1, aSportType.sportTypeID);
+        }
+
     }
 }

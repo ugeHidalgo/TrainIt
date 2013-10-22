@@ -20,9 +20,10 @@ namespace TrainIt
             timer1.Enabled = true;
             FLogin fLogin = new FLogin();
             fLogin.ShowDialog();
-            TrainItLibrary.Global.usuario=fLogin.userNameGiven;
+            TrainItLibrary.Global.userNameWorking=fLogin.userNameGiven;
+            TrainItLibrary.Global.userIDWorking = fLogin.userIDGiven;
             tslConnStr.Text = connString;
-            tslAppUser.Text = "Usuario=" + TrainItLibrary.Global.usuario; 
+            tslAppUser.Text = "Usuario=(" + TrainItLibrary.Global.userIDWorking + ")" + TrainItLibrary.Global.userNameWorking;
         }
 
         //Controla la salida de la aplicación
@@ -52,12 +53,6 @@ namespace TrainIt
         {
             FUsers fUsers = new FUsers();
             fUsers.ShowDialog();
-        }
-
-        private void msDeportes_Click(object sender, EventArgs e)
-        {
-            FSports fSports = new FSports();
-            fSports.ShowDialog();
         }
 
         private void msTiposDeportes_Click(object sender, EventArgs e)

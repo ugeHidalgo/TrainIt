@@ -23,13 +23,13 @@ namespace TrainItLibrary
         public Users()
         {
             userID = -1;
-            userFirstName = null;
-            userSecondName = null;
+            userFirstName = "";
+            userSecondName = "";
             userBDate = DateTime.Now;
-            userName = null;
-            userPass = null;
-            userConfirmPassword = null;
-            userMail = null;
+            userName = "";
+            userPass = "";
+            userConfirmPassword = "";
+            userMail = "";
         }
 
 
@@ -101,7 +101,7 @@ namespace TrainItLibrary
             
             if (sigue && (userPass!=userConfirmPassword))
                 res = -4; //Password and confirm are differents           
-            
+
             return res;
         }
 
@@ -251,7 +251,7 @@ namespace TrainItLibrary
                         aUser.userName = reader.GetString(4);
                         aUser.userPass = reader.GetSqlBinary(5).ToString();
                         aUser.userConfirmPassword = aUser.userPass;
-                        aUser.userMail = reader.GetString(6);
+                        aUser.userMail = reader.GetString(6); 
                     }
                     reader.Close();
                 }
@@ -279,15 +279,14 @@ namespace TrainItLibrary
         }
 
         //verifies a userName/password combination
-        public Boolean verifyPass(string userName, string userPass, string connString)
-        {
-            bool res = false;
-
+        public Users verifyPass(string userName, string userPass, string connString)
+        { //return the user found if login is correct, if not return a user with userID=-1            
+            Users tempUser = new Users();
             int count = 0;
             //Comprobamos el login.
             using (SqlConnection conn = new SqlConnection(connString))
             {               
-                string query = String.Format(@"select UserName from Users where UserName=@userLeido and PWdCompare('{0}',UserPass)=1", userPass);
+                string query = String.Format(@"select * from Users where UserName=@userLeido and PWdCompare('{0}',UserPass)=1", userPass);
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.Add(new SqlParameter("@userLeido", SqlDbType.VarChar));
@@ -299,15 +298,20 @@ namespace TrainItLibrary
                     while (reader.Read())
                     {
                         count++;
+                        tempUser.userID = reader.GetInt32(0);
+                        tempUser.userFirstName = reader.GetString(1);
+                        tempUser.userSecondName = reader.GetString(2);
+                        tempUser.userBDate = Convert.ToDateTime(reader.GetDateTime(3));
+                        tempUser.userName = reader.GetString(4);
+                        tempUser.userPass = reader.GetSqlBinary(5).ToString();
+                        tempUser.userConfirmPassword = tempUser.userPass;
+                        tempUser.userMail = reader.GetString(6); 
                     }
                     reader.Close();
                 }
             }
 
-            if (count > 0) res = true;
-            else res = false;
-
-            return res;
+            return tempUser;
         }
     }
 }

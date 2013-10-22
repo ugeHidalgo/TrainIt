@@ -8,6 +8,7 @@ namespace TrainItLibrary
 {
     public class Global
     {
-        public static string usuario = "No User";
+        public static string userNameWorking = "No User";
+        public static int userIDWorking = -1;
     }
 }

@@ -38,11 +38,11 @@
             System.Windows.Forms.Label userNameLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FUsers));
             this.statusS1 = new System.Windows.Forms.StatusStrip();
+            this.tslUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.tslConnString = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolS1 = new System.Windows.Forms.ToolStrip();
             this.tsBtnFirst = new System.Windows.Forms.ToolStripButton();
             this.tsBtnPrevious = new System.Windows.Forms.ToolStripButton();
-            this.tsTxtPosition = new System.Windows.Forms.ToolStripTextBox();
             this.tsBtnNext = new System.Windows.Forms.ToolStripButton();
             this.tsBtnLast = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -73,7 +73,6 @@
             this.UserLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userBDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userMail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tslUser = new System.Windows.Forms.ToolStripStatusLabel();
             userIDLabel = new System.Windows.Forms.Label();
             userFirstNameLabel = new System.Windows.Forms.Label();
             userSecondNameLabel = new System.Windows.Forms.Label();
@@ -170,6 +169,12 @@
             this.statusS1.TabIndex = 0;
             this.statusS1.Text = "statusStrip1";
             // 
+            // tslUser
+            // 
+            this.tslUser.Name = "tslUser";
+            this.tslUser.Size = new System.Drawing.Size(53, 17);
+            this.tslUser.Text = "Usuario :";
+            // 
             // tslConnString
             // 
             this.tslConnString.Name = "tslConnString";
@@ -181,7 +186,6 @@
             this.toolS1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsBtnFirst,
             this.tsBtnPrevious,
-            this.tsTxtPosition,
             this.tsBtnNext,
             this.tsBtnLast,
             this.toolStripSeparator1,
@@ -215,11 +219,6 @@
             this.tsBtnPrevious.Size = new System.Drawing.Size(23, 22);
             this.tsBtnPrevious.Text = "Registro anterior";
             this.tsBtnPrevious.Click += new System.EventHandler(this.tsBtnPrevious_Click);
-            // 
-            // tsTxtPosition
-            // 
-            this.tsTxtPosition.Name = "tsTxtPosition";
-            this.tsTxtPosition.Size = new System.Drawing.Size(50, 25);
             // 
             // tsBtnNext
             // 
@@ -316,7 +315,6 @@
             this.tableAdapterManager.MaterialSessionTableAdapter = null;
             this.tableAdapterManager.MaterialsTableAdapter = null;
             this.tableAdapterManager.SessionsTableAdapter = null;
-            this.tableAdapterManager.SportsTableAdapter = null;
             this.tableAdapterManager.SportTypesTableAdapter = null;
             this.tableAdapterManager.TrainingsTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
@@ -338,6 +336,7 @@
             // 
             this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFirstName.Location = new System.Drawing.Point(85, 94);
+            this.txtFirstName.MaxLength = 50;
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(147, 26);
             this.txtFirstName.TabIndex = 7;
@@ -347,6 +346,7 @@
             this.txtSecondName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserSecondName", true));
             this.txtSecondName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSecondName.Location = new System.Drawing.Point(336, 95);
+            this.txtSecondName.MaxLength = 50;
             this.txtSecondName.Name = "txtSecondName";
             this.txtSecondName.Size = new System.Drawing.Size(335, 26);
             this.txtSecondName.TabIndex = 8;
@@ -401,6 +401,7 @@
             // txtConfirm
             // 
             this.txtConfirm.Location = new System.Drawing.Point(160, 91);
+            this.txtConfirm.MaxLength = 50;
             this.txtConfirm.Name = "txtConfirm";
             this.txtConfirm.PasswordChar = '*';
             this.txtConfirm.Size = new System.Drawing.Size(202, 26);
@@ -412,6 +413,7 @@
             this.txtUserName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserName", true));
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.Location = new System.Drawing.Point(160, 25);
+            this.txtUserName.MaxLength = 10;
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(202, 26);
             this.txtUserName.TabIndex = 11;
@@ -421,6 +423,7 @@
             this.txtUserPass.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserPass", true));
             this.txtUserPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserPass.Location = new System.Drawing.Point(160, 58);
+            this.txtUserPass.MaxLength = 50;
             this.txtUserPass.Name = "txtUserPass";
             this.txtUserPass.PasswordChar = '*';
             this.txtUserPass.Size = new System.Drawing.Size(202, 26);
@@ -431,6 +434,7 @@
             this.txtMail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserMail", true));
             this.txtMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMail.Location = new System.Drawing.Point(85, 128);
+            this.txtMail.MaxLength = 50;
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(330, 26);
             this.txtMail.TabIndex = 9;
@@ -503,12 +507,6 @@
             this.userMail.ReadOnly = true;
             this.userMail.Width = 140;
             // 
-            // tslUser
-            // 
-            this.tslUser.Name = "tslUser";
-            this.tslUser.Size = new System.Drawing.Size(53, 17);
-            this.tslUser.Text = "Usuario :";
-            // 
             // FUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -567,7 +565,6 @@
         private System.Windows.Forms.Label laConfirm;
         private System.Windows.Forms.ToolStripButton tsBtnFirst;
         private System.Windows.Forms.ToolStripButton tsBtnPrevious;
-        private System.Windows.Forms.ToolStripTextBox tsTxtPosition;
         private System.Windows.Forms.ToolStripButton tsBtnNext;
         private System.Windows.Forms.ToolStripButton tsBtnLast;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

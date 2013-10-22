@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace TrainItLibrary
 {
@@ -18,6 +20,6 @@ namespace TrainItLibrary
             if (settings != null)
                 value = settings.ConnectionString;
             return value;
-        }        
+        }       
     }
 }

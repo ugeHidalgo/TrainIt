@@ -198,8 +198,8 @@ namespace TrainItTests
             aUser.userPass = newPass;
             aUser.userConfirmPassword = newPass;
             aUser = aUser.updateUserData(connString, true);            
-            Boolean login = aUser.verifyPass(aUser.userName, newPass, connString);
-            Assert.AreEqual(true, login); //Verify if new password was stored correctly
+            aUser = aUser.verifyPass(aUser.userName, newPass, connString);
+            Assert.AreNotEqual(-1, aUser.userID); //Verify if new password was stored correctly
                        
             //Try to Delete previous saved user.            
             int res = aUser.deleteUserByUserID(connString, aUser.userID);
@@ -226,22 +226,23 @@ namespace TrainItTests
             //Try to find it and take the userID
             //findUserByUserName returns a user if find, if not find return a user wit UserID=-1
             string expectedUserName = aUser.userName;
+            int userIDToDelete = aUser.userID;
             aUser = aUser.findUserByUserName(connString, expectedUserName);
             Assert.AreEqual(expectedUserName, aUser.userName);
             int expectedUserID = aUser.userID;
 
             //Correct login
             string givenPassword = "12345678";
-            Boolean login = aUser.verifyPass(aUser.userName, givenPassword, connString);
-            Assert.AreEqual(true, login);
+            aUser = aUser.verifyPass(aUser.userName, givenPassword, connString);
+            Assert.AreNotEqual(-1, aUser.userID);
 
             //Uncorrect Login
             givenPassword = "";
-            login = aUser.verifyPass(aUser.userName, givenPassword, connString);
-            Assert.AreEqual(false, login);
+            aUser = aUser.verifyPass(aUser.userName, givenPassword, connString);
+            Assert.AreEqual(-1, aUser.userID);
 
             //Try to Delete previous saved user.            
-            int res = aUser.deleteUserByUserID(connString, aUser.userID);
+            int res = aUser.deleteUserByUserID(connString, userIDToDelete);
             Assert.AreEqual(1, res); //Deleted with success
         }
 

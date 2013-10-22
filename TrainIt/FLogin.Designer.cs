@@ -105,6 +105,7 @@
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(247, 29);
             this.txtUser.TabIndex = 1;
+            this.txtUser.Text = "admin";
             // 
             // txtPass
             // 
@@ -115,6 +116,7 @@
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(219, 29);
             this.txtPass.TabIndex = 2;
+            this.txtPass.Text = "1234";
             // 
             // bTShowPass
             // 

@@ -18,7 +18,7 @@ namespace TrainIt
         {
             InitializeComponent();
             tslConnString.Text = connString;
-            tslUser.Text = "Usuario=" + TrainItLibrary.Global.usuario;
+            tslUser.Text = "Usuario=(" + TrainItLibrary.Global.userIDWorking+")"+TrainItLibrary.Global.userNameWorking;
         }
 
         private void FMaterial_FormClosing(object sender, FormClosingEventArgs e)

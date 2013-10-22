@@ -24,28 +24,9 @@ namespace TrainIt
         {
             InitializeComponent();
             tslConnString.Text = connString;
-            tslUser.Text = "Usuario="+TrainItLibrary.Global.usuario;
+            tslUser.Text = "Usuario=(" + TrainItLibrary.Global.userIDWorking+")"+TrainItLibrary.Global.userNameWorking;
             setNormalMode();       
      }
-
-        private void FUsers_Load(object sender, EventArgs e)
-        {
-            //Load data into data grid
-            LoadDataInGrid(dgvUsers);
-            tsTxtPosition.Text = dgvUsers.CurrentRow.Index.ToString();
-
-            if (this.dgvUsers.RowCount > 0)
-            {
-                //Takes the userID of the first
-                int userID = Convert.ToInt32(dgvUsers[0, dgvUsers.CurrentRow.Index].Value);
-
-                //Find the User and load into aUser
-                aUser = aUser.findUserByUserID(connString, userID);
-
-                //LoadData in boxes
-                LoadDataInBoxes(aUser);
-            }                                   
-        }
 
         private DataTable LoadDataInGrid(DataGridView dgv)
         {   //Load data into data grid view: dgvUsers
@@ -71,7 +52,7 @@ namespace TrainIt
                 }
             }
             return aDataTable;
-        }        
+        }
 
         private void LoadDataInGrid(DataGridView dgv, string aFirstName)
         {//Load data into data grid view: dgvUsers given a FirstName
@@ -121,7 +102,6 @@ namespace TrainIt
 
             tsBtnFirst.Enabled = false;
             tsBtnPrevious.Enabled = false;
-            tsTxtPosition.ReadOnly = true;
             tsBtnNext.Enabled = false;
             tsBtnLast.Enabled = false;
             tsBtnNew.Enabled = false;
@@ -138,7 +118,7 @@ namespace TrainIt
             txtUserName.ReadOnly = false;
             txtUserPass.ReadOnly = false;
             laConfirm.Visible = true;
-            txtConfirm.Visible = true;            
+            txtConfirm.Visible = true;
 
             dgvUsers.Enabled = false;
         }
@@ -149,7 +129,6 @@ namespace TrainIt
 
             tsBtnFirst.Enabled = true;
             tsBtnPrevious.Enabled = true;
-            tsTxtPosition.ReadOnly = false;
             tsBtnNext.Enabled = true;
             tsBtnLast.Enabled = true;
             tsBtnNew.Enabled = true;
@@ -185,11 +164,29 @@ namespace TrainIt
             txtConfirm.Text = "";
         }
 
+        private void FUsers_Load(object sender, EventArgs e)
+        {
+            //Load data into data grid
+            LoadDataInGrid(dgvUsers);
+
+            if (this.dgvUsers.RowCount > 0)
+            {
+                //Takes the userID of the first
+                int userID = Convert.ToInt32(dgvUsers[0, dgvUsers.CurrentRow.Index].Value);
+
+                //Find the User and load into aUser
+                aUser = aUser.findUserByUserID(connString, userID);
+
+                //LoadData in boxes
+                LoadDataInBoxes(aUser);
+            }                                   
+        }
+
         private void FUsers_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (onEdition)
             {
-                MessageBox.Show("Grabe o cancele la edición ántes de cerrar la ventana de usuarios", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Grabe o cancele la edición ántes de cerrar la ventanaactual.", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Cancel = true;
             }
             else e.Cancel = false;
@@ -295,7 +292,6 @@ namespace TrainIt
 
         private void tsBtnEdit_Click(object sender, EventArgs e)
         {
-
             if (this.dgvUsers.RowCount > 0)
             {
                 //Put form on edit mode.
@@ -323,7 +319,10 @@ namespace TrainIt
         {
             if (dgvUsers.RowCount > 0)
             {
-                DialogResult valor = MessageBox.Show("Va a borrar el usuario seleccionado.\n ¿Esta seguro de hacerlo?", "Atención...", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                string message = "Va a borrar el usuario : "+aUser.userName+".\n" +
+                                 "Esto incluye todos los datos asociados a el.\n" +
+                                 "¿Esta seguro de hacerlo?";
+                DialogResult valor = MessageBox.Show(message, "Atención...", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (valor == DialogResult.OK)
                 {
                     int position = dgvUsers.CurrentRow.Index;
@@ -472,7 +471,7 @@ namespace TrainIt
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
             //Check if user is admin, because is the only user with permission to change passwords.
-            if (TrainItLibrary.Global.usuario == "admin")
+            if (TrainItLibrary.Global.userNameWorking == "admin")
             {
 
                 DialogResult result = MessageBox.Show("Solo puede fijar una contraseña nueva.\n" +
