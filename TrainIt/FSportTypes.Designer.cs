@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label userIDLabel;
             System.Windows.Forms.Label userFirstNameLabel;
             System.Windows.Forms.Label userSecondNameLabel;
             System.Windows.Forms.Label userMailLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FSportTypes));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolS1 = new System.Windows.Forms.ToolStrip();
             this.tsBtnFirst = new System.Windows.Forms.ToolStripButton();
             this.tsBtnPrevious = new System.Windows.Forms.ToolStripButton();
@@ -60,8 +61,11 @@
             this.txtSportTypeID = new System.Windows.Forms.TextBox();
             this.txtSportTypeName = new System.Windows.Forms.TextBox();
             this.txtParentSportTypeID = new System.Windows.Forms.TextBox();
+            this.sportTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.trainITDataSet = new TrainIt.TrainITDataSet();
             this.chBxNoFamily = new System.Windows.Forms.CheckBox();
             this.cbxSportTypeName = new System.Windows.Forms.ComboBox();
+            this.sportTypesTableAdapter1 = new TrainIt.TrainITDataSetTableAdapters.SportTypesTableAdapter();
             userIDLabel = new System.Windows.Forms.Label();
             userFirstNameLabel = new System.Windows.Forms.Label();
             userSecondNameLabel = new System.Windows.Forms.Label();
@@ -69,6 +73,8 @@
             this.toolS1.SuspendLayout();
             this.statusS1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSTypes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sportTypesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trainITDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // userIDLabel
@@ -230,7 +236,7 @@
             this.statusS1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tslUser,
             this.tslConnString});
-            this.statusS1.Location = new System.Drawing.Point(0, 608);
+            this.statusS1.Location = new System.Drawing.Point(0, 673);
             this.statusS1.Name = "statusS1";
             this.statusS1.Size = new System.Drawing.Size(588, 22);
             this.statusS1.TabIndex = 3;
@@ -253,6 +259,7 @@
             this.dgvSTypes.AllowUserToAddRows = false;
             this.dgvSTypes.AllowUserToDeleteRows = false;
             this.dgvSTypes.AllowUserToOrderColumns = true;
+            this.dgvSTypes.AllowUserToResizeRows = false;
             this.dgvSTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSTypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -266,16 +273,16 @@
             this.dgvSTypes.Name = "dgvSTypes";
             this.dgvSTypes.ReadOnly = true;
             this.dgvSTypes.RowHeadersVisible = false;
-            this.dgvSTypes.Size = new System.Drawing.Size(588, 335);
+            this.dgvSTypes.Size = new System.Drawing.Size(588, 400);
             this.dgvSTypes.TabIndex = 4;
             this.dgvSTypes.Click += new System.EventHandler(this.dgvSTypes_Click);
             // 
             // ID
             // 
             this.ID.DataPropertyName = "SportTypeID";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle13.NullValue = null;
-            this.ID.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.NullValue = null;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle1;
             this.ID.HeaderText = "";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
@@ -291,8 +298,8 @@
             // ParentID
             // 
             this.ParentID.DataPropertyName = "ParentSportTypeID";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ParentID.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ParentID.DefaultCellStyle = dataGridViewCellStyle2;
             this.ParentID.HeaderText = "";
             this.ParentID.Name = "ParentID";
             this.ParentID.ReadOnly = true;
@@ -352,6 +359,7 @@
             // 
             // txtParentSportTypeID
             // 
+            this.txtParentSportTypeID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sportTypesBindingSource, "SportTypeID", true));
             this.txtParentSportTypeID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtParentSportTypeID.Location = new System.Drawing.Point(178, 109);
             this.txtParentSportTypeID.MaxLength = 50;
@@ -360,6 +368,16 @@
             this.txtParentSportTypeID.Size = new System.Drawing.Size(73, 26);
             this.txtParentSportTypeID.TabIndex = 20;
             this.txtParentSportTypeID.TabStop = false;
+            // 
+            // sportTypesBindingSource
+            // 
+            this.sportTypesBindingSource.DataMember = "SportTypes";
+            this.sportTypesBindingSource.DataSource = this.trainITDataSet;
+            // 
+            // trainITDataSet
+            // 
+            this.trainITDataSet.DataSetName = "TrainITDataSet";
+            this.trainITDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // chBxNoFamily
             // 
@@ -374,10 +392,12 @@
             this.chBxNoFamily.TabIndex = 24;
             this.chBxNoFamily.Text = "No pertenece a ninguna familia";
             this.chBxNoFamily.UseVisualStyleBackColor = true;
-            this.chBxNoFamily.CheckedChanged += new System.EventHandler(this.chBxNoFamily_CheckedChanged);
+            this.chBxNoFamily.CheckStateChanged += new System.EventHandler(this.chBxNoFamily_CheckedChanged);
             // 
             // cbxSportTypeName
             // 
+            this.cbxSportTypeName.DataSource = this.sportTypesBindingSource;
+            this.cbxSportTypeName.DisplayMember = "SportTypeName";
             this.cbxSportTypeName.Enabled = false;
             this.cbxSportTypeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxSportTypeName.FormattingEnabled = true;
@@ -385,12 +405,18 @@
             this.cbxSportTypeName.Name = "cbxSportTypeName";
             this.cbxSportTypeName.Size = new System.Drawing.Size(299, 28);
             this.cbxSportTypeName.TabIndex = 23;
+            this.cbxSportTypeName.ValueMember = "SportTypeID";
+            this.cbxSportTypeName.SelectedValueChanged += new System.EventHandler(this.cbxSportTypeName_SelectedValueChanged);
+            // 
+            // sportTypesTableAdapter1
+            // 
+            this.sportTypesTableAdapter1.ClearBeforeFill = true;
             // 
             // FSportTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 630);
+            this.ClientSize = new System.Drawing.Size(588, 695);
             this.Controls.Add(this.chBxNoFamily);
             this.Controls.Add(this.cbxSportTypeName);
             this.Controls.Add(this.txtMemo);
@@ -413,6 +439,8 @@
             this.statusS1.ResumeLayout(false);
             this.statusS1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSTypes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sportTypesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trainITDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -447,5 +475,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn memo;
         private System.Windows.Forms.DataGridViewTextBoxColumn userID;
         private System.Windows.Forms.ComboBox cbxSportTypeName;
+        private TrainITDataSetTableAdapters.SportTypesTableAdapter sportTypesTableAdapter1;
+        private System.Windows.Forms.BindingSource sportTypesBindingSource;
+        private TrainITDataSet trainITDataSet;
     }
 }

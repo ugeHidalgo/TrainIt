@@ -231,7 +231,7 @@ namespace TrainItLibrary
             {
                 SportTypes aST = new SportTypes(sportTypeID, sportTypeName, parentSportTypeID, memo, userID);
 
-                aST = FindSportTypeByID(connString);
+                aST = aST.FindSportTypeByID(connString);
                 if (aST.sportTypeID != -1)
                 {
                     sigue = false;
@@ -244,7 +244,7 @@ namespace TrainItLibrary
                 if (parentSportTypeID != 0)
                 {
                     SportTypes aST = new SportTypes(parentSportTypeID, sportTypeName, parentSportTypeID, memo, userID);                    
-                    aST = FindSportTypeByID(connString);
+                    aST = aST.FindSportTypeByID(connString);
                     if (aST.sportTypeID == -1)
                     {
                         sigue = false;
@@ -265,8 +265,15 @@ namespace TrainItLibrary
             }
 
             return res;
-        }
+        }        
 
-        //Return an object containing the parent SportType.
+        public SportTypes FindParentSportType(string connString)
+        {//Return an object containing the parent SportType.
+            SportTypes aSportType = new SportTypes();
+            aSportType.sportTypeID = parentSportTypeID;
+            aSportType.userID = userID;
+            aSportType = aSportType.FindSportTypeByID(connString);
+            return aSportType;
+        }
     }
 }

@@ -68,9 +68,17 @@ namespace TrainIt
             txtSportTypeName.Text = aSportType.sportTypeName;
             txtParentSportTypeID.Text = aSportType.parentSportTypeID.ToString();
             txtMemo.Text = aSportType.memo;
-            if (txtParentSportTypeID.Text=="0")            
+            if (txtParentSportTypeID.Text == "0")
                 chBxNoFamily.Checked = true;
-            else chBxNoFamily.Checked = false;            
+            else
+            {
+                chBxNoFamily.Checked = false;
+            }
+
+            //Find the name of the parent sport type
+            SportTypes parent = new SportTypes();
+            parent = aSportType.FindParentSportType(connString);
+            cbxSportTypeName.Text = parent.sportTypeName;                        
         }
 
         private void setEditMode()
@@ -91,6 +99,7 @@ namespace TrainIt
             txtMemo.ReadOnly = false;
 
             chBxNoFamily.Enabled = true;
+            cbxSportTypeName.Enabled = true;                                     
 
             dgvSTypes.Enabled = false;
         }
@@ -110,6 +119,7 @@ namespace TrainIt
             tsBtnCancel.Enabled = false;
 
             chBxNoFamily.Enabled = false;
+            cbxSportTypeName.Enabled = false;
 
             txtSportTypeName.ReadOnly = true;
             txtMemo.ReadOnly = true;
@@ -128,6 +138,9 @@ namespace TrainIt
 
         private void FSportTypes_Load(object sender, EventArgs e)
         {
+            //Load Data into combo box
+            this.sportTypesTableAdapter1.FillBy(this.trainITDataSet.SportTypes, userIDWorking);
+
             //Load data into data grid
             LoadDataInGrid(dgvSTypes,userIDWorking);            
 
@@ -314,18 +327,27 @@ namespace TrainIt
                     aSportType = aSportType.UpdateData(connString);
                     //aSportType = aSportType.up
                 }
-
                 //Reload data into grid
                 LoadDataInGrid(dgvSTypes,userIDWorking);
 
                 //Goes to the position
                 dgvSTypes.CurrentCell = dgvSTypes[0, position];
 
+                //Takes user ID clicked
+                aSportType.sportTypeID = Convert.ToInt32(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
+                aSportType.userID = userIDWorking;
+
+                //Load data into aUser
+                aSportType = aSportType.FindSportTypeByID(connString);
+
                 //Loads data into boxes
                 LoadDataInBoxes(aSportType);
 
                 //Enable normal mode.
                 setNormalMode();
+
+                //Reload Data into combobox
+                this.sportTypesTableAdapter1.FillBy(this.trainITDataSet.SportTypes, userIDWorking);
             }
             else //There is an error in data to save.
             {
@@ -374,43 +396,37 @@ namespace TrainIt
 
         private void dgvSTypes_Click(object sender, EventArgs e)
         {//Load data from current row in grid to the text boxes.
-            if (dgvSTypes.RowCount > 0)
+            if (!onEdition)
             {
-                //Takes user ID clicked
-                aSportType.sportTypeID = Convert.ToInt32(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
-                aSportType.userID = userIDWorking;
+                if (dgvSTypes.RowCount > 0)
+                {
+                    //Takes user ID clicked
+                    aSportType.sportTypeID = Convert.ToInt32(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
+                    aSportType.userID = userIDWorking;
 
-                //Load data into aUser
-                aSportType = aSportType.FindSportTypeByID(connString);
+                    //Load data into aUser
+                    aSportType = aSportType.FindSportTypeByID(connString);
 
-                //Loads data into boxes
-                LoadDataInBoxes(aSportType);
+                    //Loads data into boxes
+                    LoadDataInBoxes(aSportType);
+                }
             }
         }
 
         private void chBxNoFamily_CheckedChanged(object sender, EventArgs e)
         {//Enable-Disable to choose sport family
-            if (onEdition)
+            if (chBxNoFamily.Checked)
             {
-                if (chBxNoFamily.Checked)
-                {
-                    txtParentSportTypeID.Text = "0";
-                    cbxSportTypeName.Enabled = false;
-                }
-                else
-                {
-                    txtParentSportTypeID.Text = "";
-                    cbxSportTypeName.Enabled = true;
-                }
-            }
+                txtParentSportTypeID.Text = "0";                
+                cbxSportTypeName.Text = "";
+            }            
         }
 
-        private void sportTypesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        private void cbxSportTypeName_SelectedValueChanged(object sender, EventArgs e)
         {
-
-
+            if (cbxSportTypeName.Text == "")            
+                chBxNoFamily.Checked = true;
+            else chBxNoFamily.Checked = false;                            
         }
-
-
     }
 }

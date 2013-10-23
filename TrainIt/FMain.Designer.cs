@@ -59,9 +59,9 @@
             this.tsBtnMaterial = new System.Windows.Forms.ToolStripButton();
             this.tsBtnUsuarios = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsBtnSportTypes = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnClose = new System.Windows.Forms.ToolStripButton();
-            this.tsBtnSportTypes = new System.Windows.Forms.ToolStripButton();
             this.sS.SuspendLayout();
             this.mS.SuspendLayout();
             this.tsPrincipal.SuspendLayout();
@@ -295,6 +295,16 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // tsBtnSportTypes
+            // 
+            this.tsBtnSportTypes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnSportTypes.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnSportTypes.Image")));
+            this.tsBtnSportTypes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnSportTypes.Name = "tsBtnSportTypes";
+            this.tsBtnSportTypes.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnSportTypes.Text = "Tipos de Deporte";
+            this.tsBtnSportTypes.Click += new System.EventHandler(this.msTiposDeportes_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -309,16 +319,6 @@
             this.tsBtnClose.Size = new System.Drawing.Size(23, 22);
             this.tsBtnClose.Text = "Cerrar aplicación";
             this.tsBtnClose.Click += new System.EventHandler(this.tsBtnClose_Click);
-            // 
-            // tsBtnSportTypes
-            // 
-            this.tsBtnSportTypes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsBtnSportTypes.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnSportTypes.Image")));
-            this.tsBtnSportTypes.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnSportTypes.Name = "tsBtnSportTypes";
-            this.tsBtnSportTypes.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnSportTypes.Text = "Tipos de Deporte";
-            this.tsBtnSportTypes.Click += new System.EventHandler(this.msTiposDeportes_Click);
             // 
             // FMain
             // 
