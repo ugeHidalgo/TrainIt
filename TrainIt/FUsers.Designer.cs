@@ -313,8 +313,7 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.MaterialSessionTableAdapter = null;
-            this.tableAdapterManager.MaterialsTableAdapter = null;
-            this.tableAdapterManager.SessionsTableAdapter = null;
+            this.tableAdapterManager.MaterialsTableAdapter = null;            
             this.tableAdapterManager.SportTypesTableAdapter = null;
             this.tableAdapterManager.TrainingsTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;

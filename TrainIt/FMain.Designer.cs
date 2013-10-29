@@ -49,8 +49,8 @@
             this.registrosBioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.marcasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entrenamientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.entrenamientosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.sesionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEntrenos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSesioines = new System.Windows.Forms.ToolStripMenuItem();
             this.registrosPersonalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.biologicosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.marcasPersonalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -210,24 +210,26 @@
             // entrenamientosToolStripMenuItem
             // 
             this.entrenamientosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.entrenamientosToolStripMenuItem1,
-            this.sesionesToolStripMenuItem,
+            this.tsmiEntrenos,
+            this.tsmiSesioines,
             this.registrosPersonalesToolStripMenuItem});
             this.entrenamientosToolStripMenuItem.Name = "entrenamientosToolStripMenuItem";
             this.entrenamientosToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.entrenamientosToolStripMenuItem.Text = "Actividades";
             // 
-            // entrenamientosToolStripMenuItem1
+            // tsmiEntrenos
             // 
-            this.entrenamientosToolStripMenuItem1.Name = "entrenamientosToolStripMenuItem1";
-            this.entrenamientosToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
-            this.entrenamientosToolStripMenuItem1.Text = "Entrenamientos";
+            this.tsmiEntrenos.Name = "tsmiEntrenos";
+            this.tsmiEntrenos.Size = new System.Drawing.Size(157, 22);
+            this.tsmiEntrenos.Text = "Entrenamientos";
+            this.tsmiEntrenos.Click += new System.EventHandler(this.entrenamientosToolStripMenuItem1_Click);
             // 
-            // sesionesToolStripMenuItem
+            // tsmiSesioines
             // 
-            this.sesionesToolStripMenuItem.Name = "sesionesToolStripMenuItem";
-            this.sesionesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.sesionesToolStripMenuItem.Text = "Sesiones";
+            this.tsmiSesioines.Name = "tsmiSesioines";
+            this.tsmiSesioines.Size = new System.Drawing.Size(157, 22);
+            this.tsmiSesioines.Text = "Sesiones";
+            this.tsmiSesioines.Click += new System.EventHandler(this.sesionesToolStripMenuItem_Click);
             // 
             // registrosPersonalesToolStripMenuItem
             // 
@@ -367,8 +369,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem msTiposDeportes;
         private System.Windows.Forms.ToolStripMenuItem entrenamientosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem entrenamientosToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem sesionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEntrenos;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSesioines;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem sesionesToolStripMenuItem1;

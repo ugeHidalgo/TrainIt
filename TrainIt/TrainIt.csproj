@@ -32,6 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -63,11 +65,23 @@
     <Compile Include="FMaterial.Designer.cs">
       <DependentUpon>FMaterial.cs</DependentUpon>
     </Compile>
+    <Compile Include="FSessions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FSessions.Designer.cs">
+      <DependentUpon>FSessions.cs</DependentUpon>
+    </Compile>
     <Compile Include="FSportTypes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FSportTypes.Designer.cs">
       <DependentUpon>FSportTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FTrainings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FTrainings.Designer.cs">
+      <DependentUpon>FTrainings.cs</DependentUpon>
     </Compile>
     <Compile Include="FUsers.cs">
       <SubType>Form</SubType>
@@ -95,8 +109,14 @@
     <EmbeddedResource Include="FMaterial.resx">
       <DependentUpon>FMaterial.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FSessions.resx">
+      <DependentUpon>FSessions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FSportTypes.resx">
       <DependentUpon>FSportTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FTrainings.resx">
+      <DependentUpon>FTrainings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FUsers.resx">
       <DependentUpon>FUsers.cs</DependentUpon>

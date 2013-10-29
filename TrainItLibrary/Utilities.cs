@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
+
 
 namespace TrainItLibrary
 {
@@ -20,6 +22,19 @@ namespace TrainItLibrary
             if (settings != null)
                 value = settings.ConnectionString;
             return value;
-        }       
+        }    
+   
+
+        //Validates data into a textBox
+        public static Boolean validateNotEmpty(object sender)
+        {
+            Boolean result = true;
+            if (sender is TextBox)  
+            {
+                if (((TextBox)sender).Text == "")
+                    result = false;
+            }
+            return result;
+        }
     }
 }

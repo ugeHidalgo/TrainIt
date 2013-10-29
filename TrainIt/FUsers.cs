@@ -186,7 +186,7 @@ namespace TrainIt
         {
             if (onEdition)
             {
-                MessageBox.Show("Grabe o cancele la edición ántes de cerrar la ventanaactual.", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Grabe o cancele la edición ántes de cerrar la ventana actual.", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Cancel = true;
             }
             else e.Cancel = false;

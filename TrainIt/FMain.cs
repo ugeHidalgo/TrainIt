@@ -20,8 +20,11 @@ namespace TrainIt
             timer1.Enabled = true;
             FLogin fLogin = new FLogin();
             fLogin.ShowDialog();
+
             TrainItLibrary.Global.userNameWorking=fLogin.userNameGiven;
             TrainItLibrary.Global.userIDWorking = fLogin.userIDGiven;
+            TrainItLibrary.Global.trainingUsed.Reset();
+
             tslConnStr.Text = connString;
             tslAppUser.Text = "Usuario=(" + TrainItLibrary.Global.userIDWorking + ")" + TrainItLibrary.Global.userNameWorking;
         }
@@ -43,7 +46,7 @@ namespace TrainIt
 
         private void mSMaterial_Click(object sender, EventArgs e)
         {
-            //mSMaterial.Enabled = false;
+            //mSMaterial.Enabled = false;            
             FMaterial fMaterial = new FMaterial();
             //fMaterial.MdiParent = this;
             fMaterial.ShowDialog();
@@ -69,6 +72,20 @@ namespace TrainIt
         private void tsBtnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void entrenamientosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {                        
+            FTrainings fTrainings= new FTrainings();
+            //fTrainings.MdiParent = this;
+            fTrainings.ShowDialog();
+        }
+
+        private void sesionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FSessions fSessions = new FSessions();
+            //fSessions.MdiParent = this;
+            fSessions.ShowDialog();            
         }
 
 
