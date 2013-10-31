@@ -14,12 +14,18 @@ namespace TrainIt
 {
     public partial class FSportTypes : Form
     {
-        string connString = TrainItLibrary.Utilities.GetConnString();
-        int userIDWorking = TrainItLibrary.Global.userIDWorking;
-        SportTypes aSportType = new SportTypes();
-        int sportTypeIDToUpdate = -1;
-
+        private static bool onSearchMode;
+        string connString = Utilities.GetConnString();
+        Int64 userIDWorking = Global.userIDWorking;        
+        Int64 sportTypeIDToUpdate = -1;
         Boolean onEdition = false; //Used to indicate wether or not we are in edit mode
+        Boolean returnValue = false;
+
+        public bool OnSearchMode
+        {
+            get { return onSearchMode; }
+            set {onSearchMode=value;}
+        }
 
         public FSportTypes()
         {
@@ -27,14 +33,39 @@ namespace TrainIt
             tslConnString.Text = connString;
             tslUser.Text = "Usuario=(" + TrainItLibrary.Global.userIDWorking+")"+TrainItLibrary.Global.userNameWorking;
             setNormalMode();
-        }        
+        }
 
-        private DataTable LoadDataInGrid(DataGridView dgvSTypes, int aUserID)
+        private void FSportTypes_Load(object sender, EventArgs e)
+        {
+            //if this form is shomw in order to search, then enable buttons for search
+            btnChoose.Visible = OnSearchMode;
+            btnCancel.Visible = OnSearchMode;
+
+
+            //Load Data into combo box
+            this.sportTypesTableAdapter1.FillBy(this.trainITDataSet.SportTypes, userIDWorking);
+
+            //Load data into data grid
+            LoadDataInGrid(dgvSTypes, userIDWorking);
+
+            if (dgvSTypes.RowCount > 0)
+            {
+                Global.sportTypeUsed.SportTypeID= Convert.ToInt64(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
+                Global.sportTypeUsed.UserID=userIDWorking;
+
+                //Find the User and load other fields into Model object: sportTypeUSed
+                Global.sportTypeUsed = Global.sportTypeUsed.FindSportTypeByID(connString);
+
+                //LoadData in boxes
+                LoadDataInBoxes(Global.sportTypeUsed);
+            }
+        }
+
+        private DataTable LoadDataInGrid(DataGridView dgvSTypes, Int64 aUserID)
         {   //Load data into data grid view: dgvUsers
             DataTable aDataTable = new DataTable();
             using (SqlConnection conn = new SqlConnection(connString))
             {
-                //string query = "select * from SportTypes where UserID=@userID";
                 string query = @"SELECT SportTypes.*, SportTypes_1.SportTypeName AS FamilyName
                                  FROM  SportTypes LEFT JOIN SportTypes AS SportTypes_1 
                                  ON SportTypes.ParentSportTypeID = SportTypes_1.SportTypeID
@@ -42,7 +73,7 @@ namespace TrainIt
                                  ORDER BY SportTypes.ParentSportTypeID, SportTypes.SportTypeName";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.Int));
+                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
                     cmd.Parameters["@userID"].Value = aUserID;
                     try
                     {
@@ -55,7 +86,6 @@ namespace TrainIt
                     catch (Exception)
                     {
                         MessageBox.Show("A problem with the User SQL Connection occurs");
-                        throw;
                     }
                 }
             }
@@ -64,10 +94,10 @@ namespace TrainIt
 
         private void LoadDataInBoxes( SportTypes aSportType)
         {
-            txtSportTypeID.Text = aSportType.sportTypeID.ToString();
-            txtSportTypeName.Text = aSportType.sportTypeName;
-            txtParentSportTypeID.Text = aSportType.parentSportTypeID.ToString();
-            txtMemo.Text = aSportType.memo;
+            txtSportTypeID.Text = aSportType.SportTypeID.ToString();
+            txtSportTypeName.Text = aSportType.SportTypeName;
+            txtParentSportTypeID.Text = aSportType.ParentSportTypeID.ToString();
+            txtMemo.Text = aSportType.Memo;
             if (txtParentSportTypeID.Text == "0")
                 chBxNoFamily.Checked = true;
             else
@@ -78,7 +108,7 @@ namespace TrainIt
             //Find the name of the parent sport type
             SportTypes parent = new SportTypes();
             parent = aSportType.FindParentSportType(connString);
-            cbxSportTypeName.Text = parent.sportTypeName;                        
+            cbxSportTypeName.Text = parent.SportTypeName;                        
         }
 
         private void setEditMode()
@@ -91,9 +121,12 @@ namespace TrainIt
             tsBtnLast.Enabled = false;
             tsBtnNew.Enabled = false;
             tsBtnEdit.Enabled = false;
-            tsBtnDelete.Enabled = false;
-            tsBtnSave.Enabled = true;
             tsBtnCancel.Enabled = true;
+            tsBtnSave.Enabled = true;
+            tsBtnDel.Enabled = false;
+
+            btnChoose.Enabled = false;
+            btnCancel.Enabled = false;
 
             txtSportTypeName.ReadOnly = false;
             txtMemo.ReadOnly = false;
@@ -114,9 +147,12 @@ namespace TrainIt
             tsBtnLast.Enabled = true;
             tsBtnNew.Enabled = true;
             tsBtnEdit.Enabled = true;
-            tsBtnDelete.Enabled = true;
-            tsBtnSave.Enabled = false;
             tsBtnCancel.Enabled = false;
+            tsBtnSave.Enabled = false;
+            tsBtnDel.Enabled = true;
+
+            btnChoose.Enabled = true;
+            btnCancel.Enabled = true;
 
             chBxNoFamily.Enabled = false;
             cbxSportTypeName.Enabled = false;
@@ -134,29 +170,7 @@ namespace TrainIt
             txtParentSportTypeID.Text = "0";
             chBxNoFamily.Checked = true;            
             txtMemo.Text = "";
-        }
-
-        private void FSportTypes_Load(object sender, EventArgs e)
-        {
-            //Load Data into combo box
-            this.sportTypesTableAdapter1.FillBy(this.trainITDataSet.SportTypes, userIDWorking);
-
-            //Load data into data grid
-            LoadDataInGrid(dgvSTypes,userIDWorking);            
-
-            if (dgvSTypes.RowCount > 0)
-            {
-                //Takes the userID of the first and the user to find correct data
-                aSportType.sportTypeID = Convert.ToInt32(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
-                aSportType.userID = userIDWorking;
-
-                //Find the User and load into aUser
-                aSportType = aSportType.FindSportTypeByID(connString);
-
-                //LoadData in boxes
-                LoadDataInBoxes(aSportType);
-            }  
-        }
+        }   
 
         private void FSportTypes_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -164,8 +178,15 @@ namespace TrainIt
             {
                 MessageBox.Show("Grabe o cancele la edición ántes de cerrar la ventana actual.", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Cancel = true;
+                returnValue = false;
             }
-            else e.Cancel = false;
+            else
+            {
+                e.Cancel = false;
+                OnSearchMode = false;
+                if (returnValue)
+                    OnSearchMode = true;
+            }
         }
 
         private void tsBtnFirst_Click(object sender, EventArgs e)
@@ -173,16 +194,14 @@ namespace TrainIt
             if (dgvSTypes.RowCount > 0)
             {
                 dgvSTypes.CurrentCell = dgvSTypes[0, 0];
-
-                //Takes the userID of the first and the user to find correct data
-                aSportType.sportTypeID = Convert.ToInt32(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
-                aSportType.userID = userIDWorking;
+                Global.sportTypeUsed.SportTypeID = Convert.ToInt64(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
+                Global.sportTypeUsed.UserID = userIDWorking;
 
                 //Find the User and load into aUser
-                aSportType = aSportType.FindSportTypeByID(connString);
+                TrainItLibrary.Global.sportTypeUsed = TrainItLibrary.Global.sportTypeUsed.FindSportTypeByID(connString);
 
                 //LoadData in boxes
-                LoadDataInBoxes(aSportType);
+                LoadDataInBoxes(Global.sportTypeUsed);
             }  
         }
 
@@ -194,15 +213,14 @@ namespace TrainIt
                 {
                     dgvSTypes.CurrentCell = dgvSTypes[0, dgvSTypes.CurrentRow.Index - 1];
 
-                    //Takes the userID of the first and the user to find correct data
-                    aSportType.sportTypeID = Convert.ToInt32(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
-                    aSportType.userID = userIDWorking;
+                    Global.sportTypeUsed.SportTypeID = Convert.ToInt64(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
+                    Global.sportTypeUsed.UserID = userIDWorking;
 
                     //Find the User and load into aUser
-                    aSportType = aSportType.FindSportTypeByID(connString);
+                    Global.sportTypeUsed = TrainItLibrary.Global.sportTypeUsed.FindSportTypeByID(connString);
 
                     //LoadData in boxes
-                    LoadDataInBoxes(aSportType);
+                    LoadDataInBoxes(Global.sportTypeUsed);
                 }
             }
         }
@@ -215,15 +233,14 @@ namespace TrainIt
                 {
                     dgvSTypes.CurrentCell = dgvSTypes[0, dgvSTypes.CurrentRow.Index + 1];
 
-                    //Takes the userID
-                    aSportType.sportTypeID = Convert.ToInt32(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
-                    aSportType.userID = userIDWorking;
+                    Global.sportTypeUsed.SportTypeID = Convert.ToInt64(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
+                    Global.sportTypeUsed.UserID = userIDWorking;
 
                     //Find the User and load into aUser
-                    aSportType = aSportType.FindSportTypeByID(connString);
+                    Global.sportTypeUsed = Global.sportTypeUsed.FindSportTypeByID(connString);
 
                     //LoadData in boxes
-                    LoadDataInBoxes(aSportType);
+                    LoadDataInBoxes(Global.sportTypeUsed);
                 }
             }   
         }
@@ -234,15 +251,14 @@ namespace TrainIt
             {
                 dgvSTypes.CurrentCell = dgvSTypes[0, dgvSTypes.RowCount - 1];
 
-                //Takes the userID
-                aSportType.sportTypeID = Convert.ToInt32(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
-                aSportType.userID = userIDWorking;
+                Global.sportTypeUsed.SportTypeID = Convert.ToInt64(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
+                Global.sportTypeUsed.UserID = userIDWorking;
 
                 //Find the User and load into aUser
-                aSportType = aSportType.FindSportTypeByID(connString);
+                Global.sportTypeUsed = Global.sportTypeUsed.FindSportTypeByID(connString);
 
                 //LoadData in boxes
-                LoadDataInBoxes(aSportType);
+                LoadDataInBoxes(Global.sportTypeUsed);
             }  
         }
 
@@ -256,7 +272,7 @@ namespace TrainIt
             sportTypeIDToUpdate = -1;
 
             //Reset user data 
-            aSportType = aSportType.Reset();            
+            TrainItLibrary.Global.sportTypeUsed.Reset();            
 
             //Put focus on first component
             txtSportTypeName.Focus();
@@ -270,13 +286,13 @@ namespace TrainIt
                 setEditMode();
 
                 //Take de UserID of the reg being updated
-                sportTypeIDToUpdate = Convert.ToInt32(txtSportTypeID.Text);
-                aSportType.sportTypeID = sportTypeIDToUpdate;
-                aSportType.userID = userIDWorking;
+                sportTypeIDToUpdate = Convert.ToInt64(txtSportTypeID.Text);
 
-                //Load data for the user being updated
-                aSportType = aSportType.FindSportTypeByID(connString);
-
+                Global.sportTypeUsed.SportTypeID = sportTypeIDToUpdate;
+                Global.sportTypeUsed.UserID = userIDWorking;
+                
+                Global.sportTypeUsed = Global.sportTypeUsed.FindSportTypeByID(connString);
+                    
                 //Put focus on first component
                 txtSportTypeName.Focus();
             }
@@ -292,7 +308,7 @@ namespace TrainIt
             //Verify all data is correct.
             if (txtParentSportTypeID.Text == "")
                 txtParentSportTypeID.Text = "0";
-            SportTypes tempData = new SportTypes(sportTypeIDToUpdate,txtSportTypeName.Text,Convert.ToInt32(txtParentSportTypeID.Text),txtMemo.Text,userIDWorking);
+            SportTypes tempData = new SportTypes(sportTypeIDToUpdate,txtSportTypeName.Text,Convert.ToInt64(txtParentSportTypeID.Text),txtMemo.Text,userIDWorking);
             int verifyResult = tempData.CheckData(connString);
 
             //if update and user find, verify must be ok
@@ -309,10 +325,10 @@ namespace TrainIt
                     position = dgvSTypes.RowCount;
 
                     //Load data into aUSer
-                    aSportType = aSportType.LoadData(-1, txtSportTypeName.Text, Convert.ToInt32(txtParentSportTypeID.Text), txtMemo.Text, userIDWorking);
+                    Global.sportTypeUsed.LoadData(-1, txtSportTypeName.Text, Convert.ToInt64(txtParentSportTypeID.Text), txtMemo.Text, userIDWorking);
 
                     //save data into BD
-                    aSportType = aSportType.SaveData(connString);
+                    Global.sportTypeUsed = Global.sportTypeUsed.SaveData(connString);
                 }
                 else
                 {//Update existing user
@@ -321,10 +337,10 @@ namespace TrainIt
                     position = dgvSTypes.CurrentRow.Index;
 
                     //Load data into aUSer
-                    aSportType = aSportType.LoadData(sportTypeIDToUpdate, txtSportTypeName.Text, Convert.ToInt32(txtParentSportTypeID.Text), txtMemo.Text, userIDWorking);
+                    Global.sportTypeUsed.LoadData(sportTypeIDToUpdate, txtSportTypeName.Text, Convert.ToInt64(txtParentSportTypeID.Text), txtMemo.Text, userIDWorking);
 
                     //save data into BD
-                    aSportType = aSportType.UpdateData(connString);
+                    Global.sportTypeUsed = Global.sportTypeUsed.UpdateData(connString);
                     //aSportType = aSportType.up
                 }
                 //Reload data into grid
@@ -333,15 +349,14 @@ namespace TrainIt
                 //Goes to the position
                 dgvSTypes.CurrentCell = dgvSTypes[0, position];
 
-                //Takes user ID clicked
-                aSportType.sportTypeID = Convert.ToInt32(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
-                aSportType.userID = userIDWorking;
-
+                Global.sportTypeUsed.SportTypeID = Convert.ToInt32(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
+                Global.sportTypeUsed.UserID = userIDWorking;
+                
                 //Load data into aUser
-                aSportType = aSportType.FindSportTypeByID(connString);
+                Global.sportTypeUsed = Global.sportTypeUsed.FindSportTypeByID(connString);
 
                 //Loads data into boxes
-                LoadDataInBoxes(aSportType);
+                LoadDataInBoxes(TrainItLibrary.Global.sportTypeUsed);
 
                 //Enable normal mode.
                 setNormalMode();
@@ -382,15 +397,14 @@ namespace TrainIt
                 //Goes to current reg
                 dgvSTypes.CurrentCell = dgvSTypes[0, dgvSTypes.CurrentRow.Index];
 
-                //Takes user ID clicked
-                aSportType.sportTypeID = Convert.ToInt32(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
-                aSportType.userID = userIDWorking;
+                Global.sportTypeUsed.SportTypeID = Convert.ToInt64(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
+                Global.sportTypeUsed.UserID = userIDWorking;
 
                 //Load data into aUser               
-                aSportType = aSportType.FindSportTypeByID(connString);
+                Global.sportTypeUsed = Global.sportTypeUsed.FindSportTypeByID(connString);
 
                 //Loads data into boxes
-                LoadDataInBoxes(aSportType);
+                LoadDataInBoxes(TrainItLibrary.Global.sportTypeUsed);
             }
         }
 
@@ -400,15 +414,14 @@ namespace TrainIt
             {
                 if (dgvSTypes.RowCount > 0)
                 {
-                    //Takes user ID clicked
-                    aSportType.sportTypeID = Convert.ToInt32(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
-                    aSportType.userID = userIDWorking;
+                    Global.sportTypeUsed.SportTypeID = Convert.ToInt64(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
+                    Global.sportTypeUsed.UserID = userIDWorking;
 
                     //Load data into aUser
-                    aSportType = aSportType.FindSportTypeByID(connString);
+                    Global.sportTypeUsed = Global.sportTypeUsed.FindSportTypeByID(connString);
 
                     //Loads data into boxes
-                    LoadDataInBoxes(aSportType);
+                    LoadDataInBoxes(TrainItLibrary.Global.sportTypeUsed);
                 }
             }
         }
@@ -427,6 +440,17 @@ namespace TrainIt
             if (cbxSportTypeName.Text == "")            
                 chBxNoFamily.Checked = true;
             else chBxNoFamily.Checked = false;                            
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnChoose_Click(object sender, EventArgs e)
+        {
+            returnValue = true;
+            this.Close();
         }
     }
 }

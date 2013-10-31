@@ -34,8 +34,8 @@
             System.Windows.Forms.Label userSecondNameLabel;
             System.Windows.Forms.Label userMailLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FSportTypes));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolS1 = new System.Windows.Forms.ToolStrip();
             this.tsBtnFirst = new System.Windows.Forms.ToolStripButton();
             this.tsBtnPrevious = new System.Windows.Forms.ToolStripButton();
@@ -44,9 +44,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnNew = new System.Windows.Forms.ToolStripButton();
             this.tsBtnEdit = new System.Windows.Forms.ToolStripButton();
-            this.tsBtnDelete = new System.Windows.Forms.ToolStripButton();
-            this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
             this.tsBtnCancel = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnDel = new System.Windows.Forms.ToolStripButton();
             this.statusS1 = new System.Windows.Forms.StatusStrip();
             this.tslUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.tslConnString = new System.Windows.Forms.ToolStripStatusLabel();
@@ -66,6 +66,8 @@
             this.chBxNoFamily = new System.Windows.Forms.CheckBox();
             this.cbxSportTypeName = new System.Windows.Forms.ComboBox();
             this.sportTypesTableAdapter1 = new TrainIt.TrainITDataSetTableAdapters.SportTypesTableAdapter();
+            this.btnChoose = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             userIDLabel = new System.Windows.Forms.Label();
             userFirstNameLabel = new System.Windows.Forms.Label();
             userSecondNameLabel = new System.Windows.Forms.Label();
@@ -127,9 +129,9 @@
             this.toolStripSeparator1,
             this.tsBtnNew,
             this.tsBtnEdit,
-            this.tsBtnDelete,
+            this.tsBtnCancel,
             this.tsBtnSave,
-            this.tsBtnCancel});
+            this.tsBtnDel});
             this.toolS1.Location = new System.Drawing.Point(0, 0);
             this.toolS1.Name = "toolS1";
             this.toolS1.Size = new System.Drawing.Size(588, 25);
@@ -201,15 +203,15 @@
             this.tsBtnEdit.Text = "Editar registro";
             this.tsBtnEdit.Click += new System.EventHandler(this.tsBtnEdit_Click);
             // 
-            // tsBtnDelete
+            // tsBtnCancel
             // 
-            this.tsBtnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsBtnDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnDelete.Image")));
-            this.tsBtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnDelete.Name = "tsBtnDelete";
-            this.tsBtnDelete.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnDelete.Text = "Borrar registro";
-            this.tsBtnDelete.Click += new System.EventHandler(this.tsBtnDelete_Click);
+            this.tsBtnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnCancel.Image")));
+            this.tsBtnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnCancel.Name = "tsBtnCancel";
+            this.tsBtnCancel.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnCancel.Text = "Cancelar edición.";
+            this.tsBtnCancel.Click += new System.EventHandler(this.tsBtnCancel_Click);
             // 
             // tsBtnSave
             // 
@@ -221,15 +223,15 @@
             this.tsBtnSave.Text = "Grabar registro";
             this.tsBtnSave.Click += new System.EventHandler(this.tsBtnSave_Click);
             // 
-            // tsBtnCancel
+            // tsBtnDel
             // 
-            this.tsBtnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsBtnCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnCancel.Image")));
-            this.tsBtnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnCancel.Name = "tsBtnCancel";
-            this.tsBtnCancel.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnCancel.Text = "Cancelar edición de registro";
-            this.tsBtnCancel.Click += new System.EventHandler(this.tsBtnCancel_Click);
+            this.tsBtnDel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnDel.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnDel.Image")));
+            this.tsBtnDel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnDel.Name = "tsBtnDel";
+            this.tsBtnDel.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnDel.Text = "Borrar registro";
+            this.tsBtnDel.Click += new System.EventHandler(this.tsBtnDelete_Click);
             // 
             // statusS1
             // 
@@ -280,9 +282,9 @@
             // ID
             // 
             this.ID.DataPropertyName = "SportTypeID";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.NullValue = null;
-            this.ID.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.NullValue = null;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle5;
             this.ID.HeaderText = "";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
@@ -298,8 +300,8 @@
             // ParentID
             // 
             this.ParentID.DataPropertyName = "ParentSportTypeID";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ParentID.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ParentID.DefaultCellStyle = dataGridViewCellStyle6;
             this.ParentID.HeaderText = "";
             this.ParentID.Name = "ParentID";
             this.ParentID.ReadOnly = true;
@@ -412,11 +414,41 @@
             // 
             this.sportTypesTableAdapter1.ClearBeforeFill = true;
             // 
+            // btnChoose
+            // 
+            this.btnChoose.Image = ((System.Drawing.Image)(resources.GetObject("btnChoose.Image")));
+            this.btnChoose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChoose.Location = new System.Drawing.Point(315, 28);
+            this.btnChoose.Name = "btnChoose";
+            this.btnChoose.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.btnChoose.Size = new System.Drawing.Size(141, 41);
+            this.btnChoose.TabIndex = 25;
+            this.btnChoose.Text = "Seleccionar";
+            this.btnChoose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnChoose.UseVisualStyleBackColor = true;
+            this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(462, 28);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.btnCancel.Size = new System.Drawing.Size(94, 41);
+            this.btnCancel.TabIndex = 26;
+            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // FSportTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(588, 695);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnChoose);
             this.Controls.Add(this.chBxNoFamily);
             this.Controls.Add(this.cbxSportTypeName);
             this.Controls.Add(this.txtMemo);
@@ -456,9 +488,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsBtnNew;
         private System.Windows.Forms.ToolStripButton tsBtnEdit;
-        private System.Windows.Forms.ToolStripButton tsBtnDelete;
-        private System.Windows.Forms.ToolStripButton tsBtnSave;
         private System.Windows.Forms.ToolStripButton tsBtnCancel;
+        private System.Windows.Forms.ToolStripButton tsBtnSave;
+        private System.Windows.Forms.ToolStripButton tsBtnDel;
         private System.Windows.Forms.StatusStrip statusS1;
         private System.Windows.Forms.ToolStripStatusLabel tslUser;
         private System.Windows.Forms.ToolStripStatusLabel tslConnString;
@@ -478,5 +510,7 @@
         private TrainITDataSetTableAdapters.SportTypesTableAdapter sportTypesTableAdapter1;
         private System.Windows.Forms.BindingSource sportTypesBindingSource;
         private TrainITDataSet trainITDataSet;
+        private System.Windows.Forms.Button btnChoose;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

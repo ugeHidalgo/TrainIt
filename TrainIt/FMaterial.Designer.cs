@@ -50,6 +50,8 @@
             this.tslConnString = new System.Windows.Forms.ToolStripStatusLabel();
             this.materialsBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.tsBtnNew = new System.Windows.Forms.ToolStripButton();
+            this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.trainITDataSet = new TrainIt.TrainITDataSet();
             this.tsBtnFirst = new System.Windows.Forms.ToolStripButton();
             this.tsBtnPrevious = new System.Windows.Forms.ToolStripButton();
             this.tsBtnNext = new System.Windows.Forms.ToolStripButton();
@@ -65,6 +67,9 @@
             this.mtxtWeight = new System.Windows.Forms.MaskedTextBox();
             this.txtSize = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pbxImage = new System.Windows.Forms.PictureBox();
+            this.btnCancelImage = new System.Windows.Forms.Button();
+            this.btnLoadImage = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtModel = new System.Windows.Forms.TextBox();
@@ -83,21 +88,16 @@
             this.txtUseDist = new System.Windows.Forms.TextBox();
             this.txtInitDist = new System.Windows.Forms.TextBox();
             this.txtBarsBack = new System.Windows.Forms.TextBox();
-            this.btnLoadImage = new System.Windows.Forms.Button();
-            this.btnCancelImage = new System.Windows.Forms.Button();
-            this.pbxImage = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.materialsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.MaterialsTableAdapter();
+            this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatBuyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatTotTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatTotDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.trainITDataSet = new TrainIt.TrainITDataSet();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.MaterialsTableAdapter();
-            this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
             matInitTimeLabel = new System.Windows.Forms.Label();
             matInitDistLabel = new System.Windows.Forms.Label();
             matBuyMemoLabel = new System.Windows.Forms.Label();
@@ -116,14 +116,14 @@
             this.statusS1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.materialsBindingNavigator)).BeginInit();
             this.materialsBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trainITDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMat)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trainITDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // matInitTimeLabel
@@ -338,6 +338,17 @@
             this.tsBtnNew.Text = "Nuevo registro";
             this.tsBtnNew.Click += new System.EventHandler(this.tsBtnNew_Click);
             // 
+            // materialsBindingSource
+            // 
+            this.materialsBindingSource.DataMember = "Materials";
+            this.materialsBindingSource.DataSource = this.trainITDataSet;
+            this.materialsBindingSource.PositionChanged += new System.EventHandler(this.materialsBindingSource_PositionChanged);
+            // 
+            // trainITDataSet
+            // 
+            this.trainITDataSet.DataSetName = "TrainITDataSet";
+            this.trainITDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // tsBtnFirst
             // 
             this.tsBtnFirst.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -512,6 +523,36 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(179, 147);
             this.panel1.TabIndex = 20;
+            // 
+            // pbxImage
+            // 
+            this.pbxImage.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.materialsBindingSource, "MatImage", true));
+            this.pbxImage.Location = new System.Drawing.Point(3, 4);
+            this.pbxImage.Name = "pbxImage";
+            this.pbxImage.Size = new System.Drawing.Size(168, 111);
+            this.pbxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxImage.TabIndex = 25;
+            this.pbxImage.TabStop = false;
+            // 
+            // btnCancelImage
+            // 
+            this.btnCancelImage.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelImage.Image")));
+            this.btnCancelImage.Location = new System.Drawing.Point(122, 121);
+            this.btnCancelImage.Name = "btnCancelImage";
+            this.btnCancelImage.Size = new System.Drawing.Size(50, 23);
+            this.btnCancelImage.TabIndex = 24;
+            this.btnCancelImage.UseVisualStyleBackColor = true;
+            this.btnCancelImage.Click += new System.EventHandler(this.btnCancelImage_Click);
+            // 
+            // btnLoadImage
+            // 
+            this.btnLoadImage.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadImage.Image")));
+            this.btnLoadImage.Location = new System.Drawing.Point(3, 121);
+            this.btnLoadImage.Name = "btnLoadImage";
+            this.btnLoadImage.Size = new System.Drawing.Size(113, 23);
+            this.btnLoadImage.TabIndex = 23;
+            this.btnLoadImage.UseVisualStyleBackColor = true;
+            this.btnLoadImage.Click += new System.EventHandler(this.btnLoadImage_Click);
             // 
             // txtID
             // 
@@ -746,40 +787,33 @@
             this.txtBarsBack.TabIndex = 33;
             this.txtBarsBack.TabStop = false;
             // 
-            // btnLoadImage
-            // 
-            this.btnLoadImage.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadImage.Image")));
-            this.btnLoadImage.Location = new System.Drawing.Point(3, 121);
-            this.btnLoadImage.Name = "btnLoadImage";
-            this.btnLoadImage.Size = new System.Drawing.Size(113, 23);
-            this.btnLoadImage.TabIndex = 23;
-            this.btnLoadImage.UseVisualStyleBackColor = true;
-            this.btnLoadImage.Click += new System.EventHandler(this.btnLoadImage_Click);
-            // 
-            // btnCancelImage
-            // 
-            this.btnCancelImage.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelImage.Image")));
-            this.btnCancelImage.Location = new System.Drawing.Point(122, 121);
-            this.btnCancelImage.Name = "btnCancelImage";
-            this.btnCancelImage.Size = new System.Drawing.Size(50, 23);
-            this.btnCancelImage.TabIndex = 24;
-            this.btnCancelImage.UseVisualStyleBackColor = true;
-            this.btnCancelImage.Click += new System.EventHandler(this.btnCancelImage_Click);
-            // 
-            // pbxImage
-            // 
-            this.pbxImage.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.materialsBindingSource, "MatImage", true));
-            this.pbxImage.Location = new System.Drawing.Point(3, 4);
-            this.pbxImage.Name = "pbxImage";
-            this.pbxImage.Size = new System.Drawing.Size(168, 111);
-            this.pbxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxImage.TabIndex = 25;
-            this.pbxImage.TabStop = false;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.InitialDirectory = "/Images";
+            // 
+            // materialsTableAdapter
+            // 
+            this.materialsTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.MaterialSessionTableAdapter = null;
+            this.tableAdapterManager.MaterialsTableAdapter = this.materialsTableAdapter;
+            this.tableAdapterManager.SportTypesTableAdapter = null;
+            this.tableAdapterManager.TrainingsTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserRegsTableAdapter = null;
+            this.tableAdapterManager.UsersTableAdapter = null;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "MatName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 180;
             // 
             // MatModel
             // 
@@ -826,40 +860,6 @@
             this.MatTotDist.Name = "MatTotDist";
             this.MatTotDist.ReadOnly = true;
             // 
-            // materialsBindingSource
-            // 
-            this.materialsBindingSource.DataMember = "Materials";
-            this.materialsBindingSource.DataSource = this.trainITDataSet;
-            this.materialsBindingSource.PositionChanged += new System.EventHandler(this.materialsBindingSource_PositionChanged);
-            // 
-            // trainITDataSet
-            // 
-            this.trainITDataSet.DataSetName = "TrainITDataSet";
-            this.trainITDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "MatName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 180;
-            // 
-            // materialsTableAdapter
-            // 
-            this.materialsTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.MaterialSessionTableAdapter = null;
-            this.tableAdapterManager.MaterialsTableAdapter = this.materialsTableAdapter;
-            this.tableAdapterManager.SportTypesTableAdapter = null;
-            this.tableAdapterManager.TrainingsTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserRegsTableAdapter = null;
-            this.tableAdapterManager.UsersTableAdapter = null;
-            // 
             // FMaterial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -881,17 +881,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.materialsBindingNavigator)).EndInit();
             this.materialsBindingNavigator.ResumeLayout(false);
             this.materialsBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trainITDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMat)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trainITDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -61,6 +61,7 @@ namespace TrainIt
         private void msTiposDeportes_Click(object sender, EventArgs e)
         {
             FSportTypes fSportTypes = new FSportTypes();
+            fSportTypes.OnSearchMode = false;
             fSportTypes.ShowDialog();
         }
         
@@ -74,22 +75,20 @@ namespace TrainIt
             this.Close();
         }
 
-        private void entrenamientosToolStripMenuItem1_Click(object sender, EventArgs e)
-        {                        
-            FTrainings fTrainings= new FTrainings();
+        private void tsBtnTrainings_Click(object sender, EventArgs e)
+        {
+            FTrainings fTrainings = new FTrainings();
+            fTrainings.OnSearchMode = false;
             //fTrainings.MdiParent = this;
             fTrainings.ShowDialog();
         }
 
-        private void sesionesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsBtnSessions_Click(object sender, EventArgs e)
         {
             FSessions fSessions = new FSessions();
             //fSessions.MdiParent = this;
-            fSessions.ShowDialog();            
+            fSessions.ShowDialog();  
         }
-
-
-
 
 
     }

@@ -60,8 +60,12 @@
             this.tsBtnUsuarios = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnSportTypes = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnClose = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnTrainings = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnSessions = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.sS.SuspendLayout();
             this.mS.SuspendLayout();
             this.tsPrincipal.SuspendLayout();
@@ -219,17 +223,19 @@
             // 
             // tsmiEntrenos
             // 
+            this.tsmiEntrenos.Image = ((System.Drawing.Image)(resources.GetObject("tsmiEntrenos.Image")));
             this.tsmiEntrenos.Name = "tsmiEntrenos";
             this.tsmiEntrenos.Size = new System.Drawing.Size(157, 22);
             this.tsmiEntrenos.Text = "Entrenamientos";
-            this.tsmiEntrenos.Click += new System.EventHandler(this.entrenamientosToolStripMenuItem1_Click);
+            this.tsmiEntrenos.Click += new System.EventHandler(this.tsBtnTrainings_Click);
             // 
             // tsmiSesioines
             // 
+            this.tsmiSesioines.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSesioines.Image")));
             this.tsmiSesioines.Name = "tsmiSesioines";
             this.tsmiSesioines.Size = new System.Drawing.Size(157, 22);
             this.tsmiSesioines.Text = "Sesiones";
-            this.tsmiSesioines.Click += new System.EventHandler(this.sesionesToolStripMenuItem_Click);
+            this.tsmiSesioines.Click += new System.EventHandler(this.tsBtnSessions_Click);
             // 
             // registrosPersonalesToolStripMenuItem
             // 
@@ -262,8 +268,12 @@
             this.tsPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsBtnMaterial,
             this.tsBtnUsuarios,
-            this.toolStripSeparator1,
             this.tsBtnSportTypes,
+            this.toolStripLabel2,
+            this.toolStripSeparator1,
+            this.tsBtnTrainings,
+            this.tsBtnSessions,
+            this.toolStripLabel1,
             this.toolStripSeparator2,
             this.tsBtnClose});
             this.tsPrincipal.Location = new System.Drawing.Point(0, 24);
@@ -307,11 +317,6 @@
             this.tsBtnSportTypes.Text = "Tipos de Deporte";
             this.tsBtnSportTypes.Click += new System.EventHandler(this.msTiposDeportes_Click);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // tsBtnClose
             // 
             this.tsBtnClose.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -321,6 +326,44 @@
             this.tsBtnClose.Size = new System.Drawing.Size(23, 22);
             this.tsBtnClose.Text = "Cerrar aplicación";
             this.tsBtnClose.Click += new System.EventHandler(this.tsBtnClose_Click);
+            // 
+            // tsBtnTrainings
+            // 
+            this.tsBtnTrainings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnTrainings.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnTrainings.Image")));
+            this.tsBtnTrainings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnTrainings.Name = "tsBtnTrainings";
+            this.tsBtnTrainings.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnTrainings.Text = "Entrenamientos";
+            this.tsBtnTrainings.Click += new System.EventHandler(this.tsBtnTrainings_Click);
+            // 
+            // tsBtnSessions
+            // 
+            this.tsBtnSessions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnSessions.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnSessions.Image")));
+            this.tsBtnSessions.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnSessions.Name = "tsBtnSessions";
+            this.tsBtnSessions.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnSessions.Text = "Sesiones";
+            this.tsBtnSessions.Click += new System.EventHandler(this.tsBtnSessions_Click);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.AutoSize = false;
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(50, 22);
+            this.toolStripLabel2.Text = "          ";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.AutoSize = false;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(100, 22);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // FMain
             // 
@@ -364,7 +407,6 @@
         private System.Windows.Forms.ToolStripButton tsBtnMaterial;
         private System.Windows.Forms.ToolStripButton tsBtnUsuarios;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton tsBtnClose;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem msTiposDeportes;
@@ -380,6 +422,11 @@
         private System.Windows.Forms.ToolStripMenuItem biologicosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem marcasPersonalesToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton tsBtnSportTypes;
+        private System.Windows.Forms.ToolStripButton tsBtnTrainings;
+        private System.Windows.Forms.ToolStripButton tsBtnSessions;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

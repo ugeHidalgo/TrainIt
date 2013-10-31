@@ -14,9 +14,8 @@ namespace TrainIt
 {
     public partial class FMaterial : Form
     {
-        Material aMaterial = new Material();
         string connString = TrainItLibrary.Utilities.GetConnString();
-        int userIDWorking = TrainItLibrary.Global.userIDWorking;
+        Int64 userIDWorking = TrainItLibrary.Global.userIDWorking;
         bool onEdition = false;                
 
         public FMaterial()
@@ -126,7 +125,7 @@ namespace TrainIt
             this.materialsTableAdapter.Fill(this.trainITDataSet.Materials, userIDWorking);
 
             //Load data into object from bd
-            aMaterial = LoadObject();
+            TrainItLibrary.Global.materialUsed = LoadObject();
 
             //Set the masks for text box
             mtxtWeight.ValidatingType = typeof(float);  
@@ -139,51 +138,51 @@ namespace TrainIt
         private Material LoadObject()
         {//Loads the object in the screen into the model.
             Material aMat = new Material();
-            aMat.matID = Convert.ToInt32(txtID.Text);
-            aMat.matName = txtName.Text;
-            aMat.matModel = txtModel.Text;
-            aMat.matBrand = txtBrand.Text;
-            aMat.matSize = txtSize.Text;
+            aMat.MatID = Convert.ToInt64(txtID.Text);
+            aMat.MatName = txtName.Text;
+            aMat.MatModel = txtModel.Text;
+            aMat.MatBrand = txtBrand.Text;
+            aMat.MatSize = txtSize.Text;
 
             if (mtxtWeight.Text == "")
-                aMat.matWeight = 0.00M;
+                aMat.MatWeight = 0.00M;
             else
             {
                 try
                 {
-                    aMat.matWeight = Convert.ToDecimal(mtxtWeight.Text);
+                    aMat.MatWeight = Convert.ToDecimal(mtxtWeight.Text);
                 }
                 catch (Exception)
                 {
-                    aMat.matWeight = 0.00M;
+                    aMat.MatWeight = 0.00M;
                 }
             }
             
-            aMat.matBuyDate = dtpBuyDate.Value;
+            aMat.MatBuyDate = dtpBuyDate.Value;
 
             if (txtCost.Text=="")
-                aMat.matCost=(SqlMoney)0.00F;
+                aMat.MatCost=(SqlMoney)0.00F;
             else 
             {
                 try
                 {                
-                    aMat.matCost = (SqlMoney)Convert.ToDouble(txtCost.Text);
+                    aMat.MatCost = (SqlMoney)Convert.ToDouble(txtCost.Text);
                 }
                 catch (Exception)
                 {
-                    aMat.matCost = (SqlMoney)0.00F;
+                    aMat.MatCost = (SqlMoney)0.00F;
                 }
             }
             
-            aMat.matInitTime = mtxtInitTime.Text;
+            aMat.MatInitTime = mtxtInitTime.Text;
 
             if (txtInitDist.Text == "")
-                aMat.matInitDist = 0.000M;
+                aMat.MatInitDist = 0.000M;
             else
             {
                 try
                 {
-                    aMat.matInitDist = Convert.ToDecimal(txtInitDist.Text);
+                    aMat.MatInitDist = Convert.ToDecimal(txtInitDist.Text);
                 }
                 catch (Exception)
                 {
@@ -191,15 +190,15 @@ namespace TrainIt
                 }
             }  
             
-            aMat.matRecTime = mtxtRecTime.Text;
+            aMat.MatRecTime = mtxtRecTime.Text;
 
             if (txtRecDist.Text == "")
-                aMat.matRecDist = 0.000M;
+                aMat.MatRecDist = 0.000M;
             else
             {
                 try
                 {
-                    aMat.matRecDist = Convert.ToDecimal(txtRecDist.Text);
+                    aMat.MatRecDist = Convert.ToDecimal(txtRecDist.Text);
                 }
                 catch (Exception)
                 {
@@ -207,8 +206,8 @@ namespace TrainIt
                 }
             }
             
-            aMat.matBuyMemo = txtBuyMemo.Text;
-            aMat.matID = userIDWorking; 
+            aMat.MatBuyMemo = txtBuyMemo.Text;
+            aMat.MatID = userIDWorking; 
             return aMat;
         }
 
@@ -358,22 +357,17 @@ namespace TrainIt
             Material aMat = new Material();
             aMat = LoadObject();
 
-            //Validate data prior to save
-            aMaterial = aMat.checkData(connString);
+            this.Validate();
+            this.materialsBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.trainITDataSet);
 
-            if (aMaterial.matID != -1)
-            {
-                this.Validate();
-                this.materialsBindingSource.EndEdit();
-                this.tableAdapterManager.UpdateAll(this.trainITDataSet);
+            MessageBox.Show("Ficha guardada corectamente");
+            
+            setNormalMode();
 
-                MessageBox.Show("Ficha guardada corectamente");
+            calculateDistBar(txtDistBar, txtBarsBack);
+            calculateTimeBar(txtTimeBar, txtBarsBack);
 
-                setNormalMode();
-
-                calculateDistBar(txtDistBar, txtBarsBack);
-                calculateTimeBar(txtTimeBar, txtBarsBack);
-            }
         }
 
         private void tsBtnDel_Click(object sender, EventArgs e)

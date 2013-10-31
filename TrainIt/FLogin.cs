@@ -16,7 +16,7 @@ namespace TrainIt
         Boolean accessGranted = false;
         string connString = TrainItLibrary.Utilities.GetConnString();
         public string userNameGiven = null;
-        public int userIDGiven = -1;
+        public Int64 userIDGiven = -1;
         string userPassGiven = null;        
 
         public FLogin()
