@@ -60,7 +60,6 @@ namespace TrainItLibrary
             return aTraining;
         }
 
-
         public Training LoadDataFromView(string txtID, string txtName, DateTime dtpDate, string txtUserID)
         {
             Training aT = new Training();

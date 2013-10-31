@@ -12,23 +12,91 @@ namespace TrainItLibrary
     public class Material
     {
         //Data strored into DB
-        public Int32 matID;
-        public string matName;
-        public string matModel;
-        public string matBrand;
-        public string matSize;
-        public decimal matWeight;
-        public DateTime matBuyDate;
-        public SqlMoney matCost;
-        public string matInitTime;
-        public decimal matInitDist;
-        public string matRecTime;
-        public decimal matRecDist;
-        public string matBuyMemo;
-        public Int32 userID;
+        private static Int64 matID;
+        private static string matName;
+        private static string matModel;
+        private static string matBrand;
+        private static string matSize;
+        private static decimal matWeight;
+        private static DateTime matBuyDate;
+        private static SqlMoney matCost;
+        private static string matInitTime;
+        private static decimal matInitDist;
+        private static string matRecTime;
+        private static decimal matRecDist;
+        private static string matBuyMemo;
+        private static Int64 userID;
 
-        //Data AutoCalculated.
-
+        public Int64 MatID
+        {
+            get { return matID; }
+            set { matID = value; }
+        }
+        public string MatName
+        {
+            get { return matName; }
+            set { matName = value; }
+        }
+        public string MatModel
+        {
+            get { return matModel; }
+            set { matModel = value; }
+        }
+        public string MatBrand
+        {
+            get { return matBrand; }
+            set { matBrand = value; }
+        }
+        public string MatSize
+        {
+            get { return matSize; }
+            set { matSize = value; }
+        }
+        public decimal MatWeight
+        {
+            get { return matWeight; }
+            set { matWeight = value; }
+        }
+        public DateTime MatBuyDate
+        {
+            get { return matBuyDate; }
+            set { matBuyDate = value; }
+        }
+        public SqlMoney MatCost
+        {
+            get { return matCost; }
+            set { matCost = value; }
+        }
+        public string MatInitTime
+        {
+            get { return matInitTime; }
+            set { matInitTime = value; }
+        }
+        public decimal MatInitDist
+        {
+            get { return matInitDist; }
+            set { matInitDist = value; }
+        }
+        public string MatRecTime
+        {
+            get { return matRecTime; }
+            set { matRecTime = value; }
+        }
+        public decimal MatRecDist
+        {
+            get { return matRecDist; }
+            set { matRecDist = value; }
+        }
+        public string MatBuyMemo
+        {
+            get { return matBuyMemo; }
+            set { matBuyMemo = value; }
+        }
+        public Int64 UserID
+        {
+            get { return userID; }
+            set { userID = value; }
+        }
 
         public Material()
         {
@@ -48,8 +116,8 @@ namespace TrainItLibrary
             userID=-1;        
         }
 
-        public Material(Int32 MatID, string MatName, string MatModel, string MatBrand, string MatSize, decimal MatWeight, DateTime MatBuyDate, 
-                        SqlMoney MatCost, string MatinitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist, string MatBuyMemo, Int32 UserID)
+        public Material(Int64 MatID, string MatName, string MatModel, string MatBrand, string MatSize, decimal MatWeight, DateTime MatBuyDate,
+                        SqlMoney MatCost, string MatinitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist, string MatBuyMemo, Int64 UserID)
         {
             matID=MatID;
             matName=MatName;
@@ -67,26 +135,44 @@ namespace TrainItLibrary
             userID=UserID;
         }
 
-        public Material LoadData()
+        public void LoadData(Int64 MatID, string MatName, string MatModel, string MatBrand, string MatSize, decimal MatWeight, DateTime MatBuyDate,
+                        SqlMoney MatCost, string MatinitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist, string MatBuyMemo, Int64 UserID)
         {
-            Material aMaterial = new Material(matID, matName, matModel, matBrand, matSize, matWeight, matBuyDate, matCost, matInitTime, matInitDist, matRecTime, matRecDist, matBuyMemo, userID);
-            return aMaterial;
+            matID = MatID;
+            matName = MatName;
+            matModel = MatModel;
+            matBrand = MatBrand;
+            matSize = MatSize;
+            matWeight = MatWeight;
+            matBuyDate = MatBuyDate;
+            matCost = MatCost;
+            matInitTime = MatinitTime;
+            matInitDist = MatInitDist;
+            matRecTime = MatRecTime;
+            matRecDist = MatRecDist;
+            matBuyMemo = MatBuyMemo;
+            userID = UserID;
         }
 
-        public Material LoadData(Int32 MatID, string MatName, string MatModel, string MatBrand, string MatSize, decimal MatWeight, DateTime MatBuyDate, 
-                        SqlMoney MatCost, string MatinitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist, string MatBuyMemo, Int32 UserID)
+        public void Reset()
         {
-          Material aMaterial=new Material(MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatinitTime, MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, UserID);
-          return aMaterial;
+            matID = -1;
+            matName = "";
+            matModel = "";
+            matBrand = "";
+            matSize = "";
+            matWeight = 0.00M;
+            matBuyDate = DateTime.Now;
+            matCost = (SqlMoney)0;
+            matInitTime = "";
+            matInitDist = 0.000M;
+            matRecTime = "";
+            matRecDist = 0.000M;
+            matBuyMemo = "";
+            userID = -1; 
         }
 
-        public Material Reset()
-        {
-            Material aMaterial=new Material();
-            return aMaterial;
-        }
-        
-        public Material findMatByMatID(string connString, int matID)
+        public Material findMatByMatID(string connString, Int64 matID)
         {//Find a Material by MatID, returns object found or an object with ID=-1 if not found            
             Material aMaterial = new Material();
             using (SqlConnection conn = new SqlConnection(connString))
@@ -94,26 +180,16 @@ namespace TrainItLibrary
                 string query = "select * from Materials where MatID = @matID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.Add(new SqlParameter("@matID", SqlDbType.Int));
+                    cmd.Parameters.Add(new SqlParameter("@matID", SqlDbType.BigInt));
                     cmd.Parameters["@matID"].Value = matID;
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        aMaterial.matID = reader.GetInt32(0);
-                        aMaterial.matName = reader.GetString(1);
-                        aMaterial.matModel = reader.GetString(2);
-                        aMaterial.matBrand = reader.GetString(3);
-                        aMaterial.matSize = reader.GetString(4);
-                        aMaterial.matWeight = reader.GetDecimal(5);
-                        aMaterial.matBuyDate = Convert.ToDateTime(reader.GetDateTime(6));
-                        aMaterial.matCost = reader.GetSqlMoney(7);
-                        aMaterial.matInitTime = reader.GetString(8);
-                        aMaterial.matInitDist = reader.GetDecimal(9);
-                        aMaterial.matRecTime = reader.GetString(10);
-                        aMaterial.matRecDist = reader.GetDecimal(11);
-                        aMaterial.matBuyMemo = reader.GetString(12);
-                        aMaterial.userID = reader.GetInt32(13);
+                        aMaterial.LoadData(reader.GetInt64(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
+                                           reader.GetString(4), reader.GetDecimal(5), Convert.ToDateTime(reader.GetDateTime(6)),
+                                           reader.GetSqlMoney(7), reader.GetString(8), reader.GetDecimal(9), reader.GetString(10),
+                                           reader.GetDecimal(11), reader.GetString(12), reader.GetInt64(13));
                     }
                     reader.Close();
                 }
@@ -121,44 +197,6 @@ namespace TrainItLibrary
             return aMaterial;
         }
 
-        public Material checkData(string connString)
-        {//Check integrity of data into Material object if correct return an object, else return an object with MatID=
-         //-1 Missing MatID;
-         //-2 Missing Matname
-         //-3 Missing UserId
-            Material aMat = new Material();
-            bool sigue=true;
-            if (matID < 0)
-            {
-                sigue = false;
-            }
-
-            if (sigue)  
-            {
-                if (matName == "")
-                {
-                    sigue = false;
-                    aMat.matID = -2;
-                }
-            }
-
-            if (sigue)
-            {
-                if (userID<0)
-                {
-                    sigue = false;
-                    aMat.matID = -3;
-                }
-            }
-
-            if (sigue)
-            {
-                //Loads into object
-                aMat = aMat.LoadData(matID, matName, matModel, matBrand, matSize, matWeight, matBuyDate, matCost,
-                                             matInitTime, matInitDist, matRecTime, matRecDist, matBuyMemo, userID);
-            }
-
-            return aMat;
-        }
+  
     }
 }

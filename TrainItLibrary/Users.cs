@@ -11,7 +11,7 @@ namespace TrainItLibrary
 {
     public class Users
     {
-        public int userID;        
+        public Int64 userID;        
         public string userFirstName;
         public string userSecondName;
         public DateTime userBDate;
@@ -33,7 +33,7 @@ namespace TrainItLibrary
         }
 
 
-        public Users(int UserID, string UserFirstName, string UserSecondName, DateTime UserBDate, String UserLoginName,
+        public Users(Int64 UserID, string UserFirstName, string UserSecondName, DateTime UserBDate, String UserLoginName,
                      String UserPassword, String UserConfirmPassword, String UserMail)
         {
             userID = UserID;
@@ -47,7 +47,7 @@ namespace TrainItLibrary
         }
 
         //Load data into a user object
-        public Users LoadData(int UserID, string UserFirstName, string UserSecondName, DateTime UserBDate, String UserLoginName,
+        public Users LoadData(Int64 UserID, string UserFirstName, string UserSecondName, DateTime UserBDate, String UserLoginName,
                      String UserPassword, String UserConfirmPassword, String UserMail)
         {
             Users aUser = new Users(UserID, UserFirstName, UserSecondName, UserBDate, UserLoginName, UserPassword, UserConfirmPassword, UserMail);
@@ -168,7 +168,7 @@ namespace TrainItLibrary
                 }
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.Int));
+                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
                     cmd.Parameters["@userID"].Value = userID;
 
                     cmd.Parameters.Add(new SqlParameter("@userFirstName", SqlDbType.VarChar));
@@ -200,7 +200,7 @@ namespace TrainItLibrary
         }
 
         //Find an user into de DB. Given a user ID and returns all data into de Users object. If not find return a user with userID=-1.
-        public Users findUserByUserID(string connString, int userID)
+        public Users findUserByUserID(string connString, Int64 userID)
         {
             Users aUser = new Users(-1, "", "", DateTime.Now, "", "", "", "");
             using (SqlConnection conn = new SqlConnection(connString))
@@ -214,7 +214,7 @@ namespace TrainItLibrary
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        aUser.userID = reader.GetInt32(0);
+                        aUser.userID = reader.GetInt64(0);
                         aUser.userFirstName = reader.GetString(1);
                         aUser.userSecondName = reader.GetString(2);
                         aUser.userBDate = Convert.ToDateTime(reader.GetDateTime(3));
@@ -244,7 +244,7 @@ namespace TrainItLibrary
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        aUser.userID = reader.GetInt32(0);
+                        aUser.userID = reader.GetInt64(0);
                         aUser.userFirstName = reader.GetString(1);
                         aUser.userSecondName = reader.GetString(2);
                         aUser.userBDate = Convert.ToDateTime(reader.GetDateTime(3));
@@ -260,7 +260,7 @@ namespace TrainItLibrary
         }
 
         //Delete a user using his userID.
-        public int deleteUserByUserID(string connString, Int32 aUserID)
+        public int deleteUserByUserID(string connString, Int64 aUserID)
         { //Return 1 if deleted,-1 if any problem.
             int res = -1;
             Users aUser = new Users();
@@ -269,7 +269,7 @@ namespace TrainItLibrary
                 string query = "delete from Users where UserID = @userID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.Int));
+                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
                     cmd.Parameters["@userID"].Value = aUserID;
                     conn.Open();
                     res=cmd.ExecuteNonQuery();                    
@@ -298,7 +298,7 @@ namespace TrainItLibrary
                     while (reader.Read())
                     {
                         count++;
-                        tempUser.userID = reader.GetInt32(0);
+                        tempUser.userID = reader.GetInt64(0);
                         tempUser.userFirstName = reader.GetString(1);
                         tempUser.userSecondName = reader.GetString(2);
                         tempUser.userBDate = Convert.ToDateTime(reader.GetDateTime(3));

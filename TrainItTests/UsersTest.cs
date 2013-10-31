@@ -150,7 +150,7 @@ namespace TrainItTests
             //findUserByUserName returns a user if find, if not find return a user wit UserID=-1
             Users aUserToFind = aUser.findUserByUserName(connString, aUser.userName);
             Assert.AreEqual(aUser.userName, aUserToFind.userName);
-            int expectedUserID = aUser.userID;
+            Int64 expectedUserID = aUser.userID;
 
             //Try to Update previous saved user.            
             aUser.userSecondName = "Second Name Updated";
@@ -191,7 +191,7 @@ namespace TrainItTests
             string expectedUserName = aUser.userName;
             aUser = aUser.findUserByUserName(connString, expectedUserName);
             Assert.AreEqual(expectedUserName, aUser.userName); //User finded
-            int expectedUserID = aUser.userID;
+            Int64 expectedUserID = aUser.userID;
 
             //Try to Update previous saved user. 
             string newPass="NewPass0";
@@ -202,7 +202,7 @@ namespace TrainItTests
             Assert.AreNotEqual(-1, aUser.userID); //Verify if new password was stored correctly
                        
             //Try to Delete previous saved user.            
-            int res = aUser.deleteUserByUserID(connString, aUser.userID);
+            Int64 res = aUser.deleteUserByUserID(connString, aUser.userID);
             Assert.AreEqual(1, res); //Deleted with success
 
             ////Try to find it
@@ -226,10 +226,10 @@ namespace TrainItTests
             //Try to find it and take the userID
             //findUserByUserName returns a user if find, if not find return a user wit UserID=-1
             string expectedUserName = aUser.userName;
-            int userIDToDelete = aUser.userID;
+            Int64 userIDToDelete = aUser.userID;
             aUser = aUser.findUserByUserName(connString, expectedUserName);
             Assert.AreEqual(expectedUserName, aUser.userName);
-            int expectedUserID = aUser.userID;
+            Int64 expectedUserID = aUser.userID;
 
             //Correct login
             string givenPassword = "12345678";

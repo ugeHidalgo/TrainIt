@@ -18,7 +18,7 @@ namespace TrainItTests
                                      Initial catalog = " + catalog + @";
                                      Data Source = " + server + @";";
 
-        public Int32 aMatID=100;
+        public Int64 aMatID=100;
         public string aMatName="Nombre";
         public string aMatModel="Modelo";
         public string aMatBrand="Marca";
@@ -31,138 +31,41 @@ namespace TrainItTests
         public string aMatRecTime="1000:00:00";
         public decimal aMatRecDist=3450.340M;
         public string aMatBuyMemo="Memo";
-        public Int32 aUserID=85;
+        public Int64 aUserID=85;
 
-        [TestMethod]
-        public void Material_Creation()
-        {      
-            Material aMat = new Material(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost, 
-                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);           
-            Assert.AreEqual(aMatID, aMat.matID);
-            Assert.AreEqual(aMatName, aMat.matName);
-            Assert.AreEqual(aMatModel, aMat.matModel);
-            Assert.AreEqual(aMatBrand, aMat.matBrand);
-            Assert.AreEqual(aMatSize, aMat.matSize);
-            Assert.AreEqual(aMatWeight, aMat.matWeight);
-            Assert.AreEqual(aMatBuyDate, aMat.matBuyDate);
-            Assert.AreEqual(aMatCost, aMat.matCost);
-            Assert.AreEqual(aMatInitTime, aMat.matInitTime);
-            Assert.AreEqual(aMatInitDist, aMat.matInitDist);
-            Assert.AreEqual(aMatRecTime, aMat.matRecTime);
-            Assert.AreEqual(aMatRecDist, aMat.matRecDist);
-            Assert.AreEqual(aMatBuyMemo, aMat.matBuyMemo);
-            Assert.AreEqual(aUserID, aMat.userID);
-        }
+
 
          [TestMethod]
-        public void Material_LoadFromObject()
-        {
-            aMattemp.matID = aMatID;
-            aMattemp.matName = aMatName;
-            aMattemp.matModel=aMatModel;
-            aMattemp.matBrand=aMatBrand;
-            aMattemp.matSize=aMatSize;
-            aMattemp.matWeight=aMatWeight;
-            aMattemp.matBuyDate=aMatBuyDate;
-            aMattemp.matCost=aMatCost;
-            aMattemp.matInitTime=aMatInitTime;
-            aMattemp.matInitDist=aMatInitDist;
-            aMattemp.matRecTime=aMatRecTime;
-            aMattemp.matRecDist=aMatRecDist;
-            aMattemp.matBuyMemo=aMatBuyMemo;
-            aMattemp.userID = aUserID;
-
-            Material aMatToLoad = new Material();
-            aMatToLoad = aMattemp.LoadData();
-
-            Assert.AreEqual(aMatID, aMatToLoad.matID);
-            Assert.AreEqual(aMatName, aMatToLoad.matName);
-            Assert.AreEqual(aMatModel, aMatToLoad.matModel);
-            Assert.AreEqual(aMatBrand, aMatToLoad.matBrand);
-            Assert.AreEqual(aMatSize, aMatToLoad.matSize);
-            Assert.AreEqual(aMatWeight, aMatToLoad.matWeight);
-            Assert.AreEqual(aMatBuyDate, aMatToLoad.matBuyDate);
-            Assert.AreEqual(aMatCost, aMatToLoad.matCost);
-            Assert.AreEqual(aMatInitTime, aMatToLoad.matInitTime);
-            Assert.AreEqual(aMatInitDist, aMatToLoad.matInitDist);
-            Assert.AreEqual(aMatRecTime, aMatToLoad.matRecTime);
-            Assert.AreEqual(aMatRecDist, aMatToLoad.matRecDist);
-            Assert.AreEqual(aMatBuyMemo, aMatToLoad.matBuyMemo);
-            Assert.AreEqual(aUserID, aMatToLoad.userID);
-        }
-
-        [TestMethod]
-        public void Material_LoadFromdata()
-        {                 
-            aMattemp.matID = aMatID;
-            aMattemp.matName = aMatName;
-            aMattemp.matModel = aMatModel;
-            aMattemp.matBrand = aMatBrand;
-            aMattemp.matSize = aMatSize;
-            aMattemp.matWeight = aMatWeight;
-            aMattemp.matBuyDate = aMatBuyDate;
-            aMattemp.matCost = aMatCost;
-            aMattemp.matInitTime = aMatInitTime;
-            aMattemp.matInitDist = aMatInitDist;
-            aMattemp.matRecTime = aMatRecTime;
-            aMattemp.matRecDist = aMatRecDist;
-            aMattemp.matBuyMemo = aMatBuyMemo;
-            aMattemp.userID = aUserID;
-
-            Material aMatToLoad = new Material();
-            aMatToLoad = aMatToLoad.LoadData(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost, 
-                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);
-
-            Assert.AreEqual(aMatID, aMatToLoad.matID);
-            Assert.AreEqual(aMatName, aMatToLoad.matName);
-            Assert.AreEqual(aMatModel, aMatToLoad.matModel);
-            Assert.AreEqual(aMatBrand, aMatToLoad.matBrand);
-            Assert.AreEqual(aMatSize, aMatToLoad.matSize);
-            Assert.AreEqual(aMatWeight, aMatToLoad.matWeight);
-            Assert.AreEqual(aMatBuyDate, aMatToLoad.matBuyDate);
-            Assert.AreEqual(aMatCost, aMatToLoad.matCost);
-            Assert.AreEqual(aMatInitTime, aMatToLoad.matInitTime);
-            Assert.AreEqual(aMatInitDist, aMatToLoad.matInitDist);
-            Assert.AreEqual(aMatRecTime, aMatToLoad.matRecTime);
-            Assert.AreEqual(aMatRecDist, aMatToLoad.matRecDist);
-            Assert.AreEqual(aMatBuyMemo, aMatToLoad.matBuyMemo);
-            Assert.AreEqual(aUserID, aMatToLoad.userID);
-        }
-
-        [TestMethod]
-        public void Material_Reset()
+        public void Material_LoadFromData()
         {
             Material aMatToLoad = new Material();
-            aMatToLoad = aMatToLoad.LoadData(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
-                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);
-            aMatToLoad.Reset();
+            aMatToLoad.LoadData(aMatID,aMatName,aMatModel,aMatBrand,aMatSize,aMatWeight,aMatBuyDate,aMatCost,aMatInitTime,aMatInitDist,aMatRecTime,aMatRecDist,aMatBuyMemo,aUserID);
 
-            Assert.AreEqual(-1, aMattemp.matID);
-            Assert.AreEqual("", aMattemp.matName);
-            Assert.AreEqual("", aMattemp.matModel);
-            Assert.AreEqual("", aMattemp.matBrand);
-            Assert.AreEqual("", aMattemp.matSize);
-            Assert.AreEqual(0.00M, aMattemp.matWeight);
-            //Assert.AreEqual(DateTime.Now, aMattemp.matBuyDate, 1E-14);
-            Assert.AreEqual(0, aMattemp.matCost);
-            Assert.AreEqual("", aMattemp.matInitTime);
-            Assert.AreEqual(0.000M, aMattemp.matInitDist);
-            Assert.AreEqual("", aMattemp.matRecTime);
-            Assert.AreEqual(0.000M, aMattemp.matRecDist);
-            Assert.AreEqual("", aMattemp.matBuyMemo);
-            Assert.AreEqual(-1, aMattemp.userID);
-
+            Assert.AreEqual(aMatID, aMatToLoad.MatID);
+            Assert.AreEqual(aMatName, aMatToLoad.MatName);
+            Assert.AreEqual(aMatModel, aMatToLoad.MatModel);
+            Assert.AreEqual(aMatBrand, aMatToLoad.MatBrand);
+            Assert.AreEqual(aMatSize, aMatToLoad.MatSize);
+            Assert.AreEqual(aMatWeight, aMatToLoad.MatWeight);
+            Assert.AreEqual(aMatBuyDate, aMatToLoad.MatBuyDate);
+            Assert.AreEqual(aMatCost, aMatToLoad.MatCost);
+            Assert.AreEqual(aMatInitTime, aMatToLoad.MatInitTime);
+            Assert.AreEqual(aMatInitDist, aMatToLoad.MatInitDist);
+            Assert.AreEqual(aMatRecTime, aMatToLoad.MatRecTime);
+            Assert.AreEqual(aMatRecDist, aMatToLoad.MatRecDist);
+            Assert.AreEqual(aMatBuyMemo, aMatToLoad.MatBuyMemo);
+            Assert.AreEqual(aUserID, aMatToLoad.UserID);
         }
 
         [TestMethod]
         public void Material_FindNotFound()
         {
             Material aMatToLoad = new Material();
-            aMatToLoad = aMatToLoad.LoadData(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
+            aMatToLoad.LoadData(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
                                          aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);
             aMatToLoad = aMatToLoad.findMatByMatID(connString, aMatID);
 
-            Assert.AreEqual(-1, aMatToLoad.matID);
+            Assert.AreEqual(-1, aMatToLoad.MatID);
         }
 
         [TestMethod]
@@ -185,70 +88,25 @@ namespace TrainItTests
             aUserID = 85;   
 
             Material aMatToLoad = new Material();
-            aMatToLoad = aMatToLoad.LoadData(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
+            aMatToLoad.LoadData(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
                                          aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);
             aMatToLoad = aMatToLoad.findMatByMatID(connString, aMatID);
             
-            Assert.AreEqual(aMatID, aMatToLoad.matID);
-            Assert.AreEqual(aMatName, aMatToLoad.matName);
-            Assert.AreEqual(aMatModel, aMatToLoad.matModel);
-            Assert.AreEqual(aMatBrand, aMatToLoad.matBrand);
-            Assert.AreEqual(aMatSize, aMatToLoad.matSize);
-            Assert.AreEqual(aMatWeight, aMatToLoad.matWeight);
-            Assert.AreEqual(aMatBuyDate, aMatToLoad.matBuyDate);
-            Assert.AreEqual(aMatCost, aMatToLoad.matCost);
-            Assert.AreEqual(aMatInitTime, aMatToLoad.matInitTime);
-            Assert.AreEqual(aMatInitDist, aMatToLoad.matInitDist);
-            Assert.AreEqual(aMatRecTime, aMatToLoad.matRecTime);
-            Assert.AreEqual(aMatRecDist, aMatToLoad.matRecDist);
-            Assert.AreEqual(aMatBuyMemo, aMatToLoad.matBuyMemo);
-            Assert.AreEqual(aUserID, aMatToLoad.userID);
+            Assert.AreEqual(aMatID, aMatToLoad.MatID);
+            Assert.AreEqual(aMatName, aMatToLoad.MatName);
+            Assert.AreEqual(aMatModel, aMatToLoad.MatModel);
+            Assert.AreEqual(aMatBrand, aMatToLoad.MatBrand);
+            Assert.AreEqual(aMatSize, aMatToLoad.MatSize);
+            Assert.AreEqual(aMatWeight, aMatToLoad.MatWeight);
+            Assert.AreEqual(aMatBuyDate, aMatToLoad.MatBuyDate);
+            Assert.AreEqual(aMatCost, aMatToLoad.MatCost);
+            Assert.AreEqual(aMatInitTime, aMatToLoad.MatInitTime);
+            Assert.AreEqual(aMatInitDist, aMatToLoad.MatInitDist);
+            Assert.AreEqual(aMatRecTime, aMatToLoad.MatRecTime);
+            Assert.AreEqual(aMatRecDist, aMatToLoad.MatRecDist);
+            Assert.AreEqual(aMatBuyMemo, aMatToLoad.MatBuyMemo);
+            Assert.AreEqual(aUserID, aMatToLoad.UserID);
         }
 
-        [TestMethod]
-        public void Material_CheckDataCorrect()
-        {
-            //Creates a material with data
-            Material aMatToLoad = new Material();                                    
-            aMatToLoad = aMatToLoad.LoadData(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
-                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);
-            //Check data
-            aMatToLoad = aMatToLoad.checkData(connString);
-            Assert.AreEqual(aMatID, aMatToLoad.matID);
-        }
-
-        [TestMethod]
-        public void Material_CheckDataBadID()
-        {
-            Material aMatToLoad = new Material();            
-            aMatToLoad = aMatToLoad.LoadData(-1, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
-                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);
-            //Check data
-            aMatToLoad = aMatToLoad.checkData(connString);
-            Assert.AreEqual(-1, aMatToLoad.matID);
-        }
-
-        [TestMethod]
-        public void Material_CheckDataBadName()
-        {
-            //Creates a material with data
-            Material aMatToLoad = new Material();
-            aMatToLoad = aMatToLoad.LoadData(aMatID, "", aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
-                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);
-            //Check data
-            aMatToLoad = aMatToLoad.checkData(connString);
-            Assert.AreEqual(-2, aMatToLoad.matID);
-        }
-
-        [TestMethod]
-        public void Material_CheckDataBadUserID()
-        {
-            Material aMatToLoad = new Material();
-            aMatToLoad = aMatToLoad.LoadData(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
-                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, -1);
-            //Check data
-            aMatToLoad = aMatToLoad.checkData(connString);
-            Assert.AreEqual(-3, aMatToLoad.matID);
-        }
     }
 }
