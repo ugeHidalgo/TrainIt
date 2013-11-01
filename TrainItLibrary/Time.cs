@@ -19,9 +19,9 @@ namespace TrainItLibrary
             seconds = "00";
         }
 
-        public static Boolean CheckTimeFormat(string aString)
+        public static Boolean CheckTimeFormat(string aString, float maxHour)
         {//Verify if string passed is a correct time format: hh:mm:00
-         //hh tiene que ser >=0.
+         //hh tiene que ser >=0 y <=maxHour
          //mm tiene que ser >=0 y <60
          //ss tiene que ser >=0 y <60            
             Boolean result = true;
@@ -41,7 +41,10 @@ namespace TrainItLibrary
                 try
                 {
                     int hours = Convert.ToInt16(hoursPart);
-                    result = true;
+                    if (hours <= maxHour)
+                        result = true;
+                    else 
+                        result = false;
                 }
                 catch (Exception)
                 {

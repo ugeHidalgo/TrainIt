@@ -57,6 +57,8 @@
             this.tsBtnNext = new System.Windows.Forms.ToolStripButton();
             this.tsBtnLast = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsBtnEdit = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnCancel = new System.Windows.Forms.ToolStripButton();
             this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
             this.dgvSessions = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,8 +97,6 @@
             this.txtSportTypeName = new System.Windows.Forms.TextBox();
             this.btnFindTrain = new System.Windows.Forms.Button();
             this.btnFindSportType = new System.Windows.Forms.Button();
-            this.tsBtnEdit = new System.Windows.Forms.ToolStripButton();
-            this.tsBtnCancel = new System.Windows.Forms.ToolStripButton();
             sessionIDLabel = new System.Windows.Forms.Label();
             trainIDLabel = new System.Windows.Forms.Label();
             sportTypeIDLabel = new System.Windows.Forms.Label();
@@ -365,6 +365,26 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // tsBtnEdit
+            // 
+            this.tsBtnEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnEdit.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnEdit.Image")));
+            this.tsBtnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnEdit.Name = "tsBtnEdit";
+            this.tsBtnEdit.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnEdit.Text = "Modificar registro";
+            this.tsBtnEdit.Click += new System.EventHandler(this.tsBtnEdit_Click);
+            // 
+            // tsBtnCancel
+            // 
+            this.tsBtnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnCancel.Image")));
+            this.tsBtnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnCancel.Name = "tsBtnCancel";
+            this.tsBtnCancel.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnCancel.Text = "Cancelar edición";
+            this.tsBtnCancel.Click += new System.EventHandler(this.tsBtnCancel_Click);
+            // 
             // tsBtnSave
             // 
             this.tsBtnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -561,6 +581,7 @@
             this.txtDist.Name = "txtDist";
             this.txtDist.Size = new System.Drawing.Size(200, 20);
             this.txtDist.TabIndex = 21;
+            this.txtDist.Validating += new System.ComponentModel.CancelEventHandler(this.txtDist_Validating);
             // 
             // txtTime
             // 
@@ -570,6 +591,7 @@
             this.txtTime.Name = "txtTime";
             this.txtTime.Size = new System.Drawing.Size(200, 20);
             this.txtTime.TabIndex = 23;
+            this.txtTime.Validating += new System.ComponentModel.CancelEventHandler(this.txtTime_Validating);
             // 
             // txtMedHR
             // 
@@ -579,6 +601,7 @@
             this.txtMedHR.Name = "txtMedHR";
             this.txtMedHR.Size = new System.Drawing.Size(66, 20);
             this.txtMedHR.TabIndex = 25;
+            this.txtMedHR.Validating += new System.ComponentModel.CancelEventHandler(this.txtMedHR_Validating);
             // 
             // txtMaxHR
             // 
@@ -588,6 +611,7 @@
             this.txtMaxHR.Name = "txtMaxHR";
             this.txtMaxHR.Size = new System.Drawing.Size(66, 20);
             this.txtMaxHR.TabIndex = 27;
+            this.txtMaxHR.Validating += new System.ComponentModel.CancelEventHandler(this.txtMaxHR_Validating);
             // 
             // txtValue
             // 
@@ -597,6 +621,7 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(66, 20);
             this.txtValue.TabIndex = 29;
+            this.txtValue.Validating += new System.ComponentModel.CancelEventHandler(this.txtValue_Validating);
             // 
             // txtMemo
             // 
@@ -694,26 +719,6 @@
             this.btnFindSportType.TabIndex = 39;
             this.btnFindSportType.UseVisualStyleBackColor = true;
             this.btnFindSportType.Click += new System.EventHandler(this.btnFindSportType_Click);
-            // 
-            // tsBtnEdit
-            // 
-            this.tsBtnEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsBtnEdit.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnEdit.Image")));
-            this.tsBtnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnEdit.Name = "tsBtnEdit";
-            this.tsBtnEdit.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnEdit.Text = "Modificar registro";
-            this.tsBtnEdit.Click += new System.EventHandler(this.tsBtnEdit_Click);
-            // 
-            // tsBtnCancel
-            // 
-            this.tsBtnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsBtnCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnCancel.Image")));
-            this.tsBtnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnCancel.Name = "tsBtnCancel";
-            this.tsBtnCancel.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnCancel.Text = "Cancelar edición";
-            this.tsBtnCancel.Click += new System.EventHandler(this.tsBtnCancel_Click);
             // 
             // FSessions
             // 

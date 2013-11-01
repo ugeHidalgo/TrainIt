@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrainItLibrary;
+using System.Data.SqlTypes;
 
 namespace TrainIt
 {
@@ -185,17 +186,35 @@ namespace TrainIt
 
         private void tsBtnSave_Click(object sender, EventArgs e)
         {
-            string mensaje = "¿Desea guardar la sesión creada?";
-            DialogResult delMat = MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (delMat == DialogResult.OK)
+            //Check if user chooses a SportType, if not give a warning error                      
+            if (txtSportTypeID.Text != "")
             {
-                txtUserID.Text = userIDWorking.ToString();
-                this.Validate();
-                this.sessionsBindingSource.EndEdit();
-                this.tableAdapterManager.UpdateAll(this.trainITDataSet);
-                MessageBox.Show("Sesión guardada corectamente");
-                setNormalMode();
-                LoadData();
+                string mensaje = "¿Desea guardar la sesión creada?";
+                DialogResult delMat = MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (delMat == DialogResult.OK)
+                {
+                    //Check if user chooses a Train ID, if not create new traininig
+                    if (txtTrainID.Text == "")
+                    {
+                        Global.trainingUsed.UserID = userIDWorking;
+                        Global.trainingUsed.TrainDate = dtpDate.Value;
+                        Global.trainingUsed.TrainName = "Sin Nombre";
+                        Global.trainingUsed.SaveATraining(connString);
+                        txtTrainID.Text = Global.trainingUsed.TrainID.ToString();
+                    }
+                    txtUserID.Text = userIDWorking.ToString();
+                    this.Validate();
+                    this.sessionsBindingSource.EndEdit();
+                    this.tableAdapterManager.UpdateAll(this.trainITDataSet);
+                    MessageBox.Show("Sesión guardada corectamente");
+                    setNormalMode();
+                    LoadData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("No ha seleccionado el deporte realizado en la sesión.");
+                btnFindSportType.Focus();
             }
         }
 
@@ -210,6 +229,141 @@ namespace TrainIt
                 MessageBox.Show("Sesión borrada corectamente");
                 LoadData();
             } 
+        }
+
+        private void txtDist_Validating(object sender, CancelEventArgs e)
+        {
+            e.Cancel = false;
+            if (txtDist.Text != "")
+            {//Se permiten números con decimales o el campo vacío.
+                try
+                {
+                    SqlDecimal temp = Convert.ToDecimal(txtDist.Text);
+                    if ((temp < 1000) && (temp >= 0))
+                        e.Cancel = false;
+                    else
+                        e.Cancel = true;
+                }
+                catch (Exception)
+                {
+                    e.Cancel = true;
+                }
+            }
+            else txtDist.Text = "0,000";
+            if (e.Cancel)
+            {
+                txtDist.BackColor = Color.Red;
+                MessageBox.Show("La distancia de sesión debe ser un número entre 0 y 999.999.\n Se permiten decimales.");
+            }
+            else
+                txtDist.BackColor = SystemColors.Window;  
+        }
+
+        private void txtTime_Validating(object sender, CancelEventArgs e)
+        {
+            e.Cancel = false;
+            if (txtTime.Text != "    :  :")
+            {
+                if (!Time.CheckTimeFormat(txtTime.Text,99))
+                    e.Cancel = true;
+                if (e.Cancel)
+                {//Format not correct
+                    txtTime.BackColor = Color.Red;
+                    string message = "El tiempo de sesión debe ser en formato: hh:mm:ss \n\n" +
+                                     "      - Segundos entre 0 y 59. \n" +
+                                     "      - Minutos entre 0 y 59.  \n" +
+                                     "      - Horas entre 0 y 99.    ";
+                    MessageBox.Show(message);
+                }
+                else
+                {//Format correct
+                    txtTime.BackColor = SystemColors.Window;
+                }
+            }
+        }
+
+        private void txtMedHR_Validating(object sender, CancelEventArgs e)
+        {
+            e.Cancel = false;
+            if (txtMedHR.Text != "")
+            {//Se permiten números sin decimales o el campo vacío.
+                try
+                {
+                    int temp = Convert.ToInt16(txtMedHR.Text);
+                    if ((temp < 300) && (temp >= 0))
+                        e.Cancel = false;
+                    else
+                        e.Cancel = true;
+                }
+                catch (Exception)
+                {
+                    e.Cancel = true;
+                }
+            }
+            else txtMedHR.Text = "0";
+            if (e.Cancel)
+            {
+                txtMedHR.BackColor = Color.Red;
+                MessageBox.Show("El pulso Medio debe ser un número entre 0 y 299.\n");
+            }
+            else
+                txtMedHR.BackColor = SystemColors.Window;  
+        }
+
+        private void txtMaxHR_Validating(object sender, CancelEventArgs e)
+        {
+            e.Cancel = false;
+            if (txtMaxHR.Text != "")
+            {//Se permiten números sin decimales o el campo vacío.
+                try
+                {
+                    int temp = Convert.ToInt16(txtMaxHR.Text);
+                    if ((temp < 300) && (temp >= 0))
+                        e.Cancel = false;
+                    else
+                        e.Cancel = true;
+                }
+                catch (Exception)
+                {
+                    e.Cancel = true;
+                }
+            }
+            else txtMaxHR.Text = "0";
+            if (e.Cancel)
+            {
+                txtMaxHR.BackColor = Color.Red;
+                MessageBox.Show("El pulso Máximo debe ser un número entre 0 y 299.\n");
+            }
+            else
+                txtMaxHR.BackColor = SystemColors.Window; 
+        }
+
+        private void txtValue_Validating(object sender, CancelEventArgs e)
+        {
+            e.Cancel = false;
+            if (txtValue.Text != "")
+            {//Se permiten números sin decimales o el campo vacío.
+                try
+                {
+                    int temp = Convert.ToInt16(txtValue.Text);
+                    if ((temp < 11) && (temp >= 0))
+                        e.Cancel = false;
+                    else
+                        e.Cancel = true;
+                }
+                catch (Exception)
+                {
+                    e.Cancel = true;
+                }
+            }
+            else txtValue.Text = "0";
+            if (e.Cancel)
+            {
+                txtValue.BackColor = Color.Red;
+                MessageBox.Show("La valoración de la sesión debe ser un número entre 0 y 10.\n");
+            }
+            else
+                txtValue.BackColor = SystemColors.Window; 
         }  
 
     }

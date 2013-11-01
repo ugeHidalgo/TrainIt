@@ -12,55 +12,55 @@ namespace TrainItTests
         {
             String aTimeString = "00:00:00";
             Time aTime = new Time();
-            Boolean res = Time.CheckTimeFormat(aTimeString);
+            Boolean res = Time.CheckTimeFormat(aTimeString,99);
             Assert.AreEqual(true, res);
 
             aTimeString = "00:00:10";
-            res = Time.CheckTimeFormat(aTimeString);
+            res = Time.CheckTimeFormat(aTimeString, 99);
             Assert.AreEqual(true, res);
 
             aTimeString = "00:00:59";
-            res = Time.CheckTimeFormat(aTimeString);
+            res = Time.CheckTimeFormat(aTimeString, 99);
             Assert.AreEqual(true, res);
 
             aTimeString = "00:00:60";
-            res = Time.CheckTimeFormat(aTimeString);
+            res = Time.CheckTimeFormat(aTimeString, 99);
             Assert.AreEqual(false, res);
 
             aTimeString = "00:01:00";
-            res = Time.CheckTimeFormat(aTimeString);
+            res = Time.CheckTimeFormat(aTimeString, 99);
             Assert.AreEqual(true, res);
 
             aTimeString = "00:59:00";
-            res = Time.CheckTimeFormat(aTimeString);
+            res = Time.CheckTimeFormat(aTimeString, 99);
             Assert.AreEqual(true, res);
 
             aTimeString = "00:60:00";
-            res = Time.CheckTimeFormat(aTimeString);
+            res = Time.CheckTimeFormat(aTimeString, 99);
             Assert.AreEqual(false, res);
 
             aTimeString = "01:00:00";
-            res = Time.CheckTimeFormat(aTimeString);
+            res = Time.CheckTimeFormat(aTimeString, 99);
             Assert.AreEqual(true, res);
 
             aTimeString = "60:00:00";
-            res = Time.CheckTimeFormat(aTimeString);
+            res = Time.CheckTimeFormat(aTimeString, 99);
             Assert.AreEqual(true, res);
 
             aTimeString = "100:00:00";
-            res = Time.CheckTimeFormat(aTimeString);
+            res = Time.CheckTimeFormat(aTimeString,100);
             Assert.AreEqual(true, res);
 
             aTimeString = "1000:00:00";
-            res = Time.CheckTimeFormat(aTimeString);
+            res = Time.CheckTimeFormat(aTimeString,100);
             Assert.AreEqual(true, res);
 
             aTimeString = "1000:01:00";
-            res = Time.CheckTimeFormat(aTimeString);
+            res = Time.CheckTimeFormat(aTimeString,1000);
             Assert.AreEqual(true, res);
 
             aTimeString = "1000:01:01";
-            res = Time.CheckTimeFormat(aTimeString);
+            res = Time.CheckTimeFormat(aTimeString,1000);
             Assert.AreEqual(true, res);
         }
 

@@ -353,20 +353,25 @@ namespace TrainIt
 
         private void tsBtnSave_Click(object sender, EventArgs e)
         {
-            //Load data into model.
-            Material aMat = new Material();
-            aMat = LoadObject();
+            string mensaje = "¿Desea guardar la ficha creada?";
+            DialogResult delMat = MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (delMat == DialogResult.OK)
+            {
+                //Load data into model.
+                Material aMat = new Material();
+                aMat = LoadObject();
 
-            this.Validate();
-            this.materialsBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.trainITDataSet);
+                this.Validate();
+                this.materialsBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.trainITDataSet);
 
-            MessageBox.Show("Ficha guardada corectamente");
-            
-            setNormalMode();
+                MessageBox.Show("Ficha guardada corectamente");
 
-            calculateDistBar(txtDistBar, txtBarsBack);
-            calculateTimeBar(txtTimeBar, txtBarsBack);
+                setNormalMode();
+
+                calculateDistBar(txtDistBar, txtBarsBack);
+                calculateTimeBar(txtTimeBar, txtBarsBack);
+            }
 
         }
 
@@ -480,7 +485,7 @@ namespace TrainIt
             if (e.Cancel)
             {
                 txtInitDist.BackColor = Color.Red;
-                MessageBox.Show("La distancia de uso inicial debe ser un número entre 0 y 999.999.\n Se permiten decimales.");                        
+                MessageBox.Show("La distancia de uso inicial debe ser un número entre 0 y 999999.999.\n Se permiten decimales.");                        
             }
             else
                 txtInitDist.BackColor = SystemColors.Window;            
@@ -519,12 +524,12 @@ namespace TrainIt
             e.Cancel = false;
             if (mtxtInitTime.Text != "    :  :")
             {
-                if (!Time.CheckTimeFormat(mtxtInitTime.Text))                
+                if (!Time.CheckTimeFormat(mtxtInitTime.Text,999999))                
                     e.Cancel = true;
                 if (e.Cancel)
                 {//Format not correct
                     mtxtInitTime.BackColor = Color.Red;
-                    string message="El tiempo inicial de uso debe ser en formato: hhhh:mm:ss \n\n"+
+                    string message="El tiempo inicial de uso debe ser en formato: hh:mm:ss \n\n"+
                                      "      - Segundos entre 0 y 59. \n"+
                                      "      - Minutos entre 0 y 59.  \n"+ 
                                      "      - Horas entre 0 y 999999.    ";
@@ -542,7 +547,7 @@ namespace TrainIt
             e.Cancel = false;
             if (mtxtRecTime .Text != "      :  :")
             {
-                if (!Time.CheckTimeFormat(mtxtRecTime.Text))
+                if (!Time.CheckTimeFormat(mtxtRecTime.Text,999999))
                     e.Cancel = true;
                 if (e.Cancel)
                 {//Format not correct

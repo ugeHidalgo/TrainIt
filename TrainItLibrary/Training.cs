@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace TrainItLibrary
 {
@@ -94,6 +96,38 @@ namespace TrainItLibrary
                 aT = aT.Reset();
 
             return aT;
+        }
+
+        public Int64 SaveATraining(string connString)
+        { //Return the Training saved. If error return an empty training with TrainId=-1
+            Int64 res = -1;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = @"INSERT INTO Trainings(UserID, TrainDate, TrainName)
+                                                VALUES(@userID,@trainDate,@trainName)
+                                 SELECT SCOPE_IDENTITY()";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
+                    cmd.Parameters["@userID"].Value = Global.trainingUsed.UserID;
+
+                    cmd.Parameters.Add(new SqlParameter("@trainDate", SqlDbType.Date));
+                    cmd.Parameters["@trainDate"].Value = Global.trainingUsed.TrainDate;
+
+                    cmd.Parameters.Add(new SqlParameter("@trainName", SqlDbType.VarChar));
+                    cmd.Parameters["@trainName"].Value = Global.trainingUsed.TrainName;
+
+                    conn.Open();
+                    res = Convert.ToInt64(cmd.ExecuteScalar());
+
+                    //Find the userID asigned.                        
+                    if (res >= 0)
+                    {
+                        Global.trainingUsed.TrainID = res;                        
+                    }                    
+                }
+            }
+            return res;
         }
 
     }
