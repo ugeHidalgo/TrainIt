@@ -43,11 +43,6 @@ namespace TrainIt
 
             // Loads data for the Training Grid.
             this.trainingsTableAdapter.FillBy(this.trainITDataSet.Trainings, userIDWorking);
-
-            //Load data for the Sessions grid.
-            //trainIDUsing = Convert.ToInt64(txtID.Text);
-            //if (trainIDUsing > 0)
-            //    this.sessionsTableAdapter.FillBy(this.trainITDataSet.Sessions, userIDWorking, trainIDUsing);
         }
 
         private void FTrainings_FormClosing(object sender, FormClosingEventArgs e)

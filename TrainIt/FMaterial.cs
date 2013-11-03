@@ -14,9 +14,17 @@ namespace TrainIt
 {
     public partial class FMaterial : Form
     {
+        private static bool onSearchMode;
         string connString = TrainItLibrary.Utilities.GetConnString();
         Int64 userIDWorking = TrainItLibrary.Global.userIDWorking;
-        bool onEdition = false;                
+        bool onEdition = false;
+        bool returnValue = false;
+
+        public bool OnSearchMode
+        {
+            get { return onSearchMode; }
+            set { onSearchMode = value; }
+        }
 
         public FMaterial()
         {
@@ -34,7 +42,16 @@ namespace TrainIt
                 MessageBox.Show("Grabe o cancele la edición ántes de cerrar la ventana actual.", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Cancel = true;
             }
-            else e.Cancel = false;
+            else
+            {
+
+                Global.materialUsed = Global.materialUsed.LoadDataFromView(txtID.Text, txtName.Text, txtModel.Text, txtBrand.Text, txtSize.Text, mtxtWeight.Text, dtpBuyDate.Value.ToString(),
+                                                     txtCost.Text, mtxtInitTime.Text, txtInitDist.Text, mtxtRecTime.Text, txtRecDist.Text, txtBuyMemo.Text, txtUserID.Text);
+                e.Cancel = false;
+                OnSearchMode = false;
+                if (returnValue)
+                    OnSearchMode = true;
+            }
         }
 
         private void setEditMode()
@@ -68,6 +85,9 @@ namespace TrainIt
 
             btnLoadImage.Enabled = true;
             btnCancelImage.Enabled = true;
+
+            btnChoose.Enabled = false;
+            btnCancel.Enabled = false;
         }
 
         private void setNormalMode()
@@ -101,6 +121,9 @@ namespace TrainIt
 
             btnLoadImage.Enabled = false;
             btnCancelImage.Enabled = false;
+
+            btnChoose.Enabled = true;
+            btnCancel.Enabled = true;
         }
 
         private void resetFields()
@@ -126,6 +149,10 @@ namespace TrainIt
 
             //Load data into object from bd
             TrainItLibrary.Global.materialUsed = LoadObject();
+
+            //if this form is shomw in order to search, then enable buttons for search
+            btnChoose.Visible = OnSearchMode;
+            btnCancel.Visible = OnSearchMode;
 
             //Set the masks for text box
             mtxtWeight.ValidatingType = typeof(float);  
@@ -522,7 +549,7 @@ namespace TrainIt
         private void mtxtInitTime_Validating(object sender, CancelEventArgs e)
         {
             e.Cancel = false;
-            if (mtxtInitTime.Text != "    :  :")
+            if (mtxtInitTime.Text != "")
             {
                 if (!Time.CheckTimeFormat(mtxtInitTime.Text,999999))                
                     e.Cancel = true;
@@ -545,7 +572,7 @@ namespace TrainIt
         private void mtxtRecTime_Validating(object sender, CancelEventArgs e)
         {
             e.Cancel = false;
-            if (mtxtRecTime .Text != "      :  :")
+            if (mtxtRecTime .Text != "")
             {
                 if (!Time.CheckTimeFormat(mtxtRecTime.Text,999999))
                     e.Cancel = true;
@@ -587,6 +614,17 @@ namespace TrainIt
             {
                 MessageBox.Show("No se puede abrir el fichero asignado");
             }
+        }
+
+        private void btnChoose_Click(object sender, EventArgs e)
+        {
+            returnValue = true;
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

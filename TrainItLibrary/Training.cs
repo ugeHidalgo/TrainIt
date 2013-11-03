@@ -120,11 +120,9 @@ namespace TrainItLibrary
                     conn.Open();
                     res = Convert.ToInt64(cmd.ExecuteScalar());
 
-                    //Find the userID asigned.                        
-                    if (res >= 0)
-                    {
-                        Global.trainingUsed.TrainID = res;                        
-                    }                    
+                    //Assign the TraindID created when insert.                        
+                    if (res >= 0)                    
+                        Global.trainingUsed.TrainID = res;                                         
                 }
             }
             return res;

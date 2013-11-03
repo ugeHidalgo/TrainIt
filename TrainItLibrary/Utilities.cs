@@ -36,5 +36,35 @@ namespace TrainItLibrary
             }
             return result;
         }
+
+        //Calculate Speed
+        public static string calculateSpeed(string aDist, string aTime)
+        {
+            string speedString = "Error";
+            bool sigue=false;
+            long time = 0;
+            double dist = 0;
+            try
+            {
+                time = Time.ConvertStringTimeToLong(aTime);
+                dist = Convert.ToDouble(aDist);
+                if (time == 0)
+                    sigue = false;
+                else sigue = true;
+            }
+            catch
+            {
+                sigue = false;
+            }
+
+            if (sigue)
+            {
+                decimal speed = Convert.ToDecimal(dist / time);                
+                speed = speed * 60 * 60;
+                speedString = String.Format("{0:0.00}", speed); 
+            }
+
+            return speedString;
+        }
     }
 }

@@ -62,6 +62,13 @@
             this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
             this.tsBtnDel = new System.Windows.Forms.ToolStripButton();
             this.dgvMat = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MatModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MatBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MatBuyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MatCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MatTotTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MatTotDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtUserID = new System.Windows.Forms.TextBox();
             this.mtxtWeight = new System.Windows.Forms.MaskedTextBox();
@@ -91,13 +98,8 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.materialsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.MaterialsTableAdapter();
             this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MatModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MatBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MatBuyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MatCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MatTotTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MatTotDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnChoose = new System.Windows.Forms.Button();
             matInitTimeLabel = new System.Windows.Forms.Label();
             matInitDistLabel = new System.Windows.Forms.Label();
             matBuyMemoLabel = new System.Windows.Forms.Label();
@@ -453,8 +455,63 @@
             this.dgvMat.Size = new System.Drawing.Size(950, 298);
             this.dgvMat.TabIndex = 4;
             // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "MatName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 180;
+            // 
+            // MatModel
+            // 
+            this.MatModel.DataPropertyName = "MatModel";
+            this.MatModel.HeaderText = "Modelo";
+            this.MatModel.Name = "MatModel";
+            this.MatModel.ReadOnly = true;
+            this.MatModel.Width = 180;
+            // 
+            // MatBrand
+            // 
+            this.MatBrand.DataPropertyName = "MatBrand";
+            this.MatBrand.HeaderText = "Marca";
+            this.MatBrand.Name = "MatBrand";
+            this.MatBrand.ReadOnly = true;
+            this.MatBrand.Width = 180;
+            // 
+            // MatBuyDate
+            // 
+            this.MatBuyDate.DataPropertyName = "MatBuyDate";
+            this.MatBuyDate.HeaderText = "Compra";
+            this.MatBuyDate.Name = "MatBuyDate";
+            this.MatBuyDate.ReadOnly = true;
+            // 
+            // MatCost
+            // 
+            this.MatCost.DataPropertyName = "MatCost";
+            this.MatCost.HeaderText = "Coste";
+            this.MatCost.Name = "MatCost";
+            this.MatCost.ReadOnly = true;
+            this.MatCost.Width = 80;
+            // 
+            // MatTotTime
+            // 
+            this.MatTotTime.DataPropertyName = "MatTotTime";
+            this.MatTotTime.HeaderText = "Tiempo Uso";
+            this.MatTotTime.Name = "MatTotTime";
+            this.MatTotTime.ReadOnly = true;
+            // 
+            // MatTotDist
+            // 
+            this.MatTotDist.DataPropertyName = "MatTotDist";
+            this.MatTotDist.HeaderText = "Distancia";
+            this.MatTotDist.Name = "MatTotDist";
+            this.MatTotDist.ReadOnly = true;
+            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnCancel);
+            this.groupBox1.Controls.Add(this.btnChoose);
             this.groupBox1.Controls.Add(this.txtUserID);
             this.groupBox1.Controls.Add(this.mtxtWeight);
             this.groupBox1.Controls.Add(matWeightLabel);
@@ -482,10 +539,10 @@
             this.txtUserID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.materialsBindingSource, "userID", true));
             this.txtUserID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUserID.Location = new System.Drawing.Point(181, 29);
+            this.txtUserID.Location = new System.Drawing.Point(160, 29);
             this.txtUserID.Name = "txtUserID";
             this.txtUserID.ReadOnly = true;
-            this.txtUserID.Size = new System.Drawing.Size(100, 26);
+            this.txtUserID.Size = new System.Drawing.Size(54, 26);
             this.txtUserID.TabIndex = 22;
             this.txtUserID.TabStop = false;
             // 
@@ -562,7 +619,7 @@
             this.txtID.Location = new System.Drawing.Point(102, 29);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(80, 26);
+            this.txtID.Size = new System.Drawing.Size(59, 26);
             this.txtID.TabIndex = 13;
             this.txtID.TabStop = false;
             this.txtID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -801,64 +858,40 @@
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.MaterialSessionTableAdapter = null;
             this.tableAdapterManager.MaterialsTableAdapter = this.materialsTableAdapter;
+            this.tableAdapterManager.SessionsTableAdapter = null;
             this.tableAdapterManager.SportTypesTableAdapter = null;
             this.tableAdapterManager.TrainingsTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRegsTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
             // 
-            // dataGridViewTextBoxColumn2
+            // btnCancel
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "MatName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 180;
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(419, 14);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.btnCancel.Size = new System.Drawing.Size(126, 41);
+            this.btnCancel.TabIndex = 30;
+            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // MatModel
+            // btnChoose
             // 
-            this.MatModel.DataPropertyName = "MatModel";
-            this.MatModel.HeaderText = "Modelo";
-            this.MatModel.Name = "MatModel";
-            this.MatModel.ReadOnly = true;
-            this.MatModel.Width = 180;
-            // 
-            // MatBrand
-            // 
-            this.MatBrand.DataPropertyName = "MatBrand";
-            this.MatBrand.HeaderText = "Marca";
-            this.MatBrand.Name = "MatBrand";
-            this.MatBrand.ReadOnly = true;
-            this.MatBrand.Width = 180;
-            // 
-            // MatBuyDate
-            // 
-            this.MatBuyDate.DataPropertyName = "MatBuyDate";
-            this.MatBuyDate.HeaderText = "Compra";
-            this.MatBuyDate.Name = "MatBuyDate";
-            this.MatBuyDate.ReadOnly = true;
-            // 
-            // MatCost
-            // 
-            this.MatCost.DataPropertyName = "MatCost";
-            this.MatCost.HeaderText = "Coste";
-            this.MatCost.Name = "MatCost";
-            this.MatCost.ReadOnly = true;
-            this.MatCost.Width = 80;
-            // 
-            // MatTotTime
-            // 
-            this.MatTotTime.DataPropertyName = "MatTotTime";
-            this.MatTotTime.HeaderText = "Tiempo Uso";
-            this.MatTotTime.Name = "MatTotTime";
-            this.MatTotTime.ReadOnly = true;
-            // 
-            // MatTotDist
-            // 
-            this.MatTotDist.DataPropertyName = "MatTotDist";
-            this.MatTotDist.HeaderText = "Distancia";
-            this.MatTotDist.Name = "MatTotDist";
-            this.MatTotDist.ReadOnly = true;
+            this.btnChoose.Image = ((System.Drawing.Image)(resources.GetObject("btnChoose.Image")));
+            this.btnChoose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChoose.Location = new System.Drawing.Point(247, 14);
+            this.btnChoose.Name = "btnChoose";
+            this.btnChoose.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.btnChoose.Size = new System.Drawing.Size(168, 41);
+            this.btnChoose.TabIndex = 29;
+            this.btnChoose.Text = "Seleccionar";
+            this.btnChoose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnChoose.UseVisualStyleBackColor = true;
+            this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
             // 
             // FMaterial
             // 
@@ -875,6 +908,7 @@
             this.MinimizeBox = false;
             this.Name = "FMaterial";
             this.Text = "Materiales";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FMaterial_FormClosing);
             this.Load += new System.EventHandler(this.FMaterial_Load);
             this.statusS1.ResumeLayout(false);
             this.statusS1.PerformLayout();
@@ -952,6 +986,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MatCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn MatTotTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn MatTotDist;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnChoose;
 
     }
 }

@@ -136,7 +136,7 @@ namespace TrainItLibrary
         }
 
         public void LoadData(Int64 MatID, string MatName, string MatModel, string MatBrand, string MatSize, decimal MatWeight, DateTime MatBuyDate,
-                        SqlMoney MatCost, string MatinitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist, string MatBuyMemo, Int64 UserID)
+                        SqlMoney MatCost, string MatInitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist, string MatBuyMemo, Int64 UserID)
         {
             matID = MatID;
             matName = MatName;
@@ -146,12 +146,114 @@ namespace TrainItLibrary
             matWeight = MatWeight;
             matBuyDate = MatBuyDate;
             matCost = MatCost;
-            matInitTime = MatinitTime;
+            matInitTime = MatInitTime;
             matInitDist = MatInitDist;
             matRecTime = MatRecTime;
             matRecDist = MatRecDist;
             matBuyMemo = MatBuyMemo;
             userID = UserID;
+        }
+
+        public Material LoadDataFromView(string aMatID, string aMatName, string aMatModel, string aMatBrand, string aMatSize, string aMatWeight, string aMatBuyDate,
+                        string aMatCost, string aMatInitTime, string aMatInitDist, string aMatRecTime, string aMatRecDist, string aMatBuyMemo, string aUserID)
+        {
+            Material aM = new Material();
+            bool sigue = true;
+            try
+            {
+                matID = Convert.ToInt64(aMatID);
+            }
+            catch (Exception)
+            {
+                sigue = false;
+            }
+
+            if (sigue)
+            {
+                try
+                {
+                    matWeight = Convert.ToDecimal(aMatWeight);
+                }
+                catch (Exception)
+                {
+                    sigue = false;
+                }
+            }
+
+            if (sigue)
+            {
+                try
+                {
+                    matBuyDate = Convert.ToDateTime(aMatBuyDate);
+                }
+                catch (Exception)
+                {
+                    sigue = false;
+                }
+            }
+
+            if (sigue)
+            {
+                try
+                {
+                    matCost = Convert.ToDecimal(aMatCost);
+                }
+                catch (Exception)
+                {
+                    sigue = false;
+                }
+            }
+
+            if (sigue)
+            {
+                try
+                {
+                    matInitDist = Convert.ToDecimal(aMatInitDist);
+                }
+                catch (Exception)
+                {
+                    sigue = false;
+                }
+            }
+
+            if (sigue)
+            {
+                try
+                {
+                    matRecDist = Convert.ToDecimal(aMatRecDist);
+                }
+                catch (Exception)
+                {
+                    sigue = false;
+                }
+            }
+
+            if (sigue)
+            {
+                try
+                {
+                    userID = Convert.ToInt64(aUserID);
+                }
+                catch (Exception)
+                {
+                    sigue = false;
+                }
+            }
+
+            if (sigue)
+            {
+                matName = aMatName;
+                matModel = aMatModel;
+                matBrand = aMatBrand;
+                matSize = aMatSize;
+                matInitTime = aMatInitTime;
+                matRecTime = aMatRecTime;
+                matBuyMemo = aMatBuyMemo;
+            }
+            else
+                aM.Reset();
+
+            return aM;
         }
 
         public void Reset()

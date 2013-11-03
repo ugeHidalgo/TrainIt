@@ -29,6 +29,8 @@ namespace TrainItLibrary
             //Verify if both : exists
             int first = aString.IndexOf(":");
             int second = aString.LastIndexOf(":");
+            if (first == second)
+                second = -1;
             if ((first == -1) || (second == -1))                            
                 result = false;                            
 

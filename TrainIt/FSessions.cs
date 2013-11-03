@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrainItLibrary;
 using System.Data.SqlTypes;
+using System.Data.SqlClient;
 
 namespace TrainIt
 {
@@ -16,7 +17,8 @@ namespace TrainIt
     {
         string connString = Utilities.GetConnString();
         Int64 userIDWorking = Global.userIDWorking;
-        Boolean onEdition=false;
+        Boolean onEdition = false;
+
 
         public FSessions()
         {
@@ -43,12 +45,16 @@ namespace TrainIt
 
             btnFindSportType.Enabled = false;
             btnFindTrain.Enabled = false;
+            btnFindMaterial.Enabled = false;
+            btnAddMat.Enabled = false;
+            btnDelMat.Enabled = false;
 
             dgvSessions.Enabled = true;
+            dgvMats.Enabled = false;
             
             dtpDate.Enabled = false;
             txtDist.ReadOnly = true;
-            txtTime.ReadOnly = true;
+            txtTime.ReadOnly = true;            
             txtMedHR.ReadOnly = true;
             txtMaxHR.ReadOnly = true;
             txtValue.ReadOnly = true;
@@ -73,8 +79,12 @@ namespace TrainIt
 
             btnFindSportType.Enabled = true;
             btnFindTrain.Enabled = true;
+            btnFindMaterial.Enabled = true;
+            btnAddMat.Enabled = true;
+            btnDelMat.Enabled = true;
 
             dgvSessions.Enabled = false;
+            dgvMats.Enabled = true;
 
             dtpDate.Enabled = true;
             txtDist.ReadOnly = false;
@@ -89,15 +99,95 @@ namespace TrainIt
 
         private void LoadData()
         {
-            // TODO: This line of code loads data into the 'trainITDataSet.Sessions' table. You can move, or remove it, as needed.
-            this.sessionsTableAdapter.FillBy(this.trainITDataSet.Sessions, userIDWorking);
-            Int64 aSportTypeID = Convert.ToInt64(txtSportTypeID.Text);
-            Int64 aTrainID = Convert.ToInt64(txtTrainID.Text);
+            bool sigue = false;
+            Int64 aTrainID = -1;
+            Int64 aSessionID = -1;
+            Int64 aSportTypeID = -1;
 
-            // TODO: This line of code loads data into the 'trainITDataSet.SportTypes' table. You can move, or remove it, as needed.
-            this.sportTypesTableAdapter.FillByID(this.trainITDataSet.SportTypes, aSportTypeID);
-            // TODO: This line of code loads data into the 'trainITDataSet.Trainings' table. You can move, or remove it, as needed.
-            this.trainingsTableAdapter.FillByID(this.trainITDataSet.Trainings, aTrainID);
+            // Loads data for sessions for the user
+            this.sessionsTableAdapter.FillBy(this.trainITDataSet.Sessions, userIDWorking);
+
+            try
+            {
+                aSportTypeID = Convert.ToInt64(txtSportTypeID.Text);
+                sigue = true;
+            }
+            catch
+            {
+                sigue = false;
+            }
+
+            if (sigue)
+            {
+                try
+                {
+                    aTrainID = Convert.ToInt64(txtTrainID.Text);
+                    sigue = true;
+                }
+                catch
+                {
+                    sigue = false;
+                }
+            }
+
+            if (sigue)
+            {
+                try
+                {
+                    aSessionID = Convert.ToInt64(txtSessionID.Text);
+                    sigue = true;
+                }
+                catch
+                {
+                    sigue = false;
+                }
+            }
+
+            if (sigue)
+            {
+                // Loads data for Sport Types
+                this.sportTypesTableAdapter.FillByID(this.trainITDataSet.SportTypes, aSportTypeID);
+                // Loads data for Trainings
+                this.trainingsTableAdapter.FillByID(this.trainITDataSet.Trainings, aTrainID);
+
+                //Loads data for Materials used in the session
+                LoadDataForSessionMaterial(aSessionID);
+
+                //calculate Speed
+                if ((txtDist.Text != "") && (txtTime.Text != ""))
+                    txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);
+            }
+        }
+
+        private void LoadDataForSessionMaterial(Int64 aSessionID)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = String.Format(
+                    @"SELECT MaterialSession.MatID, MaterialSession.SessionID, Materials.MatName, Materials.MatModel, Materials.MatBrand, Materials.MatImage
+                    FROM MaterialSession INNER JOIN Materials ON MaterialSession.MatID = Materials.MatID
+                    WHERE MaterialSession.SessionID=@sessionID");
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@sessionID", SqlDbType.BigInt));
+                    cmd.Parameters["@sessionID"].Value = aSessionID;
+                    try
+                    {
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(reader);
+                        dgvMats.DataSource = dataTable;
+                        reader.Close();
+                    }
+                    catch (Exception)
+                    {
+                        Exception anError= new Exception("A problem with the User SQL Connection occurs while querying data abut material for a session");
+                        throw (anError);
+                    }
+                }
+            }
+
         }
 
         private void FSessions_Load(object sender, EventArgs e)
@@ -105,12 +195,21 @@ namespace TrainIt
             LoadData();      
         }
 
+        private void FSessions_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (onEdition)
+            {
+                MessageBox.Show("Grabe o cancele la edición ántes de cerrar la ventana actual.", "ATENCIÓN", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Cancel = true;
+            }
+        }
+
         private void txtTrainID_TextChanged(object sender, EventArgs e)
         {
             try 
 	        {
                 Int64 aTrainID = Convert.ToInt64(txtTrainID.Text);
-                // TODO: This line of code loads data into the 'trainITDataSet.Trainings' table. You can move, or remove it, as needed.
+                // Loads data for trainings
                 this.trainingsTableAdapter.FillByID(this.trainITDataSet.Trainings, aTrainID);   
         	}
 	        catch (Exception)
@@ -136,6 +235,10 @@ namespace TrainIt
             }
         }
 
+        private void txtMatID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
         private void btnFindTrain_Click(object sender, EventArgs e)
         {
             FTrainings fTrainings = new FTrainings();
@@ -163,14 +266,44 @@ namespace TrainIt
             }
         }
 
+        private void btnFindMaterial_Click(object sender, EventArgs e)
+        {
+            FMaterial fMaterial = new FMaterial();
+            fMaterial.OnSearchMode = true;
+            fMaterial.ShowDialog();
+
+            if (fMaterial.OnSearchMode)
+            {
+                txtMatID.Text = Global.materialUsed.MatID.ToString();
+                txtMatName.Text = Global.materialUsed.MatName;
+                fMaterial.OnSearchMode = false;
+            }
+
+        }
+
+        private void btnAddMat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelMat_Click(object sender, EventArgs e)
+        {
+            Global.materialUsed.Reset();
+            txtMatID.Text = Global.materialUsed.MatID.ToString();
+            txtMatName.Text = Global.materialUsed.MatName;
+        }
+
         private void tsBtnNew_Click(object sender, EventArgs e)
         {
             setEditMode();
+            txtSpeed.Text = "";
+            btnFindTrain.Focus();
         }
 
         private void tsBtnEdit_Click(object sender, EventArgs e)
         {
             setEditMode();
+            btnFindTrain.Focus();
         }
 
         private void tsBtnCancel_Click(object sender, EventArgs e)
@@ -181,6 +314,9 @@ namespace TrainIt
             {
                 this.sessionsBindingSource.CancelEdit();
                 setNormalMode();
+                //calculate Speed
+                if ((txtDist.Text != "") && (txtTime.Text != ""))
+                    txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);
             }
         }
 
@@ -233,138 +369,194 @@ namespace TrainIt
 
         private void txtDist_Validating(object sender, CancelEventArgs e)
         {
-            e.Cancel = false;
-            if (txtDist.Text != "")
-            {//Se permiten números con decimales o el campo vacío.
-                try
-                {
-                    SqlDecimal temp = Convert.ToDecimal(txtDist.Text);
-                    if ((temp < 1000) && (temp >= 0))
-                        e.Cancel = false;
-                    else
-                        e.Cancel = true;
-                }
-                catch (Exception)
-                {
-                    e.Cancel = true;
-                }
-            }
-            else txtDist.Text = "0,000";
-            if (e.Cancel)
+            if (onEdition)
             {
-                txtDist.BackColor = Color.Red;
-                MessageBox.Show("La distancia de sesión debe ser un número entre 0 y 999.999.\n Se permiten decimales.");
+                e.Cancel = false;
+                if (txtDist.Text != "")
+                {//Se permiten números con decimales o el campo vacío.
+                    try
+                    {
+                        SqlDecimal temp = Convert.ToDecimal(txtDist.Text);
+                        if ((temp < 1000) && (temp >= 0))
+                            e.Cancel = false;
+                        else
+                            e.Cancel = true;
+                    }
+                    catch (Exception)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+                else txtDist.Text = "0,000";
+                if (e.Cancel)
+                {
+                    txtDist.BackColor = Color.Red;
+                    MessageBox.Show("La distancia de sesión debe ser un número entre 0 y 999.\n Se permiten decimales.");
+                }
+                else
+                {
+                    txtDist.BackColor = SystemColors.Window;
+                    //calculate speed
+                    if ((txtDist.Text != "") && (txtTime.Text != ""))
+                         txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);                    
+                }
             }
-            else
-                txtDist.BackColor = SystemColors.Window;  
         }
 
         private void txtTime_Validating(object sender, CancelEventArgs e)
         {
-            e.Cancel = false;
-            if (txtTime.Text != "    :  :")
+            if (onEdition)
             {
-                if (!Time.CheckTimeFormat(txtTime.Text,99))
-                    e.Cancel = true;
-                if (e.Cancel)
-                {//Format not correct
-                    txtTime.BackColor = Color.Red;
-                    string message = "El tiempo de sesión debe ser en formato: hh:mm:ss \n\n" +
-                                     "      - Segundos entre 0 y 59. \n" +
-                                     "      - Minutos entre 0 y 59.  \n" +
-                                     "      - Horas entre 0 y 99.    ";
-                    MessageBox.Show(message);
-                }
-                else
-                {//Format correct
-                    txtTime.BackColor = SystemColors.Window;
+                e.Cancel = false;
+                if (txtTime.Text != "")
+                {
+                    if (!Time.CheckTimeFormat(txtTime.Text, 999))
+                        e.Cancel = true;
+                    if (e.Cancel)
+                    {//Format not correct
+                        txtTime.BackColor = Color.Red;
+                        string message = "El tiempode de sesión debe ser en formato: hh:mm:ss \n\n" +
+                                         "      - Segundos entre 0 y 59. \n" +
+                                         "      - Minutos entre 0 y 59.  \n" +
+                                         "      - Horas entre 0 y 999.    ";
+                        MessageBox.Show(message);
+                    }
+                    else
+                    {//Format correct
+                        txtTime.BackColor = SystemColors.Window;
+                        //calculate speed
+                        if ((txtDist.Text != "") && (txtTime.Text != ""))
+                            txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);                        
+                    }
                 }
             }
         }
 
         private void txtMedHR_Validating(object sender, CancelEventArgs e)
         {
-            e.Cancel = false;
-            if (txtMedHR.Text != "")
-            {//Se permiten números sin decimales o el campo vacío.
-                try
-                {
-                    int temp = Convert.ToInt16(txtMedHR.Text);
-                    if ((temp < 300) && (temp >= 0))
-                        e.Cancel = false;
-                    else
-                        e.Cancel = true;
-                }
-                catch (Exception)
-                {
-                    e.Cancel = true;
-                }
-            }
-            else txtMedHR.Text = "0";
-            if (e.Cancel)
+            if (onEdition)
             {
-                txtMedHR.BackColor = Color.Red;
-                MessageBox.Show("El pulso Medio debe ser un número entre 0 y 299.\n");
+                e.Cancel = false;
+                if (txtMedHR.Text != "")
+                {//Se permiten números sin decimales o el campo vacío.
+                    try
+                    {
+                        int temp = Convert.ToInt16(txtMedHR.Text);
+                        if ((temp < 300) && (temp >= 0))
+                            e.Cancel = false;
+                        else
+                            e.Cancel = true;
+                    }
+                    catch (Exception)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+                else txtMedHR.Text = "0";
+                if (e.Cancel)
+                {
+                    txtMedHR.BackColor = Color.Red;
+                    MessageBox.Show("El pulso Medio debe ser un número entre 0 y 299.\n");
+                }
+                else
+                    txtMedHR.BackColor = SystemColors.Window;
             }
-            else
-                txtMedHR.BackColor = SystemColors.Window;  
         }
 
         private void txtMaxHR_Validating(object sender, CancelEventArgs e)
         {
-            e.Cancel = false;
-            if (txtMaxHR.Text != "")
-            {//Se permiten números sin decimales o el campo vacío.
-                try
-                {
-                    int temp = Convert.ToInt16(txtMaxHR.Text);
-                    if ((temp < 300) && (temp >= 0))
-                        e.Cancel = false;
-                    else
-                        e.Cancel = true;
-                }
-                catch (Exception)
-                {
-                    e.Cancel = true;
-                }
-            }
-            else txtMaxHR.Text = "0";
-            if (e.Cancel)
+            if (onEdition)
             {
-                txtMaxHR.BackColor = Color.Red;
-                MessageBox.Show("El pulso Máximo debe ser un número entre 0 y 299.\n");
+                e.Cancel = false;
+                if (txtMaxHR.Text != "")
+                {//Se permiten números sin decimales o el campo vacío.
+                    try
+                    {
+                        int temp = Convert.ToInt16(txtMaxHR.Text);
+                        if ((temp < 300) && (temp >= 0))
+                            e.Cancel = false;
+                        else
+                            e.Cancel = true;
+                    }
+                    catch (Exception)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+                else txtMaxHR.Text = "0";
+                if (e.Cancel)
+                {
+                    txtMaxHR.BackColor = Color.Red;
+                    MessageBox.Show("El pulso Máximo debe ser un número entre 0 y 299.\n");
+                }
+                else
+                    txtMaxHR.BackColor = SystemColors.Window;
             }
-            else
-                txtMaxHR.BackColor = SystemColors.Window; 
         }
 
         private void txtValue_Validating(object sender, CancelEventArgs e)
         {
-            e.Cancel = false;
-            if (txtValue.Text != "")
-            {//Se permiten números sin decimales o el campo vacío.
-                try
-                {
-                    int temp = Convert.ToInt16(txtValue.Text);
-                    if ((temp < 11) && (temp >= 0))
-                        e.Cancel = false;
-                    else
-                        e.Cancel = true;
-                }
-                catch (Exception)
-                {
-                    e.Cancel = true;
-                }
-            }
-            else txtValue.Text = "0";
-            if (e.Cancel)
+            if (onEdition)
             {
-                txtValue.BackColor = Color.Red;
-                MessageBox.Show("La valoración de la sesión debe ser un número entre 0 y 10.\n");
+                e.Cancel = false;
+                if (txtValue.Text != "")
+                {//Se permiten números sin decimales o el campo vacío.
+                    try
+                    {
+                        int temp = Convert.ToInt16(txtValue.Text);
+                        if ((temp < 11) && (temp >= 0))
+                            e.Cancel = false;
+                        else
+                            e.Cancel = true;
+                    }
+                    catch (Exception)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+                else txtValue.Text = "0";
+                if (e.Cancel)
+                {
+                    txtValue.BackColor = Color.Red;
+                    MessageBox.Show("La valoración de la sesión debe ser un número entre 0 y 10.\n");
+                }
+                else
+                    txtValue.BackColor = SystemColors.Window;
             }
-            else
-                txtValue.BackColor = SystemColors.Window; 
-        }  
+        }
 
+        private void txtSessionID_TextChanged(object sender, EventArgs e)
+        {
+            //Loads data for materials used in the actual session
+            bool sigue = false;            
+            Int64 aSessionID = -1;            
+           
+            try
+            {
+                aSessionID = Convert.ToInt64(txtSessionID.Text);
+                sigue = true;
+            }
+            catch
+            {
+                sigue = false;
+            }
+            
+            if (sigue)
+            {
+                //Loads data for Materials used in the session
+                LoadDataForSessionMaterial(aSessionID);
+            }
+
+        }
+
+        private void txtTime_TextChanged(object sender, EventArgs e)
+        {
+            if (!onEdition)
+            {
+                //calculate Speed
+                if ((txtDist.Text != "") && (txtTime.Text != ""))
+                    txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);
+            }
+        }
     }
 }
