@@ -97,6 +97,7 @@ namespace TrainItLibrary
             get { return userID; }
             set { userID = value; }
         }
+       
 
         public Material()
         {
@@ -113,7 +114,7 @@ namespace TrainItLibrary
             matRecTime="";
             matRecDist=0.000M;
             matBuyMemo="";
-            userID=-1;        
+            userID=-1;
         }
 
         public Material(Int64 MatID, string MatName, string MatModel, string MatBrand, string MatSize, decimal MatWeight, DateTime MatBuyDate,
@@ -271,7 +272,7 @@ namespace TrainItLibrary
             matRecTime = "";
             matRecDist = 0.000M;
             matBuyMemo = "";
-            userID = -1; 
+            userID = -1;
         }
 
         public Material findMatByMatID(string connString, Int64 matID)
@@ -288,6 +289,11 @@ namespace TrainItLibrary
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
+                        // Create a buffer to hold the bytes, and then
+                        long len = reader.GetBytes(16, 0, null, 0, 0);
+                        Byte[] image = new Byte[len];
+                        // read the bytes from the DataTableReader.                            
+                        reader.GetBytes(16, 0, image, 0, (int)len);
                         aMaterial.LoadData(reader.GetInt64(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
                                            reader.GetString(4), reader.GetDecimal(5), Convert.ToDateTime(reader.GetDateTime(6)),
                                            reader.GetSqlMoney(7), reader.GetString(8), reader.GetDecimal(9), reader.GetString(10),
@@ -299,6 +305,63 @@ namespace TrainItLibrary
             return aMaterial;
         }
 
-  
+        public Byte[] loadImageForMatID(string connString, Int64 matID)
+        {//Find a Material by MatID, and returns the image associated            
+            Byte[] image = null;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "select * from Materials where MatID = @matID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@matID", SqlDbType.BigInt));
+                    cmd.Parameters["@matID"].Value = matID;
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        // Create a buffer to hold the bytes, and then
+                        long len = reader.GetBytes(16, 0, null, 0, 0);
+                        image = new Byte[len];
+                        // read the bytes from the DataTableReader.                            
+                        reader.GetBytes(16, 0, image, 0, (int)len);                        
+                    }
+                    reader.Close();
+                }
+            }
+            return image;
+        }
+
+        public bool checkIfMaterialIsInTempTable(string connString)
+        {
+            bool finded = false;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "select * from TempMaterial where MatID = @matID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@matID", SqlDbType.BigInt));
+                    cmd.Parameters["@matID"].Value = matID;
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    finded = reader.Read();                    
+                    reader.Close();
+                }
+            }
+            return finded;
+        }
+
+        public void delTempMaterial(string connString)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "delete from TempMaterial";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {                    
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    reader.Close();
+                }
+            }
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace TrainIt
         Boolean onEdition = false; //Used to indicate wether or not we are in edit mode
         Boolean savePass = false;
         Users aUser = new Users(-1, "", "", DateTime.Now, "", "", "", "");
-        int userIDToUpdate = -1;
+        Int64 userIDToUpdate = -1;
 
         public FUsers()
         {

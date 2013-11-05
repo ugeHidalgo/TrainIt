@@ -18,7 +18,7 @@ namespace TrainIt
         string connString = Utilities.GetConnString();
         Int64 userIDWorking = Global.userIDWorking;
         Boolean onEdition = false;
-
+        Int64 sessionIDToUpdate = -1;
 
         public FSessions()
         {
@@ -27,6 +27,27 @@ namespace TrainIt
             tslUser.Text = "Usuario=(" + Global.userIDWorking + ")" + Global.userNameWorking;
 
             setNormalMode();
+        }
+
+        public void setModForMatOptions()
+        {   //Set the Enabled property for the buttons to delete materials used in session
+            if (onEdition)
+            {
+                if (dgvMats.RowCount == 0)
+                {
+                    btnDelMat.Enabled = false;
+                    btnDelAllMat.Enabled = false;
+                    cms1Del.Enabled = false;
+                    cms1DelAll.Enabled = false;
+                }
+                else
+                {
+                    btnDelMat.Enabled = true;
+                    btnDelAllMat.Enabled = true;
+                    cms1Del.Enabled = true;
+                    cms1DelAll.Enabled = true;
+                }
+            }
         }
 
         private void setNormalMode()
@@ -46,8 +67,8 @@ namespace TrainIt
             btnFindSportType.Enabled = false;
             btnFindTrain.Enabled = false;
             btnFindMaterial.Enabled = false;
-            btnAddMat.Enabled = false;
             btnDelMat.Enabled = false;
+            btnDelAllMat.Enabled = false;
 
             dgvSessions.Enabled = true;
             dgvMats.Enabled = false;
@@ -60,7 +81,7 @@ namespace TrainIt
             txtValue.ReadOnly = true;
             txtMemo.ReadOnly = true;
             chbxComp.Enabled = false;
-            chBxTrns.Enabled = false;
+            chBxTrans.Enabled = false;
         }
 
         private void setEditMode()
@@ -80,8 +101,8 @@ namespace TrainIt
             btnFindSportType.Enabled = true;
             btnFindTrain.Enabled = true;
             btnFindMaterial.Enabled = true;
-            btnAddMat.Enabled = true;
-            btnDelMat.Enabled = true;
+
+            setModForMatOptions();
 
             dgvSessions.Enabled = false;
             dgvMats.Enabled = true;
@@ -94,7 +115,7 @@ namespace TrainIt
             txtValue.ReadOnly = false;
             txtMemo.ReadOnly = false;
             chbxComp.Enabled = true;
-            chBxTrns.Enabled = true;
+            chBxTrans.Enabled = true;
         }
 
         private void LoadData()
@@ -151,7 +172,7 @@ namespace TrainIt
                 this.trainingsTableAdapter.FillByID(this.trainITDataSet.Trainings, aTrainID);
 
                 //Loads data for Materials used in the session
-                LoadDataForSessionMaterial(aSessionID);
+                LoadDataForSessionMaterial(aSessionID);                
 
                 //calculate Speed
                 if ((txtDist.Text != "") && (txtTime.Text != ""))
@@ -164,9 +185,10 @@ namespace TrainIt
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 string query = String.Format(
-                    @"SELECT MaterialSession.MatID, MaterialSession.SessionID, Materials.MatName, Materials.MatModel, Materials.MatBrand, Materials.MatImage
-                    FROM MaterialSession INNER JOIN Materials ON MaterialSession.MatID = Materials.MatID
-                    WHERE MaterialSession.SessionID=@sessionID");
+                    @"DELETE FROM TempMaterial;
+                      SELECT MaterialSession.MatID, Materials.MatName, Materials.MatModel, Materials.MatBrand, Materials.MatImage, MaterialSession.SessionID
+                      FROM MaterialSession INNER JOIN Materials ON MaterialSession.MatID = Materials.MatID
+                      WHERE MaterialSession.SessionID=@sessionID");
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.Add(new SqlParameter("@sessionID", SqlDbType.BigInt));
@@ -174,24 +196,70 @@ namespace TrainIt
                     try
                     {
                         conn.Open();
-                        SqlDataReader reader = cmd.ExecuteReader();
-                        DataTable dataTable = new DataTable();
-                        dataTable.Load(reader);
-                        dgvMats.DataSource = dataTable;
+                        SqlDataReader reader = cmd.ExecuteReader();                        
+                        while (reader.Read())
+                        {
+                            // Create a buffer to hold the bytes, and then
+                            long len = reader.GetBytes(4, 0, null, 0, 0);
+                            Byte[] image = new Byte[len];
+                            // read the bytes from the DataTableReader.                            
+                            reader.GetBytes(4, 0, image, 0, (int)len);
+                            updateTempMaterial(connString, reader.GetInt64(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), image, reader.GetInt64(5));
+                        }
                         reader.Close();
                     }
                     catch (Exception)
                     {
-                        Exception anError= new Exception("A problem with the User SQL Connection occurs while querying data abut material for a session");
-                        throw (anError);
+                        Exception anError = new Exception("A problem with the User SQL Connection occurs while querying data abut material for a session");
+                        throw;
                     }
                 }
             }
 
+            // Loads data into the 'trainITDataSet.TempMaterial' table. 
+            this.tempMaterialTableAdapter.Fill(this.trainITDataSet.TempMaterial);
+
+            //Enable or disable the button to delete object from the tempMaterial.
+            setModForMatOptions();
+        }
+
+        private void updateTempMaterial(string connString, Int64 theMatID, String theMatName, String theMatModel, String theMatBrand, Byte[] theImage, Int64 theSessionID)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                //string pass = userPass;
+                string query = null;
+
+                query = @"INSERT INTO TempMaterial VALUES (@aMatID, @matName, @matModel, 
+                              @matBrand, @matImage , @sessionID)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@aMatID", SqlDbType.BigInt));
+                    cmd.Parameters["@aMatID"].Value = theMatID;
+
+                    cmd.Parameters.Add(new SqlParameter("@matName", SqlDbType.VarChar));
+                    cmd.Parameters["@matName"].Value = theMatName;                    
+
+                    cmd.Parameters.Add(new SqlParameter("@matModel", SqlDbType.VarChar));
+                    cmd.Parameters["@matModel"].Value = theMatModel;
+
+                    cmd.Parameters.Add(new SqlParameter("@matBrand", SqlDbType.VarChar));
+                    cmd.Parameters["@matBrand"].Value = theMatBrand;
+
+                    cmd.Parameters.Add(new SqlParameter("@matImage", SqlDbType.Binary));
+                    cmd.Parameters["@matImage"].Value = theImage;
+
+                    cmd.Parameters.Add(new SqlParameter("@sessionID", SqlDbType.BigInt));
+                    cmd.Parameters["@sessionID"].Value = theSessionID;
+
+                    conn.Open();
+                    int res = cmd.ExecuteNonQuery();
+                }
+            }     
         }
 
         private void FSessions_Load(object sender, EventArgs e)
-        {
+        {           
             LoadData();      
         }
 
@@ -239,6 +307,7 @@ namespace TrainIt
         {
 
         }
+
         private void btnFindTrain_Click(object sender, EventArgs e)
         {
             FTrainings fTrainings = new FTrainings();
@@ -252,7 +321,7 @@ namespace TrainIt
             }
             
         }
-
+        
         private void btnFindSportType_Click(object sender, EventArgs e)
         {            
             FSportTypes fSportTypes = new FSportTypes();
@@ -274,36 +343,109 @@ namespace TrainIt
 
             if (fMaterial.OnSearchMode)
             {
-                txtMatID.Text = Global.materialUsed.MatID.ToString();
-                txtMatName.Text = Global.materialUsed.MatName;
-                fMaterial.OnSearchMode = false;
+                //Check if material exists on tempMaterial.
+                bool finded = false;
+                finded = Global.materialUsed.checkIfMaterialIsInTempTable(connString);
+
+                if (!finded)
+                {
+                    //Search for the image associated with the material used.
+                    Byte[] image = Global.materialUsed.loadImageForMatID(connString, Global.materialUsed.MatID);
+                    //Update value into data set.
+                    updateTempMaterial(connString, Global.materialUsed.MatID, Global.materialUsed.MatName, Global.materialUsed.MatModel, Global.materialUsed.MatBrand, image, -1);
+                    // Loads data into the 'trainITDataSet.TempMaterial' table. 
+                    this.tempMaterialTableAdapter.Fill(this.trainITDataSet.TempMaterial);
+
+                    //Enable or disable the button to delete object from the tempMaterial.
+                    setModForMatOptions();
+
+                    fMaterial.OnSearchMode = false;
+                }
+                else
+                {
+                    MessageBox.Show("El material '" + Global.materialUsed.MatName + "' ya está incluido en la lista de materiales usados en la sesión.");
+                }
             }
-
-        }
-
-        private void btnAddMat_Click(object sender, EventArgs e)
-        {
-
+            
         }
 
         private void btnDelMat_Click(object sender, EventArgs e)
         {
-            Global.materialUsed.Reset();
-            txtMatID.Text = Global.materialUsed.MatID.ToString();
-            txtMatName.Text = Global.materialUsed.MatName;
+            Int64 aMatID = -1;
+            String aMatName = null;
+            bool sigue = true;
+            try
+            {
+                aMatID = Convert.ToInt64(dgvMats[4, dgvMats.CurrentRow.Index].Value);
+                aMatName = dgvMats[1, dgvMats.CurrentRow.Index].Value.ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Haga click antes sobre el material a borrar.");
+                sigue = false;
+            }
+
+            if (sigue)
+	        {
+                String aMessage="¿Desea eliminar el artículo '"+aMatName+"' de la lista de material usado en la sesión?";
+                DialogResult result = MessageBox.Show(aMessage, "Atencion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (result==DialogResult.OK)
+                {
+                    //1º Delete form temp table: TempMaterial
+                    using (SqlConnection conn = new SqlConnection(connString))
+                    {
+                        // using (SqlTransaction tr = conn.BeginTransaction())
+                        // {
+                        string query = null;
+                        query = @"DELETE FROM TempMaterial WHERE MatID=@matID";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@MatID", SqlDbType.BigInt));
+                            cmd.Parameters["@MatID"].Value = aMatID;
+
+                            conn.Open();
+                            cmd.ExecuteScalar();
+                        }
+                    }
+                    //2º Delete from datagridview
+                    dgvMats.Rows.Remove(dgvMats.CurrentRow);
+
+                    //Enable or disable the button to delete object from the tempMaterial.
+                    setModForMatOptions();
+                }
+            }
+        }
+
+        private void btnDelAllMat_Click(object sender, EventArgs e)
+        {
+            DialogResult doIt = MessageBox.Show("¿Desea borrar todos los materiales usados en la sessión?", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (doIt == DialogResult.OK)
+            {
+                //delete all materials in temp table
+                Global.materialUsed.delTempMaterial(connString);
+                // Loads data into the 'trainITDataSet.TempMaterial' table. 
+                this.tempMaterialTableAdapter.Fill(this.trainITDataSet.TempMaterial);
+
+                //Enable or disable the button to delete object from the tempMaterial.
+                setModForMatOptions();
+            }
         }
 
         private void tsBtnNew_Click(object sender, EventArgs e)
         {
             setEditMode();
             txtSpeed.Text = "";
+            chbxComp.Checked = false;
+            chBxTrans.Checked = false;
             btnFindTrain.Focus();
+            sessionIDToUpdate = -1;
         }
 
         private void tsBtnEdit_Click(object sender, EventArgs e)
         {
             setEditMode();
             btnFindTrain.Focus();
+            sessionIDToUpdate = Convert.ToInt64(txtSessionID.Text);
         }
 
         private void tsBtnCancel_Click(object sender, EventArgs e)
@@ -314,14 +456,16 @@ namespace TrainIt
             {
                 this.sessionsBindingSource.CancelEdit();
                 setNormalMode();
+                LoadDataForSessionMaterial(Convert.ToInt64(txtSessionID.Text));
                 //calculate Speed
                 if ((txtDist.Text != "") && (txtTime.Text != ""))
-                    txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);
+                    txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);                
             }
         }
 
         private void tsBtnSave_Click(object sender, EventArgs e)
         {
+            bool newTraining = false;
             //Check if user chooses a SportType, if not give a warning error                      
             if (txtSportTypeID.Text != "")
             {
@@ -332,6 +476,7 @@ namespace TrainIt
                     //Check if user chooses a Train ID, if not create new traininig
                     if (txtTrainID.Text == "")
                     {
+                        newTraining = true;
                         Global.trainingUsed.UserID = userIDWorking;
                         Global.trainingUsed.TrainDate = dtpDate.Value;
                         Global.trainingUsed.TrainName = "Sin Nombre";
@@ -339,18 +484,229 @@ namespace TrainIt
                         txtTrainID.Text = Global.trainingUsed.TrainID.ToString();
                     }
                     txtUserID.Text = userIDWorking.ToString();
+                    
+
+                    
                     this.Validate();
                     this.sessionsBindingSource.EndEdit();
-                    this.tableAdapterManager.UpdateAll(this.trainITDataSet);
-                    MessageBox.Show("Sesión guardada corectamente");
+                    //this.tableAdapterManager.UpdateAll(this.trainITDataSet);
+                    if (sessionIDToUpdate == -1)
+                        saveSessionData(connString, newTraining);
+                    else 
+                        updateSessionData(connString);                    
+                    MessageBox.Show("Sesión guardada corectamente.");
                     setNormalMode();
-                    LoadData();
+                    //LoadDataForSessionMaterial();                   
                 }
             }
             else
             {
                 MessageBox.Show("No ha seleccionado el deporte realizado en la sesión.");
                 btnFindSportType.Focus();
+            }
+        }
+
+        private void saveSessionData(string connString, bool newTraining)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+               // using (SqlTransaction tr = conn.BeginTransaction())
+               // {
+                    string query = null;
+                    if (newTraining)
+                    {  //1º Update training data obtaining 
+                        query = @"INSERT INTO Trainings(UserID, TrainDate, TrainName)
+                                                 VALUES(@userID,@trainDate,@trainName)
+                                  SELECT SCOPE_IDENTITY()";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
+                            cmd.Parameters["@userID"].Value = Global.trainingUsed.UserID;
+
+                            cmd.Parameters.Add(new SqlParameter("@trainDate", SqlDbType.Date));
+                            cmd.Parameters["@trainDate"].Value = Global.trainingUsed.TrainDate;
+
+                            cmd.Parameters.Add(new SqlParameter("@trainName", SqlDbType.VarChar));
+                            cmd.Parameters["@trainName"].Value = Global.trainingUsed.TrainName;
+
+                            conn.Open();
+                            //returns the first column which is the TrainID
+                            Int64 res = Convert.ToInt64(cmd.ExecuteScalar());
+
+                            //Assign the TraindID created when insert.                        
+                            if (res >= 0)
+                                Global.trainingUsed.TrainID = res;
+                        }
+                    } //New Trainig saved.
+
+                    //2º Save session data 
+                    conn.Close();
+                    Int64 aSessionID=-1;
+                    query = @"INSERT INTO Sessions(TrainID, UserID, SportTypeID, Competition, Transition, Distance, Time, MedHR, MaxHR, Value, Memo, Date)
+                                            VALUES(@trainID, @userID, @sportTypeID, @competition, @transition, @distance, @time, @medHR, @maxHR, @value, @memo, @date)
+                              SELECT SCOPE_IDENTITY()";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.Add(new SqlParameter("@trainID", SqlDbType.BigInt));
+                        cmd.Parameters["@trainID"].Value = Global.trainingUsed.TrainID;
+
+                        cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
+                        cmd.Parameters["@userID"].Value = Convert.ToInt64(txtUserID.Text);
+
+                        cmd.Parameters.Add(new SqlParameter("@sportTypeID", SqlDbType.BigInt));
+                        cmd.Parameters["@sportTypeID"].Value = Convert.ToInt64(txtSportTypeID.Text);
+
+                        cmd.Parameters.Add(new SqlParameter("@competition", SqlDbType.Bit));
+                        cmd.Parameters["@competition"].Value = chbxComp.Checked;
+
+                        cmd.Parameters.Add(new SqlParameter("@transition", SqlDbType.Bit));
+                        cmd.Parameters["@transition"].Value = chBxTrans.Checked;
+
+                        double aDist = 0;
+                        if (txtDist.Text != "")
+                            aDist = Convert.ToDouble(txtDist.Text);
+                        cmd.Parameters.Add(new SqlParameter("@distance", SqlDbType.Float));
+                        cmd.Parameters["@distance"].Value = aDist;
+
+                        DateTime aTime = new DateTime();
+                        if (txtTime.Text == "")
+                            aTime = Convert.ToDateTime("00:00:00");
+                        else
+                            aTime = Convert.ToDateTime(txtTime.Text);
+                        cmd.Parameters.Add(new SqlParameter("@time", SqlDbType.DateTime));
+                        cmd.Parameters["@time"].Value = aTime;
+
+                        int aMedHR = 0;
+                        if (txtMedHR.Text != "")
+                            aMedHR = Convert.ToInt16(txtMedHR.Text);
+                        cmd.Parameters.Add(new SqlParameter("@medHR", SqlDbType.SmallInt));
+                        cmd.Parameters["@medHR"].Value = aMedHR;
+
+                        int aMaxHR = 0;
+                        if (txtMaxHR.Text != "")
+                            aMaxHR = Convert.ToInt16(txtMaxHR.Text);
+                        cmd.Parameters.Add(new SqlParameter("@maxHR", SqlDbType.SmallInt));
+                        cmd.Parameters["@maxHR"].Value = aMaxHR;
+
+                        int aVal = 0;
+                        if (txtValue.Text != "")
+                            aVal = Convert.ToInt16(txtValue.Text);
+                        cmd.Parameters.Add(new SqlParameter("@value", SqlDbType.SmallInt));
+                        cmd.Parameters["@value"].Value = aVal;
+
+                        cmd.Parameters.Add(new SqlParameter("@memo", SqlDbType.VarChar));
+                        cmd.Parameters["@memo"].Value = txtMemo.Text;
+
+                                                                     
+                        cmd.Parameters.Add(new SqlParameter("@date", SqlDbType.Date));
+                        cmd.Parameters["@date"].Value = dtpDate.Value;
+
+                        conn.Open();
+                        //returns the first column which is the TrainID
+                        aSessionID = Convert.ToInt64(cmd.ExecuteScalar());
+                    }// New session saved
+
+                    //3º Save material in TempMaterial to matSessions
+                    conn.Close();
+                    query = @"INSERT INTO MaterialSession (MatID,SessionID) 
+                              SELECT matID,@sessionID  FROM dbo.TempMaterial;";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.Add(new SqlParameter("@sessionID", SqlDbType.BigInt));
+                        cmd.Parameters["@sessionID"].Value = aSessionID;
+                        
+                        conn.Open();
+                       cmd.ExecuteScalar();
+                    }// Ssession materials saved
+
+              //      tr.Commit();
+              //  }//Transaction end
+            }
+        }
+
+        private void updateSessionData(string connString)
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                // using (SqlTransaction tr = conn.BeginTransaction())
+                // {
+                string query = null;
+                //1º Save session data 
+                //2º Delete materials for the session into table: matSessions
+                //4º Save material in TempMaterial to matSessions
+                conn.Close();
+                query = @"UPDATE Sessions SET TrainID=@trainID, UserID=@userID, SportTypeID=@sportTypeID, Competition=@competition, Transition=@transition, 
+                                              Distance=@distance, Time=@time, MedHR=@medHR, MaxHR=@maxHR, Value=@value, Memo=@memo, Date=@date
+                          WHERE SessionID=@sessionID;
+                          DELETE FROM MaterialSession WHERE SessionID=@sessionID;
+                          INSERT INTO MaterialSession (MatID,SessionID) 
+                              SELECT matID,@sessionID  FROM TempMaterial;";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@sessionID", SqlDbType.BigInt));
+                    cmd.Parameters["@sessionID"].Value = sessionIDToUpdate;
+
+                    cmd.Parameters.Add(new SqlParameter("@trainID", SqlDbType.BigInt));
+                    cmd.Parameters["@trainID"].Value = Convert.ToInt64(txtTrainID.Text);
+
+                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
+                    cmd.Parameters["@userID"].Value = Convert.ToInt64(txtUserID.Text);
+
+                    cmd.Parameters.Add(new SqlParameter("@sportTypeID", SqlDbType.BigInt));
+                    cmd.Parameters["@sportTypeID"].Value = Convert.ToInt64(txtSportTypeID.Text);
+
+                    cmd.Parameters.Add(new SqlParameter("@competition", SqlDbType.Bit));
+                    cmd.Parameters["@competition"].Value = chbxComp.Checked;
+
+                    cmd.Parameters.Add(new SqlParameter("@transition", SqlDbType.Bit));
+                    cmd.Parameters["@transition"].Value = chBxTrans.Checked;
+
+                    double aDist = 0;
+                    if (txtDist.Text != "")
+                        aDist = Convert.ToDouble(txtDist.Text);
+                    cmd.Parameters.Add(new SqlParameter("@distance", SqlDbType.Float));
+                    cmd.Parameters["@distance"].Value = aDist;
+
+                    DateTime aTime = new DateTime();
+                    if (txtTime.Text == "")
+                        aTime = Convert.ToDateTime("00:00:00");
+                    else
+                        aTime = Convert.ToDateTime(txtTime.Text);
+                    cmd.Parameters.Add(new SqlParameter("@time", SqlDbType.DateTime));
+                    cmd.Parameters["@time"].Value = aTime;
+
+                    int aMedHR = 0;
+                    if (txtMedHR.Text != "")
+                        aMedHR = Convert.ToInt16(txtMedHR.Text);
+                    cmd.Parameters.Add(new SqlParameter("@medHR", SqlDbType.SmallInt));
+                    cmd.Parameters["@medHR"].Value = aMedHR;
+
+                    int aMaxHR = 0;
+                    if (txtMaxHR.Text != "")
+                        aMaxHR = Convert.ToInt16(txtMaxHR.Text);
+                    cmd.Parameters.Add(new SqlParameter("@maxHR", SqlDbType.SmallInt));
+                    cmd.Parameters["@maxHR"].Value = aMaxHR;
+
+                    int aVal = 0;
+                    if (txtValue.Text != "")
+                        aVal = Convert.ToInt16(txtValue.Text);
+                    cmd.Parameters.Add(new SqlParameter("@value", SqlDbType.SmallInt));
+                    cmd.Parameters["@value"].Value = aVal;
+
+                    cmd.Parameters.Add(new SqlParameter("@memo", SqlDbType.VarChar));
+                    cmd.Parameters["@memo"].Value = txtMemo.Text;
+
+
+                    cmd.Parameters.Add(new SqlParameter("@date", SqlDbType.Date));
+                    cmd.Parameters["@date"].Value = dtpDate.Value;
+
+                    conn.Open();                    
+                    cmd.ExecuteScalar();
+                }// New session saved
+
+              
+                //      tr.Commit();
+                //  }//Transaction end
             }
         }
 
@@ -545,8 +901,9 @@ namespace TrainIt
             {
                 //Loads data for Materials used in the session
                 LoadDataForSessionMaterial(aSessionID);
-            }
-
+                //Set the enable property for materials buttons
+                setModForMatOptions();
+            }            
         }
 
         private void txtTime_TextChanged(object sender, EventArgs e)
@@ -558,5 +915,7 @@ namespace TrainIt
                     txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);
             }
         }
+
+
     }
 }
