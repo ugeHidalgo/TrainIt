@@ -116,18 +116,18 @@
             this.tempMaterialBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tempMaterialTableAdapter = new TrainIt.TrainITDataSetTableAdapters.TempMaterialTableAdapter();
             this.dgvMats = new System.Windows.Forms.DataGridView();
-            this.cms1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cms1Add = new System.Windows.Forms.ToolStripMenuItem();
-            this.cms1Del = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnDelAllMat = new System.Windows.Forms.Button();
-            this.cms1DelAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cms1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cms1Add = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.cms1Del = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms1DelAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnDelAllMat = new System.Windows.Forms.Button();
             sessionIDLabel = new System.Windows.Forms.Label();
             trainIDLabel = new System.Windows.Forms.Label();
             sportTypeIDLabel = new System.Windows.Forms.Label();
@@ -465,6 +465,7 @@
             this.dgvSessions.Name = "dgvSessions";
             this.dgvSessions.ReadOnly = true;
             this.dgvSessions.RowHeadersVisible = false;
+            this.dgvSessions.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvSessions.Size = new System.Drawing.Size(991, 355);
             this.dgvSessions.TabIndex = 8;
             // 
@@ -919,57 +920,6 @@
             this.dgvMats.Size = new System.Drawing.Size(546, 220);
             this.dgvMats.TabIndex = 44;
             // 
-            // cms1
-            // 
-            this.cms1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cms1Add,
-            this.toolStripSeparator1,
-            this.cms1Del,
-            this.cms1DelAll});
-            this.cms1.Name = "cms1";
-            this.cms1.Size = new System.Drawing.Size(320, 76);
-            this.cms1.Text = "Materia usado en la sesión";
-            // 
-            // cms1Add
-            // 
-            this.cms1Add.Name = "cms1Add";
-            this.cms1Add.Size = new System.Drawing.Size(319, 22);
-            this.cms1Add.Text = "Añadir material usado en la sesión";
-            this.cms1Add.Click += new System.EventHandler(this.btnFindMaterial_Click);
-            // 
-            // cms1Del
-            // 
-            this.cms1Del.Name = "cms1Del";
-            this.cms1Del.Size = new System.Drawing.Size(319, 22);
-            this.cms1Del.Text = "Quitar material usado en la sesión";
-            this.cms1Del.Click += new System.EventHandler(this.btnDelMat_Click);
-            // 
-            // btnDelAllMat
-            // 
-            this.btnDelAllMat.Image = ((System.Drawing.Image)(resources.GetObject("btnDelAllMat.Image")));
-            this.btnDelAllMat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelAllMat.Location = new System.Drawing.Point(680, 131);
-            this.btnDelAllMat.Name = "btnDelAllMat";
-            this.btnDelAllMat.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.btnDelAllMat.Size = new System.Drawing.Size(119, 24);
-            this.btnDelAllMat.TabIndex = 46;
-            this.btnDelAllMat.Text = "Quitar Todos";
-            this.btnDelAllMat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDelAllMat.UseVisualStyleBackColor = true;
-            this.btnDelAllMat.Click += new System.EventHandler(this.btnDelAllMat_Click);
-            // 
-            // cms1DelAll
-            // 
-            this.cms1DelAll.Name = "cms1DelAll";
-            this.cms1DelAll.Size = new System.Drawing.Size(319, 22);
-            this.cms1DelAll.Text = "Quitar todos los materiales usados en la sesión";
-            this.cms1DelAll.Click += new System.EventHandler(this.btnDelAllMat_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(316, 6);
-            // 
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.DataPropertyName = "MatImage";
@@ -1018,6 +968,57 @@
             this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
             this.dataGridViewTextBoxColumn17.ReadOnly = true;
             this.dataGridViewTextBoxColumn17.Visible = false;
+            // 
+            // cms1
+            // 
+            this.cms1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cms1Add,
+            this.toolStripSeparator1,
+            this.cms1Del,
+            this.cms1DelAll});
+            this.cms1.Name = "cms1";
+            this.cms1.Size = new System.Drawing.Size(320, 76);
+            this.cms1.Text = "Materia usado en la sesión";
+            // 
+            // cms1Add
+            // 
+            this.cms1Add.Name = "cms1Add";
+            this.cms1Add.Size = new System.Drawing.Size(319, 22);
+            this.cms1Add.Text = "Añadir material usado en la sesión";
+            this.cms1Add.Click += new System.EventHandler(this.btnFindMaterial_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(316, 6);
+            // 
+            // cms1Del
+            // 
+            this.cms1Del.Name = "cms1Del";
+            this.cms1Del.Size = new System.Drawing.Size(319, 22);
+            this.cms1Del.Text = "Quitar material usado en la sesión";
+            this.cms1Del.Click += new System.EventHandler(this.btnDelMat_Click);
+            // 
+            // cms1DelAll
+            // 
+            this.cms1DelAll.Name = "cms1DelAll";
+            this.cms1DelAll.Size = new System.Drawing.Size(319, 22);
+            this.cms1DelAll.Text = "Quitar todos los materiales usados en la sesión";
+            this.cms1DelAll.Click += new System.EventHandler(this.btnDelAllMat_Click);
+            // 
+            // btnDelAllMat
+            // 
+            this.btnDelAllMat.Image = ((System.Drawing.Image)(resources.GetObject("btnDelAllMat.Image")));
+            this.btnDelAllMat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelAllMat.Location = new System.Drawing.Point(680, 131);
+            this.btnDelAllMat.Name = "btnDelAllMat";
+            this.btnDelAllMat.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.btnDelAllMat.Size = new System.Drawing.Size(119, 24);
+            this.btnDelAllMat.TabIndex = 46;
+            this.btnDelAllMat.Text = "Quitar Todos";
+            this.btnDelAllMat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDelAllMat.UseVisualStyleBackColor = true;
+            this.btnDelAllMat.Click += new System.EventHandler(this.btnDelAllMat_Click);
             // 
             // FSessions
             // 

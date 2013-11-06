@@ -40,7 +40,7 @@ namespace TrainItLibrary
         //Calculate Speed
         public static string calculateSpeed(string aDist, string aTime)
         {
-            string speedString = "Error";
+            string speedString = "0.0";
             bool sigue=false;
             long time = 0;
             double dist = 0;

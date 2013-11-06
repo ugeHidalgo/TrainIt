@@ -34,8 +34,8 @@
             System.Windows.Forms.Label userSecondNameLabel;
             System.Windows.Forms.Label userMailLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FSportTypes));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolS1 = new System.Windows.Forms.ToolStrip();
             this.tsBtnFirst = new System.Windows.Forms.ToolStripButton();
             this.tsBtnPrevious = new System.Windows.Forms.ToolStripButton();
@@ -277,14 +277,15 @@
             this.dgvSTypes.RowHeadersVisible = false;
             this.dgvSTypes.Size = new System.Drawing.Size(588, 400);
             this.dgvSTypes.TabIndex = 4;
+            this.dgvSTypes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSTypes_CellDoubleClick);
             this.dgvSTypes.Click += new System.EventHandler(this.dgvSTypes_Click);
             // 
             // ID
             // 
             this.ID.DataPropertyName = "SportTypeID";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.NullValue = null;
-            this.ID.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.NullValue = null;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle1;
             this.ID.HeaderText = "";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
@@ -300,8 +301,8 @@
             // ParentID
             // 
             this.ParentID.DataPropertyName = "ParentSportTypeID";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ParentID.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ParentID.DefaultCellStyle = dataGridViewCellStyle2;
             this.ParentID.HeaderText = "";
             this.ParentID.Name = "ParentID";
             this.ParentID.ReadOnly = true;

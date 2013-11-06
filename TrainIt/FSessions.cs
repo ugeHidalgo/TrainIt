@@ -489,14 +489,20 @@ namespace TrainIt
                     
                     this.Validate();
                     this.sessionsBindingSource.EndEdit();
-                    //this.tableAdapterManager.UpdateAll(this.trainITDataSet);
+                    //Gets position in de data grid before save.
+                    int position = dgvSessions.CurrentRow.Index;
                     if (sessionIDToUpdate == -1)
+                    {
+                        position = 0;
                         saveSessionData(connString, newTraining);
-                    else 
+                    }
+                    else
                         updateSessionData(connString);                    
-                    MessageBox.Show("Sesión guardada corectamente.");
                     setNormalMode();
-                    //LoadDataForSessionMaterial();                   
+                    LoadData();
+                    //Sets position in grid
+                    dgvSessions.CurrentCell = dgvSessions[0, position];
+                    MessageBox.Show("Sesión guardada corectamente.");
                 }
             }
             else
@@ -507,7 +513,7 @@ namespace TrainIt
         }
 
         private void saveSessionData(string connString, bool newTraining)
-        {
+        {            
             using (SqlConnection conn = new SqlConnection(connString))
             {
                // using (SqlTransaction tr = conn.BeginTransaction())
@@ -541,7 +547,7 @@ namespace TrainIt
 
                     //2º Save session data 
                     conn.Close();
-                    Int64 aSessionID=-1;
+                    Int64 aSessionID = -1;  
                     query = @"INSERT INTO Sessions(TrainID, UserID, SportTypeID, Competition, Transition, Distance, Time, MedHR, MaxHR, Value, Memo, Date)
                                             VALUES(@trainID, @userID, @sportTypeID, @competition, @transition, @distance, @time, @medHR, @maxHR, @value, @memo, @date)
                               SELECT SCOPE_IDENTITY()";
@@ -707,7 +713,7 @@ namespace TrainIt
               
                 //      tr.Commit();
                 //  }//Transaction end
-            }
+            };
         }
 
         private void tsBtnDelete_Click(object sender, EventArgs e)

@@ -70,6 +70,8 @@
             this.MatTotTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatTotDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnChoose = new System.Windows.Forms.Button();
             this.txtUserID = new System.Windows.Forms.TextBox();
             this.mtxtWeight = new System.Windows.Forms.MaskedTextBox();
             this.txtSize = new System.Windows.Forms.TextBox();
@@ -98,8 +100,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.materialsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.MaterialsTableAdapter();
             this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnChoose = new System.Windows.Forms.Button();
             matInitTimeLabel = new System.Windows.Forms.Label();
             matInitDistLabel = new System.Windows.Forms.Label();
             matBuyMemoLabel = new System.Windows.Forms.Label();
@@ -452,8 +452,10 @@
             this.dgvMat.Name = "dgvMat";
             this.dgvMat.ReadOnly = true;
             this.dgvMat.RowHeadersVisible = false;
+            this.dgvMat.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvMat.Size = new System.Drawing.Size(950, 298);
             this.dgvMat.TabIndex = 4;
+            this.dgvMat.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMat_CellDoubleClick);
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -533,6 +535,34 @@
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Descripción";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(419, 14);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.btnCancel.Size = new System.Drawing.Size(126, 41);
+            this.btnCancel.TabIndex = 30;
+            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnChoose
+            // 
+            this.btnChoose.Image = ((System.Drawing.Image)(resources.GetObject("btnChoose.Image")));
+            this.btnChoose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChoose.Location = new System.Drawing.Point(247, 14);
+            this.btnChoose.Name = "btnChoose";
+            this.btnChoose.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.btnChoose.Size = new System.Drawing.Size(168, 41);
+            this.btnChoose.TabIndex = 29;
+            this.btnChoose.Text = "Seleccionar";
+            this.btnChoose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnChoose.UseVisualStyleBackColor = true;
+            this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
             // 
             // txtUserID
             // 
@@ -860,38 +890,11 @@
             this.tableAdapterManager.MaterialsTableAdapter = this.materialsTableAdapter;
             this.tableAdapterManager.SessionsTableAdapter = null;
             this.tableAdapterManager.SportTypesTableAdapter = null;
+            this.tableAdapterManager.TempMaterialTableAdapter = null;
             this.tableAdapterManager.TrainingsTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRegsTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(419, 14);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.btnCancel.Size = new System.Drawing.Size(126, 41);
-            this.btnCancel.TabIndex = 30;
-            this.btnCancel.Text = "Cancelar";
-            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnChoose
-            // 
-            this.btnChoose.Image = ((System.Drawing.Image)(resources.GetObject("btnChoose.Image")));
-            this.btnChoose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnChoose.Location = new System.Drawing.Point(247, 14);
-            this.btnChoose.Name = "btnChoose";
-            this.btnChoose.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.btnChoose.Size = new System.Drawing.Size(168, 41);
-            this.btnChoose.TabIndex = 29;
-            this.btnChoose.Text = "Seleccionar";
-            this.btnChoose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnChoose.UseVisualStyleBackColor = true;
-            this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
             // 
             // FMaterial
             // 

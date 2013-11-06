@@ -626,5 +626,13 @@ namespace TrainIt
         {
             this.Close();
         }
+
+        private void dgvMat_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (OnSearchMode)
+            {
+                btnChoose_Click(this, e);
+            }
+        }
     }
 }
