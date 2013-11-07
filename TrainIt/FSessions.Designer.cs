@@ -878,7 +878,7 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.MaterialSessionTableAdapter = null;
-            this.tableAdapterManager.MaterialsTableAdapter = null;
+            //this.tableAdapterManager.MaterialsTableAdapter = null;
             this.tableAdapterManager.SessionsTableAdapter = this.sessionsTableAdapter;
             this.tableAdapterManager.SportTypesTableAdapter = null;
             this.tableAdapterManager.TempMaterialTableAdapter = null;

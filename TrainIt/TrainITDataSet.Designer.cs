@@ -590,15 +590,15 @@ namespace TrainIt {
             
             private global::System.Data.DataColumn columnMatRecDist;
             
-            private global::System.Data.DataColumn columnMatTotTime;
-            
-            private global::System.Data.DataColumn columnMatTotDist;
-            
             private global::System.Data.DataColumn columnMatBuyMemo;
             
             private global::System.Data.DataColumn columnuserID;
             
             private global::System.Data.DataColumn columnMatImage;
+            
+            private global::System.Data.DataColumn columnTotDistCalc;
+            
+            private global::System.Data.DataColumn columnTotTimeCalc;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -731,22 +731,6 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MatTotTimeColumn {
-                get {
-                    return this.columnMatTotTime;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MatTotDistColumn {
-                get {
-                    return this.columnMatTotDist;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn MatBuyMemoColumn {
                 get {
                     return this.columnMatBuyMemo;
@@ -766,6 +750,22 @@ namespace TrainIt {
             public global::System.Data.DataColumn MatImageColumn {
                 get {
                     return this.columnMatImage;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotDistCalcColumn {
+                get {
+                    return this.columnTotDistCalc;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TotTimeCalcColumn {
+                get {
+                    return this.columnTotTimeCalc;
                 }
             }
             
@@ -818,11 +818,11 @@ namespace TrainIt {
                         decimal MatInitDist, 
                         string MatRecTime, 
                         decimal MatRecDist, 
-                        string MatTotTime, 
-                        decimal MatTotDist, 
                         string MatBuyMemo, 
                         long userID, 
-                        byte[] MatImage) {
+                        byte[] MatImage, 
+                        decimal TotDistCalc, 
+                        string TotTimeCalc) {
                 MaterialsRow rowMaterialsRow = ((MaterialsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -837,11 +837,11 @@ namespace TrainIt {
                         MatInitDist,
                         MatRecTime,
                         MatRecDist,
-                        MatTotTime,
-                        MatTotDist,
                         MatBuyMemo,
                         userID,
-                        MatImage};
+                        MatImage,
+                        TotDistCalc,
+                        TotTimeCalc};
                 rowMaterialsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMaterialsRow);
                 return rowMaterialsRow;
@@ -883,11 +883,11 @@ namespace TrainIt {
                 this.columnMatInitDist = base.Columns["MatInitDist"];
                 this.columnMatRecTime = base.Columns["MatRecTime"];
                 this.columnMatRecDist = base.Columns["MatRecDist"];
-                this.columnMatTotTime = base.Columns["MatTotTime"];
-                this.columnMatTotDist = base.Columns["MatTotDist"];
                 this.columnMatBuyMemo = base.Columns["MatBuyMemo"];
                 this.columnuserID = base.Columns["userID"];
                 this.columnMatImage = base.Columns["MatImage"];
+                this.columnTotDistCalc = base.Columns["TotDistCalc"];
+                this.columnTotTimeCalc = base.Columns["TotTimeCalc"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -917,16 +917,16 @@ namespace TrainIt {
                 base.Columns.Add(this.columnMatRecTime);
                 this.columnMatRecDist = new global::System.Data.DataColumn("MatRecDist", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMatRecDist);
-                this.columnMatTotTime = new global::System.Data.DataColumn("MatTotTime", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMatTotTime);
-                this.columnMatTotDist = new global::System.Data.DataColumn("MatTotDist", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMatTotDist);
                 this.columnMatBuyMemo = new global::System.Data.DataColumn("MatBuyMemo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMatBuyMemo);
                 this.columnuserID = new global::System.Data.DataColumn("userID", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnuserID);
                 this.columnMatImage = new global::System.Data.DataColumn("MatImage", typeof(byte[]), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMatImage);
+                this.columnTotDistCalc = new global::System.Data.DataColumn("TotDistCalc", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotDistCalc);
+                this.columnTotTimeCalc = new global::System.Data.DataColumn("TotTimeCalc", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotTimeCalc);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMatID}, true));
                 this.columnMatID.AutoIncrement = true;
@@ -942,11 +942,11 @@ namespace TrainIt {
                 this.columnMatSize.MaxLength = 10;
                 this.columnMatInitTime.MaxLength = 12;
                 this.columnMatRecTime.MaxLength = 12;
-                this.columnMatTotTime.AllowDBNull = false;
-                this.columnMatTotTime.MaxLength = 12;
-                this.columnMatTotDist.AllowDBNull = false;
                 this.columnMatBuyMemo.MaxLength = 2147483647;
                 this.columnuserID.AllowDBNull = false;
+                this.columnTotDistCalc.ReadOnly = true;
+                this.columnTotTimeCalc.ReadOnly = true;
+                this.columnTotTimeCalc.MaxLength = 8;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3639,28 +3639,6 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MatTotTime {
-                get {
-                    return ((string)(this[this.tableMaterials.MatTotTimeColumn]));
-                }
-                set {
-                    this[this.tableMaterials.MatTotTimeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal MatTotDist {
-                get {
-                    return ((decimal)(this[this.tableMaterials.MatTotDistColumn]));
-                }
-                set {
-                    this[this.tableMaterials.MatTotDistColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string MatBuyMemo {
                 get {
                     try {
@@ -3699,6 +3677,38 @@ namespace TrainIt {
                 }
                 set {
                     this[this.tableMaterials.MatImageColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal TotDistCalc {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableMaterials.TotDistCalcColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotDistCalc\' in table \'Materials\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMaterials.TotDistCalcColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TotTimeCalc {
+                get {
+                    try {
+                        return ((string)(this[this.tableMaterials.TotTimeCalcColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotTimeCalc\' in table \'Materials\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMaterials.TotTimeCalcColumn] = value;
                 }
             }
             
@@ -3844,6 +3854,30 @@ namespace TrainIt {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetMatImageNull() {
                 this[this.tableMaterials.MatImageColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotDistCalcNull() {
+                return this.IsNull(this.tableMaterials.TotDistCalcColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotDistCalcNull() {
+                this[this.tableMaterials.TotDistCalcColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTotTimeCalcNull() {
+                return this.IsNull(this.tableMaterials.TotTimeCalcColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTotTimeCalcNull() {
+                this[this.tableMaterials.TotTimeCalcColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5351,45 +5385,21 @@ namespace TrainIt.TrainITDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("MatInitDist", "MatInitDist");
             tableMapping.ColumnMappings.Add("MatRecTime", "MatRecTime");
             tableMapping.ColumnMappings.Add("MatRecDist", "MatRecDist");
-            tableMapping.ColumnMappings.Add("MatTotTime", "MatTotTime");
-            tableMapping.ColumnMappings.Add("MatTotDist", "MatTotDist");
             tableMapping.ColumnMappings.Add("MatBuyMemo", "MatBuyMemo");
             tableMapping.ColumnMappings.Add("userID", "userID");
             tableMapping.ColumnMappings.Add("MatImage", "MatImage");
+            tableMapping.ColumnMappings.Add("TotDistCalc", "TotDistCalc");
+            tableMapping.ColumnMappings.Add("TotTimeCalc", "TotTimeCalc");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Materials] WHERE (([MatID] = @Original_MatID) AND ([MatName] = @Original_MatName) AND ((@IsNull_MatModel = 1 AND [MatModel] IS NULL) OR ([MatModel] = @Original_MatModel)) AND ((@IsNull_MatBrand = 1 AND [MatBrand] IS NULL) OR ([MatBrand] = @Original_MatBrand)) AND ((@IsNull_MatSize = 1 AND [MatSize] IS NULL) OR ([MatSize] = @Original_MatSize)) AND ((@IsNull_MatWeight = 1 AND [MatWeight] IS NULL) OR ([MatWeight] = @Original_MatWeight)) AND ((@IsNull_MatBuyDate = 1 AND [MatBuyDate] IS NULL) OR ([MatBuyDate] = @Original_MatBuyDate)) AND ((@IsNull_MatCost = 1 AND [MatCost] IS NULL) OR ([MatCost] = @Original_MatCost)) AND ((@IsNull_MatInitTime = 1 AND [MatInitTime] IS NULL) OR ([MatInitTime] = @Original_MatInitTime)) AND ((@IsNull_MatInitDist = 1 AND [MatInitDist] IS NULL) OR ([MatInitDist] = @Original_MatInitDist)) AND ((@IsNull_MatRecTime = 1 AND [MatRecTime] IS NULL) OR ([MatRecTime] = @Original_MatRecTime)) AND ((@IsNull_MatRecDist = 1 AND [MatRecDist] IS NULL) OR ([MatRecDist] = @Original_MatRecDist)) AND ([MatTotTime] = @Original_MatTotTime) AND ([MatTotDist] = @Original_MatTotDist) AND ([userID] = @Original_userID))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Materials] WHERE (([MatID] = @Original_MatID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatModel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatModel", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatModel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatModel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatBrand", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatBrand", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatBrand", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatBrand", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatSize", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatSize", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatSize", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatWeight", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatWeight", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatWeight", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "MatWeight", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatBuyDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatBuyDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatBuyDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatBuyDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatCost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatCost", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatInitTime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatInitTime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatInitTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatInitTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatInitDist", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatInitDist", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatInitDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatInitDist", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatRecTime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatRecTime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatRecTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatRecTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatRecDist", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatRecDist", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatRecDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatRecDist", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatTotTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatTotTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatTotDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatTotDist", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_userID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "userID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Materials] ([MatName], [MatModel], [MatBrand], [MatSize], [MatWeight], [MatBuyDate], [MatCost], [MatInitTime], [MatInitDist], [MatRecTime], [MatRecDist], [MatTotTime], [MatTotDist], [MatBuyMemo], [userID], [MatImage]) VALUES (@MatName, @MatModel, @MatBrand, @MatSize, @MatWeight, @MatBuyDate, @MatCost, @MatInitTime, @MatInitDist, @MatRecTime, @MatRecDist, @MatTotTime, @MatTotDist, @MatBuyMemo, @userID, @MatImage);
-SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, MatInitDist, MatRecTime, MatRecDist, MatTotTime, MatTotDist, MatBuyMemo, userID, MatImage FROM Materials WHERE (MatID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Materials] ([MatName], [MatModel], [MatBrand], [MatSize], [MatWeight], [MatBuyDate], [MatCost], [MatInitTime], [MatInitDist], [MatRecTime], [MatRecDist], [MatBuyMemo], [userID], [MatImage]) VALUES (@MatName, @MatModel, @MatBrand, @MatSize, @MatWeight, @MatBuyDate, @MatCost, @MatInitTime, @MatInitDist, @MatRecTime, @MatRecDist, @MatBuyMemo, @userID, @MatImage);
+SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, (SELECT CAST(SUM(Sessions.Distance) AS Decimal(7 , 2)) AS TotDist FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID WHERE (MaterialSession.MatID = A.MatID)) AS TotDistCalc, (SELECT CONVERT (CHAR(8), CAST(SUM(CAST(Sessions_1.Time AS float)) AS DateTime), 108) AS TotTime FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON MaterialSession_1.SessionID = Sessions_1.SessionID WHERE (MaterialSession_1.MatID = A.MatID)) AS TotTimeCalc FROM Materials AS A WHERE (MatID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatModel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatModel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5402,36 +5412,13 @@ SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCo
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatInitDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatInitDist", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatRecTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatRecTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatRecDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatRecDist", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatTotTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatTotTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatTotDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatTotDist", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatBuyMemo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatBuyMemo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "userID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatImage", global::System.Data.SqlDbType.Image, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatImage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Materials] SET [MatName] = @MatName, [MatModel] = @MatModel, [MatBr" +
-                "and] = @MatBrand, [MatSize] = @MatSize, [MatWeight] = @MatWeight, [MatBuyDate] =" +
-                " @MatBuyDate, [MatCost] = @MatCost, [MatInitTime] = @MatInitTime, [MatInitDist] " +
-                "= @MatInitDist, [MatRecTime] = @MatRecTime, [MatRecDist] = @MatRecDist, [MatTotT" +
-                "ime] = @MatTotTime, [MatTotDist] = @MatTotDist, [MatBuyMemo] = @MatBuyMemo, [use" +
-                "rID] = @userID, [MatImage] = @MatImage WHERE (([MatID] = @Original_MatID) AND ([" +
-                "MatName] = @Original_MatName) AND ((@IsNull_MatModel = 1 AND [MatModel] IS NULL)" +
-                " OR ([MatModel] = @Original_MatModel)) AND ((@IsNull_MatBrand = 1 AND [MatBrand]" +
-                " IS NULL) OR ([MatBrand] = @Original_MatBrand)) AND ((@IsNull_MatSize = 1 AND [M" +
-                "atSize] IS NULL) OR ([MatSize] = @Original_MatSize)) AND ((@IsNull_MatWeight = 1" +
-                " AND [MatWeight] IS NULL) OR ([MatWeight] = @Original_MatWeight)) AND ((@IsNull_" +
-                "MatBuyDate = 1 AND [MatBuyDate] IS NULL) OR ([MatBuyDate] = @Original_MatBuyDate" +
-                ")) AND ((@IsNull_MatCost = 1 AND [MatCost] IS NULL) OR ([MatCost] = @Original_Ma" +
-                "tCost)) AND ((@IsNull_MatInitTime = 1 AND [MatInitTime] IS NULL) OR ([MatInitTim" +
-                "e] = @Original_MatInitTime)) AND ((@IsNull_MatInitDist = 1 AND [MatInitDist] IS " +
-                "NULL) OR ([MatInitDist] = @Original_MatInitDist)) AND ((@IsNull_MatRecTime = 1 A" +
-                "ND [MatRecTime] IS NULL) OR ([MatRecTime] = @Original_MatRecTime)) AND ((@IsNull" +
-                "_MatRecDist = 1 AND [MatRecDist] IS NULL) OR ([MatRecDist] = @Original_MatRecDis" +
-                "t)) AND ([MatTotTime] = @Original_MatTotTime) AND ([MatTotDist] = @Original_MatT" +
-                "otDist) AND ([userID] = @Original_userID));\r\nSELECT MatID, MatName, MatModel, Ma" +
-                "tBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, MatInitDist, MatRe" +
-                "cTime, MatRecDist, MatTotTime, MatTotDist, MatBuyMemo, userID, MatImage FROM Mat" +
-                "erials WHERE (MatID = @MatID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Materials] SET [MatName] = @MatName, [MatModel] = @MatModel, [MatBrand] = @MatBrand, [MatSize] = @MatSize, [MatWeight] = @MatWeight, [MatBuyDate] = @MatBuyDate, [MatCost] = @MatCost, [MatInitTime] = @MatInitTime, [MatInitDist] = @MatInitDist, [MatRecTime] = @MatRecTime, [MatRecDist] = @MatRecDist, [MatBuyMemo] = @MatBuyMemo, [userID] = @userID, [MatImage] = @MatImage WHERE (([MatID] = @Original_MatID));
+SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, (SELECT CAST(SUM(Sessions.Distance) AS Decimal(7 , 2)) AS TotDist FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID WHERE (MaterialSession.MatID = A.MatID)) AS TotDistCalc, (SELECT CONVERT (CHAR(8), CAST(SUM(CAST(Sessions_1.Time AS float)) AS DateTime), 108) AS TotTime FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON MaterialSession_1.SessionID = Sessions_1.SessionID WHERE (MaterialSession_1.MatID = A.MatID)) AS TotTimeCalc FROM Materials AS A WHERE (MatID = @MatID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatModel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatModel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5444,36 +5431,10 @@ SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCo
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatInitDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatInitDist", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatRecTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatRecTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatRecDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatRecDist", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatTotTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatTotTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatTotDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatTotDist", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatBuyMemo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatBuyMemo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "userID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatImage", global::System.Data.SqlDbType.Image, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatImage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatModel", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatModel", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatModel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatModel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatBrand", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatBrand", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatBrand", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatBrand", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatSize", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatSize", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatSize", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatWeight", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatWeight", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatWeight", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "MatWeight", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatBuyDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatBuyDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatBuyDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatBuyDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatCost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatCost", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatInitTime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatInitTime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatInitTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatInitTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatInitDist", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatInitDist", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatInitDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatInitDist", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatRecTime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatRecTime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatRecTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatRecTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MatRecDist", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatRecDist", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatRecDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatRecDist", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatTotTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatTotTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MatTotDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatTotDist", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_userID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "userID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "MatID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -5490,16 +5451,22 @@ SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCo
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCos" +
-                "t, MatInitTime, MatInitDist, MatRecTime, MatRecDist, MatTotTime, MatTotDist, Mat" +
-                "BuyMemo, userID, MatImage FROM dbo.Materials WHERE UserID=@UserID";
+            this._commandCollection[0].CommandText = @"SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime,               MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, 
+              (SELECT CAST(SUM(Sessions.Distance) AS Decimal(7 , 2)) AS TotDist 
+               FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID 
+               WHERE (MaterialSession.MatID = A.MatID)) AS TotDistCalc, 
+              (SELECT CONVERT (CHAR(8), CAST(SUM(CAST(Sessions_1.Time AS float)) AS DateTime), 108) AS                             TotTime 
+                FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON                             MaterialSession_1.SessionID = Sessions_1.SessionID 
+                WHERE (MaterialSession_1.MatID = A.MatID)) AS TotTimeCalc 
+FROM Materials AS A 
+WHERE (userID = @userID)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "userID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "userID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCos" +
-                "t, MatInitTime, MatInitDist, MatRecTime, MatRecDist, MatTotTime, MatTotDist, Mat" +
-                "BuyMemo, userID, MatImage FROM dbo.Materials WHERE MatID=@MatID";
+            this._commandCollection[1].CommandText = "SELECT MatBrand, MatBuyDate, MatBuyMemo, MatCost, MatID, MatImage, MatInitDist, M" +
+                "atInitTime, MatModel, MatName, MatRecDist, MatRecTime, MatSize, MatWeight, userI" +
+                "D FROM Materials WHERE (MatID = @MatID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "MatID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -5508,9 +5475,9 @@ SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(TrainITDataSet.MaterialsDataTable dataTable, long UserID) {
+        public virtual int Fill(TrainITDataSet.MaterialsDataTable dataTable, long userID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((long)(UserID));
+            this.Adapter.SelectCommand.Parameters[0].Value = ((long)(userID));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -5522,9 +5489,9 @@ SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual TrainITDataSet.MaterialsDataTable GetData(long UserID) {
+        public virtual TrainITDataSet.MaterialsDataTable GetData(long userID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((long)(UserID));
+            this.Adapter.SelectCommand.Parameters[0].Value = ((long)(userID));
             TrainITDataSet.MaterialsDataTable dataTable = new TrainITDataSet.MaterialsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -5583,519 +5550,6 @@ SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCo
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(global::System.Data.DataRow[] dataRows) {
             return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_MatID, string Original_MatName, string Original_MatModel, string Original_MatBrand, string Original_MatSize, global::System.Nullable<decimal> Original_MatWeight, global::System.Nullable<global::System.DateTime> Original_MatBuyDate, global::System.Nullable<decimal> Original_MatCost, string Original_MatInitTime, global::System.Nullable<decimal> Original_MatInitDist, string Original_MatRecTime, global::System.Nullable<decimal> Original_MatRecDist, string Original_MatTotTime, decimal Original_MatTotDist, long Original_userID) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_MatID));
-            if ((Original_MatName == null)) {
-                throw new global::System.ArgumentNullException("Original_MatName");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_MatName));
-            }
-            if ((Original_MatModel == null)) {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_MatModel));
-            }
-            if ((Original_MatBrand == null)) {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_MatBrand));
-            }
-            if ((Original_MatSize == null)) {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_MatSize));
-            }
-            if ((Original_MatWeight.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((decimal)(Original_MatWeight.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((Original_MatBuyDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((System.DateTime)(Original_MatBuyDate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            if ((Original_MatCost.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((decimal)(Original_MatCost.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            if ((Original_MatInitTime == null)) {
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[15].Value = ((string)(Original_MatInitTime));
-            }
-            if ((Original_MatInitDist.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((decimal)(Original_MatInitDist.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            if ((Original_MatRecTime == null)) {
-                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[19].Value = ((string)(Original_MatRecTime));
-            }
-            if ((Original_MatRecDist.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[21].Value = ((decimal)(Original_MatRecDist.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[21].Value = global::System.DBNull.Value;
-            }
-            if ((Original_MatTotTime == null)) {
-                throw new global::System.ArgumentNullException("Original_MatTotTime");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[22].Value = ((string)(Original_MatTotTime));
-            }
-            this.Adapter.DeleteCommand.Parameters[23].Value = ((decimal)(Original_MatTotDist));
-            this.Adapter.DeleteCommand.Parameters[24].Value = ((long)(Original_userID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(
-                    string MatName, 
-                    string MatModel, 
-                    string MatBrand, 
-                    string MatSize, 
-                    global::System.Nullable<decimal> MatWeight, 
-                    global::System.Nullable<global::System.DateTime> MatBuyDate, 
-                    global::System.Nullable<decimal> MatCost, 
-                    string MatInitTime, 
-                    global::System.Nullable<decimal> MatInitDist, 
-                    string MatRecTime, 
-                    global::System.Nullable<decimal> MatRecDist, 
-                    string MatTotTime, 
-                    decimal MatTotDist, 
-                    string MatBuyMemo, 
-                    long userID, 
-                    byte[] MatImage) {
-            if ((MatName == null)) {
-                throw new global::System.ArgumentNullException("MatName");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(MatName));
-            }
-            if ((MatModel == null)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(MatModel));
-            }
-            if ((MatBrand == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(MatBrand));
-            }
-            if ((MatSize == null)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(MatSize));
-            }
-            if ((MatWeight.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(MatWeight.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((MatBuyDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(MatBuyDate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((MatCost.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((decimal)(MatCost.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((MatInitTime == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(MatInitTime));
-            }
-            if ((MatInitDist.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(MatInitDist.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((MatRecTime == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(MatRecTime));
-            }
-            if ((MatRecDist.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(MatRecDist.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            if ((MatTotTime == null)) {
-                throw new global::System.ArgumentNullException("MatTotTime");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(MatTotTime));
-            }
-            this.Adapter.InsertCommand.Parameters[12].Value = ((decimal)(MatTotDist));
-            if ((MatBuyMemo == null)) {
-                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(MatBuyMemo));
-            }
-            this.Adapter.InsertCommand.Parameters[14].Value = ((long)(userID));
-            if ((MatImage == null)) {
-                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[15].Value = ((byte[])(MatImage));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    string MatName, 
-                    string MatModel, 
-                    string MatBrand, 
-                    string MatSize, 
-                    global::System.Nullable<decimal> MatWeight, 
-                    global::System.Nullable<global::System.DateTime> MatBuyDate, 
-                    global::System.Nullable<decimal> MatCost, 
-                    string MatInitTime, 
-                    global::System.Nullable<decimal> MatInitDist, 
-                    string MatRecTime, 
-                    global::System.Nullable<decimal> MatRecDist, 
-                    string MatTotTime, 
-                    decimal MatTotDist, 
-                    string MatBuyMemo, 
-                    long userID, 
-                    byte[] MatImage, 
-                    long Original_MatID, 
-                    string Original_MatName, 
-                    string Original_MatModel, 
-                    string Original_MatBrand, 
-                    string Original_MatSize, 
-                    global::System.Nullable<decimal> Original_MatWeight, 
-                    global::System.Nullable<global::System.DateTime> Original_MatBuyDate, 
-                    global::System.Nullable<decimal> Original_MatCost, 
-                    string Original_MatInitTime, 
-                    global::System.Nullable<decimal> Original_MatInitDist, 
-                    string Original_MatRecTime, 
-                    global::System.Nullable<decimal> Original_MatRecDist, 
-                    string Original_MatTotTime, 
-                    decimal Original_MatTotDist, 
-                    long Original_userID, 
-                    long MatID) {
-            if ((MatName == null)) {
-                throw new global::System.ArgumentNullException("MatName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(MatName));
-            }
-            if ((MatModel == null)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(MatModel));
-            }
-            if ((MatBrand == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(MatBrand));
-            }
-            if ((MatSize == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(MatSize));
-            }
-            if ((MatWeight.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(MatWeight.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((MatBuyDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(MatBuyDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((MatCost.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((decimal)(MatCost.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((MatInitTime == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(MatInitTime));
-            }
-            if ((MatInitDist.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(MatInitDist.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((MatRecTime == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(MatRecTime));
-            }
-            if ((MatRecDist.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(MatRecDist.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            if ((MatTotTime == null)) {
-                throw new global::System.ArgumentNullException("MatTotTime");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(MatTotTime));
-            }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(MatTotDist));
-            if ((MatBuyMemo == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(MatBuyMemo));
-            }
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((long)(userID));
-            if ((MatImage == null)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((byte[])(MatImage));
-            }
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((long)(Original_MatID));
-            if ((Original_MatName == null)) {
-                throw new global::System.ArgumentNullException("Original_MatName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_MatName));
-            }
-            if ((Original_MatModel == null)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_MatModel));
-            }
-            if ((Original_MatBrand == null)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_MatBrand));
-            }
-            if ((Original_MatSize == null)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_MatSize));
-            }
-            if ((Original_MatWeight.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((decimal)(Original_MatWeight.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
-            }
-            if ((Original_MatBuyDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((System.DateTime)(Original_MatBuyDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
-            }
-            if ((Original_MatCost.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((decimal)(Original_MatCost.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
-            }
-            if ((Original_MatInitTime == null)) {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((string)(Original_MatInitTime));
-            }
-            if ((Original_MatInitDist.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((decimal)(Original_MatInitDist.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
-            }
-            if ((Original_MatRecTime == null)) {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[35].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[35].Value = ((string)(Original_MatRecTime));
-            }
-            if ((Original_MatRecDist.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[37].Value = ((decimal)(Original_MatRecDist.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[37].Value = global::System.DBNull.Value;
-            }
-            if ((Original_MatTotTime == null)) {
-                throw new global::System.ArgumentNullException("Original_MatTotTime");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[38].Value = ((string)(Original_MatTotTime));
-            }
-            this.Adapter.UpdateCommand.Parameters[39].Value = ((decimal)(Original_MatTotDist));
-            this.Adapter.UpdateCommand.Parameters[40].Value = ((long)(Original_userID));
-            this.Adapter.UpdateCommand.Parameters[41].Value = ((long)(MatID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    string MatName, 
-                    string MatModel, 
-                    string MatBrand, 
-                    string MatSize, 
-                    global::System.Nullable<decimal> MatWeight, 
-                    global::System.Nullable<global::System.DateTime> MatBuyDate, 
-                    global::System.Nullable<decimal> MatCost, 
-                    string MatInitTime, 
-                    global::System.Nullable<decimal> MatInitDist, 
-                    string MatRecTime, 
-                    global::System.Nullable<decimal> MatRecDist, 
-                    string MatTotTime, 
-                    decimal MatTotDist, 
-                    string MatBuyMemo, 
-                    long userID, 
-                    byte[] MatImage, 
-                    long Original_MatID, 
-                    string Original_MatName, 
-                    string Original_MatModel, 
-                    string Original_MatBrand, 
-                    string Original_MatSize, 
-                    global::System.Nullable<decimal> Original_MatWeight, 
-                    global::System.Nullable<global::System.DateTime> Original_MatBuyDate, 
-                    global::System.Nullable<decimal> Original_MatCost, 
-                    string Original_MatInitTime, 
-                    global::System.Nullable<decimal> Original_MatInitDist, 
-                    string Original_MatRecTime, 
-                    global::System.Nullable<decimal> Original_MatRecDist, 
-                    string Original_MatTotTime, 
-                    decimal Original_MatTotDist, 
-                    long Original_userID) {
-            return this.Update(MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, MatInitDist, MatRecTime, MatRecDist, MatTotTime, MatTotDist, MatBuyMemo, userID, MatImage, Original_MatID, Original_MatName, Original_MatModel, Original_MatBrand, Original_MatSize, Original_MatWeight, Original_MatBuyDate, Original_MatCost, Original_MatInitTime, Original_MatInitDist, Original_MatRecTime, Original_MatRecDist, Original_MatTotTime, Original_MatTotDist, Original_userID, Original_MatID);
         }
     }
     

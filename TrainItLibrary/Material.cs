@@ -118,7 +118,8 @@ namespace TrainItLibrary
         }
 
         public Material(Int64 MatID, string MatName, string MatModel, string MatBrand, string MatSize, decimal MatWeight, DateTime MatBuyDate,
-                        SqlMoney MatCost, string MatinitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist, string MatBuyMemo, Int64 UserID)
+                        SqlMoney MatCost, string MatinitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist,  
+                        string MatBuyMemo, Int64 UserID)
         {
             matID=MatID;
             matName=MatName;
@@ -137,7 +138,8 @@ namespace TrainItLibrary
         }
 
         public void LoadData(Int64 MatID, string MatName, string MatModel, string MatBrand, string MatSize, decimal MatWeight, DateTime MatBuyDate,
-                        SqlMoney MatCost, string MatInitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist, string MatBuyMemo, Int64 UserID)
+                        SqlMoney MatCost, string MatInitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist,  
+                        string MatBuyMemo, Int64 UserID)
         {
             matID = MatID;
             matName = MatName;
@@ -156,7 +158,8 @@ namespace TrainItLibrary
         }
 
         public Material LoadDataFromView(string aMatID, string aMatName, string aMatModel, string aMatBrand, string aMatSize, string aMatWeight, string aMatBuyDate,
-                        string aMatCost, string aMatInitTime, string aMatInitDist, string aMatRecTime, string aMatRecDist, string aMatBuyMemo, string aUserID)
+                        string aMatCost, string aMatInitTime, string aMatInitDist, string aMatRecTime, string aMatRecDist,  
+                        string aMatBuyMemo, string aUserID)
         {
             Material aM = new Material();
             bool sigue = true;
@@ -363,5 +366,6 @@ namespace TrainItLibrary
                 }
             }
         }
+
     }
 }

@@ -141,25 +141,25 @@ namespace TrainIt
             txtTimeBar.Width = 0;
             txtDistBar.Width = 0;
         }
-
+       
         private void FMaterial_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'trainITDataSet.Materials' table. You can move, or remove it, as needed.
-            this.materialsTableAdapter.Fill(this.trainITDataSet.Materials, userIDWorking);
-
-            //Load data into object from bd
-            TrainItLibrary.Global.materialUsed = LoadObject();
-
+            // Loads data into the 'trainITDataSet.Materials' table.
+            this.materialsTableAdapter.Fill(this.trainITDataSet.Materials, userIDWorking);            
+            
             //if this form is shomw in order to search, then enable buttons for search
             btnChoose.Visible = OnSearchMode;
             btnCancel.Visible = OnSearchMode;
 
             //Set the masks for text box
-            mtxtWeight.ValidatingType = typeof(float);  
-         
+            mtxtWeight.ValidatingType = typeof(float);           
+        }
+
+        private void fillDataForMaterial()
+        {           
             //Set the values for the progress bars
-            calculateDistBar(txtDistBar,txtBarsBack);
-            calculateTimeBar(txtTimeBar, txtBarsBack);
+            calculateDistBar(txtDistBar, txtBarsBack);
+            calculateTimeBar(txtTimeBar, txtBarsBack);            
         }
 
         private Material LoadObject()
@@ -184,15 +184,15 @@ namespace TrainIt
                     aMat.MatWeight = 0.00M;
                 }
             }
-            
+
             aMat.MatBuyDate = dtpBuyDate.Value;
 
-            if (txtCost.Text=="")
-                aMat.MatCost=(SqlMoney)0.00F;
-            else 
+            if (txtCost.Text == "")
+                aMat.MatCost = (SqlMoney)0.00F;
+            else
             {
                 try
-                {                
+                {
                     aMat.MatCost = (SqlMoney)Convert.ToDouble(txtCost.Text);
                 }
                 catch (Exception)
@@ -200,7 +200,7 @@ namespace TrainIt
                     aMat.MatCost = (SqlMoney)0.00F;
                 }
             }
-            
+
             aMat.MatInitTime = mtxtInitTime.Text;
 
             if (txtInitDist.Text == "")
@@ -215,8 +215,8 @@ namespace TrainIt
                 {
                     throw;
                 }
-            }  
-            
+            }
+
             aMat.MatRecTime = mtxtRecTime.Text;
 
             if (txtRecDist.Text == "")
@@ -232,9 +232,9 @@ namespace TrainIt
                     throw;
                 }
             }
-            
+
             aMat.MatBuyMemo = txtBuyMemo.Text;
-            aMat.MatID = userIDWorking; 
+            aMat.UserID = userIDWorking;
             return aMat;
         }
 
@@ -633,6 +633,12 @@ namespace TrainIt
             {
                 btnChoose_Click(this, e);
             }
+        }
+
+        private void dgvMat_SelectionChanged(object sender, EventArgs e)
+        {
+            //Loads data into object
+            TrainItLibrary.Global.materialUsed = LoadObject();
         }
     }
 }

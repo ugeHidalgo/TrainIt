@@ -30,6 +30,8 @@ namespace TrainItTests
         public decimal aMatInitDist=100.340M;
         public string aMatRecTime="1000:00:00";
         public decimal aMatRecDist=3450.340M;
+        public string aMatTotTime = "1000:00:00";
+        public decimal aMatTotDist = 3450.340M;
         public string aMatBuyMemo="Memo";
         public Int64 aUserID=85;
 
@@ -39,7 +41,8 @@ namespace TrainItTests
         public void Material_LoadFromData()
         {
             Material aMatToLoad = new Material();
-            aMatToLoad.LoadData(aMatID,aMatName,aMatModel,aMatBrand,aMatSize,aMatWeight,aMatBuyDate,aMatCost,aMatInitTime,aMatInitDist,aMatRecTime,aMatRecDist,aMatBuyMemo,aUserID);
+            aMatToLoad.LoadData(aMatID,aMatName,aMatModel,aMatBrand,aMatSize,aMatWeight,aMatBuyDate,aMatCost,aMatInitTime,aMatInitDist,
+                                aMatRecTime, aMatRecDist, aMatTotTime, aMatTotDist, aMatBuyMemo, aUserID);
 
             Assert.AreEqual(aMatID, aMatToLoad.MatID);
             Assert.AreEqual(aMatName, aMatToLoad.MatName);
@@ -62,7 +65,7 @@ namespace TrainItTests
         {
             Material aMatToLoad = new Material();
             aMatToLoad.LoadData(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
-                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);
+                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatTotTime, aMatTotDist, aMatBuyMemo, aUserID);
             aMatToLoad = aMatToLoad.findMatByMatID(connString, aMatID);
 
             Assert.AreEqual(-1, aMatToLoad.MatID);
@@ -89,7 +92,7 @@ namespace TrainItTests
 
             Material aMatToLoad = new Material();
             aMatToLoad.LoadData(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
-                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);
+                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatTotTime, aMatTotDist, aMatBuyMemo, aUserID);
             aMatToLoad = aMatToLoad.findMatByMatID(connString, aMatID);
             
             Assert.AreEqual(aMatID, aMatToLoad.MatID);
