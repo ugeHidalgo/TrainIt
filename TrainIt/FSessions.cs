@@ -62,7 +62,7 @@ namespace TrainIt
             tsBtnEdit.Enabled = true;
             tsBtnCancel.Enabled = false;
             tsBtnSave.Enabled = false;
-            tsBtnDelete.Enabled = true;
+            tsBtnDelSession.Enabled = true;
 
             btnFindSportType.Enabled = false;
             btnFindTrain.Enabled = false;
@@ -96,7 +96,7 @@ namespace TrainIt
             tsBtnEdit.Enabled = false;
             tsBtnCancel.Enabled = true;
             tsBtnSave.Enabled = true;
-            tsBtnDelete.Enabled = false;
+            tsBtnDelSession.Enabled = false;
 
             btnFindSportType.Enabled = true;
             btnFindTrain.Enabled = true;
@@ -718,15 +718,7 @@ namespace TrainIt
 
         private void tsBtnDelete_Click(object sender, EventArgs e)
         {
-            string mensaje = "Va a borrar la sesión seleccionada. ¿Esta seguro?";
-            DialogResult delMat = MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (delMat == DialogResult.OK)
-            {
-                this.sessionsBindingSource.RemoveCurrent();
-                this.tableAdapterManager.UpdateAll(this.trainITDataSet);
-                MessageBox.Show("Sesión borrada corectamente");
-                LoadData();
-            } 
+           
         }
 
         private void txtDist_Validating(object sender, CancelEventArgs e)
@@ -922,6 +914,18 @@ namespace TrainIt
             }
         }
 
+        private void tsBtnDelSession_Click(object sender, EventArgs e)
+        {
+            string mensaje = "Va a borrar la sesión (" + txtSessionID.Text + "/" + txtUserID.Text + "). ¿Esta seguro?";
+            DialogResult delMat = MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (delMat == DialogResult.OK)
+            {
+                this.sessionsBindingSource.RemoveCurrent();
+                this.tableAdapterManager.UpdateAll(this.trainITDataSet);                
+                LoadData();
+                MessageBox.Show("Sesión borrada corectamente");
+            } 
+        }
 
     }
 }

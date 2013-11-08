@@ -80,7 +80,7 @@ namespace TrainIt
             tsBtnEdit.Enabled = false;
             tsBtnCancel.Enabled = true;
             tsBtnSave.Enabled = true;
-            tsBtnDel.Enabled = false;
+            tsBtnDelTraining.Enabled = false;
 
             btnChoose.Enabled = false;
             btnCancel.Enabled = false;
@@ -103,7 +103,7 @@ namespace TrainIt
             tsBtnEdit.Enabled = true;
             tsBtnCancel.Enabled = false;
             tsBtnSave.Enabled = false;
-            tsBtnDel.Enabled = true;
+            tsBtnDelTraining.Enabled = true;
 
             btnChoose.Enabled = true;
             btnCancel.Enabled = true;
@@ -155,18 +155,18 @@ namespace TrainIt
             }
         }
 
-        private void tsBtnDel_Click(object sender, EventArgs e)
+        private void tsBtnDelTraining_Click(object sender, EventArgs e)
         {
-            string mensaje = "Va a borrar el entrenamiento seleccionado.\n"+
-                             "Se borraran igualmente las sesiones de este entrenamiento.\n\n"+
-                             "¿Esta seguro?";
+            string mensaje = "Va a borrar el entrenamiento ("+txtID.Text+"/"+txtUserID.Text+").\n" +
+                 "Se borraran igualmente todas las sesiones adicionales de este entrenamiento.\n\n" +
+                 "¿Esta seguro?";
             DialogResult delMat = MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (delMat == DialogResult.OK)
             {
                 this.trainingsBindingSource.RemoveCurrent();
                 this.tableAdapterManager.UpdateAll(this.trainITDataSet);
-                MessageBox.Show("Entrenamiento y sesiones correspondientes borrados corectamente");
-            }  
+                MessageBox.Show("Entrenamiento y sesiones del entrenamiento borradas corectamente.");
+            }
         }
 
         private void txtID_TextChanged(object sender, EventArgs e)

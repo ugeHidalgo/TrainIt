@@ -33,14 +33,14 @@
             System.Windows.Forms.Label trainDateLabel;
             System.Windows.Forms.Label trainNameLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FTrainings));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.trainingsBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.tsBtnNew = new System.Windows.Forms.ToolStripButton();
             this.trainingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -53,7 +53,6 @@
             this.tsBtnEdit = new System.Windows.Forms.ToolStripButton();
             this.tsBtnCancel = new System.Windows.Forms.ToolStripButton();
             this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
-            this.tsBtnDel = new System.Windows.Forms.ToolStripButton();
             this.statusS1 = new System.Windows.Forms.StatusStrip();
             this.tslUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.tslConnString = new System.Windows.Forms.ToolStripStatusLabel();
@@ -81,6 +80,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnChoose = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.tsBtnDelTraining = new System.Windows.Forms.ToolStripButton();
             trainIDLabel = new System.Windows.Forms.Label();
             trainDateLabel = new System.Windows.Forms.Label();
             trainNameLabel = new System.Windows.Forms.Label();
@@ -140,7 +140,7 @@
             this.tsBtnEdit,
             this.tsBtnCancel,
             this.tsBtnSave,
-            this.tsBtnDel});
+            this.tsBtnDelTraining});
             this.trainingsBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.trainingsBindingNavigator.MoveFirstItem = this.tsBtnFirst;
             this.trainingsBindingNavigator.MoveLastItem = this.tsBtnLast;
@@ -242,16 +242,6 @@
             this.tsBtnSave.Text = "Grabar Registro";
             this.tsBtnSave.Click += new System.EventHandler(this.tsBtnSave_Click);
             // 
-            // tsBtnDel
-            // 
-            this.tsBtnDel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsBtnDel.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnDel.Image")));
-            this.tsBtnDel.Name = "tsBtnDel";
-            this.tsBtnDel.RightToLeftAutoMirrorImage = true;
-            this.tsBtnDel.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnDel.Text = "Borrar registro";
-            this.tsBtnDel.Click += new System.EventHandler(this.tsBtnDel_Click);
-            // 
             // statusS1
             // 
             this.statusS1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -281,14 +271,14 @@
             this.dgvTrainings.AllowUserToDeleteRows = false;
             this.dgvTrainings.AllowUserToOrderColumns = true;
             this.dgvTrainings.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTrainings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTrainings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvTrainings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTrainings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
@@ -374,14 +364,14 @@
             this.sessionsDataGridView.AllowUserToDeleteRows = false;
             this.sessionsDataGridView.AllowUserToOrderColumns = true;
             this.sessionsDataGridView.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.sessionsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sessionsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.sessionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sessionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn14,
@@ -404,8 +394,8 @@
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.DataPropertyName = "Date";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewTextBoxColumn14.HeaderText = "Fecha Sesión";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
@@ -434,8 +424,8 @@
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.DataPropertyName = "Distance";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewTextBoxColumn8.HeaderText = "Distancia";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
@@ -444,8 +434,8 @@
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.DataPropertyName = "Time";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewTextBoxColumn9.HeaderText = "Tiempo";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
@@ -454,9 +444,9 @@
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.DataPropertyName = "MedHR";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridViewTextBoxColumn10.HeaderText = "Pulso Medio";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
@@ -465,8 +455,8 @@
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.DataPropertyName = "MaxHR";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridViewTextBoxColumn11.HeaderText = "Pulso Máximo";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.ReadOnly = true;
@@ -475,8 +465,8 @@
             // dataGridViewTextBoxColumn12
             // 
             this.dataGridViewTextBoxColumn12.DataPropertyName = "Value";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridViewTextBoxColumn12.HeaderText = "Valor";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
@@ -495,7 +485,7 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.MaterialSessionTableAdapter = null;
-            //this.tableAdapterManager.MaterialsTableAdapter = null;
+            this.tableAdapterManager.MaterialsTableAdapter = null;
             this.tableAdapterManager.SessionsTableAdapter = null;
             this.tableAdapterManager.SportTypesTableAdapter = null;
             this.tableAdapterManager.TempMaterialTableAdapter = null;
@@ -556,6 +546,16 @@
             this.label2.TabIndex = 29;
             this.label2.Text = "Entrenamientos :";
             // 
+            // tsBtnDelTraining
+            // 
+            this.tsBtnDelTraining.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnDelTraining.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnDelTraining.Image")));
+            this.tsBtnDelTraining.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnDelTraining.Name = "tsBtnDelTraining";
+            this.tsBtnDelTraining.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnDelTraining.Text = "toolStripButton1";
+            this.tsBtnDelTraining.Click += new System.EventHandler(this.tsBtnDelTraining_Click);
+            // 
             // FTrainings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -609,7 +609,6 @@
         private System.Windows.Forms.ToolStripButton tsBtnEdit;
         private System.Windows.Forms.ToolStripButton tsBtnCancel;
         private System.Windows.Forms.ToolStripButton tsBtnSave;
-        private System.Windows.Forms.ToolStripButton tsBtnDel;
         private System.Windows.Forms.StatusStrip statusS1;
         private System.Windows.Forms.ToolStripStatusLabel tslUser;
         private System.Windows.Forms.ToolStripStatusLabel tslConnString;
@@ -638,6 +637,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnChoose;
-        private System.Windows.Forms.Label label2;     
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripButton tsBtnDelTraining;     
     }
 }
