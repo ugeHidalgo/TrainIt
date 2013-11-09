@@ -106,9 +106,9 @@ namespace TrainIt
             tsBtnLast.Enabled = false;
             tsBtnNew.Enabled = false;
             tsBtnEdit.Enabled = false;
-            tsBtnDelete.Enabled = false;
-            tsBtnSave.Enabled = true;
             tsBtnCancel.Enabled = true;
+            tsBtnSave.Enabled = true;
+            tsBtnDelete.Enabled = false;
             btnChangePassword.Enabled = false;
 
             txtFirstName.ReadOnly = false;
@@ -133,9 +133,9 @@ namespace TrainIt
             tsBtnLast.Enabled = true;
             tsBtnNew.Enabled = true;
             tsBtnEdit.Enabled = true;
-            tsBtnDelete.Enabled = true;
-            tsBtnSave.Enabled = false;
             tsBtnCancel.Enabled = false;
+            tsBtnSave.Enabled = false;
+            tsBtnDelete.Enabled = true;
             btnChangePassword.Enabled = false;
 
             txtFirstName.ReadOnly = true;
@@ -315,11 +315,38 @@ namespace TrainIt
             }
         }
 
+        private void tsBtnCancel_Click(object sender, EventArgs e)
+        {
+            //Puts form in Normal mode.
+            setNormalMode();
+            clearUserTextBoxes();
+            userIDToUpdate = -1;
+
+            if (dgvUsers.RowCount > 0)
+            {
+                //Goes to current reg
+                dgvUsers.CurrentCell = dgvUsers[0, dgvUsers.CurrentRow.Index];
+
+                //Takes user ID clicked
+                int userID = Convert.ToInt32(dgvUsers[0, dgvUsers.CurrentRow.Index].Value);
+                //Load data into aUser
+                aUser = aUser.findUserByUserID(connString, userID);
+
+                //Loads data into boxes
+                LoadDataInBoxes(aUser);
+            }
+        }
+
+        private void tsBtnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void tsBtnDelete_Click(object sender, EventArgs e)
         {
             if (dgvUsers.RowCount > 0)
             {
-                string message = "Va a borrar el usuario : "+aUser.userName+".\n" +
+                string message = "Va a borrar el usuario : " + aUser.userName + ".\n" +
                                  "Esto incluye todos los datos asociados a el.\n" +
                                  "¿Esta seguro de hacerlo?";
                 DialogResult valor = MessageBox.Show(message, "Atención...", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -356,103 +383,7 @@ namespace TrainIt
                     userIDToUpdate = -1;
                 }
             }
-        }
-
-        private void tsBtnSave_Click(object sender, EventArgs e)
-        {
-            //Verify all data is correct.
-            Users tempUser = new Users(-1, txtFirstName.Text, txtSecondName.Text, dtpBDate.Value, txtUserName.Text, txtUserPass.Text, txtConfirm.Text, txtMail.Text);
-            int verifyResult = tempUser.checkUserData(connString);
-
-            //if update and user find, verify must be ok
-            if ((userIDToUpdate != -1) && (verifyResult == -2))
-                verifyResult = 1;
-
-            //if data verification is ok, then we can save.
-            if (verifyResult == 1)
-            {
-                int position = 0;
-                if (userIDToUpdate == -1)
-                { //New user
-                    //Takes position
-                    position = dgvUsers.RowCount;
-
-                    //Load data into aUSer
-                    aUser = aUser.LoadData(-1, txtFirstName.Text, txtSecondName.Text, dtpBDate.Value, txtUserName.Text, txtUserPass.Text, txtConfirm.Text, txtMail.Text);
-
-                    //save data into BD
-                    aUser = aUser.saveUserData(connString);
-                }
-                else
-                {//Update existing user
-
-                    //Take actual position
-                    position = dgvUsers.CurrentRow.Index;
-
-                    //Load data into aUSer
-                    aUser = aUser.LoadData(userIDToUpdate, txtFirstName.Text, txtSecondName.Text, dtpBDate.Value, txtUserName.Text, txtUserPass.Text, txtConfirm.Text, txtMail.Text);
-
-                    //save data into BD
-                    aUser = aUser.updateUserData(connString, savePass);
-                }
-
-                //Reload data into grid
-                LoadDataInGrid(dgvUsers);
-
-                //Goes to the position
-                dgvUsers.CurrentCell = dgvUsers[0, position];
-
-                //Loads data into boxes
-                LoadDataInBoxes(aUser);
-
-                //Enable normal mode.
-                setNormalMode();
-            }
-            else //There is an error in data to save.
-            {
-                switch (verifyResult)
-                {
-                    case -1: //userName is missing.
-                        MessageBox.Show("Falta el nombre usuario que se usará para entrar al sistema.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtUserName.Focus();
-                        break;
-                    case -2://userName exists in data base.
-                        MessageBox.Show("Ya existe ese nombre de ususario en la base de datos.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtUserName.Focus();
-                        break;
-                    case -3://Password lenght is less than 8 characters.
-                        MessageBox.Show("El password debe tener una longitud mínima de ocho caracteres.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtUserPass.Focus();
-                        break;
-                    case -4://Password and confirm are differents.
-                        MessageBox.Show("El password y la confirmación son diferentes.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtUserPass.Focus();
-                        break;
-                }
-            }
-        }
-
-        private void tsBtnCancel_Click(object sender, EventArgs e)
-        {
-            //Puts form in Normal mode.
-            setNormalMode();
-            clearUserTextBoxes();
-            userIDToUpdate = -1;
-
-            if (dgvUsers.RowCount > 0)
-            {
-                //Goes to current reg
-                dgvUsers.CurrentCell = dgvUsers[0, dgvUsers.CurrentRow.Index];
-
-                //Takes user ID clicked
-                int userID = Convert.ToInt32(dgvUsers[0, dgvUsers.CurrentRow.Index].Value);
-                //Load data into aUser
-                aUser = aUser.findUserByUserID(connString, userID);
-
-                //Loads data into boxes
-                LoadDataInBoxes(aUser);
-            }
-        }
+        }   
 
         private void dgvUsers_Click(object sender, EventArgs e)
         {
@@ -494,6 +425,9 @@ namespace TrainIt
                 MessageBox.Show("Solo Solo el usuario admin puede hacer un cambio de contraseña.", "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
             }
         }
-
+      
     }
 }
+
+
+

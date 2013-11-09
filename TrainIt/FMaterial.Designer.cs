@@ -62,6 +62,13 @@
             this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
             this.tsBtnDel = new System.Windows.Forms.ToolStripButton();
             this.dgvMat = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MatModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MatBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MatBuyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MatCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MatTotTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MatTotDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnChoose = new System.Windows.Forms.Button();
@@ -93,13 +100,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.materialsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.MaterialsTableAdapter();
             this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MatModel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MatBrand = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MatBuyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MatCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MatTotTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MatTotDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
             matInitTimeLabel = new System.Windows.Forms.Label();
             matInitDistLabel = new System.Windows.Forms.Label();
             matBuyMemoLabel = new System.Windows.Forms.Label();
@@ -457,6 +457,59 @@
             this.dgvMat.TabIndex = 4;
             this.dgvMat.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMat_CellDoubleClick);
             this.dgvMat.SelectionChanged += new System.EventHandler(this.dgvMat_SelectionChanged);
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "MatName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 180;
+            // 
+            // MatModel
+            // 
+            this.MatModel.DataPropertyName = "MatModel";
+            this.MatModel.HeaderText = "Modelo";
+            this.MatModel.Name = "MatModel";
+            this.MatModel.ReadOnly = true;
+            this.MatModel.Width = 180;
+            // 
+            // MatBrand
+            // 
+            this.MatBrand.DataPropertyName = "MatBrand";
+            this.MatBrand.HeaderText = "Marca";
+            this.MatBrand.Name = "MatBrand";
+            this.MatBrand.ReadOnly = true;
+            this.MatBrand.Width = 180;
+            // 
+            // MatBuyDate
+            // 
+            this.MatBuyDate.DataPropertyName = "MatBuyDate";
+            this.MatBuyDate.HeaderText = "Compra";
+            this.MatBuyDate.Name = "MatBuyDate";
+            this.MatBuyDate.ReadOnly = true;
+            // 
+            // MatCost
+            // 
+            this.MatCost.DataPropertyName = "MatCost";
+            this.MatCost.HeaderText = "Coste";
+            this.MatCost.Name = "MatCost";
+            this.MatCost.ReadOnly = true;
+            this.MatCost.Width = 80;
+            // 
+            // MatTotTime
+            // 
+            this.MatTotTime.DataPropertyName = "TotTimeCalc";
+            this.MatTotTime.HeaderText = "Tiempo Uso";
+            this.MatTotTime.Name = "MatTotTime";
+            this.MatTotTime.ReadOnly = true;
+            // 
+            // MatTotDist
+            // 
+            this.MatTotDist.DataPropertyName = "TotDistCalc";
+            this.MatTotDist.HeaderText = "Distancia";
+            this.MatTotDist.Name = "MatTotDist";
+            this.MatTotDist.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -834,8 +887,8 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.Connection = null;
             this.tableAdapterManager.MaterialSessionTableAdapter = null;
+            this.tableAdapterManager.MaterialsTableAdapter = this.materialsTableAdapter;
             this.tableAdapterManager.SessionsTableAdapter = null;
             this.tableAdapterManager.SportTypesTableAdapter = null;
             this.tableAdapterManager.TempMaterialTableAdapter = null;
@@ -843,59 +896,6 @@
             this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRegsTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "MatName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 180;
-            // 
-            // MatModel
-            // 
-            this.MatModel.DataPropertyName = "MatModel";
-            this.MatModel.HeaderText = "Modelo";
-            this.MatModel.Name = "MatModel";
-            this.MatModel.ReadOnly = true;
-            this.MatModel.Width = 180;
-            // 
-            // MatBrand
-            // 
-            this.MatBrand.DataPropertyName = "MatBrand";
-            this.MatBrand.HeaderText = "Marca";
-            this.MatBrand.Name = "MatBrand";
-            this.MatBrand.ReadOnly = true;
-            this.MatBrand.Width = 180;
-            // 
-            // MatBuyDate
-            // 
-            this.MatBuyDate.DataPropertyName = "MatBuyDate";
-            this.MatBuyDate.HeaderText = "Compra";
-            this.MatBuyDate.Name = "MatBuyDate";
-            this.MatBuyDate.ReadOnly = true;
-            // 
-            // MatCost
-            // 
-            this.MatCost.DataPropertyName = "MatCost";
-            this.MatCost.HeaderText = "Coste";
-            this.MatCost.Name = "MatCost";
-            this.MatCost.ReadOnly = true;
-            this.MatCost.Width = 80;
-            // 
-            // MatTotTime
-            // 
-            this.MatTotTime.DataPropertyName = "TotTimeCalc";
-            this.MatTotTime.HeaderText = "Tiempo Uso";
-            this.MatTotTime.Name = "MatTotTime";
-            this.MatTotTime.ReadOnly = true;
-            // 
-            // MatTotDist
-            // 
-            this.MatTotDist.DataPropertyName = "TotDistCalc";
-            this.MatTotDist.HeaderText = "Distancia";
-            this.MatTotDist.Name = "MatTotDist";
-            this.MatTotDist.ReadOnly = true;
             // 
             // FMaterial
             // 

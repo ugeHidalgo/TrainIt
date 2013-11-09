@@ -48,9 +48,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnNew = new System.Windows.Forms.ToolStripButton();
             this.tsBtnEdit = new System.Windows.Forms.ToolStripButton();
-            this.tsBtnDelete = new System.Windows.Forms.ToolStripButton();
-            this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
             this.tsBtnCancel = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnDelete = new System.Windows.Forms.ToolStripButton();
             this.trainITDataSet = new TrainIt.TrainITDataSet();
             this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.usersTableAdapter = new TrainIt.TrainITDataSetTableAdapters.UsersTableAdapter();
@@ -191,9 +191,9 @@
             this.toolStripSeparator1,
             this.tsBtnNew,
             this.tsBtnEdit,
-            this.tsBtnDelete,
+            this.tsBtnCancel,
             this.tsBtnSave,
-            this.tsBtnCancel});
+            this.tsBtnDelete});
             this.toolS1.Location = new System.Drawing.Point(0, 0);
             this.toolS1.Name = "toolS1";
             this.toolS1.Size = new System.Drawing.Size(692, 25);
@@ -265,15 +265,15 @@
             this.tsBtnEdit.Text = "Editar registro";
             this.tsBtnEdit.Click += new System.EventHandler(this.tsBtnEdit_Click);
             // 
-            // tsBtnDelete
+            // tsBtnCancel
             // 
-            this.tsBtnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsBtnDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnDelete.Image")));
-            this.tsBtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnDelete.Name = "tsBtnDelete";
-            this.tsBtnDelete.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnDelete.Text = "Borrar registro";
-            this.tsBtnDelete.Click += new System.EventHandler(this.tsBtnDelete_Click);
+            this.tsBtnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnCancel.Image")));
+            this.tsBtnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnCancel.Name = "tsBtnCancel";
+            this.tsBtnCancel.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnCancel.Text = "Cancelar edición.";
+            this.tsBtnCancel.Click += new System.EventHandler(this.tsBtnCancel_Click);
             // 
             // tsBtnSave
             // 
@@ -283,17 +283,16 @@
             this.tsBtnSave.Name = "tsBtnSave";
             this.tsBtnSave.Size = new System.Drawing.Size(23, 22);
             this.tsBtnSave.Text = "Grabar registro";
-            this.tsBtnSave.Click += new System.EventHandler(this.tsBtnSave_Click);
             // 
-            // tsBtnCancel
+            // tsBtnDelete
             // 
-            this.tsBtnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsBtnCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnCancel.Image")));
-            this.tsBtnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnCancel.Name = "tsBtnCancel";
-            this.tsBtnCancel.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnCancel.Text = "Cancelar edición de registro";
-            this.tsBtnCancel.Click += new System.EventHandler(this.tsBtnCancel_Click);
+            this.tsBtnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnDelete.Image")));
+            this.tsBtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnDelete.Name = "tsBtnDelete";
+            this.tsBtnDelete.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnDelete.Text = "Borrar registro";
+            this.tsBtnDelete.Click += new System.EventHandler(this.tsBtnDelete_Click);
             // 
             // trainITDataSet
             // 
@@ -313,8 +312,10 @@
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.MaterialSessionTableAdapter = null;
-            //this.tableAdapterManager.MaterialsTableAdapter = null;            
+            this.tableAdapterManager.MaterialsTableAdapter = null;
+            this.tableAdapterManager.SessionsTableAdapter = null;
             this.tableAdapterManager.SportTypesTableAdapter = null;
+            this.tableAdapterManager.TempMaterialTableAdapter = null;
             this.tableAdapterManager.TrainingsTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRegsTableAdapter = null;
@@ -570,9 +571,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsBtnNew;
         private System.Windows.Forms.ToolStripButton tsBtnEdit;
-        private System.Windows.Forms.ToolStripButton tsBtnDelete;
-        private System.Windows.Forms.ToolStripButton tsBtnSave;
         private System.Windows.Forms.ToolStripButton tsBtnCancel;
+        private System.Windows.Forms.ToolStripButton tsBtnSave;
+        private System.Windows.Forms.ToolStripButton tsBtnDelete;
         private System.Windows.Forms.DataGridView dgvUsers;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserID;
         private System.Windows.Forms.DataGridViewTextBoxColumn userName;

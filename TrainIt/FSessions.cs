@@ -484,24 +484,24 @@ namespace TrainIt
                         txtTrainID.Text = Global.trainingUsed.TrainID.ToString();
                     }
                     txtUserID.Text = userIDWorking.ToString();
-                    
 
-                    
-                    this.Validate();
-                    this.sessionsBindingSource.EndEdit();
                     //Gets position in de data grid before save.
                     int position = dgvSessions.CurrentRow.Index;
+                    
+                    this.Validate();
+                    this.sessionsBindingSource.EndEdit();                    
                     if (sessionIDToUpdate == -1)
                     {
                         position = 0;
                         saveSessionData(connString, newTraining);
                     }
-                    else
+                    else                    
                         updateSessionData(connString);                    
                     setNormalMode();
                     LoadData();
+
                     //Sets position in grid
-                    dgvSessions.CurrentCell = dgvSessions[0, position];
+                    dgvSessions.CurrentCell = dgvSessions[1, position];
                     MessageBox.Show("Sesión guardada corectamente.");
                 }
             }
