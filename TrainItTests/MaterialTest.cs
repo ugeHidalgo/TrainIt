@@ -26,12 +26,10 @@ namespace TrainItTests
         public decimal aMatWeight=10.90M;
         public DateTime aMatBuyDate=DateTime.Now;
         public SqlMoney aMatCost=(SqlMoney)600.10F;
-        public string aMatInitTime="100:30:00";
+        public DateTime aMatInitTime=Convert.ToDateTime("01/01/1900 00:00:00.000");
         public decimal aMatInitDist=100.340M;
         public string aMatRecTime="1000:00:00";
         public decimal aMatRecDist=3450.340M;
-        public string aMatTotTime = "1000:00:00";
-        public decimal aMatTotDist = 3450.340M;
         public string aMatBuyMemo="Memo";
         public Int64 aUserID=85;
 
@@ -42,7 +40,7 @@ namespace TrainItTests
         {
             Material aMatToLoad = new Material();
             aMatToLoad.LoadData(aMatID,aMatName,aMatModel,aMatBrand,aMatSize,aMatWeight,aMatBuyDate,aMatCost,aMatInitTime,aMatInitDist,
-                                aMatRecTime, aMatRecDist, aMatTotTime, aMatTotDist, aMatBuyMemo, aUserID);
+                                aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);
 
             Assert.AreEqual(aMatID, aMatToLoad.MatID);
             Assert.AreEqual(aMatName, aMatToLoad.MatName);
@@ -65,7 +63,7 @@ namespace TrainItTests
         {
             Material aMatToLoad = new Material();
             aMatToLoad.LoadData(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
-                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatTotTime, aMatTotDist, aMatBuyMemo, aUserID);
+                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);
             aMatToLoad = aMatToLoad.findMatByMatID(connString, aMatID);
 
             Assert.AreEqual(-1, aMatToLoad.MatID);
@@ -83,7 +81,7 @@ namespace TrainItTests
             aMatWeight = 12.5M;
             aMatBuyDate = Convert.ToDateTime("01/04/2011");
             aMatCost =  (SqlMoney)600.00F;
-            aMatInitTime = "650:30:20";
+            aMatInitTime = Convert.ToDateTime("01/01/1900 650:30:20.000");
             aMatInitDist = 2500.000M;
             aMatRecTime = "1000:00:00";
             aMatRecDist = 10000.000M;
@@ -92,7 +90,7 @@ namespace TrainItTests
 
             Material aMatToLoad = new Material();
             aMatToLoad.LoadData(aMatID, aMatName, aMatModel, aMatBrand, aMatSize, aMatWeight, aMatBuyDate, aMatCost,
-                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatTotTime, aMatTotDist, aMatBuyMemo, aUserID);
+                                         aMatInitTime, aMatInitDist, aMatRecTime, aMatRecDist, aMatBuyMemo, aUserID);
             aMatToLoad = aMatToLoad.findMatByMatID(connString, aMatID);
             
             Assert.AreEqual(aMatID, aMatToLoad.MatID);

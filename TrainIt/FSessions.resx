@@ -156,6 +156,27 @@
   <metadata name="label1.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
+  <metadata name="label2.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="label3.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="label4.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="label5.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="label6.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="label7.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="label8.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
   <metadata name="statusS1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
@@ -271,21 +292,21 @@
   <data name="tsBtnCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
   </data>
   <data name="tsBtnSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -309,15 +330,15 @@
   <data name="tsBtnDelSession.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHhSURBVDhPY4AB8SKOWeIlHBfES7g+A/F/bFi0hOMtkD4q
-        XsTVD9UGAXzp7OtF8zn/i2Rx/BdK5fgvmMz+XzAJFQulsP8XTuf4L5LN+R+kljeTdT9Ys8Vkmfe+85T/
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHiSURBVDhPY4AB8SKOWeIlHBfES7g+A/F/bFi0hP0tkD4q
+        XsTVD9UGAXzp7OtF8zn/i2Rx/BdK5fgvmMz+XzAJFQulsP8XTuf4L5LN+R+kljeTdT9Ys/lk8fe+85T/
         u02T+e8wQeq/Tbf4f8t2sf8WbaIo2KpDDCznCFQDUus9R/6/8QSh9wyus5X+911xJAubT+H7z2DWLf8/
-        5YApWVitmfc/A3ci+3uZSq7/5GD2BOb34HBYumjV/+MnTpOEQXrAmkFgxtT5/2/duYuBA6YzgjE2OZAe
-        qHYGhvrqxh9v3334j4xz1ir/b9uUAsbJK0X/P37xAEUeqOcdVDsDQ2pczoN///7/R8YJ67n/n3m2GYxB
+        5YApWVitmfc/A3si+3uZSq7/5GD2BOb34HBYumjV/+MnTpOEQXrAmkFgxtT5/2/duYuBA6YzgjE2OZAe
+        qHYGhvrq+h9v3334j4xz1ir/b9uUAsbJK0X/P37xAEUeqOcdVDsDQ2pczoN///7/R8YJ67n/n3m2GYxB
         bHT51ISc81DtDAzRIUlbnz178f/n7z//P3x9i0KD8LOPd8H8Zx/vQ/hAtVGhSfOg2oEGhCZ1Hj96Euy0
         9dda/ievUAM6+SHcuSB25GJxsByID1IbE5KcCdXOwFBeWFM8Z/ZCsMlOE1j+F63w+H/3/gMUDAoLkBxI
-        DUhtRUG1C1Q7BNRXN4NNNmtg+B/Up/4/ZorZ//X7Vv5funM2WAyGQWpAaqHaECA1Luvt0vWL/hODgWpf
-        QbUhgLGueUNKYtqb7KzC//gwUM1HkFqILgYGAOBLO8L1FVEVAAAAAElFTkSuQmCC
+        DUhtRUG1C1Q7BNRXN4NNNmtg+B/Up/4/ZorZ//X7Vv5funM2WAyGQWpAaqHaECA1Juvt0vWL/hODU6PT
+        X0G1IYCxrnlDSmLKm+yswv/4MFDNR5BaiC4GBgCxLTunOcIYSwAAAABJRU5ErkJggg==
 </value>
   </data>
   <metadata name="SportTypeName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -327,6 +348,12 @@
     <value>True</value>
   </metadata>
   <metadata name="Speed.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Pace.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="DistForPace.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="TrainName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -423,7 +450,7 @@
         XTesb3QPLh88M+QwdP6m681Lt7xuXbu94vbgcOjwnZHokdE77DtTd1PuvriXeW/h/sYH6AdFD6UeVjxS
         fNTws+7PbaOWo6fHXMf6Hwc/vj/OGn/2S8Yv7ycKnpCfVEyqTDZPmU2dmnafvvF05dOJZ+nPFmYKf5X+
         tfa5zvMffnP8rX82YnbiBf/Fp99LXsq/PPRq2aueuYC5R69TXy/MF72Rf3P4LeNt37vwd5MLWe+x7ys/
-        6H7o/ujz8cGn1E+f/gUDmPP8usTo0wAAAAlwSFlzAAALDgAACw4BQL7hQQAAA8dJREFUOE9NkGtM02cU
+        6H7o/ujz8cGn1E+f/gUDmPP8usTo0wAAAAlwSFlzAAALDAAACwwBP0AiyAAAA8dJREFUOE9NkGtM02cU
         xt/+/71QKxTQjousIKXIBsoGqwi2XGyxYQVSga3cFxEQuWgRxyUZFhgiCA7chqWAUu4kQBUlzE4hOpmg
         ThxOYcuyOQ3BLVsMyxazbEuevXzYsif5nS/nPM85OaSuyEBqClLIQGcbmZ3oJJ/b2mTXB0zFo62HJk2H
         4lcO6qQ/Ho1mbuSFkgq1lAkuC+WQV8SEuIlY4itmCQ1IJSYa0GtuIfev9pU9e2T/YWVpGndnRvHQ3oyv
@@ -495,7 +522,7 @@
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>154</value>
+    <value>136</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

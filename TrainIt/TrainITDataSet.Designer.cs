@@ -582,8 +582,6 @@ namespace TrainIt {
             
             private global::System.Data.DataColumn columnMatCost;
             
-            private global::System.Data.DataColumn columnMatInitTime;
-            
             private global::System.Data.DataColumn columnMatInitDist;
             
             private global::System.Data.DataColumn columnMatRecTime;
@@ -599,6 +597,10 @@ namespace TrainIt {
             private global::System.Data.DataColumn columnTotDistCalc;
             
             private global::System.Data.DataColumn columnTotTimeCalc;
+            
+            private global::System.Data.DataColumn columnMatInitTime;
+            
+            private global::System.Data.DataColumn columnMatShortInitTime;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -699,14 +701,6 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MatInitTimeColumn {
-                get {
-                    return this.columnMatInitTime;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn MatInitDistColumn {
                 get {
                     return this.columnMatInitDist;
@@ -771,6 +765,22 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MatInitTimeColumn {
+                get {
+                    return this.columnMatInitTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MatShortInitTimeColumn {
+                get {
+                    return this.columnMatShortInitTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -814,7 +824,6 @@ namespace TrainIt {
                         decimal MatWeight, 
                         System.DateTime MatBuyDate, 
                         decimal MatCost, 
-                        string MatInitTime, 
                         decimal MatInitDist, 
                         string MatRecTime, 
                         decimal MatRecDist, 
@@ -822,7 +831,9 @@ namespace TrainIt {
                         long userID, 
                         byte[] MatImage, 
                         decimal TotDistCalc, 
-                        string TotTimeCalc) {
+                        string TotTimeCalc, 
+                        System.DateTime MatInitTime, 
+                        string MatShortInitTime) {
                 MaterialsRow rowMaterialsRow = ((MaterialsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -833,7 +844,6 @@ namespace TrainIt {
                         MatWeight,
                         MatBuyDate,
                         MatCost,
-                        MatInitTime,
                         MatInitDist,
                         MatRecTime,
                         MatRecDist,
@@ -841,7 +851,9 @@ namespace TrainIt {
                         userID,
                         MatImage,
                         TotDistCalc,
-                        TotTimeCalc};
+                        TotTimeCalc,
+                        MatInitTime,
+                        MatShortInitTime};
                 rowMaterialsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMaterialsRow);
                 return rowMaterialsRow;
@@ -879,7 +891,6 @@ namespace TrainIt {
                 this.columnMatWeight = base.Columns["MatWeight"];
                 this.columnMatBuyDate = base.Columns["MatBuyDate"];
                 this.columnMatCost = base.Columns["MatCost"];
-                this.columnMatInitTime = base.Columns["MatInitTime"];
                 this.columnMatInitDist = base.Columns["MatInitDist"];
                 this.columnMatRecTime = base.Columns["MatRecTime"];
                 this.columnMatRecDist = base.Columns["MatRecDist"];
@@ -888,6 +899,8 @@ namespace TrainIt {
                 this.columnMatImage = base.Columns["MatImage"];
                 this.columnTotDistCalc = base.Columns["TotDistCalc"];
                 this.columnTotTimeCalc = base.Columns["TotTimeCalc"];
+                this.columnMatInitTime = base.Columns["MatInitTime"];
+                this.columnMatShortInitTime = base.Columns["MatShortInitTime"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -909,8 +922,6 @@ namespace TrainIt {
                 base.Columns.Add(this.columnMatBuyDate);
                 this.columnMatCost = new global::System.Data.DataColumn("MatCost", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMatCost);
-                this.columnMatInitTime = new global::System.Data.DataColumn("MatInitTime", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMatInitTime);
                 this.columnMatInitDist = new global::System.Data.DataColumn("MatInitDist", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMatInitDist);
                 this.columnMatRecTime = new global::System.Data.DataColumn("MatRecTime", typeof(string), null, global::System.Data.MappingType.Element);
@@ -927,6 +938,10 @@ namespace TrainIt {
                 base.Columns.Add(this.columnTotDistCalc);
                 this.columnTotTimeCalc = new global::System.Data.DataColumn("TotTimeCalc", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotTimeCalc);
+                this.columnMatInitTime = new global::System.Data.DataColumn("MatInitTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMatInitTime);
+                this.columnMatShortInitTime = new global::System.Data.DataColumn("MatShortInitTime", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMatShortInitTime);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMatID}, true));
                 this.columnMatID.AutoIncrement = true;
@@ -940,13 +955,14 @@ namespace TrainIt {
                 this.columnMatModel.MaxLength = 50;
                 this.columnMatBrand.MaxLength = 50;
                 this.columnMatSize.MaxLength = 10;
-                this.columnMatInitTime.MaxLength = 12;
                 this.columnMatRecTime.MaxLength = 12;
                 this.columnMatBuyMemo.MaxLength = 2147483647;
                 this.columnuserID.AllowDBNull = false;
                 this.columnTotDistCalc.ReadOnly = true;
                 this.columnTotTimeCalc.ReadOnly = true;
                 this.columnTotTimeCalc.MaxLength = 8;
+                this.columnMatShortInitTime.ReadOnly = true;
+                this.columnMatShortInitTime.MaxLength = 9;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1375,6 +1391,12 @@ namespace TrainIt {
             
             private global::System.Data.DataColumn columnTime;
             
+            private global::System.Data.DataColumn columnCompetition1;
+            
+            private global::System.Data.DataColumn columnTransition1;
+            
+            private global::System.Data.DataColumn columnDistForPace;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SessionsDataTable() {
@@ -1514,6 +1536,30 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Competition1Column {
+                get {
+                    return this.columnCompetition1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Transition1Column {
+                get {
+                    return this.columnTransition1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DistForPaceColumn {
+                get {
+                    return this.columnDistForPace;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1549,7 +1595,7 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SessionsRow AddSessionsRow(TrainingsRow parentTrainingsRowByFK_Sessions_Trainings, UsersRow parentUsersRowByFK_Sessions_Users, long SportTypeID, short Competition, short Transition, double Distance, short MedHR, short MaxHR, short Value, string Memo, System.DateTime Date, System.DateTime Time) {
+            public SessionsRow AddSessionsRow(TrainingsRow parentTrainingsRowByFK_Sessions_Trainings, UsersRow parentUsersRowByFK_Sessions_Users, long SportTypeID, short Competition, short Transition, double Distance, short MedHR, short MaxHR, short Value, string Memo, System.DateTime Date, System.DateTime Time, bool Competition1, bool Transition1, double DistForPace) {
                 SessionsRow rowSessionsRow = ((SessionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1564,7 +1610,10 @@ namespace TrainIt {
                         Value,
                         Memo,
                         Date,
-                        Time};
+                        Time,
+                        Competition1,
+                        Transition1,
+                        DistForPace};
                 if ((parentTrainingsRowByFK_Sessions_Trainings != null)) {
                     columnValuesArray[1] = parentTrainingsRowByFK_Sessions_Trainings[0];
                 }
@@ -1613,6 +1662,9 @@ namespace TrainIt {
                 this.columnMemo = base.Columns["Memo"];
                 this.columnDate = base.Columns["Date"];
                 this.columnTime = base.Columns["Time"];
+                this.columnCompetition1 = base.Columns["Competition1"];
+                this.columnTransition1 = base.Columns["Transition1"];
+                this.columnDistForPace = base.Columns["DistForPace"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1644,6 +1696,12 @@ namespace TrainIt {
                 base.Columns.Add(this.columnDate);
                 this.columnTime = new global::System.Data.DataColumn("Time", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTime);
+                this.columnCompetition1 = new global::System.Data.DataColumn("Competition1", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCompetition1);
+                this.columnTransition1 = new global::System.Data.DataColumn("Transition1", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTransition1);
+                this.columnDistForPace = new global::System.Data.DataColumn("DistForPace", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDistForPace);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnSessionID}, true));
                 this.columnSessionID.AutoIncrement = true;
@@ -1657,6 +1715,9 @@ namespace TrainIt {
                 this.columnSportTypeID.AllowDBNull = false;
                 this.columnMemo.MaxLength = 50;
                 this.columnDate.AllowDBNull = false;
+                this.columnCompetition1.Caption = "Competition";
+                this.columnTransition1.Caption = "Transition";
+                this.columnDistForPace.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1800,6 +1861,8 @@ namespace TrainIt {
             
             private global::System.Data.DataColumn columnUserID;
             
+            private global::System.Data.DataColumn columnDistForPace;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SportTypesDataTable() {
@@ -1875,6 +1938,14 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DistForPaceColumn {
+                get {
+                    return this.columnDistForPace;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1910,14 +1981,15 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SportTypesRow AddSportTypesRow(string SportTypeName, long ParentSportTypeID, string Memo, UsersRow parentUsersRowByFK_SportTypes_Users1) {
+            public SportTypesRow AddSportTypesRow(string SportTypeName, long ParentSportTypeID, string Memo, UsersRow parentUsersRowByFK_SportTypes_Users1, double DistForPace) {
                 SportTypesRow rowSportTypesRow = ((SportTypesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         SportTypeName,
                         ParentSportTypeID,
                         Memo,
-                        null};
+                        null,
+                        DistForPace};
                 if ((parentUsersRowByFK_SportTypes_Users1 != null)) {
                     columnValuesArray[4] = parentUsersRowByFK_SportTypes_Users1[0];
                 }
@@ -1955,6 +2027,7 @@ namespace TrainIt {
                 this.columnParentSportTypeID = base.Columns["ParentSportTypeID"];
                 this.columnMemo = base.Columns["Memo"];
                 this.columnUserID = base.Columns["UserID"];
+                this.columnDistForPace = base.Columns["DistForPace"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1970,6 +2043,8 @@ namespace TrainIt {
                 base.Columns.Add(this.columnMemo);
                 this.columnUserID = new global::System.Data.DataColumn("UserID", typeof(long), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUserID);
+                this.columnDistForPace = new global::System.Data.DataColumn("DistForPace", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDistForPace);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnSportTypeID}, true));
                 this.columnSportTypeID.AutoIncrement = true;
@@ -1983,6 +2058,7 @@ namespace TrainIt {
                 this.columnParentSportTypeID.AllowDBNull = false;
                 this.columnMemo.MaxLength = 2147483647;
                 this.columnUserID.AllowDBNull = false;
+                this.columnDistForPace.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3575,22 +3651,6 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MatInitTime {
-                get {
-                    try {
-                        return ((string)(this[this.tableMaterials.MatInitTimeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MatInitTime\' in table \'Materials\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMaterials.MatInitTimeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal MatInitDist {
                 get {
                     try {
@@ -3714,6 +3774,38 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime MatInitTime {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableMaterials.MatInitTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MatInitTime\' in table \'Materials\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMaterials.MatInitTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string MatShortInitTime {
+                get {
+                    try {
+                        return ((string)(this[this.tableMaterials.MatShortInitTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MatShortInitTime\' in table \'Materials\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMaterials.MatShortInitTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsMatModelNull() {
                 return this.IsNull(this.tableMaterials.MatModelColumn);
             }
@@ -3782,18 +3874,6 @@ namespace TrainIt {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetMatCostNull() {
                 this[this.tableMaterials.MatCostColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMatInitTimeNull() {
-                return this.IsNull(this.tableMaterials.MatInitTimeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMatInitTimeNull() {
-                this[this.tableMaterials.MatInitTimeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3878,6 +3958,30 @@ namespace TrainIt {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTotTimeCalcNull() {
                 this[this.tableMaterials.TotTimeCalcColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMatInitTimeNull() {
+                return this.IsNull(this.tableMaterials.MatInitTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMatInitTimeNull() {
+                this[this.tableMaterials.MatInitTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMatShortInitTimeNull() {
+                return this.IsNull(this.tableMaterials.MatShortInitTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMatShortInitTimeNull() {
+                this[this.tableMaterials.MatShortInitTimeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4150,6 +4254,54 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Competition1 {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSessions.Competition1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Competition1\' in table \'Sessions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSessions.Competition1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Transition1 {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSessions.Transition1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Transition1\' in table \'Sessions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSessions.Transition1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double DistForPace {
+                get {
+                    try {
+                        return ((double)(this[this.tableSessions.DistForPaceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DistForPace\' in table \'Sessions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSessions.DistForPaceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public UsersRow UsersRow {
                 get {
                     return ((UsersRow)(this.GetParentRow(this.Table.ParentRelations["FK_Sessions_Users"])));
@@ -4268,6 +4420,42 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCompetition1Null() {
+                return this.IsNull(this.tableSessions.Competition1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCompetition1Null() {
+                this[this.tableSessions.Competition1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTransition1Null() {
+                return this.IsNull(this.tableSessions.Transition1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTransition1Null() {
+                this[this.tableSessions.Transition1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDistForPaceNull() {
+                return this.IsNull(this.tableSessions.DistForPaceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDistForPaceNull() {
+                this[this.tableSessions.DistForPaceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public MaterialSessionRow[] GetMaterialSessionRows() {
                 if ((this.Table.ChildRelations["FK_MaterialSession_Sessions"] == null)) {
                     return new MaterialSessionRow[0];
@@ -4349,6 +4537,17 @@ namespace TrainIt {
                 }
                 set {
                     this[this.tableSportTypes.UserIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double DistForPace {
+                get {
+                    return ((double)(this[this.tableSportTypes.DistForPaceColumn]));
+                }
+                set {
+                    this[this.tableSportTypes.DistForPaceColumn] = value;
                 }
             }
             
@@ -5381,7 +5580,6 @@ namespace TrainIt.TrainITDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("MatWeight", "MatWeight");
             tableMapping.ColumnMappings.Add("MatBuyDate", "MatBuyDate");
             tableMapping.ColumnMappings.Add("MatCost", "MatCost");
-            tableMapping.ColumnMappings.Add("MatInitTime", "MatInitTime");
             tableMapping.ColumnMappings.Add("MatInitDist", "MatInitDist");
             tableMapping.ColumnMappings.Add("MatRecTime", "MatRecTime");
             tableMapping.ColumnMappings.Add("MatRecDist", "MatRecDist");
@@ -5390,6 +5588,8 @@ namespace TrainIt.TrainITDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("MatImage", "MatImage");
             tableMapping.ColumnMappings.Add("TotDistCalc", "TotDistCalc");
             tableMapping.ColumnMappings.Add("TotTimeCalc", "TotTimeCalc");
+            tableMapping.ColumnMappings.Add("MatInitTime", "MatInitTime");
+            tableMapping.ColumnMappings.Add("MatShortInitTime", "MatShortInitTime");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -5399,7 +5599,7 @@ namespace TrainIt.TrainITDataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [Materials] ([MatName], [MatModel], [MatBrand], [MatSize], [MatWeight], [MatBuyDate], [MatCost], [MatInitTime], [MatInitDist], [MatRecTime], [MatRecDist], [MatBuyMemo], [userID], [MatImage]) VALUES (@MatName, @MatModel, @MatBrand, @MatSize, @MatWeight, @MatBuyDate, @MatCost, @MatInitTime, @MatInitDist, @MatRecTime, @MatRecDist, @MatBuyMemo, @userID, @MatImage);
-SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, (SELECT CAST(SUM(Sessions.Distance) AS Decimal(7 , 2)) AS TotDist FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID WHERE (MaterialSession.MatID = A.MatID)) AS TotDistCalc, (SELECT CONVERT (CHAR(8), CAST(SUM(CAST(Sessions_1.Time AS float)) AS DateTime), 108) AS TotTime FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON MaterialSession_1.SessionID = Sessions_1.SessionID WHERE (MaterialSession_1.MatID = A.MatID)) AS TotTimeCalc FROM Materials AS A WHERE (MatID = SCOPE_IDENTITY())";
+SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, CONVERT (char(9), MatInitTime, 108) AS MatShortInitTime, MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, (SELECT CAST(SUM(Sessions.Distance) + (SELECT MatInitDist FROM Materials WHERE (MatID = A.MatID)) AS Decimal(7 , 2)) AS TotDist FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID WHERE (MaterialSession.MatID = A.MatID)) AS TotDistCalc, (SELECT CONVERT (CHAR(8), CAST(SUM(CAST(Sessions_1.Time AS float)) + CAST((SELECT MatInitTime FROM Materials AS Materials_1 WHERE (MatID = A.MatID)) AS float) AS DateTime), 108) AS TotTime FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON MaterialSession_1.SessionID = Sessions_1.SessionID WHERE (MaterialSession_1.MatID = A.MatID)) AS TotTimeCalc FROM Materials AS A WHERE (MatID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatModel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatModel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5408,7 +5608,7 @@ SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCo
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatWeight", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "MatWeight", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatBuyDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatBuyDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatInitTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatInitTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatInitTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatInitTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatInitDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatInitDist", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatRecTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatRecTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatRecDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatRecDist", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5418,7 +5618,7 @@ SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCo
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [Materials] SET [MatName] = @MatName, [MatModel] = @MatModel, [MatBrand] = @MatBrand, [MatSize] = @MatSize, [MatWeight] = @MatWeight, [MatBuyDate] = @MatBuyDate, [MatCost] = @MatCost, [MatInitTime] = @MatInitTime, [MatInitDist] = @MatInitDist, [MatRecTime] = @MatRecTime, [MatRecDist] = @MatRecDist, [MatBuyMemo] = @MatBuyMemo, [userID] = @userID, [MatImage] = @MatImage WHERE (([MatID] = @Original_MatID));
-SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, (SELECT CAST(SUM(Sessions.Distance) AS Decimal(7 , 2)) AS TotDist FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID WHERE (MaterialSession.MatID = A.MatID)) AS TotDistCalc, (SELECT CONVERT (CHAR(8), CAST(SUM(CAST(Sessions_1.Time AS float)) AS DateTime), 108) AS TotTime FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON MaterialSession_1.SessionID = Sessions_1.SessionID WHERE (MaterialSession_1.MatID = A.MatID)) AS TotTimeCalc FROM Materials AS A WHERE (MatID = @MatID)";
+SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, CONVERT (char(9), MatInitTime, 108) AS MatShortInitTime, MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, (SELECT CAST(SUM(Sessions.Distance) + (SELECT MatInitDist FROM Materials WHERE (MatID = A.MatID)) AS Decimal(7 , 2)) AS TotDist FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID WHERE (MaterialSession.MatID = A.MatID)) AS TotDistCalc, (SELECT CONVERT (CHAR(8), CAST(SUM(CAST(Sessions_1.Time AS float)) + CAST((SELECT MatInitTime FROM Materials AS Materials_1 WHERE (MatID = A.MatID)) AS float) AS DateTime), 108) AS TotTime FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON MaterialSession_1.SessionID = Sessions_1.SessionID WHERE (MaterialSession_1.MatID = A.MatID)) AS TotTimeCalc FROM Materials AS A WHERE (MatID = @MatID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatModel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatModel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5427,7 +5627,7 @@ SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCo
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatWeight", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "MatWeight", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatBuyDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatBuyDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatInitTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatInitTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatInitTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatInitTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatInitDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatInitDist", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatRecTime", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatRecTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatRecDist", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 20, 3, "MatRecDist", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5451,14 +5651,20 @@ SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCo
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime,               MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, 
-              (SELECT CAST(SUM(Sessions.Distance) AS Decimal(7 , 2)) AS TotDist 
-               FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID 
-               WHERE (MaterialSession.MatID = A.MatID)) AS TotDistCalc, 
-              (SELECT CONVERT (CHAR(8), CAST(SUM(CAST(Sessions_1.Time AS float)) AS DateTime), 108) AS                             TotTime 
-                FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON                             MaterialSession_1.SessionID = Sessions_1.SessionID 
+            this._commandCollection[0].CommandText = @"SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime,
+              CONVERT(char(9),MatInitTime,108) AS MatShortInitTime,
+              MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, 
+               ( SELECT CAST(SUM(Sessions.Distance)+( SELECT Materials.MatInitDist FROM Materials WHERE                                           Materials.MatID=A.MatID ) AS Decimal(7 , 2)) AS TotDist 
+                 FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID 
+                 WHERE (MaterialSession.MatID = A.MatID)) AS TotDistCalc, 
+              ( SELECT CONVERT (CHAR(8), CAST(SUM(CAST(Sessions_1.Time AS float)) + 
+                  CAST( (SELECT Materials.MatInitTime FROM Materials WHERE Materials.MatID=A.MatID) AS float )
+                  AS DateTime), 108) AS  TotTime 
+                 FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON                                                          MaterialSession_1.SessionID = Sessions_1.SessionID 
                 WHERE (MaterialSession_1.MatID = A.MatID)) AS TotTimeCalc 
+
 FROM Materials AS A 
+
 WHERE (userID = @userID)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "userID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5939,8 +6145,6 @@ WHERE        MaterialSession.SessionID=@sessionID";
             tableMapping.ColumnMappings.Add("TrainID", "TrainID");
             tableMapping.ColumnMappings.Add("UserID", "UserID");
             tableMapping.ColumnMappings.Add("SportTypeID", "SportTypeID");
-            tableMapping.ColumnMappings.Add("Competition", "Competition");
-            tableMapping.ColumnMappings.Add("Transition", "Transition");
             tableMapping.ColumnMappings.Add("Distance", "Distance");
             tableMapping.ColumnMappings.Add("MedHR", "MedHR");
             tableMapping.ColumnMappings.Add("MaxHR", "MaxHR");
@@ -5948,6 +6152,9 @@ WHERE        MaterialSession.SessionID=@sessionID";
             tableMapping.ColumnMappings.Add("Memo", "Memo");
             tableMapping.ColumnMappings.Add("Date", "Date");
             tableMapping.ColumnMappings.Add("Time", "Time");
+            tableMapping.ColumnMappings.Add("Competition", "Competition1");
+            tableMapping.ColumnMappings.Add("Transition", "Transition1");
+            tableMapping.ColumnMappings.Add("DistForPace", "DistForPace");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -5958,9 +6165,9 @@ WHERE        MaterialSession.SessionID=@sessionID";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Competition", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Competition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Competition", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Transition", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Transition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Transition", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Distance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Distance", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Distance", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Distance", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Time", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Time", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -5981,8 +6188,8 @@ WHERE        MaterialSession.SessionID=@sessionID";
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TrainID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TrainID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportTypeID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Competition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Transition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Competition", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Transition", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Distance", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Distance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Time", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Time", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MedHR", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MedHR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5997,8 +6204,8 @@ WHERE        MaterialSession.SessionID=@sessionID";
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TrainID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TrainID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportTypeID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Competition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Transition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Competition", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Transition", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Distance", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Distance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Time", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Time", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MedHR", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MedHR", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6011,9 +6218,9 @@ WHERE        MaterialSession.SessionID=@sessionID";
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Competition", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Competition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Competition", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Competition", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Transition", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Transition", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Transition", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Transition", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Distance", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Distance", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Distance", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Distance", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Time", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Time", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -6043,26 +6250,32 @@ WHERE        MaterialSession.SessionID=@sessionID";
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT SessionID, TrainID, UserID, SportTypeID, Competition, Transition, Distance" +
-                ", Time, MedHR, MaxHR, Value, Memo, Date FROM Sessions";
+                ", Time, MedHR, MaxHR, Value,               Memo,\r\n             (SELECT DistForPa" +
+                "ce FROM SportTypes WHERE SportTypeID=S.SportTypeID) As DistForPace, Date \r\n\r\nFRO" +
+                "M Sessions S";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT    Sessions.SessionID, Sessions.TrainID, Sessions.UserID, Sessions.SportTypeID, Sessions.Competition,                            Sessions.Transition, Sessions.Distance, Sessions.Time, Sessions.MedHR, 
-                 Sessions.MaxHR, Sessions.Value, Sessions.Memo, Sessions.Date, SportTypes.SportTypeName, 
-                Trainings.TrainName, CONVERT(Char(8),Sessions.Time,108) AS ""ShortTime"",
-                 CASE
-                       WHEN CAST(Sessions.Time As float)>'0' THEN CAST (
-                                          Sessions.Distance/(CAST(Sessions.Time AS float)*24) AS decimal(7,2) )
-                       ELSE '0'
-                 END AS ""Speed""
-                
-FROM      Sessions INNER JOIN
-                 Trainings ON Sessions.TrainID = Trainings.TrainID INNER JOIN
-                 SportTypes ON Sessions.SportTypeID = SportTypes.SportTypeID
-
-WHERE    (Sessions.UserID = @userID)
-
-ORDER BY Sessions.Date DESC";
+            this._commandCollection[1].CommandText = "SELECT    Sessions.SessionID, Sessions.TrainID, Sessions.UserID, Sessions.SportTy" +
+                "peID, Sessions.Competition,                            Sessions.Transition, Sess" +
+                "ions.Distance, Sessions.Time, Sessions.MedHR, \r\n                 Sessions.MaxHR," +
+                " Sessions.Value, Sessions.Memo, Sessions.Date, SportTypes.SportTypeName, \r\n     " +
+                "           Trainings.TrainName, CONVERT(Char(8),Sessions.Time,108) AS \"ShortTime" +
+                "\",\r\n                 CASE\r\n                       WHEN CAST(Sessions.Time As flo" +
+                "at)>\'0\' THEN CAST (\r\n                                          Sessions.Distance" +
+                "/(CAST(Sessions.Time AS float)*24) AS decimal(7,2) )\r\n                       ELS" +
+                "E \'0\'\r\n                 END AS \"Speed\",\r\n                CASE\r\n                 " +
+                "     WHEN CAST(Sessions.Distance As float)>\'0\' \r\n                      THEN CONV" +
+                "ERT(Char(8),CAST(((CAST(Sessions.Time AS float)*\r\n                              " +
+                "                     (SELECT DistForPace FROM SportTypes WHERE SportTypeID=Sessi" +
+                "ons.SportTypeID )\r\n                                                   )/Sessions" +
+                ".Distance) AS DateTime ),108)\r\n                      ELSE \'00:00:00\'\r\n          " +
+                "       END AS \"Pace\",\r\n                 (SELECT DistForPace FROM SportTypes WHER" +
+                "E SportTypeID=Sessions.SportTypeID) As DistForPace\r\n                \r\nFROM      " +
+                "Sessions  INNER JOIN\r\n                 Trainings ON Sessions.TrainID = Trainings" +
+                ".TrainID INNER JOIN\r\n                 SportTypes ON Sessions.SportTypeID = Sport" +
+                "Types.SportTypeID \r\n\r\nWHERE    (Sessions.UserID = @userID)\r\n\r\nORDER BY Sessions." +
+                "Date DESC";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
@@ -6309,39 +6522,42 @@ ORDER BY Sessions.Date DESC";
             tableMapping.ColumnMappings.Add("ParentSportTypeID", "ParentSportTypeID");
             tableMapping.ColumnMappings.Add("Memo", "Memo");
             tableMapping.ColumnMappings.Add("UserID", "UserID");
+            tableMapping.ColumnMappings.Add("DistForPace", "DistForPace");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[SportTypes] WHERE (([SportTypeID] = @Original_SportTypeID) AND" +
-                " ([SportTypeName] = @Original_SportTypeName) AND ([ParentSportTypeID] = @Origina" +
-                "l_ParentSportTypeID) AND ([UserID] = @Original_UserID))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[SportTypes] WHERE (([SportTypeID] = @Original_SportTypeID) AND ([SportTypeName] = @Original_SportTypeName) AND ([ParentSportTypeID] = @Original_ParentSportTypeID) AND ([UserID] = @Original_UserID) AND ([DistForPace] = @Original_DistForPace))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ParentSportTypeID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentSportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DistForPace", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DistForPace", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[SportTypes] ([SportTypeName], [ParentSportTypeID], [Memo], [UserID]) VALUES (@SportTypeName, @ParentSportTypeID, @Memo, @UserID);
-SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM SportTypes WHERE (SportTypeID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[SportTypes] ([SportTypeName], [ParentSportTypeID], [Memo], [UserID], [DistForPace]) VALUES (@SportTypeName, @ParentSportTypeID, @Memo, @UserID, @DistForPace);
+SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID, DistForPace FROM SportTypes WHERE (SportTypeID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportTypeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ParentSportTypeID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentSportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Memo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DistForPace", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DistForPace", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[SportTypes] SET [SportTypeName] = @SportTypeName, [ParentSportTypeID] = @ParentSportTypeID, [Memo] = @Memo, [UserID] = @UserID WHERE (([SportTypeID] = @Original_SportTypeID) AND ([SportTypeName] = @Original_SportTypeName) AND ([ParentSportTypeID] = @Original_ParentSportTypeID) AND ([UserID] = @Original_UserID));
-SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM SportTypes WHERE (SportTypeID = @SportTypeID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[SportTypes] SET [SportTypeName] = @SportTypeName, [ParentSportTypeID] = @ParentSportTypeID, [Memo] = @Memo, [UserID] = @UserID, [DistForPace] = @DistForPace WHERE (([SportTypeID] = @Original_SportTypeID) AND ([SportTypeName] = @Original_SportTypeName) AND ([ParentSportTypeID] = @Original_ParentSportTypeID) AND ([UserID] = @Original_UserID) AND ([DistForPace] = @Original_DistForPace));
+SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID, DistForPace FROM SportTypes WHERE (SportTypeID = @SportTypeID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportTypeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ParentSportTypeID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentSportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Memo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Memo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DistForPace", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DistForPace", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SportTypeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ParentSportTypeID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ParentSportTypeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DistForPace", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DistForPace", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SportTypeID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -6358,19 +6574,19 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM SportTyp
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM dbo.Sport" +
-                "Types ";
+            this._commandCollection[0].CommandText = "SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID, DistForPace  " +
+                "FROM dbo.SportTypes ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM dbo.Sport" +
-                "Types WHERE UserID=@UserID\r\n";
+            this._commandCollection[1].CommandText = "SELECT DistForPace, Memo, ParentSportTypeID, SportTypeID, SportTypeName, UserID, " +
+                "DistForPace FROM SportTypes WHERE (UserID = @UserID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "UserID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM dbo.Sport" +
-                "Types WHERE SportTypeID=@sportTypeID";
+            this._commandCollection[2].CommandText = "SELECT DistForPace, Memo, ParentSportTypeID, SportTypeID, SportTypeName, UserID,D" +
+                "istForPace FROM SportTypes WHERE (SportTypeID = @sportTypeID)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sportTypeID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "SportTypeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -6484,7 +6700,7 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM SportTyp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_SportTypeID, string Original_SportTypeName, long Original_ParentSportTypeID, long Original_UserID) {
+        public virtual int Delete(long Original_SportTypeID, string Original_SportTypeName, long Original_ParentSportTypeID, long Original_UserID, double Original_DistForPace) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_SportTypeID));
             if ((Original_SportTypeName == null)) {
                 throw new global::System.ArgumentNullException("Original_SportTypeName");
@@ -6494,6 +6710,7 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM SportTyp
             }
             this.Adapter.DeleteCommand.Parameters[2].Value = ((long)(Original_ParentSportTypeID));
             this.Adapter.DeleteCommand.Parameters[3].Value = ((long)(Original_UserID));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((double)(Original_DistForPace));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6514,7 +6731,7 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM SportTyp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string SportTypeName, long ParentSportTypeID, string Memo, long UserID) {
+        public virtual int Insert(string SportTypeName, long ParentSportTypeID, string Memo, long UserID, double DistForPace) {
             if ((SportTypeName == null)) {
                 throw new global::System.ArgumentNullException("SportTypeName");
             }
@@ -6529,6 +6746,7 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM SportTyp
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Memo));
             }
             this.Adapter.InsertCommand.Parameters[3].Value = ((long)(UserID));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((double)(DistForPace));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6549,7 +6767,7 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM SportTyp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string SportTypeName, long ParentSportTypeID, string Memo, long UserID, long Original_SportTypeID, string Original_SportTypeName, long Original_ParentSportTypeID, long Original_UserID, long SportTypeID) {
+        public virtual int Update(string SportTypeName, long ParentSportTypeID, string Memo, long UserID, double DistForPace, long Original_SportTypeID, string Original_SportTypeName, long Original_ParentSportTypeID, long Original_UserID, double Original_DistForPace, long SportTypeID) {
             if ((SportTypeName == null)) {
                 throw new global::System.ArgumentNullException("SportTypeName");
             }
@@ -6564,16 +6782,18 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM SportTyp
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Memo));
             }
             this.Adapter.UpdateCommand.Parameters[3].Value = ((long)(UserID));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((long)(Original_SportTypeID));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((double)(DistForPace));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((long)(Original_SportTypeID));
             if ((Original_SportTypeName == null)) {
                 throw new global::System.ArgumentNullException("Original_SportTypeName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_SportTypeName));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_SportTypeName));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((long)(Original_ParentSportTypeID));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((long)(Original_UserID));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((long)(SportTypeID));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((long)(Original_ParentSportTypeID));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((long)(Original_UserID));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((double)(Original_DistForPace));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((long)(SportTypeID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6594,8 +6814,8 @@ SELECT SportTypeID, SportTypeName, ParentSportTypeID, Memo, UserID FROM SportTyp
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string SportTypeName, long ParentSportTypeID, string Memo, long UserID, long Original_SportTypeID, string Original_SportTypeName, long Original_ParentSportTypeID, long Original_UserID) {
-            return this.Update(SportTypeName, ParentSportTypeID, Memo, UserID, Original_SportTypeID, Original_SportTypeName, Original_ParentSportTypeID, Original_UserID, Original_SportTypeID);
+        public virtual int Update(string SportTypeName, long ParentSportTypeID, string Memo, long UserID, double DistForPace, long Original_SportTypeID, string Original_SportTypeName, long Original_ParentSportTypeID, long Original_UserID, double Original_DistForPace) {
+            return this.Update(SportTypeName, ParentSportTypeID, Memo, UserID, DistForPace, Original_SportTypeID, Original_SportTypeName, Original_ParentSportTypeID, Original_UserID, Original_DistForPace, Original_SportTypeID);
         }
     }
     

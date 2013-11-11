@@ -46,7 +46,7 @@ namespace TrainIt
             {
 
                 Global.materialUsed = Global.materialUsed.LoadDataFromView(txtID.Text, txtName.Text, txtModel.Text, txtBrand.Text, txtSize.Text, mtxtWeight.Text, dtpBuyDate.Value.ToString(),
-                                                     txtCost.Text, mtxtInitTime.Text, txtInitDist.Text, mtxtRecTime.Text, txtRecDist.Text, txtBuyMemo.Text, txtUserID.Text);
+                                                     txtCost.Text, mtxtInitTimeShort.Text, txtInitDist.Text, mtxtRecTime.Text, txtRecDist.Text, txtBuyMemo.Text, txtUserID.Text);
                 e.Cancel = false;
                 OnSearchMode = false;
                 if (returnValue)
@@ -66,7 +66,7 @@ namespace TrainIt
             dtpBuyDate.Enabled = true;
             txtCost.ReadOnly = false;
             txtBuyMemo.ReadOnly = false;
-            mtxtInitTime.ReadOnly = false;
+            mtxtInitTimeShort.ReadOnly = false;
             txtInitDist.ReadOnly = false;
             txtRecDist.ReadOnly = false;
             mtxtRecTime.ReadOnly = false;
@@ -102,7 +102,7 @@ namespace TrainIt
             dtpBuyDate.Enabled = false;
             txtCost.ReadOnly = true;
             txtBuyMemo.ReadOnly = true;
-            mtxtInitTime.ReadOnly = true;
+            mtxtInitTimeShort.ReadOnly = true;
             txtInitDist.ReadOnly = true;
             txtRecDist.ReadOnly = true;
             mtxtRecTime.ReadOnly = true;
@@ -135,7 +135,7 @@ namespace TrainIt
             txtInitDist.Text = "0";
             txtRecDist.Text = "0";
             txtUseDist.Text = "0";
-            mtxtInitTime.Text = "00:00:00";
+            mtxtInitTimeShort.Text = "00:00:00";
             mtxtRecTime.Text = "00:00:00";
             txtUseTime.Text = "00:00:00";
             txtTimeBar.Width = 0;
@@ -201,7 +201,20 @@ namespace TrainIt
                 }
             }
 
-            aMat.MatInitTime = mtxtInitTime.Text;
+            if (mtxtInitTimeShort.Text == "")
+                aMat.MatInitTime = Convert.ToDateTime("01/01/1900 00:00:00.000");
+            else
+            {
+                try
+                {
+                    aMat.MatInitTime = Convert.ToDateTime(mtxtInitTimeShort.Text);
+                }
+                catch (Exception)
+                {
+                    aMat.MatInitTime = Convert.ToDateTime("01/01/1900 00:00:00.000");
+                }
+            }
+           
 
             if (txtInitDist.Text == "")
                 aMat.MatInitDist = 0.000M;
@@ -383,7 +396,7 @@ namespace TrainIt
             string mensaje = "¿Desea guardar la ficha creada?";
             DialogResult delMat = MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (delMat == DialogResult.OK)
-            {
+            {                
                 //Load data into model.
                 Material aMat = new Material();
                 aMat = LoadObject();
@@ -549,13 +562,13 @@ namespace TrainIt
         private void mtxtInitTime_Validating(object sender, CancelEventArgs e)
         {
             e.Cancel = false;
-            if (mtxtInitTime.Text != "")
+            if (mtxtInitTimeShort.Text != "")
             {
-                if (!Time.CheckTimeFormat(mtxtInitTime.Text,999999))                
+                if (!Time.CheckTimeFormat(mtxtInitTimeShort.Text,999999))                
                     e.Cancel = true;
                 if (e.Cancel)
                 {//Format not correct
-                    mtxtInitTime.BackColor = Color.Red;
+                    mtxtInitTimeShort.BackColor = Color.Red;
                     string message="El tiempo inicial de uso debe ser en formato: hh:mm:ss \n\n"+
                                      "      - Segundos entre 0 y 59. \n"+
                                      "      - Minutos entre 0 y 59.  \n"+ 
@@ -564,7 +577,8 @@ namespace TrainIt
             }
                 else
                 {//Format correct
-                    mtxtInitTime.BackColor = SystemColors.Window;
+                    mtxtInitTimeShort.BackColor = SystemColors.Window;
+                    mtxtInitTimeLong.Text = "01/01/1900 " + mtxtInitTimeShort.Text;
                 }
             }
         }

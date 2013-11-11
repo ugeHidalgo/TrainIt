@@ -11,6 +11,7 @@ namespace TrainItLibrary
         private Int64 parentSportTypeID;
         private string memo;
         private Int64 userID;
+        private double distForPace;
 
         public Int64 SportTypeID
         {
@@ -37,6 +38,11 @@ namespace TrainItLibrary
             get { return userID; }
             set { userID = value; }
         }
+        public double DistForPace
+        {
+            get { return distForPace; }
+            set { distForPace = value; }
+        }
 
 
         //Creates an empty SportType object
@@ -47,26 +53,29 @@ namespace TrainItLibrary
             parentSportTypeID = -1;
             memo = "";
             userID = -1;
+            distForPace = 1;
         }
 
         //Creates a SportType object with data
-        public SportTypes(Int64 SportTypeID, string SportTypeName, Int64 ParentSportTypeID, string Memo, Int64 UserID)
+        public SportTypes(Int64 SportTypeID, string SportTypeName, Int64 ParentSportTypeID, string Memo, Int64 UserID, double distForPace)
         {            
             sportTypeID = SportTypeID;
             sportTypeName = SportTypeName;
             parentSportTypeID = ParentSportTypeID;
             memo = Memo;
             userID = UserID;
+            distForPace = DistForPace;
         }
 
         //Load data into a SportType object.
-        public void LoadData(Int64 SportTypeID, string SportTypeName, Int64 ParentSportTypeID, string Memo, Int64 UserID)
+        public void LoadData(Int64 SportTypeID, string SportTypeName, Int64 ParentSportTypeID, string Memo, Int64 UserID, double DistForPace)
         {
             sportTypeID = SportTypeID;
             sportTypeName = SportTypeName;
             parentSportTypeID = ParentSportTypeID;
             memo = Memo;
             userID = UserID;
+            distForPace = DistForPace;
         }
 
         //Reset data into a SportType object
@@ -77,6 +86,7 @@ namespace TrainItLibrary
             parentSportTypeID = -1;
             memo = "";
             userID = -1;
+            distForPace = 1;
         }
 
         //Find an SportType object by a given ID, and return this object. If not find returns an SportType object with ID=-1
@@ -95,8 +105,8 @@ namespace TrainItLibrary
                     cmd.Parameters["@userID"].Value = userID;
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())                      
-                        returnSportType.LoadData(reader.GetInt64(0), reader.GetString(1), reader.GetInt64(2), reader.GetString(3), reader.GetInt64(4));                    
+                    if (reader.Read())                      
+                        returnSportType.LoadData(reader.GetInt64(0), reader.GetString(1), reader.GetInt64(2), reader.GetString(3), reader.GetInt64(4), reader.GetDouble(5));                    
                     reader.Close();
                 }
             }
@@ -110,8 +120,8 @@ namespace TrainItLibrary
             SportTypes aSportType = new SportTypes();
             using (SqlConnection conn = new SqlConnection(connString))
             {                
-                string query = @"INSERT INTO SportTypes(SportTypeName, ParentSportTypeID, Memo, UserID)
-                                 VALUES(@sportTypeName, @parentSportTypeID, @memo, @userID);                                 
+                string query = @"INSERT INTO SportTypes(SportTypeName, ParentSportTypeID, Memo, UserID, DistForPace)
+                                 VALUES(@sportTypeName, @parentSportTypeID, @memo, @userID, @distForPace);                                 
                                  SELECT CAST(SCOPE_IDENTITY() AS bigint)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -127,12 +137,15 @@ namespace TrainItLibrary
                     cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
                     cmd.Parameters["@userID"].Value = userID;
 
+                    cmd.Parameters.Add(new SqlParameter("@distForPace", SqlDbType.Float));
+                    cmd.Parameters["@distForPace"].Value = distForPace;
+
                     conn.Open();
                     //res = cmd.ExecuteNonQuery();
                     res = (Int64)cmd.ExecuteScalar();
                     if (res > 0)
                     {
-                        aSportType.LoadData(res, sportTypeName, parentSportTypeID, memo, userID);
+                        aSportType.LoadData(res, sportTypeName, parentSportTypeID, memo, userID, distForPace);
                     }
                 }
             }
@@ -149,7 +162,7 @@ namespace TrainItLibrary
                 string query = null;
 
                 query = @"UPDATE SportTypes SET SportTypeName=@sportTypeName, ParentSportTypeID=@parentSportTypeID, 
-                          Memo=@memo, UserID=@userID
+                          Memo=@memo, UserID=@userID, DistForPace=@distForPace
                           WHERE SportTypeID=@sportTypeID";
                 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -169,13 +182,16 @@ namespace TrainItLibrary
                     cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
                     cmd.Parameters["@userID"].Value = userID;
 
+                    cmd.Parameters.Add(new SqlParameter("@distForPace", SqlDbType.Float));
+                    cmd.Parameters["@distForPace"].Value = distForPace;
+
                     conn.Open();
                     int res = cmd.ExecuteNonQuery();
 
                     //Find the userID asigned.
                     if (res > 0)
                     {
-                        aSportType.LoadData(sportTypeID, sportTypeName, parentSportTypeID, memo, userID);                        
+                        aSportType.LoadData(sportTypeID, sportTypeName, parentSportTypeID, memo, userID, distForPace);                        
                     }
                 }
             }
@@ -200,7 +216,7 @@ namespace TrainItLibrary
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        aSportType.LoadData(reader.GetInt64(0), reader.GetString(1), reader.GetInt64(2), reader.GetString(3), reader.GetInt64(4));                    
+                        aSportType.LoadData(reader.GetInt64(0), reader.GetString(1), reader.GetInt64(2), reader.GetString(3), reader.GetInt64(4),reader.GetDouble(5));                    
                     }
                     reader.Close();
                 }
@@ -281,6 +297,70 @@ namespace TrainItLibrary
             aSportType.UserID = userID;
             aSportType = aSportType.FindSportTypeByID(connString);
             return aSportType;
+        }
+
+        public static bool hasChilds(string connString, long aSportTypeToCheck)
+        {
+            Int32 res = 0;
+            bool result = false;
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "select count(*) from sporttypes where ParentSportTypeID = @aSportTypeToCheck";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@aSportTypeToCheck", SqlDbType.BigInt));
+                    cmd.Parameters["@aSportTypeToCheck"].Value = aSportTypeToCheck;
+                    conn.Open();
+                    res = (Int32)cmd.ExecuteScalar();
+                }
+            }
+            if (res > 0)
+                result = true;
+            return result; 
+        }
+
+        public static bool isInUse(string connString, long aSportTypeToCheck)
+        {
+            Int32 res = 0;
+            bool result = false;
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "select count(*) from Sessions where SportTypeID = @aSportTypeToCheck";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@aSportTypeToCheck", SqlDbType.BigInt));
+                    cmd.Parameters["@aSportTypeToCheck"].Value = aSportTypeToCheck;
+                    conn.Open();
+                    res = (Int32)cmd.ExecuteScalar();
+                }
+            }
+            if (res > 0)
+                result = true;
+            return result; 
+        }
+
+        public static double paceDistance(string connString, long aSportTypeID)
+        {
+            double res = 1;
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "select DistForPace from SportTypes where SportTypeID = @aSportTypeID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@aSportTypeID", SqlDbType.BigInt));
+                    cmd.Parameters["@aSportTypeID"].Value = aSportTypeID;
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        res = reader.GetDouble(0);
+                    }
+                }
+            }            
+            return res;
         }
     }
 }

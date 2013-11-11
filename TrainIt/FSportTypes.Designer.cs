@@ -33,9 +33,12 @@
             System.Windows.Forms.Label userFirstNameLabel;
             System.Windows.Forms.Label userSecondNameLabel;
             System.Windows.Forms.Label userMailLabel;
+            System.Windows.Forms.Label label1;
+            System.Windows.Forms.Label label2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FSportTypes));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolS1 = new System.Windows.Forms.ToolStrip();
             this.tsBtnFirst = new System.Windows.Forms.ToolStripButton();
             this.tsBtnPrevious = new System.Windows.Forms.ToolStripButton();
@@ -55,6 +58,7 @@
             this.SportTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ParentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.parentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ritmos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.memo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtMemo = new System.Windows.Forms.TextBox();
@@ -68,10 +72,13 @@
             this.sportTypesTableAdapter1 = new TrainIt.TrainITDataSetTableAdapters.SportTypesTableAdapter();
             this.btnChoose = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.txtDistForPace = new System.Windows.Forms.TextBox();
             userIDLabel = new System.Windows.Forms.Label();
             userFirstNameLabel = new System.Windows.Forms.Label();
             userSecondNameLabel = new System.Windows.Forms.Label();
             userMailLabel = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
             this.toolS1.SuspendLayout();
             this.statusS1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSTypes)).BeginInit();
@@ -82,42 +89,62 @@
             // userIDLabel
             // 
             userIDLabel.AutoSize = true;
-            userIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            userIDLabel.Location = new System.Drawing.Point(105, 49);
+            userIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            userIDLabel.Location = new System.Drawing.Point(128, 49);
             userIDLabel.Name = "userIDLabel";
-            userIDLabel.Size = new System.Drawing.Size(67, 20);
+            userIDLabel.Size = new System.Drawing.Size(75, 20);
             userIDLabel.TabIndex = 15;
             userIDLabel.Text = "Código :";
             // 
             // userFirstNameLabel
             // 
             userFirstNameLabel.AutoSize = true;
-            userFirstNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            userFirstNameLabel.Location = new System.Drawing.Point(-1, 78);
+            userFirstNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            userFirstNameLabel.Location = new System.Drawing.Point(10, 78);
             userFirstNameLabel.Name = "userFirstNameLabel";
-            userFirstNameLabel.Size = new System.Drawing.Size(173, 20);
+            userFirstNameLabel.Size = new System.Drawing.Size(195, 20);
             userFirstNameLabel.TabIndex = 17;
             userFirstNameLabel.Text = "Nombre Tipo Deporte : ";
             // 
             // userSecondNameLabel
             // 
             userSecondNameLabel.AutoSize = true;
-            userSecondNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            userSecondNameLabel.Location = new System.Drawing.Point(32, 112);
+            userSecondNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            userSecondNameLabel.Location = new System.Drawing.Point(45, 112);
             userSecondNameLabel.Name = "userSecondNameLabel";
-            userSecondNameLabel.Size = new System.Drawing.Size(140, 20);
+            userSecondNameLabel.Size = new System.Drawing.Size(160, 20);
             userSecondNameLabel.TabIndex = 19;
             userSecondNameLabel.Text = "Pertenece al tipo : ";
             // 
             // userMailLabel
             // 
             userMailLabel.AutoSize = true;
-            userMailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            userMailLabel.Location = new System.Drawing.Point(72, 169);
+            userMailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            userMailLabel.Location = new System.Drawing.Point(174, 232);
             userMailLabel.Name = "userMailLabel";
-            userMailLabel.Size = new System.Drawing.Size(100, 20);
+            userMailLabel.Size = new System.Drawing.Size(113, 20);
             userMailLabel.TabIndex = 22;
             userMailLabel.Text = "Descripción :";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label1.Location = new System.Drawing.Point(174, 192);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(280, 20);
+            label1.TabIndex = 27;
+            label1.Text = "Distancia para calculo de ritmos : ";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label2.Location = new System.Drawing.Point(547, 195);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(32, 20);
+            label2.TabIndex = 29;
+            label2.Text = "Km";
             // 
             // toolS1
             // 
@@ -134,7 +161,7 @@
             this.tsBtnDel});
             this.toolS1.Location = new System.Drawing.Point(0, 0);
             this.toolS1.Name = "toolS1";
-            this.toolS1.Size = new System.Drawing.Size(588, 25);
+            this.toolS1.Size = new System.Drawing.Size(670, 25);
             this.toolS1.TabIndex = 2;
             this.toolS1.Text = "toolStrip1";
             // 
@@ -238,9 +265,9 @@
             this.statusS1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tslUser,
             this.tslConnString});
-            this.statusS1.Location = new System.Drawing.Point(0, 673);
+            this.statusS1.Location = new System.Drawing.Point(0, 763);
             this.statusS1.Name = "statusS1";
-            this.statusS1.Size = new System.Drawing.Size(588, 22);
+            this.statusS1.Size = new System.Drawing.Size(670, 22);
             this.statusS1.TabIndex = 3;
             this.statusS1.Text = "statusStrip1";
             // 
@@ -262,20 +289,29 @@
             this.dgvSTypes.AllowUserToDeleteRows = false;
             this.dgvSTypes.AllowUserToOrderColumns = true;
             this.dgvSTypes.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSTypes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSTypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.SportTypeName,
             this.ParentID,
             this.parentName,
+            this.Ritmos,
             this.memo,
             this.userID});
             this.dgvSTypes.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvSTypes.Location = new System.Drawing.Point(0, 273);
+            this.dgvSTypes.Location = new System.Drawing.Point(0, 362);
             this.dgvSTypes.Name = "dgvSTypes";
             this.dgvSTypes.ReadOnly = true;
             this.dgvSTypes.RowHeadersVisible = false;
-            this.dgvSTypes.Size = new System.Drawing.Size(588, 400);
+            this.dgvSTypes.Size = new System.Drawing.Size(670, 401);
             this.dgvSTypes.TabIndex = 4;
             this.dgvSTypes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSTypes_CellDoubleClick);
             this.dgvSTypes.Click += new System.EventHandler(this.dgvSTypes_Click);
@@ -283,9 +319,9 @@
             // ID
             // 
             this.ID.DataPropertyName = "SportTypeID";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.NullValue = null;
-            this.ID.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.NullValue = null;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
             this.ID.HeaderText = "";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
@@ -301,8 +337,8 @@
             // ParentID
             // 
             this.ParentID.DataPropertyName = "ParentSportTypeID";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ParentID.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ParentID.DefaultCellStyle = dataGridViewCellStyle3;
             this.ParentID.HeaderText = "";
             this.ParentID.Name = "ParentID";
             this.ParentID.ReadOnly = true;
@@ -315,10 +351,18 @@
             this.parentName.Name = "parentName";
             this.parentName.ReadOnly = true;
             // 
+            // Ritmos
+            // 
+            this.Ritmos.DataPropertyName = "DistForPace";
+            this.Ritmos.HeaderText = "Ritmos";
+            this.Ritmos.Name = "Ritmos";
+            this.Ritmos.ReadOnly = true;
+            this.Ritmos.Width = 80;
+            // 
             // memo
             // 
             this.memo.DataPropertyName = "Memo";
-            this.memo.HeaderText = "descripción";
+            this.memo.HeaderText = "Descripción";
             this.memo.Name = "memo";
             this.memo.ReadOnly = true;
             this.memo.Width = 300;
@@ -334,17 +378,17 @@
             // txtMemo
             // 
             this.txtMemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMemo.Location = new System.Drawing.Point(178, 169);
+            this.txtMemo.Location = new System.Drawing.Point(178, 255);
             this.txtMemo.MaxLength = 200;
             this.txtMemo.Multiline = true;
             this.txtMemo.Name = "txtMemo";
-            this.txtMemo.Size = new System.Drawing.Size(378, 87);
-            this.txtMemo.TabIndex = 21;
+            this.txtMemo.Size = new System.Drawing.Size(480, 87);
+            this.txtMemo.TabIndex = 4;
             // 
             // txtSportTypeID
             // 
             this.txtSportTypeID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSportTypeID.Location = new System.Drawing.Point(178, 43);
+            this.txtSportTypeID.Location = new System.Drawing.Point(211, 43);
             this.txtSportTypeID.Name = "txtSportTypeID";
             this.txtSportTypeID.ReadOnly = true;
             this.txtSportTypeID.Size = new System.Drawing.Size(73, 26);
@@ -354,17 +398,17 @@
             // txtSportTypeName
             // 
             this.txtSportTypeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSportTypeName.Location = new System.Drawing.Point(178, 75);
+            this.txtSportTypeName.Location = new System.Drawing.Point(211, 76);
             this.txtSportTypeName.MaxLength = 50;
             this.txtSportTypeName.Name = "txtSportTypeName";
-            this.txtSportTypeName.Size = new System.Drawing.Size(378, 26);
-            this.txtSportTypeName.TabIndex = 18;
+            this.txtSportTypeName.Size = new System.Drawing.Size(447, 26);
+            this.txtSportTypeName.TabIndex = 1;
             // 
             // txtParentSportTypeID
             // 
             this.txtParentSportTypeID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sportTypesBindingSource, "SportTypeID", true));
             this.txtParentSportTypeID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtParentSportTypeID.Location = new System.Drawing.Point(178, 109);
+            this.txtParentSportTypeID.Location = new System.Drawing.Point(211, 109);
             this.txtParentSportTypeID.MaxLength = 50;
             this.txtParentSportTypeID.Name = "txtParentSportTypeID";
             this.txtParentSportTypeID.ReadOnly = true;
@@ -388,10 +432,10 @@
             this.chBxNoFamily.Checked = true;
             this.chBxNoFamily.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chBxNoFamily.Enabled = false;
-            this.chBxNoFamily.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBxNoFamily.Location = new System.Drawing.Point(178, 142);
+            this.chBxNoFamily.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chBxNoFamily.Location = new System.Drawing.Point(211, 142);
             this.chBxNoFamily.Name = "chBxNoFamily";
-            this.chBxNoFamily.Size = new System.Drawing.Size(247, 24);
+            this.chBxNoFamily.Size = new System.Drawing.Size(277, 24);
             this.chBxNoFamily.TabIndex = 24;
             this.chBxNoFamily.Text = "No pertenece a ninguna familia";
             this.chBxNoFamily.UseVisualStyleBackColor = true;
@@ -404,10 +448,10 @@
             this.cbxSportTypeName.Enabled = false;
             this.cbxSportTypeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxSportTypeName.FormattingEnabled = true;
-            this.cbxSportTypeName.Location = new System.Drawing.Point(257, 109);
+            this.cbxSportTypeName.Location = new System.Drawing.Point(290, 109);
             this.cbxSportTypeName.Name = "cbxSportTypeName";
-            this.cbxSportTypeName.Size = new System.Drawing.Size(299, 28);
-            this.cbxSportTypeName.TabIndex = 23;
+            this.cbxSportTypeName.Size = new System.Drawing.Size(368, 28);
+            this.cbxSportTypeName.TabIndex = 2;
             this.cbxSportTypeName.ValueMember = "SportTypeID";
             this.cbxSportTypeName.SelectedValueChanged += new System.EventHandler(this.cbxSportTypeName_SelectedValueChanged);
             // 
@@ -419,7 +463,7 @@
             // 
             this.btnChoose.Image = ((System.Drawing.Image)(resources.GetObject("btnChoose.Image")));
             this.btnChoose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnChoose.Location = new System.Drawing.Point(315, 28);
+            this.btnChoose.Location = new System.Drawing.Point(416, 28);
             this.btnChoose.Name = "btnChoose";
             this.btnChoose.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
             this.btnChoose.Size = new System.Drawing.Size(141, 41);
@@ -433,21 +477,36 @@
             // 
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(462, 28);
+            this.btnCancel.Location = new System.Drawing.Point(563, 28);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.btnCancel.Size = new System.Drawing.Size(94, 41);
+            this.btnCancel.Size = new System.Drawing.Size(95, 41);
             this.btnCancel.TabIndex = 26;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // txtDistForPace
+            // 
+            this.txtDistForPace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sportTypesBindingSource, "DistForPace", true));
+            this.txtDistForPace.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDistForPace.Location = new System.Drawing.Point(460, 189);
+            this.txtDistForPace.MaxLength = 50;
+            this.txtDistForPace.Name = "txtDistForPace";
+            this.txtDistForPace.Size = new System.Drawing.Size(81, 26);
+            this.txtDistForPace.TabIndex = 3;
+            this.txtDistForPace.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDistForPace.Validating += new System.ComponentModel.CancelEventHandler(this.txtDistForPace_Validating);
+            // 
             // FSportTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 695);
+            this.ClientSize = new System.Drawing.Size(670, 785);
+            this.Controls.Add(label2);
+            this.Controls.Add(label1);
+            this.Controls.Add(this.txtDistForPace);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnChoose);
             this.Controls.Add(this.chBxNoFamily);
@@ -501,17 +560,19 @@
         private System.Windows.Forms.TextBox txtSportTypeName;
         private System.Windows.Forms.TextBox txtParentSportTypeID;
         private System.Windows.Forms.CheckBox chBxNoFamily;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SportTypeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ParentID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn parentName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn memo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn userID;
         private System.Windows.Forms.ComboBox cbxSportTypeName;
         private TrainITDataSetTableAdapters.SportTypesTableAdapter sportTypesTableAdapter1;
         private System.Windows.Forms.BindingSource sportTypesBindingSource;
         private TrainITDataSet trainITDataSet;
         private System.Windows.Forms.Button btnChoose;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.TextBox txtDistForPace;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SportTypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ParentID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn parentName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ritmos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn memo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userID;
     }
 }

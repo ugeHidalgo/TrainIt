@@ -16,7 +16,7 @@ namespace TrainIt
     {
         string connString = TrainItLibrary.Utilities.GetConnString();
         Boolean onEdition = false; //Used to indicate wether or not we are in edit mode
-        Boolean savePass = false;
+        public bool savePass = false;
         Users aUser = new Users(-1, "", "", DateTime.Now, "", "", "", "");
         Int64 userIDToUpdate = -1;
 

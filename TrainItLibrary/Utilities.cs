@@ -24,7 +24,6 @@ namespace TrainItLibrary
             return value;
         }    
    
-
         //Validates data into a textBox
         public static Boolean validateNotEmpty(object sender)
         {
@@ -65,6 +64,41 @@ namespace TrainItLibrary
             }
 
             return speedString;
+        }
+
+        //Calculate Pace
+        public static string calculatePace(string aDist, string aTime, string aPaceDist)
+        {
+            string pace = "00:00:00";
+            bool sigue = false;
+            double time = 0;
+            double dist = 0;
+            double paceDist = 0;
+
+            try
+            {
+                time = (double)(Time.ConvertStringTimeToLong(aTime));
+                dist = Convert.ToDouble(aDist);
+                paceDist = Convert.ToDouble(aPaceDist);
+                sigue = true;
+            }
+            catch 
+            {
+                sigue = false;                
+            }
+
+            if (sigue)
+            {
+                long paceResult=0;
+                if (dist == 0)
+                    paceResult = 0;
+                else 
+                    paceResult = (long)( (time * paceDist) / dist);
+
+                pace = Time.ConvertLongToStringTime(paceResult);
+            }
+
+            return pace;
         }
     }
 }

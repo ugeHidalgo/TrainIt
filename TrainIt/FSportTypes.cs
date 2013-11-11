@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using TrainItLibrary;
+using System.Data.SqlTypes;
 
 namespace TrainIt
 {
@@ -40,7 +41,6 @@ namespace TrainIt
             //if this form is shomw in order to search, then enable buttons for search
             btnChoose.Visible = OnSearchMode;
             btnCancel.Visible = OnSearchMode;
-
 
             //Load Data into combo box
             this.sportTypesTableAdapter1.FillBy(this.trainITDataSet.SportTypes, userIDWorking);
@@ -98,6 +98,7 @@ namespace TrainIt
             txtSportTypeName.Text = aSportType.SportTypeName;
             txtParentSportTypeID.Text = aSportType.ParentSportTypeID.ToString();
             txtMemo.Text = aSportType.Memo;
+            txtDistForPace.Text = aSportType.DistForPace.ToString();
             if (txtParentSportTypeID.Text == "0")
                 chBxNoFamily.Checked = true;
             else
@@ -130,6 +131,7 @@ namespace TrainIt
 
             txtSportTypeName.ReadOnly = false;
             txtMemo.ReadOnly = false;
+            txtDistForPace.ReadOnly = false;
 
             chBxNoFamily.Enabled = true;
             cbxSportTypeName.Enabled = true;                                     
@@ -155,10 +157,11 @@ namespace TrainIt
             btnCancel.Enabled = true;
 
             chBxNoFamily.Enabled = false;
-            cbxSportTypeName.Enabled = false;
+            cbxSportTypeName.Enabled = false;            
 
             txtSportTypeName.ReadOnly = true;
             txtMemo.ReadOnly = true;
+            txtDistForPace.ReadOnly = true;
 
             dgvSTypes.Enabled = true;
         }
@@ -300,7 +303,64 @@ namespace TrainIt
 
         private void tsBtnDelete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("PENDIENTE");
+            bool sigue = true;
+            Int64 aSportTypeToCheck = Convert.ToInt64(txtSportTypeID.Text);
+
+            //Can´t delete if this SportType has childs.
+            if (SportTypes.hasChilds(connString,aSportTypeToCheck))
+            {
+                sigue = false;
+                MessageBox.Show("No se puede borrar este tipo de deporte ya que tiene subtipos.");
+            }
+
+            //Can´t delete if sporttype is in use for any session.
+            if (sigue)
+            {
+                if (SportTypes.isInUse(connString, aSportTypeToCheck))
+                {
+                    sigue = false;
+                    MessageBox.Show("No se puede borrar este tipo de deporte ya que hay sesiones que lo usan.");
+                }
+            }
+
+
+            if (sigue)
+            {
+                string mensaje = "Va a borrar el tipo de deporte " + txtSportTypeID.Text + ". ¿Esta seguro?";
+                DialogResult delMat = MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (delMat == DialogResult.OK)
+                {
+                    using (SqlConnection conn = new SqlConnection(connString))
+                    {
+                        string query = "delete from SportTypes where SportTypeID = @sportTypeID";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.Add(new SqlParameter("@sportTypeID", SqlDbType.BigInt));
+                            cmd.Parameters["@sportTypeID"].Value = Convert.ToInt64(txtSportTypeID.Text);
+                            conn.Open();
+                            cmd.ExecuteScalar();
+                        }
+                    }
+
+                    MessageBox.Show("Tipo de deporte borrado");
+
+                    if (this.dgvSTypes.RowCount > 0)
+                    {
+                        //Load data into data grid
+                        LoadDataInGrid(dgvSTypes, userIDWorking);
+
+                        Global.sportTypeUsed.SportTypeID = Convert.ToInt64(dgvSTypes[0, dgvSTypes.CurrentRow.Index].Value);
+                        Global.sportTypeUsed.UserID = userIDWorking;
+
+                        //Find the User and load into aUser
+                        Global.sportTypeUsed = Global.sportTypeUsed.FindSportTypeByID(connString);
+
+                        //LoadData in boxes
+                        LoadDataInBoxes(Global.sportTypeUsed);
+                    }  
+
+                } 
+            }  
         }
 
         private void tsBtnSave_Click(object sender, EventArgs e)
@@ -308,7 +368,7 @@ namespace TrainIt
             //Verify all data is correct.
             if (txtParentSportTypeID.Text == "")
                 txtParentSportTypeID.Text = "0";
-            SportTypes tempData = new SportTypes(sportTypeIDToUpdate,txtSportTypeName.Text,Convert.ToInt64(txtParentSportTypeID.Text),txtMemo.Text,userIDWorking);
+            SportTypes tempData = new SportTypes(sportTypeIDToUpdate,txtSportTypeName.Text,Convert.ToInt64(txtParentSportTypeID.Text),txtMemo.Text,userIDWorking,Convert.ToDouble(txtDistForPace.Text));
             int verifyResult = tempData.CheckData(connString);
 
             //if update and user find, verify must be ok
@@ -325,7 +385,7 @@ namespace TrainIt
                     position = dgvSTypes.RowCount;
 
                     //Load data into aUSer
-                    Global.sportTypeUsed.LoadData(-1, txtSportTypeName.Text, Convert.ToInt64(txtParentSportTypeID.Text), txtMemo.Text, userIDWorking);
+                    Global.sportTypeUsed.LoadData(-1, txtSportTypeName.Text, Convert.ToInt64(txtParentSportTypeID.Text), txtMemo.Text, userIDWorking, Convert.ToDouble(txtDistForPace.Text));
 
                     //save data into BD
                     Global.sportTypeUsed = Global.sportTypeUsed.SaveData(connString);
@@ -337,7 +397,7 @@ namespace TrainIt
                     position = dgvSTypes.CurrentRow.Index;
 
                     //Load data into aUSer
-                    Global.sportTypeUsed.LoadData(sportTypeIDToUpdate, txtSportTypeName.Text, Convert.ToInt64(txtParentSportTypeID.Text), txtMemo.Text, userIDWorking);
+                    Global.sportTypeUsed.LoadData(sportTypeIDToUpdate, txtSportTypeName.Text, Convert.ToInt64(txtParentSportTypeID.Text), txtMemo.Text, userIDWorking, Convert.ToDouble(txtDistForPace.Text));
 
                     //save data into BD
                     Global.sportTypeUsed = Global.sportTypeUsed.UpdateData(connString);
@@ -460,5 +520,40 @@ namespace TrainIt
                 btnChoose_Click(this, e);
             }
         }
+
+        private void txtDistForPace_Validating(object sender, CancelEventArgs e)
+        {
+            if (onEdition)
+            {
+                e.Cancel = false;
+                if (txtDistForPace.Text != "")
+                {//Se permiten números con decimales o el campo vacío.
+                    try
+                    {
+                        SqlDecimal temp = Convert.ToDecimal(txtDistForPace.Text);
+                        if ((temp < 1000) && (temp > 0))
+                            e.Cancel = false;
+                        else
+                            e.Cancel = true;
+                    }
+                    catch (Exception)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+                else txtDistForPace.Text = "0,001";
+                if (e.Cancel)
+                {
+                    txtDistForPace.BackColor = Color.Red;
+                    MessageBox.Show("La distancia para calculo del ritmo debe ser un valor expresado en kilómetros, "+
+                                    "mayor que 0 y menor que 1000. Se permiten decimales.");
+                }
+                else
+                {
+                    txtDistForPace.BackColor = SystemColors.Window;                    
+                }
+            }
+        }
+
     }
 }

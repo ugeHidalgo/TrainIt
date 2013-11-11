@@ -127,6 +127,38 @@ namespace TrainItLibrary
             }
             return res;
         }
+           
+        public static void deleteTraining(string connString,long trainIDOfSession)        
+        {
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "delete from trainings where TrainID = @trainID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@trainID", SqlDbType.BigInt));
+                    cmd.Parameters["@trainID"].Value = trainIDOfSession;
+                    conn.Open();
+                    cmd.ExecuteNonQuery();                    
+                }
+            }            
+        }
 
+        public static Int32 trainingHasSessions(string connString,long trainIDOfSession)
+        {//return 0 if the training indicated haven´t got any session.
+            Int32 res = 0;
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "select count(*) from sessions where TrainID = @trainID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@trainID", SqlDbType.BigInt));
+                    cmd.Parameters["@trainID"].Value = trainIDOfSession;
+                    conn.Open();
+                    res = (Int32)cmd.ExecuteScalar();                    
+                }
+            }
+            return res; 	
+        }
     }
 }

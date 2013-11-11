@@ -292,22 +292,29 @@ namespace TrainItLibrary
                     cmd.Parameters.Add(new SqlParameter("@userLeido", SqlDbType.VarChar));
                     cmd.Parameters["@userLeido"].Value = userName;
 
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
+                    try
                     {
-                        count++;
-                        tempUser.userID = reader.GetInt64(0);
-                        tempUser.userFirstName = reader.GetString(1);
-                        tempUser.userSecondName = reader.GetString(2);
-                        tempUser.userBDate = Convert.ToDateTime(reader.GetDateTime(3));
-                        tempUser.userName = reader.GetString(4);
-                        tempUser.userPass = reader.GetSqlBinary(5).ToString();
-                        tempUser.userConfirmPassword = tempUser.userPass;
-                        tempUser.userMail = reader.GetString(6); 
+                        conn.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            count++;
+                            tempUser.userID = reader.GetInt64(0);
+                            tempUser.userFirstName = reader.GetString(1);
+                            tempUser.userSecondName = reader.GetString(2);
+                            tempUser.userBDate = Convert.ToDateTime(reader.GetDateTime(3));
+                            tempUser.userName = reader.GetString(4);
+                            tempUser.userPass = reader.GetSqlBinary(5).ToString();
+                            tempUser.userConfirmPassword = tempUser.userPass;
+                            tempUser.userMail = reader.GetString(6);
+                        }
+                        reader.Close();
                     }
-                    reader.Close();
+                    catch
+                    {                        
+                        tempUser.userID = -2;
+                    }
                 }
             }
 

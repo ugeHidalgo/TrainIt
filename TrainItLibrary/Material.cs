@@ -20,7 +20,7 @@ namespace TrainItLibrary
         private static decimal matWeight;
         private static DateTime matBuyDate;
         private static SqlMoney matCost;
-        private static string matInitTime;
+        private static DateTime matInitTime;
         private static decimal matInitDist;
         private static string matRecTime;
         private static decimal matRecDist;
@@ -67,7 +67,7 @@ namespace TrainItLibrary
             get { return matCost; }
             set { matCost = value; }
         }
-        public string MatInitTime
+        public DateTime MatInitTime
         {
             get { return matInitTime; }
             set { matInitTime = value; }
@@ -109,7 +109,7 @@ namespace TrainItLibrary
             matWeight=0.00M;
             matBuyDate=DateTime.Now;
             matCost=(SqlMoney)0;
-            matInitTime="";
+            matInitTime=Convert.ToDateTime("01/01/1900 00:00:00.000");
             matInitDist=0.000M;
             matRecTime="";
             matRecDist=0.000M;
@@ -118,7 +118,7 @@ namespace TrainItLibrary
         }
 
         public Material(Int64 MatID, string MatName, string MatModel, string MatBrand, string MatSize, decimal MatWeight, DateTime MatBuyDate,
-                        SqlMoney MatCost, string MatinitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist,  
+                        SqlMoney MatCost, DateTime MatinitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist,  
                         string MatBuyMemo, Int64 UserID)
         {
             matID=MatID;
@@ -138,7 +138,7 @@ namespace TrainItLibrary
         }
 
         public void LoadData(Int64 MatID, string MatName, string MatModel, string MatBrand, string MatSize, decimal MatWeight, DateTime MatBuyDate,
-                        SqlMoney MatCost, string MatInitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist,  
+                        SqlMoney MatCost, DateTime MatInitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist,  
                         string MatBuyMemo, Int64 UserID)
         {
             matID = MatID;
@@ -224,6 +224,18 @@ namespace TrainItLibrary
             {
                 try
                 {
+                    matInitTime = Convert.ToDateTime(aMatInitTime);
+                }
+                catch (Exception)
+                {
+                    sigue = false;
+                }
+            }
+
+            if (sigue)
+            {
+                try
+                {
                     matRecDist = Convert.ToDecimal(aMatRecDist);
                 }
                 catch (Exception)
@@ -250,7 +262,6 @@ namespace TrainItLibrary
                 matModel = aMatModel;
                 matBrand = aMatBrand;
                 matSize = aMatSize;
-                matInitTime = aMatInitTime;
                 matRecTime = aMatRecTime;
                 matBuyMemo = aMatBuyMemo;
             }
@@ -270,7 +281,7 @@ namespace TrainItLibrary
             matWeight = 0.00M;
             matBuyDate = DateTime.Now;
             matCost = (SqlMoney)0;
-            matInitTime = "";
+            matInitTime = Convert.ToDateTime("01/01/1900 00:00:00.000");
             matInitDist = 0.000M;
             matRecTime = "";
             matRecDist = 0.000M;
@@ -293,13 +304,13 @@ namespace TrainItLibrary
                     while (reader.Read())
                     {
                         // Create a buffer to hold the bytes, and then
-                        long len = reader.GetBytes(16, 0, null, 0, 0);
+                        long len = reader.GetBytes(14, 0, null, 0, 0);
                         Byte[] image = new Byte[len];
                         // read the bytes from the DataTableReader.                            
-                        reader.GetBytes(16, 0, image, 0, (int)len);
+                        reader.GetBytes(14, 0, image, 0, (int)len);
                         aMaterial.LoadData(reader.GetInt64(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
                                            reader.GetString(4), reader.GetDecimal(5), Convert.ToDateTime(reader.GetDateTime(6)),
-                                           reader.GetSqlMoney(7), reader.GetString(8), reader.GetDecimal(9), reader.GetString(10),
+                                           reader.GetSqlMoney(7), reader.GetDateTime(8), reader.GetDecimal(9), reader.GetString(10),
                                            reader.GetDecimal(11), reader.GetString(12), reader.GetInt64(13));
                     }
                     reader.Close();
@@ -323,10 +334,10 @@ namespace TrainItLibrary
                     while (reader.Read())
                     {
                         // Create a buffer to hold the bytes, and then
-                        long len = reader.GetBytes(16, 0, null, 0, 0);
+                        long len = reader.GetBytes(14, 0, null, 0, 0);
                         image = new Byte[len];
                         // read the bytes from the DataTableReader.                            
-                        reader.GetBytes(16, 0, image, 0, (int)len);                        
+                        reader.GetBytes(14, 0, image, 0, (int)len);                        
                     }
                     reader.Close();
                 }

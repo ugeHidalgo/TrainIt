@@ -252,7 +252,7 @@ namespace TrainItLibrary
         {
             long h = value / 3600;
             long hMod = value % 3600;
-            long m = hMod / 60;
+            long m = hMod / 60;            
             long s = hMod % 60;
 
             Time aTime = new Time();
@@ -260,7 +260,7 @@ namespace TrainItLibrary
             aTime.minutes = m.ToString();
             if (aTime.minutes.Length == 1)
                 aTime.minutes = "0" + aTime.minutes;
-            aTime.seconds = m.ToString();
+            aTime.seconds = s.ToString();
             if (aTime.seconds.Length == 1)
                 aTime.seconds = "0" + aTime.seconds;
 

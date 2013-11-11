@@ -47,7 +47,16 @@ namespace TrainIt
                 aUser = aUser.verifyPass (userNameGiven, userPassGiven, connString);
                 userIDGiven = aUser.userID;
                 if (aUser.userID == -1)
+                {
                     sigue = false;
+                    MessageBox.Show("Usuario o contraseña incorrectos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                if (aUser.userID == -2)
+                {
+                    sigue = false;
+                    MessageBox.Show("No se puede conectar con el servidor de datos");
+                }
+                
             }
 
             //give or not access depending de result of the query
@@ -56,10 +65,6 @@ namespace TrainIt
                 accessGranted = true;
                 Global.userNameWorking = userNameGiven;
                 Close();
-            }
-            else
-            {
-                MessageBox.Show("Usuario o contraseña incorrectos", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

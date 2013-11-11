@@ -172,11 +172,14 @@ namespace TrainIt
                 this.trainingsTableAdapter.FillByID(this.trainITDataSet.Trainings, aTrainID);
 
                 //Loads data for Materials used in the session
-                LoadDataForSessionMaterial(aSessionID);                
+                LoadDataForSessionMaterial(aSessionID);
 
-                //calculate Speed
+                //calculate speed and Rithm
                 if ((txtDist.Text != "") && (txtTime.Text != ""))
+                {
                     txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);
+                    txtPace.Text = Utilities.calculatePace(txtDist.Text, txtTime.Text, txtDistForPace.Text);
+                }
             }
         }
 
@@ -289,17 +292,21 @@ namespace TrainIt
 
         private void txtSportTypeID_TextChanged(object sender, EventArgs e)
         {
+            double paceDist=1;
             try
             {
                 Int64 aSportTypeID = Convert.ToInt64(txtSportTypeID.Text);
 
                 // TODO: This line of code loads data into the 'trainITDataSet.SportTypes' table. You can move, or remove it, as needed.
                 this.sportTypesTableAdapter.FillByID(this.trainITDataSet.SportTypes, aSportTypeID);
+
+                paceDist = SportTypes.paceDistance(connString, aSportTypeID);
+                txtDistForPace.Text = paceDist.ToString();
             }
             catch (Exception)
             {
                 txtSportTypeID.Text = "";
-                txtSportTypeName.Text = "";
+                txtSportTypeName.Text = "";               
             }
         }
 
@@ -480,7 +487,6 @@ namespace TrainIt
                         Global.trainingUsed.UserID = userIDWorking;
                         Global.trainingUsed.TrainDate = dtpDate.Value;
                         Global.trainingUsed.TrainName = "Sin Nombre";
-                        Global.trainingUsed.SaveATraining(connString);
                         txtTrainID.Text = Global.trainingUsed.TrainID.ToString();
                     }
                     txtUserID.Text = userIDWorking.ToString();
@@ -488,8 +494,8 @@ namespace TrainIt
                     //Gets position in de data grid before save.
                     int position = dgvSessions.CurrentRow.Index;
                     
-                    this.Validate();
-                    this.sessionsBindingSource.EndEdit();                    
+                    //this.Validate();
+                    //this.sessionsBindingSource.EndEdit();                    
                     if (sessionIDToUpdate == -1)
                     {
                         position = 0;
@@ -576,9 +582,9 @@ namespace TrainIt
 
                         DateTime aTime = new DateTime();
                         if (txtTime.Text == "")
-                            aTime = Convert.ToDateTime("00:00:00");
+                            aTime = Convert.ToDateTime("01/01/1900 00:00:00");
                         else
-                            aTime = Convert.ToDateTime(txtTime.Text);
+                            aTime = Convert.ToDateTime("01/01/1900 " + txtTime.Text);
                         cmd.Parameters.Add(new SqlParameter("@time", SqlDbType.DateTime));
                         cmd.Parameters["@time"].Value = aTime;
 
@@ -675,9 +681,9 @@ namespace TrainIt
 
                     DateTime aTime = new DateTime();
                     if (txtTime.Text == "")
-                        aTime = Convert.ToDateTime("00:00:00");
+                        aTime = Convert.ToDateTime("01/01/1900 00:00:00");
                     else
-                        aTime = Convert.ToDateTime(txtTime.Text);
+                        aTime = Convert.ToDateTime("01/01/1900 "+txtTime.Text);
                     cmd.Parameters.Add(new SqlParameter("@time", SqlDbType.DateTime));
                     cmd.Parameters["@time"].Value = aTime;
 
@@ -716,11 +722,6 @@ namespace TrainIt
             };
         }
 
-        private void tsBtnDelete_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void txtDist_Validating(object sender, CancelEventArgs e)
         {
             if (onEdition)
@@ -750,9 +751,12 @@ namespace TrainIt
                 else
                 {
                     txtDist.BackColor = SystemColors.Window;
-                    //calculate speed
+                    //calculate speed and Rithm
                     if ((txtDist.Text != "") && (txtTime.Text != ""))
-                         txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);                    
+                    {
+                        txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);
+                        txtPace.Text = Utilities.calculatePace(txtDist.Text, txtTime.Text, txtDistForPace.Text);
+                    }
                 }
             }
         }
@@ -778,9 +782,13 @@ namespace TrainIt
                     else
                     {//Format correct
                         txtTime.BackColor = SystemColors.Window;
-                        //calculate speed
+
+                        //calculate speed and Rithm
                         if ((txtDist.Text != "") && (txtTime.Text != ""))
-                            txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);                        
+                        {
+                            txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);
+                            txtPace.Text = Utilities.calculatePace(txtDist.Text, txtTime.Text, txtDistForPace.Text);
+                        }
                     }
                 }
             }
@@ -908,15 +916,19 @@ namespace TrainIt
         {
             if (!onEdition)
             {
-                //calculate Speed
+                //calculate speed and Rithm
                 if ((txtDist.Text != "") && (txtTime.Text != ""))
+                {
                     txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);
+                    txtPace.Text = Utilities.calculatePace(txtDist.Text, txtTime.Text, txtDistForPace.Text);
+                }
             }
         }
 
         private void tsBtnDelSession_Click(object sender, EventArgs e)
         {
             string mensaje = "Va a borrar la sesión (" + txtSessionID.Text + "/" + txtUserID.Text + "). ¿Esta seguro?";
+            Int64 trainIDOfSession = Convert.ToInt64(txtTrainID.Text);
             DialogResult delMat = MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (delMat == DialogResult.OK)
             {
@@ -924,8 +936,16 @@ namespace TrainIt
                 this.tableAdapterManager.UpdateAll(this.trainITDataSet);                
                 LoadData();
                 MessageBox.Show("Sesión borrada corectamente");
+
+                //If Training of Session does not have more sessions then delete it.
+                if (Training.trainingHasSessions(connString,trainIDOfSession)==0)
+                {
+                    Training.deleteTraining(connString,trainIDOfSession);
+                    MessageBox.Show("El entrenamiento al que pertenecía la sesión ha sido borrado al no tener más sesiones.\n"+
+                                    "Entrenamiento número :"+trainIDOfSession.ToString());
+                }
+
             } 
         }
-
     }
 }
