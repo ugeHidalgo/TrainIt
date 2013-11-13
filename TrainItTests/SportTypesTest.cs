@@ -21,7 +21,7 @@ namespace TrainItTests
         [TestMethod]
         public void SportType_LoadData()
         {            
-            aSportType.LoadData(-1, "Bike", 0, "Bike sports", 85);
+            aSportType.LoadData(-1, "Bike", 0, "Bike sports", 85,1);
             Assert.AreEqual(aSportType.SportTypeID, -1);
             Assert.AreEqual(aSportType.SportTypeName, "Bike");
             Assert.AreEqual(aSportType.ParentSportTypeID, 0);
@@ -33,7 +33,7 @@ namespace TrainItTests
         public void SportType_Reset()
         {
             //SportTypes aSportType = new SportTypes();            
-            aSportType.LoadData(-1, "Bicicleta", 1, "Deportes de Bicicleta",85);            
+            aSportType.LoadData(-1, "Bicicleta", 1, "Deportes de Bicicleta",85,1);            
             aSportType.Reset();
             Assert.AreEqual(aSportType.SportTypeID, -1);
             Assert.AreEqual(aSportType.SportTypeName, null);
@@ -46,7 +46,7 @@ namespace TrainItTests
         public void SportType_CheckDataBeforeSave()
         {
             //Create a SportType object with data.
-            aSportType.LoadData(-1, "Weird Sport", 0, "any kind of weird sport", 85);
+            aSportType.LoadData(-1, "Weird Sport", 0, "any kind of weird sport", 85,1);
             int res = aSportType.CheckData(connString);
             Assert.AreEqual(1, res); //Data are ok because the type of sport isn´t in de BD.
 
@@ -58,17 +58,17 @@ namespace TrainItTests
             Assert.AreEqual(-1, res); //Data are not ok, SportTypeName is in de BD.
             
             //Create a SportType object with data: 
-            aSportType.LoadData(-1, "Weird Sport2", -10, "any kind of weird sport", 85);
+            aSportType.LoadData(-1, "Weird Sport2", -10, "any kind of weird sport", 85,1);
             res = aSportType.CheckData(connString);
             Assert.AreEqual(-2, res); //Data are not ok, parentSportID does not exist on SportTypes
 
             //Create a SportType object with data: 
-            aSportType.LoadData(-1, "", 0, "any kind of weird sport", 85);
+            aSportType.LoadData(-1, "", 0, "any kind of weird sport", 85,1);
             res = aSportType.CheckData(connString);
             Assert.AreEqual(0, res); //Data are not ok, SportTypeName is empty.            
 
             //Create a SportType object with data: 
-            aSportType.LoadData(-1, "Weird Sport2", 0, "any kind of weird sport", -100);
+            aSportType.LoadData(-1, "Weird Sport2", 0, "any kind of weird sport", -100,1);
             res = aSportType.CheckData(connString);
             Assert.AreEqual(-3, res); //Data are not ok, userID not in data base.
 
@@ -87,7 +87,7 @@ namespace TrainItTests
             string memoUsed = "Deportes de bicicleta";
             Int64 userIDUsed = 85;
             SportTypes aSportType = new SportTypes();
-            aSportType.LoadData(-1, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed);
+            aSportType.LoadData(-1, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed,1);
 
             //Save into BD obtaining the sportTypeID
             aSportType = aSportType.SaveData(connString);
@@ -120,7 +120,7 @@ namespace TrainItTests
             string memoUsed = "Deportes de bicicleta";
             Int32 userIDUsed = 85;
             SportTypes aSportType = new SportTypes();
-            aSportType.LoadData(-1, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed);
+            aSportType.LoadData(-1, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed,1);
 
             //Save into BD obtaining the sportTypeID
             aSportType = aSportType.SaveData(connString);
@@ -153,7 +153,7 @@ namespace TrainItTests
             string memoUsed = "Deportes de bicicleta";
             Int64 userIDUsed = 85;
             SportTypes aSportType = new SportTypes();
-            aSportType.LoadData(-1, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed);
+            aSportType.LoadData(-1, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed,1);
 
             //Save into BD obtaining the sportTypeID
             aSportType = aSportType.SaveData(connString);
@@ -174,7 +174,7 @@ namespace TrainItTests
             parentSportTypeIDUsed = 0;
             memoUsed = "Deportes de bicicleta updated";
             userIDUsed = 85;
-            aSportType.LoadData(sportTypeIDUsed, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed);
+            aSportType.LoadData(sportTypeIDUsed, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed,1);
             aSportType.UpdateData(connString);
 
             //Try to find and check values
@@ -203,7 +203,7 @@ namespace TrainItTests
             string memoUsed = "Deporte padre";
             Int64 userIDUsed = 85;
             SportTypes aSportTypeParent = new SportTypes();
-            aSportTypeParent.LoadData(-1, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed);
+            aSportTypeParent.LoadData(-1, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed,1);
 
             //Save into BD obtaining the sportTypeID
             aSportTypeParent = aSportTypeParent.SaveData(connString);            
@@ -215,7 +215,7 @@ namespace TrainItTests
             memoUsed = "Deporte Hijo";
             userIDUsed = 85;
             SportTypes aSportTypeChild = new SportTypes();
-            aSportTypeChild.LoadData(-1, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed);
+            aSportTypeChild.LoadData(-1, sportTypeNameUsed, parentSportTypeIDUsed, memoUsed, userIDUsed,1);
 
             //Save into BD obtaining the sportTypeID
             aSportTypeChild = aSportTypeChild.SaveData(connString);            
@@ -227,7 +227,7 @@ namespace TrainItTests
             Assert.AreNotEqual(-1, parentSportTypeToFind.SportTypeID); //Found it!!
             Assert.AreEqual(aSportTypeParent.SportTypeID, parentSportTypeToFind.SportTypeID);
             Assert.AreEqual(aSportTypeParent.SportTypeName, parentSportTypeToFind.SportTypeName);
-            Assert.AreEqual(aSportTypeParent.ParentSportTypeID, parentSportTypeToFind.ParentSportTypeID);
+            Assert.AreEqual(aSportTypeParent.ParentSportTypeID, parentSportTypeToFind.ParentSportTypeID,1);
             Assert.AreEqual(aSportTypeParent.Memo, parentSportTypeToFind.Memo);
 
             //Deleting object previously saved

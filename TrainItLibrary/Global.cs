@@ -14,6 +14,7 @@ namespace TrainItLibrary
         public static Training trainingUsed = new Training();
         public static Material materialUsed = new Material();
         public static SportTypes sportTypeUsed = new SportTypes();
+        public static Users userUsed = new Users();
 
         public static Exception noCreated = new Exception("NO implementado");
     }

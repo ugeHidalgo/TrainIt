@@ -63,6 +63,7 @@ namespace TrainIt
             if (sigue)
             {
                 accessGranted = true;
+                Global.userUsed = Global.userUsed.findUserByUserID(connString, userIDGiven);
                 Global.userNameWorking = userNameGiven;
                 Close();
             }
@@ -92,8 +93,16 @@ namespace TrainIt
         //Goes to FUsers to create a new user.
         private void laNewUser_Click(object sender, EventArgs e)
         {
-            FUsers fUsers = new FUsers();
-            fUsers.ShowDialog();
+            FUserProfile fUserProfile = new FUserProfile();
+            fUserProfile.OnNewMode = true;           
+            fUserProfile.ShowDialog();
+
+            if (fUserProfile.OnNewMode)
+            {
+                txtUser.Text = Global.userUsed.userName;
+                txtPass.Text = "";
+                fUserProfile.OnNewMode = false;
+            }
         }
 
         private void FLogin_FormClosing(object sender, FormClosingEventArgs e)

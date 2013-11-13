@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TrainItLibrary;
 
 namespace TrainIt
 {
@@ -54,8 +55,18 @@ namespace TrainIt
 
         private void msUsuarios_Click(object sender, EventArgs e)
         {
-            FUsers fUsers = new FUsers();
-            fUsers.ShowDialog();
+            //FUsers fUsers = new FUsers();
+            //fUsers.ShowDialog();
+            FUserProfile fUserProfile = new FUserProfile();
+            fUserProfile.OnNewMode = false;
+            fUserProfile.ShowDialog();
+
+            Global.userNameWorking = Global.userUsed.userName;
+            Global.userIDWorking = Global.userUsed.userID;
+            Global.trainingUsed.Reset();
+
+            tslConnStr.Text = connString;
+            tslAppUser.Text = "Usuario=(" + TrainItLibrary.Global.userIDWorking + ")" + TrainItLibrary.Global.userNameWorking;
         }
 
         private void msTiposDeportes_Click(object sender, EventArgs e)

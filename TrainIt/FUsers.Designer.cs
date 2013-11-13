@@ -92,7 +92,7 @@
             // 
             userIDLabel.AutoSize = true;
             userIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            userIDLabel.Location = new System.Drawing.Point(18, 66);
+            userIDLabel.Location = new System.Drawing.Point(24, 64);
             userIDLabel.Name = "userIDLabel";
             userIDLabel.Size = new System.Drawing.Size(67, 20);
             userIDLabel.TabIndex = 4;
@@ -102,7 +102,7 @@
             // 
             userFirstNameLabel.AutoSize = true;
             userFirstNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            userFirstNameLabel.Location = new System.Drawing.Point(6, 101);
+            userFirstNameLabel.Location = new System.Drawing.Point(12, 99);
             userFirstNameLabel.Name = "userFirstNameLabel";
             userFirstNameLabel.Size = new System.Drawing.Size(73, 20);
             userFirstNameLabel.TabIndex = 6;
@@ -112,7 +112,7 @@
             // 
             userSecondNameLabel.AutoSize = true;
             userSecondNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            userSecondNameLabel.Location = new System.Drawing.Point(249, 101);
+            userSecondNameLabel.Location = new System.Drawing.Point(255, 99);
             userSecondNameLabel.Name = "userSecondNameLabel";
             userSecondNameLabel.Size = new System.Drawing.Size(81, 20);
             userSecondNameLabel.TabIndex = 8;
@@ -122,7 +122,7 @@
             // 
             userBDateLabel.AutoSize = true;
             userBDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            userBDateLabel.Location = new System.Drawing.Point(433, 133);
+            userBDateLabel.Location = new System.Drawing.Point(439, 131);
             userBDateLabel.Name = "userBDateLabel";
             userBDateLabel.Size = new System.Drawing.Size(112, 20);
             userBDateLabel.TabIndex = 10;
@@ -132,7 +132,7 @@
             // 
             userMailLabel.AutoSize = true;
             userMailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            userMailLabel.Location = new System.Drawing.Point(14, 134);
+            userMailLabel.Location = new System.Drawing.Point(20, 132);
             userMailLabel.Name = "userMailLabel";
             userMailLabel.Size = new System.Drawing.Size(65, 20);
             userMailLabel.TabIndex = 14;
@@ -325,7 +325,7 @@
             // 
             this.txtUserID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserID", true));
             this.txtUserID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUserID.Location = new System.Drawing.Point(85, 60);
+            this.txtUserID.Location = new System.Drawing.Point(91, 58);
             this.txtUserID.Name = "txtUserID";
             this.txtUserID.ReadOnly = true;
             this.txtUserID.Size = new System.Drawing.Size(147, 26);
@@ -335,7 +335,7 @@
             // txtFirstName
             // 
             this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFirstName.Location = new System.Drawing.Point(85, 94);
+            this.txtFirstName.Location = new System.Drawing.Point(91, 92);
             this.txtFirstName.MaxLength = 50;
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(147, 26);
@@ -345,7 +345,7 @@
             // 
             this.txtSecondName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserSecondName", true));
             this.txtSecondName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSecondName.Location = new System.Drawing.Point(336, 95);
+            this.txtSecondName.Location = new System.Drawing.Point(342, 93);
             this.txtSecondName.MaxLength = 50;
             this.txtSecondName.Name = "txtSecondName";
             this.txtSecondName.Size = new System.Drawing.Size(335, 26);
@@ -356,7 +356,7 @@
             this.dtpBDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.usersBindingSource, "UserBDate", true));
             this.dtpBDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBDate.Location = new System.Drawing.Point(551, 128);
+            this.dtpBDate.Location = new System.Drawing.Point(557, 126);
             this.dtpBDate.Name = "dtpBDate";
             this.dtpBDate.Size = new System.Drawing.Size(120, 26);
             this.dtpBDate.TabIndex = 10;
@@ -371,7 +371,7 @@
             this.groupBox1.Controls.Add(this.txtUserPass);
             this.groupBox1.Controls.Add(userNameLabel);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(106, 172);
+            this.groupBox1.Location = new System.Drawing.Point(131, 172);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(439, 137);
             this.groupBox1.TabIndex = 18;
@@ -433,7 +433,7 @@
             // 
             this.txtMail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.usersBindingSource, "UserMail", true));
             this.txtMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMail.Location = new System.Drawing.Point(85, 128);
+            this.txtMail.Location = new System.Drawing.Point(91, 126);
             this.txtMail.MaxLength = 50;
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(330, 26);

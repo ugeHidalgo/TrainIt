@@ -362,5 +362,29 @@ namespace TrainItLibrary
             }            
             return res;
         }
+
+        public static bool checkIfSportsIsInUserList(string connString, Int64 aSportTypeID, Int64 aUserID)
+        {//Check if a SportType exist in table UserSports for a given user
+            Int32 res = 0;
+            bool result = false;
+
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                string query = "select count(*) from UserSports where (UserID = @userID) AND (SportTypeID=@sportTypeID)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
+                    cmd.Parameters["@userID"].Value = aUserID;
+
+                    cmd.Parameters.Add(new SqlParameter("@sportTypeID", SqlDbType.BigInt));
+                    cmd.Parameters["@sportTypeID"].Value = aSportTypeID;
+                    conn.Open();
+                    res = (Int32)cmd.ExecuteScalar();
+                }
+            }
+            if (res > 0)
+                result = true;
+            return result; 
+        }
     }
 }

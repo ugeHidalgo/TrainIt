@@ -33,8 +33,8 @@ namespace TrainItLibrary
         }
 
 
-        public Users(Int64 UserID, string UserFirstName, string UserSecondName, DateTime UserBDate, String UserLoginName,
-                     String UserPassword, String UserConfirmPassword, String UserMail)
+        public Users(Int64 UserID, string UserFirstName, string UserSecondName, DateTime UserBDate, string UserLoginName,
+                     string UserPassword, string UserConfirmPassword, string UserMail)
         {
             userID = UserID;
             userFirstName = UserFirstName;
@@ -47,8 +47,8 @@ namespace TrainItLibrary
         }
 
         //Load data into a user object
-        public Users LoadData(Int64 UserID, string UserFirstName, string UserSecondName, DateTime UserBDate, String UserLoginName,
-                     String UserPassword, String UserConfirmPassword, String UserMail)
+        public Users LoadData(Int64 UserID, string UserFirstName, string UserSecondName, DateTime UserBDate, string UserLoginName,
+                     string UserPassword, string UserConfirmPassword, string UserMail)
         {
             Users aUser = new Users(UserID, UserFirstName, UserSecondName, UserBDate, UserLoginName, UserPassword, UserConfirmPassword, UserMail);
             return aUser;

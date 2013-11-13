@@ -58,14 +58,14 @@
             this.tsPrincipal = new System.Windows.Forms.ToolStrip();
             this.tsBtnMaterial = new System.Windows.Forms.ToolStripButton();
             this.tsBtnUsuarios = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnSportTypes = new System.Windows.Forms.ToolStripButton();
-            this.tsBtnClose = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnTrainings = new System.Windows.Forms.ToolStripButton();
             this.tsBtnSessions = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsBtnClose = new System.Windows.Forms.ToolStripButton();
             this.sS.SuspendLayout();
             this.mS.SuspendLayout();
             this.tsPrincipal.SuspendLayout();
@@ -146,7 +146,7 @@
             this.msUsuarios.Image = ((System.Drawing.Image)(resources.GetObject("msUsuarios.Image")));
             this.msUsuarios.Name = "msUsuarios";
             this.msUsuarios.Size = new System.Drawing.Size(164, 22);
-            this.msUsuarios.Text = "Usuarios";
+            this.msUsuarios.Text = "Perfil de Usuario";
             this.msUsuarios.Click += new System.EventHandler(this.msUsuarios_Click);
             // 
             // toolStripSeparator3
@@ -299,13 +299,8 @@
             this.tsBtnUsuarios.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnUsuarios.Name = "tsBtnUsuarios";
             this.tsBtnUsuarios.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnUsuarios.Text = "Usuarios";
+            this.tsBtnUsuarios.Text = "Perfil de Usuario";
             this.tsBtnUsuarios.Click += new System.EventHandler(this.msUsuarios_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // tsBtnSportTypes
             // 
@@ -317,15 +312,17 @@
             this.tsBtnSportTypes.Text = "Tipos de Deporte";
             this.tsBtnSportTypes.Click += new System.EventHandler(this.msTiposDeportes_Click);
             // 
-            // tsBtnClose
+            // toolStripLabel2
             // 
-            this.tsBtnClose.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsBtnClose.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnClose.Image")));
-            this.tsBtnClose.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnClose.Name = "tsBtnClose";
-            this.tsBtnClose.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnClose.Text = "Cerrar aplicación";
-            this.tsBtnClose.Click += new System.EventHandler(this.tsBtnClose_Click);
+            this.toolStripLabel2.AutoSize = false;
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(50, 22);
+            this.toolStripLabel2.Text = "          ";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // tsBtnTrainings
             // 
@@ -347,13 +344,6 @@
             this.tsBtnSessions.Text = "Sesiones";
             this.tsBtnSessions.Click += new System.EventHandler(this.tsBtnSessions_Click);
             // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.AutoSize = false;
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(50, 22);
-            this.toolStripLabel2.Text = "          ";
-            // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.AutoSize = false;
@@ -364,6 +354,16 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsBtnClose
+            // 
+            this.tsBtnClose.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnClose.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnClose.Image")));
+            this.tsBtnClose.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnClose.Name = "tsBtnClose";
+            this.tsBtnClose.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnClose.Text = "Cerrar aplicación";
+            this.tsBtnClose.Click += new System.EventHandler(this.tsBtnClose_Click);
             // 
             // FMain
             // 
