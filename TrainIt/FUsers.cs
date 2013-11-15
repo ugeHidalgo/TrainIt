@@ -56,7 +56,6 @@ namespace TrainIt
 
         private void LoadDataInGrid(DataGridView dgv, string aFirstName)
         {//Load data into data grid view: dgvUsers given a FirstName
-
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 string query = "select UserID, UserFirstName, UserSecondName, UserBdate, UserName, UserMail from Users where UserFirstName = @userFirstName";

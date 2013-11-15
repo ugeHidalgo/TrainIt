@@ -47,6 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FEstadGlobal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FEstadGlobal.Designer.cs">
+      <DependentUpon>FEstadGlobal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FEstadSport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FEstadSport.Designer.cs">
+      <DependentUpon>FEstadSport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FEstadSportFav.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FEstadSportFav.Designer.cs">
+      <DependentUpon>FEstadSportFav.cs</DependentUpon>
+    </Compile>
     <Compile Include="FLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +124,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TrainITDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FEstadGlobal.resx">
+      <DependentUpon>FEstadGlobal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FEstadSport.resx">
+      <DependentUpon>FEstadSport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FEstadSportFav.resx">
+      <DependentUpon>FEstadSportFav.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FLogin.resx">
       <DependentUpon>FLogin.cs</DependentUpon>
     </EmbeddedResource>

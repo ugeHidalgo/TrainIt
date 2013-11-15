@@ -46,19 +46,19 @@ namespace TrainIt
         }
 
         private void mSMaterial_Click(object sender, EventArgs e)
-        {
-            //mSMaterial.Enabled = false;            
+        {           
             FMaterial fMaterial = new FMaterial();
-            //fMaterial.MdiParent = this;
+            if (this.TopMost)
+                fMaterial.TopMost = true;
             fMaterial.ShowDialog();
         }
 
         private void msUsuarios_Click(object sender, EventArgs e)
         {
-            //FUsers fUsers = new FUsers();
-            //fUsers.ShowDialog();
             FUserProfile fUserProfile = new FUserProfile();
             fUserProfile.OnNewMode = false;
+            if (this.TopMost)
+                fUserProfile.TopMost = true;
             fUserProfile.ShowDialog();
 
             Global.userNameWorking = Global.userUsed.userName;
@@ -73,6 +73,8 @@ namespace TrainIt
         {
             FSportTypes fSportTypes = new FSportTypes();
             fSportTypes.OnSearchMode = false;
+            if (this.TopMost)
+                fSportTypes.TopMost = true;
             fSportTypes.ShowDialog();
         }
         
@@ -90,17 +92,78 @@ namespace TrainIt
         {
             FTrainings fTrainings = new FTrainings();
             fTrainings.OnSearchMode = false;
-            //fTrainings.MdiParent = this;
+            if (this.TopMost)
+                fTrainings.TopMost = true;
             fTrainings.ShowDialog();
         }
 
         private void tsBtnSessions_Click(object sender, EventArgs e)
         {
             FSessions fSessions = new FSessions();
-            //fSessions.MdiParent = this;
-            fSessions.ShowDialog();  
+            if (this.TopMost)
+                fSessions.TopMost = true; 
+            fSessions.ShowDialog();
         }
 
+        private void tsmiGlobales_Click(object sender, EventArgs e)
+        {
+            FEstadGlobal fEstadGlobal = new FEstadGlobal();
+            fEstadGlobal.MdiParent = this;
+            fEstadGlobal.Show();
+        }
+
+        private void tsmiDeporte_Click(object sender, EventArgs e)
+        {
+            FEstadSport fEstadSport = new FEstadSport();
+            fEstadSport.MdiParent = this;
+            fEstadSport.Show();
+        }
+
+        private void tsmiDeportesFav_Click(object sender, EventArgs e)
+        {
+            FEstadSportFav fEstadSportFav = new FEstadSportFav();
+            fEstadSportFav.MdiParent = this;
+            fEstadSportFav.Show();
+        }
+
+        private void tsmiMosaicoHor_Click(object sender, EventArgs e)
+        {
+            this.LayoutMdi(System.Windows.Forms.MdiLayout.TileHorizontal);
+        }
+
+        private void tsmiMosaicoVer_Click(object sender, EventArgs e)
+        {
+            this.LayoutMdi(System.Windows.Forms.MdiLayout.TileVertical);
+        }
+
+        private void tsmiCascada_Click(object sender, EventArgs e)
+        {
+            this.LayoutMdi(System.Windows.Forms.MdiLayout.Cascade);
+        }
+
+        private void tsmiCerrarTodas_Click(object sender, EventArgs e)
+        {
+            foreach (Form f in this.MdiChildren)
+            {
+                f.Close();
+            }
+        }
+
+        private void tsmiPantallaCompleta_Click(object sender, EventArgs e)
+        {
+            if (!this.TopMost)
+            {
+                this.TopMost = true;
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            }
+            else
+            {
+                this.TopMost = false;
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+                this.WindowState = System.Windows.Forms.FormWindowState.Normal;
+            }
+        }
 
     }
 }
