@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 
 
+
+
 namespace TrainItLibrary
 {
     public class Utilities
@@ -99,6 +101,58 @@ namespace TrainItLibrary
             }
 
             return pace;
+        }                            
+
+        //Calculates first day of year
+        public static DateTime firstDayOfYear(DateTime dateTime)
+        {
+            DateTime result;
+            result = dateTime.AddDays(-(dateTime.Day - 1));
+            result = result.AddMonths(-(dateTime.Month - 1));
+            return result;
+        }
+
+        //Calculates last day of year
+        public static DateTime lastDayOfYear(DateTime dateTime)
+        {
+            DateTime result;
+            result = dateTime.AddYears(1);
+            result = result.AddMonths(-(dateTime.Month-1));
+            result = result.AddDays(-(dateTime.Day));
+            return result;
+        }
+
+        //Calculates first day of month
+        public static DateTime firstDayOfMonth(DateTime dateTime)
+        {
+            DateTime result;
+            result=dateTime.AddDays(-(dateTime.Day-1));
+            return result;
+        }
+
+        //Calculates last day of month
+        public static DateTime lastDayOfMonth(DateTime dateTime)
+        {
+            DateTime result;
+            result = dateTime.AddMonths(1);
+            result = result.AddDays(-(dateTime.Day));            
+            return result;
+        }
+
+        //Calculates first day of week
+        public static DateTime firstDayOfWeek(DateTime dateTime)
+        {
+            DateTime result;
+            result = dateTime.AddDays(-(Convert.ToInt32(dateTime.DayOfWeek)-1));
+            return result;
+        }
+
+        //Calculates last day of week
+        public static DateTime lastDayOfWeek(DateTime dateTime)
+        {
+            DateTime result;
+            result = dateTime.AddDays((7-Convert.ToInt32(dateTime.DayOfWeek)));
+            return result;
         }
     }
 }

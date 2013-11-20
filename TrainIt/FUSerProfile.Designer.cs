@@ -56,15 +56,15 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvUserSports = new System.Windows.Forms.DataGridView();
-            this.btnDelAllSports = new System.Windows.Forms.Button();
-            this.btnDelSport = new System.Windows.Forms.Button();
-            this.btnFindSport = new System.Windows.Forms.Button();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SportTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ParentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tempUserSportsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.trainITDataSet = new TrainIt.TrainITDataSet();
+            this.btnDelAllSports = new System.Windows.Forms.Button();
+            this.btnDelSport = new System.Windows.Forms.Button();
+            this.btnFindSport = new System.Windows.Forms.Button();
             this.tempUserSportsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userSportsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sportTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -72,6 +72,7 @@
             this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
             this.userSportsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.UserSportsTableAdapter();
             this.tempUserSportsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.TempUserSportsTableAdapter();
+            this.btnBorrar = new System.Windows.Forms.Button();
             userPassLabel = new System.Windows.Forms.Label();
             userNameLabel = new System.Windows.Forms.Label();
             userIDLabel = new System.Windows.Forms.Label();
@@ -305,10 +306,10 @@
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(275, 410);
+            this.btnSave.Location = new System.Drawing.Point(289, 410);
             this.btnSave.Name = "btnSave";
             this.btnSave.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.btnSave.Size = new System.Drawing.Size(171, 32);
+            this.btnSave.Size = new System.Drawing.Size(166, 32);
             this.btnSave.TabIndex = 30;
             this.btnSave.Text = "Grabar Cambios";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -320,10 +321,10 @@
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(156, 410);
+            this.btnCancel.Location = new System.Drawing.Point(180, 410);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.btnCancel.Size = new System.Drawing.Size(113, 32);
+            this.btnCancel.Size = new System.Drawing.Size(110, 32);
             this.btnCancel.TabIndex = 31;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -349,15 +350,17 @@
             this.dgvUserSports.AllowUserToAddRows = false;
             this.dgvUserSports.AllowUserToDeleteRows = false;
             this.dgvUserSports.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Aqua;
+            this.dgvUserSports.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUserSports.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUserSports.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUserSports.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUserSports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUserSports.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
@@ -365,21 +368,13 @@
             this.ParentName,
             this.dataGridViewTextBoxColumn1});
             this.dgvUserSports.DataSource = this.tempUserSportsBindingSource1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUserSports.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUserSports.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvUserSports.Location = new System.Drawing.Point(3, 68);
             this.dgvUserSports.Name = "dgvUserSports";
             this.dgvUserSports.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -388,6 +383,48 @@
             this.dgvUserSports.RowHeadersVisible = false;
             this.dgvUserSports.Size = new System.Drawing.Size(475, 347);
             this.dgvUserSports.TabIndex = 49;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "SportTypeID";
+            this.dataGridViewTextBoxColumn2.HeaderText = "";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 50;
+            // 
+            // SportTypeName
+            // 
+            this.SportTypeName.DataPropertyName = "SportTypeName";
+            this.SportTypeName.HeaderText = "Nombre";
+            this.SportTypeName.Name = "SportTypeName";
+            this.SportTypeName.ReadOnly = true;
+            this.SportTypeName.Width = 200;
+            // 
+            // ParentName
+            // 
+            this.ParentName.DataPropertyName = "ParentName";
+            this.ParentName.HeaderText = "Familia";
+            this.ParentName.Name = "ParentName";
+            this.ParentName.ReadOnly = true;
+            this.ParentName.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "UserID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "UserID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // tempUserSportsBindingSource1
+            // 
+            this.tempUserSportsBindingSource1.DataMember = "TempUserSports";
+            this.tempUserSportsBindingSource1.DataSource = this.trainITDataSet;
+            // 
+            // trainITDataSet
+            // 
+            this.trainITDataSet.DataSetName = "TrainITDataSet";
+            this.trainITDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnDelAllSports
             // 
@@ -434,48 +471,6 @@
             this.btnFindSport.UseVisualStyleBackColor = true;
             this.btnFindSport.Click += new System.EventHandler(this.btnFindSport_Click);
             // 
-            // SportTypeName
-            // 
-            this.SportTypeName.DataPropertyName = "SportTypeName";
-            this.SportTypeName.HeaderText = "Nombre";
-            this.SportTypeName.Name = "SportTypeName";
-            this.SportTypeName.ReadOnly = true;
-            this.SportTypeName.Width = 200;
-            // 
-            // ParentName
-            // 
-            this.ParentName.DataPropertyName = "ParentName";
-            this.ParentName.HeaderText = "Familia";
-            this.ParentName.Name = "ParentName";
-            this.ParentName.ReadOnly = true;
-            this.ParentName.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "SportTypeID";
-            this.dataGridViewTextBoxColumn2.HeaderText = "";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "UserID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "UserID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // tempUserSportsBindingSource1
-            // 
-            this.tempUserSportsBindingSource1.DataMember = "TempUserSports";
-            this.tempUserSportsBindingSource1.DataSource = this.trainITDataSet;
-            // 
-            // trainITDataSet
-            // 
-            this.trainITDataSet.DataSetName = "TrainITDataSet";
-            this.trainITDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // tempUserSportsBindingSource
             // 
             this.tempUserSportsBindingSource.DataSource = this.trainITDataSet;
@@ -516,11 +511,27 @@
             // 
             this.tempUserSportsTableAdapter.ClearBeforeFill = true;
             // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBorrar.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrar.Image")));
+            this.btnBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBorrar.Location = new System.Drawing.Point(4, 410);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Padding = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.btnBorrar.Size = new System.Drawing.Size(143, 32);
+            this.btnBorrar.TabIndex = 33;
+            this.btnBorrar.Text = "Borrar Usuario";
+            this.btnBorrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
             // FUserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(947, 458);
+            this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -591,5 +602,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SportTypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ParentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button btnBorrar;
     }
 }

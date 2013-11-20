@@ -63,7 +63,6 @@
             this.estadísticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGlobales = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeporte = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDeportesFav = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiComparativas = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -325,7 +324,6 @@
             this.estadísticasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiGlobales,
             this.tsmiDeporte,
-            this.tsmiDeportesFav,
             this.toolStripMenuItem4,
             this.tsmiComparativas,
             this.toolStripMenuItem3,
@@ -338,50 +336,43 @@
             // tsmiGlobales
             // 
             this.tsmiGlobales.Name = "tsmiGlobales";
-            this.tsmiGlobales.Size = new System.Drawing.Size(193, 22);
-            this.tsmiGlobales.Text = "Globales";
+            this.tsmiGlobales.Size = new System.Drawing.Size(238, 22);
+            this.tsmiGlobales.Text = "Todos los deportes practicados";
             this.tsmiGlobales.Click += new System.EventHandler(this.tsmiGlobales_Click);
             // 
             // tsmiDeporte
             // 
             this.tsmiDeporte.Name = "tsmiDeporte";
-            this.tsmiDeporte.Size = new System.Drawing.Size(193, 22);
-            this.tsmiDeporte.Text = "De un Deporte";
+            this.tsmiDeporte.Size = new System.Drawing.Size(238, 22);
+            this.tsmiDeporte.Text = "Deportes principales";
             this.tsmiDeporte.Click += new System.EventHandler(this.tsmiDeporte_Click);
-            // 
-            // tsmiDeportesFav
-            // 
-            this.tsmiDeportesFav.Name = "tsmiDeportesFav";
-            this.tsmiDeportesFav.Size = new System.Drawing.Size(193, 22);
-            this.tsmiDeportesFav.Text = "Por Deportes Favoritos";
-            this.tsmiDeportesFav.Click += new System.EventHandler(this.tsmiDeportesFav_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(190, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(235, 6);
             // 
             // tsmiComparativas
             // 
             this.tsmiComparativas.Name = "tsmiComparativas";
-            this.tsmiComparativas.Size = new System.Drawing.Size(193, 22);
+            this.tsmiComparativas.Size = new System.Drawing.Size(238, 22);
             this.tsmiComparativas.Text = "Comparativas";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(190, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(235, 6);
             // 
             // tsmiDatosPers
             // 
             this.tsmiDatosPers.Name = "tsmiDatosPers";
-            this.tsmiDatosPers.Size = new System.Drawing.Size(193, 22);
+            this.tsmiDatosPers.Size = new System.Drawing.Size(238, 22);
             this.tsmiDatosPers.Text = "Datos Personales";
             // 
             // tsmiMarcasPers
             // 
             this.tsmiMarcasPers.Name = "tsmiMarcasPers";
-            this.tsmiMarcasPers.Size = new System.Drawing.Size(193, 22);
+            this.tsmiMarcasPers.Size = new System.Drawing.Size(238, 22);
             this.tsmiMarcasPers.Text = "Marcas Personales";
             // 
             // timer1
@@ -554,7 +545,6 @@
         private System.Windows.Forms.ToolStripMenuItem estadísticasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiGlobales;
         private System.Windows.Forms.ToolStripMenuItem tsmiDeporte;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDeportesFav;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem tsmiComparativas;
         private System.Windows.Forms.ToolStripMenuItem tsmiMosaicoHor;

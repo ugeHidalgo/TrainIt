@@ -14,6 +14,7 @@ namespace TrainIt
     public partial class FMain : Form
     {
         string connString = TrainItLibrary.Utilities.GetConnString();
+        public static bool closeAppWithQuestion=true;
 
         public FMain()
         {
@@ -33,15 +34,19 @@ namespace TrainIt
         //Controla la salida de la aplicación
         private void FMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult valor;
-            valor = MessageBox.Show("¿Desea salir de la aplicacón?", "Atencíón", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            e.Cancel = (valor == DialogResult.Cancel);                
+
+            if (closeAppWithQuestion)
+            {
+                DialogResult valor;
+                valor = MessageBox.Show("¿Desea salir de la aplicacón?", "Atencíón", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                e.Cancel = (valor == DialogResult.Cancel);                 
+            }
         }
 
         //Reloj de la aplicación para la hora y fecha
         private void timer1_Tick(object sender, EventArgs e)
         {
-            sSTime.Text = DateTime.Now.ToString("HH:mm:ss");
+           sSTime.Text = DateTime.Now.ToString("HH:mm:ss");
             sSDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
@@ -117,13 +122,6 @@ namespace TrainIt
             FEstadSport fEstadSport = new FEstadSport();
             fEstadSport.MdiParent = this;
             fEstadSport.Show();
-        }
-
-        private void tsmiDeportesFav_Click(object sender, EventArgs e)
-        {
-            FEstadSportFav fEstadSportFav = new FEstadSportFav();
-            fEstadSportFav.MdiParent = this;
-            fEstadSportFav.Show();
         }
 
         private void tsmiMosaicoHor_Click(object sender, EventArgs e)

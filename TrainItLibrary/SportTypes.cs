@@ -57,7 +57,7 @@ namespace TrainItLibrary
         }
 
         //Creates a SportType object with data
-        public SportTypes(Int64 SportTypeID, string SportTypeName, Int64 ParentSportTypeID, string Memo, Int64 UserID, double distForPace)
+        public SportTypes(Int64 SportTypeID, string SportTypeName, Int64 ParentSportTypeID, string Memo, Int64 UserID, double DistForPace)
         {            
             sportTypeID = SportTypeID;
             sportTypeName = SportTypeName;

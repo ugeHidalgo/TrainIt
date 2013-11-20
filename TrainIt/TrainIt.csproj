@@ -59,12 +59,6 @@
     <Compile Include="FEstadSport.Designer.cs">
       <DependentUpon>FEstadSport.cs</DependentUpon>
     </Compile>
-    <Compile Include="FEstadSportFav.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FEstadSportFav.Designer.cs">
-      <DependentUpon>FEstadSportFav.cs</DependentUpon>
-    </Compile>
     <Compile Include="FLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,9 +123,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FEstadSport.resx">
       <DependentUpon>FEstadSport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FEstadSportFav.resx">
-      <DependentUpon>FEstadSportFav.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FLogin.resx">
       <DependentUpon>FLogin.cs</DependentUpon>

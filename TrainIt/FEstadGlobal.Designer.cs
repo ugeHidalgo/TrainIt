@@ -28,6 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FEstadGlobal));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.txbxSesiones = new System.Windows.Forms.TextBox();
@@ -63,26 +82,91 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpFin = new System.Windows.Forms.DateTimePicker();
+            this.dtpIni = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbtGenerales = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.manual = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.anual = new System.Windows.Forms.ToolStripMenuItem();
+            this.mensual = new System.Windows.Forms.ToolStripMenuItem();
+            this.semanal = new System.Windows.Forms.ToolStripMenuItem();
+            this.diario = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbtPrint = new System.Windows.Forms.ToolStripButton();
+            this.laName = new System.Windows.Forms.Label();
+            this.SportName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.days = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sesionscant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvgDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotTimeCalc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvgTimeCalc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxTimeCalc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvgMedHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxMedHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvgMaxHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxMaxHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvgValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgv
             // 
+            this.dgv.AllowUserToAddRows = false;
+            this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Aqua;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SportName,
+            this.firstDate,
+            this.lastDate,
+            this.days,
+            this.Sesionscant,
+            this.TotDist,
+            this.AvgDist,
+            this.MaxDist,
+            this.TotTimeCalc,
+            this.AvgTimeCalc,
+            this.MaxTimeCalc,
+            this.AvgMedHR,
+            this.MaxMedHR,
+            this.AvgMaxHR,
+            this.MaxMaxHR,
+            this.AvgValue,
+            this.MaxValue});
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.Location = new System.Drawing.Point(3, 16);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
-            this.dgv.Size = new System.Drawing.Size(1022, 264);
+            this.dgv.RowHeadersVisible = false;
+            this.dgv.Size = new System.Drawing.Size(1050, 264);
             this.dgv.TabIndex = 0;
             // 
             // label1
@@ -228,7 +312,7 @@
             // txbxMaxMax
             // 
             this.txbxMaxMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbxMaxMax.Location = new System.Drawing.Point(597, 60);
+            this.txbxMaxMax.Location = new System.Drawing.Point(596, 60);
             this.txbxMaxMax.Name = "txbxMaxMax";
             this.txbxMaxMax.ReadOnly = true;
             this.txbxMaxMax.Size = new System.Drawing.Size(72, 26);
@@ -239,7 +323,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(410, 63);
+            this.label8.Location = new System.Drawing.Point(409, 63);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(181, 20);
             this.label8.TabIndex = 21;
@@ -268,7 +352,7 @@
             // txbxHRAvgMax
             // 
             this.txbxHRAvgMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbxHRAvgMax.Location = new System.Drawing.Point(597, 28);
+            this.txbxHRAvgMax.Location = new System.Drawing.Point(596, 28);
             this.txbxHRAvgMax.Name = "txbxHRAvgMax";
             this.txbxHRAvgMax.ReadOnly = true;
             this.txbxHRAvgMax.Size = new System.Drawing.Size(72, 26);
@@ -279,7 +363,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(410, 31);
+            this.label10.Location = new System.Drawing.Point(409, 31);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(181, 20);
             this.label10.TabIndex = 17;
@@ -348,7 +432,7 @@
             // txbxIni
             // 
             this.txbxIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbxIni.Location = new System.Drawing.Point(151, 80);
+            this.txbxIni.Location = new System.Drawing.Point(392, 92);
             this.txbxIni.Name = "txbxIni";
             this.txbxIni.ReadOnly = true;
             this.txbxIni.Size = new System.Drawing.Size(120, 26);
@@ -388,7 +472,7 @@
             // txBxFin
             // 
             this.txBxFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txBxFin.Location = new System.Drawing.Point(151, 108);
+            this.txBxFin.Location = new System.Drawing.Point(518, 92);
             this.txBxFin.Name = "txBxFin";
             this.txBxFin.ReadOnly = true;
             this.txBxFin.Size = new System.Drawing.Size(120, 26);
@@ -417,11 +501,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txBxFin);
+            this.groupBox1.Controls.Add(this.dtpFin);
+            this.groupBox1.Controls.Add(this.dtpIni);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.txbxDias);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.txbxIni);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.txbxValMax);
             this.groupBox1.Controls.Add(this.label15);
@@ -430,12 +514,30 @@
             this.groupBox1.Controls.Add(this.txbxSesiones);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Location = new System.Drawing.Point(9, 8);
+            this.groupBox1.Location = new System.Drawing.Point(7, 72);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(294, 297);
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Generales";
+            // 
+            // dtpFin
+            // 
+            this.dtpFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFin.Location = new System.Drawing.Point(154, 105);
+            this.dtpFin.Name = "dtpFin";
+            this.dtpFin.Size = new System.Drawing.Size(124, 26);
+            this.dtpFin.TabIndex = 35;
+            // 
+            // dtpIni
+            // 
+            this.dtpIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpIni.Location = new System.Drawing.Point(154, 78);
+            this.dtpIni.Name = "dtpIni";
+            this.dtpIni.Size = new System.Drawing.Size(124, 26);
+            this.dtpIni.TabIndex = 34;
             // 
             // groupBox2
             // 
@@ -445,7 +547,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.txbxDist);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(309, 13);
+            this.groupBox2.Location = new System.Drawing.Point(311, 72);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(347, 147);
             this.groupBox2.TabIndex = 35;
@@ -460,26 +562,28 @@
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.txbxTime);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Location = new System.Drawing.Point(678, 12);
+            this.groupBox3.Location = new System.Drawing.Point(677, 72);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(338, 147);
+            this.groupBox3.Size = new System.Drawing.Size(361, 147);
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tiempo";
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.txBxFin);
             this.groupBox4.Controls.Add(this.txbxMaxMax);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.txbxHRAvgMax);
             this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.txbxIni);
             this.groupBox4.Controls.Add(this.txbxHRMaxAvg);
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.txbxHRAvg);
             this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Location = new System.Drawing.Point(311, 174);
+            this.groupBox4.Location = new System.Drawing.Point(311, 231);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(704, 135);
+            this.groupBox4.Size = new System.Drawing.Size(727, 135);
             this.groupBox4.TabIndex = 37;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Pulsaciones";
@@ -488,25 +592,301 @@
             // 
             this.groupBox5.Controls.Add(this.dgv);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox5.Location = new System.Drawing.Point(0, 310);
+            this.groupBox5.Location = new System.Drawing.Point(0, 384);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1028, 283);
+            this.groupBox5.Size = new System.Drawing.Size(1056, 283);
             this.groupBox5.TabIndex = 38;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Datos globales por deporte";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtGenerales,
+            this.toolStripDropDownButton1,
+            this.toolStripSeparator1,
+            this.tsbtPrint});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1056, 25);
+            this.toolStrip1.TabIndex = 39;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsbtGenerales
+            // 
+            this.tsbtGenerales.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtGenerales.Image = ((System.Drawing.Image)(resources.GetObject("tsbtGenerales.Image")));
+            this.tsbtGenerales.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtGenerales.Name = "tsbtGenerales";
+            this.tsbtGenerales.Size = new System.Drawing.Size(23, 22);
+            this.tsbtGenerales.Text = "Estadísticas generales ";
+            this.tsbtGenerales.Click += new System.EventHandler(this.tsbtGenerales_Click);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manual,
+            this.toolStripSeparator2,
+            this.anual,
+            this.mensual,
+            this.semanal,
+            this.diario});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
+            this.toolStripDropDownButton1.Text = "Estadísticas por periodos de tiempo";
+            // 
+            // manual
+            // 
+            this.manual.Name = "manual";
+            this.manual.Size = new System.Drawing.Size(158, 22);
+            this.manual.Text = "Periodo manual";
+            this.manual.Click += new System.EventHandler(this.manual_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(155, 6);
+            // 
+            // anual
+            // 
+            this.anual.Name = "anual";
+            this.anual.Size = new System.Drawing.Size(158, 22);
+            this.anual.Text = "Año";
+            this.anual.Click += new System.EventHandler(this.anual_Click);
+            // 
+            // mensual
+            // 
+            this.mensual.Name = "mensual";
+            this.mensual.Size = new System.Drawing.Size(158, 22);
+            this.mensual.Text = "Mes";
+            this.mensual.Click += new System.EventHandler(this.mensual_Click);
+            // 
+            // semanal
+            // 
+            this.semanal.Name = "semanal";
+            this.semanal.Size = new System.Drawing.Size(158, 22);
+            this.semanal.Text = "Semana";
+            this.semanal.Click += new System.EventHandler(this.semanal_Click);
+            // 
+            // diario
+            // 
+            this.diario.Name = "diario";
+            this.diario.Size = new System.Drawing.Size(158, 22);
+            this.diario.Text = "Dia";
+            this.diario.Click += new System.EventHandler(this.diario_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbtPrint
+            // 
+            this.tsbtPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtPrint.Image = ((System.Drawing.Image)(resources.GetObject("tsbtPrint.Image")));
+            this.tsbtPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtPrint.Name = "tsbtPrint";
+            this.tsbtPrint.Size = new System.Drawing.Size(23, 22);
+            this.tsbtPrint.Text = "Imprimir informe";
+            this.tsbtPrint.Click += new System.EventHandler(this.tsbtPrint_Click);
+            // 
+            // laName
+            // 
+            this.laName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.laName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.laName.ForeColor = System.Drawing.Color.Red;
+            this.laName.Location = new System.Drawing.Point(0, 25);
+            this.laName.Name = "laName";
+            this.laName.Size = new System.Drawing.Size(1056, 25);
+            this.laName.TabIndex = 40;
+            this.laName.Text = "us";
+            this.laName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // SportName
+            // 
+            this.SportName.DataPropertyName = "SportName";
+            this.SportName.HeaderText = "Deporte";
+            this.SportName.Name = "SportName";
+            this.SportName.ReadOnly = true;
+            this.SportName.Width = 150;
+            // 
+            // firstDate
+            // 
+            this.firstDate.DataPropertyName = "firstDate";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.firstDate.DefaultCellStyle = dataGridViewCellStyle3;
+            this.firstDate.HeaderText = "Inicio";
+            this.firstDate.Name = "firstDate";
+            this.firstDate.ReadOnly = true;
+            this.firstDate.Width = 80;
+            // 
+            // lastDate
+            // 
+            this.lastDate.DataPropertyName = "lastDate";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.lastDate.DefaultCellStyle = dataGridViewCellStyle4;
+            this.lastDate.HeaderText = "Final";
+            this.lastDate.Name = "lastDate";
+            this.lastDate.ReadOnly = true;
+            this.lastDate.Width = 80;
+            // 
+            // days
+            // 
+            this.days.DataPropertyName = "days";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.days.DefaultCellStyle = dataGridViewCellStyle5;
+            this.days.HeaderText = "Días";
+            this.days.Name = "days";
+            this.days.ReadOnly = true;
+            this.days.Width = 35;
+            // 
+            // Sesionscant
+            // 
+            this.Sesionscant.DataPropertyName = "SesionsCant";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Sesionscant.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Sesionscant.HeaderText = "Uds.";
+            this.Sesionscant.Name = "Sesionscant";
+            this.Sesionscant.ReadOnly = true;
+            this.Sesionscant.Width = 35;
+            // 
+            // TotDist
+            // 
+            this.TotDist.DataPropertyName = "TotDist";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.TotDist.DefaultCellStyle = dataGridViewCellStyle7;
+            this.TotDist.HeaderText = "Dist. Total";
+            this.TotDist.Name = "TotDist";
+            this.TotDist.ReadOnly = true;
+            this.TotDist.Width = 70;
+            // 
+            // AvgDist
+            // 
+            this.AvgDist.DataPropertyName = "AvgDist";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AvgDist.DefaultCellStyle = dataGridViewCellStyle8;
+            this.AvgDist.HeaderText = "Dist. Media";
+            this.AvgDist.Name = "AvgDist";
+            this.AvgDist.ReadOnly = true;
+            this.AvgDist.Width = 60;
+            // 
+            // MaxDist
+            // 
+            this.MaxDist.DataPropertyName = "MaxDist";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDist.DefaultCellStyle = dataGridViewCellStyle9;
+            this.MaxDist.HeaderText = "Sesión mas Dist.";
+            this.MaxDist.Name = "MaxDist";
+            this.MaxDist.ReadOnly = true;
+            this.MaxDist.Width = 50;
+            // 
+            // TotTimeCalc
+            // 
+            this.TotTimeCalc.DataPropertyName = "TotTimeCalc";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.TotTimeCalc.DefaultCellStyle = dataGridViewCellStyle10;
+            this.TotTimeCalc.HeaderText = "Tiempo Total";
+            this.TotTimeCalc.Name = "TotTimeCalc";
+            this.TotTimeCalc.ReadOnly = true;
+            this.TotTimeCalc.Width = 60;
+            // 
+            // AvgTimeCalc
+            // 
+            this.AvgTimeCalc.DataPropertyName = "AvgTimeCalc";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.AvgTimeCalc.DefaultCellStyle = dataGridViewCellStyle11;
+            this.AvgTimeCalc.HeaderText = "Tiempo Medio";
+            this.AvgTimeCalc.Name = "AvgTimeCalc";
+            this.AvgTimeCalc.ReadOnly = true;
+            this.AvgTimeCalc.Width = 60;
+            // 
+            // MaxTimeCalc
+            // 
+            this.MaxTimeCalc.DataPropertyName = "MaxTimeCalc";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.MaxTimeCalc.DefaultCellStyle = dataGridViewCellStyle12;
+            this.MaxTimeCalc.HeaderText = "Sesión mas Tiempo";
+            this.MaxTimeCalc.Name = "MaxTimeCalc";
+            this.MaxTimeCalc.ReadOnly = true;
+            this.MaxTimeCalc.Width = 60;
+            // 
+            // AvgMedHR
+            // 
+            this.AvgMedHR.DataPropertyName = "AvgMedHR";
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AvgMedHR.DefaultCellStyle = dataGridViewCellStyle13;
+            this.AvgMedHR.HeaderText = "Media Pulso";
+            this.AvgMedHR.Name = "AvgMedHR";
+            this.AvgMedHR.ReadOnly = true;
+            this.AvgMedHR.Width = 50;
+            // 
+            // MaxMedHR
+            // 
+            this.MaxMedHR.DataPropertyName = "MaxMedHR";
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxMedHR.DefaultCellStyle = dataGridViewCellStyle14;
+            this.MaxMedHR.HeaderText = "Mayor Media Pulso";
+            this.MaxMedHR.Name = "MaxMedHR";
+            this.MaxMedHR.ReadOnly = true;
+            this.MaxMedHR.Width = 50;
+            // 
+            // AvgMaxHR
+            // 
+            this.AvgMaxHR.DataPropertyName = "AvgMaxHR";
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AvgMaxHR.DefaultCellStyle = dataGridViewCellStyle15;
+            this.AvgMaxHR.HeaderText = "Media Pulso Máximo";
+            this.AvgMaxHR.Name = "AvgMaxHR";
+            this.AvgMaxHR.ReadOnly = true;
+            this.AvgMaxHR.Width = 50;
+            // 
+            // MaxMaxHR
+            // 
+            this.MaxMaxHR.DataPropertyName = "MaxMaxHR";
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxMaxHR.DefaultCellStyle = dataGridViewCellStyle16;
+            this.MaxMaxHR.HeaderText = "Mayor Pulso Máximo";
+            this.MaxMaxHR.Name = "MaxMaxHR";
+            this.MaxMaxHR.ReadOnly = true;
+            this.MaxMaxHR.Width = 50;
+            // 
+            // AvgValue
+            // 
+            this.AvgValue.DataPropertyName = "AvgValue";
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AvgValue.DefaultCellStyle = dataGridViewCellStyle17;
+            this.AvgValue.HeaderText = "Valor Medio";
+            this.AvgValue.Name = "AvgValue";
+            this.AvgValue.ReadOnly = true;
+            this.AvgValue.Width = 40;
+            // 
+            // MaxValue
+            // 
+            this.MaxValue.DataPropertyName = "MaxValue";
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxValue.DefaultCellStyle = dataGridViewCellStyle18;
+            this.MaxValue.HeaderText = "Mayor Valor";
+            this.MaxValue.Name = "MaxValue";
+            this.MaxValue.ReadOnly = true;
+            this.MaxValue.Width = 40;
             // 
             // FEstadGlobal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1028, 593);
+            this.ClientSize = new System.Drawing.Size(1056, 667);
+            this.Controls.Add(this.laName);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FEstadGlobal";
-            this.Text = "Estadísticas Globales";
+            this.Text = "Estadísticas para todos los deportes practicados";
             this.Load += new System.EventHandler(this.FEstadGlobal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -518,7 +898,10 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -563,5 +946,36 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.DateTimePicker dtpFin;
+        private System.Windows.Forms.DateTimePicker dtpIni;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsbtGenerales;
+        private System.Windows.Forms.Label laName;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton tsbtPrint;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem manual;
+        private System.Windows.Forms.ToolStripMenuItem anual;
+        private System.Windows.Forms.ToolStripMenuItem mensual;
+        private System.Windows.Forms.ToolStripMenuItem semanal;
+        private System.Windows.Forms.ToolStripMenuItem diario;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SportName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn firstDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn days;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sesionscant;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotDist;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AvgDist;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaxDist;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotTimeCalc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AvgTimeCalc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaxTimeCalc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AvgMedHR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaxMedHR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AvgMaxHR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaxMaxHR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AvgValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaxValue;
     }
 }

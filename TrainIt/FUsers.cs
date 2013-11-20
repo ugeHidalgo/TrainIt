@@ -356,7 +356,7 @@ namespace TrainIt
                     if (position + 1 == totalRegs) position--;
 
                     //Delete data.
-                    int res = aUser.deleteUserByUserID(connString, aUser.userID);
+                    int res = Users.deleteUserByUserID(connString, aUser.userID);
 
                     if (dgvUsers.RowCount > 0)
                     {

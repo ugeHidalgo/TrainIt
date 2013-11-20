@@ -260,7 +260,7 @@ namespace TrainItLibrary
         }
 
         //Delete a user using his userID.
-        public int deleteUserByUserID(string connString, Int64 aUserID)
+        public static int deleteUserByUserID(string connString, Int64 aUserID)
         { //Return 1 if deleted,-1 if any problem.
             int res = -1;
             Users aUser = new Users();

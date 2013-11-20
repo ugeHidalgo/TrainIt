@@ -127,7 +127,7 @@ namespace TrainItTests
 
 
             //Try to Delete previous saved user.            
-            int res = aUser.deleteUserByUserID(connString, aUser.userID);
+            int res = Users.deleteUserByUserID(connString, aUser.userID);
             Assert.AreEqual( 1, res); //Deleted with success
 
 
@@ -167,7 +167,7 @@ namespace TrainItTests
             Assert.AreEqual(aUser.userSecondName,aUserToFind.userSecondName);
 
             //Try to Delete previous saved user.            
-            int res = aUser.deleteUserByUserID(connString, aUser.userID);
+            int res = Users.deleteUserByUserID(connString, aUser.userID);
             Assert.AreEqual(1, res); //Deleted with success
 
             //Try to find it                       
@@ -202,7 +202,7 @@ namespace TrainItTests
             Assert.AreNotEqual(-1, aUser.userID); //Verify if new password was stored correctly
                        
             //Try to Delete previous saved user.            
-            Int64 res = aUser.deleteUserByUserID(connString, aUser.userID);
+            Int64 res = Users.deleteUserByUserID(connString, aUser.userID);
             Assert.AreEqual(1, res); //Deleted with success
 
             ////Try to find it
@@ -242,7 +242,7 @@ namespace TrainItTests
             Assert.AreEqual(-1, aUser.userID);
 
             //Try to Delete previous saved user.            
-            int res = aUser.deleteUserByUserID(connString, userIDToDelete);
+            int res = Users.deleteUserByUserID(connString, userIDToDelete);
             Assert.AreEqual(1, res); //Deleted with success
         }
 

@@ -475,5 +475,37 @@ namespace TrainIt
             }
             
         }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            string message ="Va a borrar al usuario actual: ("+ txtUserID.Text+"-"+txtUserName.Text+").  Igualmente se borrarán todos los datos asociados."+
+                            "Esta operación no tiene vuelta atrás.  ¿Está realmente seguro?";
+            bool delete = false;
+            DialogResult res = MessageBox.Show(message,"Atención",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+            if (res==DialogResult.OK)
+	        {
+		        message = "Por segunda vez. ¿Está realmente seguro de borrar el usuario?. Una vez borrado el usuario se cerrará el programa.";
+                res = MessageBox.Show(message,"Atención",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
+                if (res==DialogResult.OK)
+                    delete=true;
+	        }
+
+            if (delete)
+            {
+                int result = Users.deleteUserByUserID(connString, Convert.ToInt64(txtUserID.Text));
+                if (result == 1)
+                {
+                    MessageBox.Show("Usuario eliminado. Cerrando el programa.");
+                    this.Close();
+                    FMain.closeAppWithQuestion = false;
+                    Application.Exit();
+                }
+                else
+                {
+                    MessageBox.Show("Hubo algún problema durante el borrado del usuario eliminado. No se ha eliminado ningún dato.");
+                }
+
+            }		 	
+        }
     }
 }

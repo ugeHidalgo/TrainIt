@@ -664,8 +664,6 @@ namespace TrainIt {
             
             private global::System.Data.DataColumn columnMatBuyDate;
             
-            private global::System.Data.DataColumn columnMatCost;
-            
             private global::System.Data.DataColumn columnMatInitDist;
             
             private global::System.Data.DataColumn columnMatRecTime;
@@ -685,6 +683,8 @@ namespace TrainIt {
             private global::System.Data.DataColumn columnMatInitTime;
             
             private global::System.Data.DataColumn columnMatShortInitTime;
+            
+            private global::System.Data.DataColumn columnMatCost;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -777,14 +777,6 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MatCostColumn {
-                get {
-                    return this.columnMatCost;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn MatInitDistColumn {
                 get {
                     return this.columnMatInitDist;
@@ -865,6 +857,14 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MatCostColumn {
+                get {
+                    return this.columnMatCost;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -907,7 +907,6 @@ namespace TrainIt {
                         string MatSize, 
                         decimal MatWeight, 
                         System.DateTime MatBuyDate, 
-                        decimal MatCost, 
                         decimal MatInitDist, 
                         string MatRecTime, 
                         decimal MatRecDist, 
@@ -917,7 +916,8 @@ namespace TrainIt {
                         decimal TotDistCalc, 
                         string TotTimeCalc, 
                         System.DateTime MatInitTime, 
-                        string MatShortInitTime) {
+                        string MatShortInitTime, 
+                        decimal MatCost) {
                 MaterialsRow rowMaterialsRow = ((MaterialsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -927,7 +927,6 @@ namespace TrainIt {
                         MatSize,
                         MatWeight,
                         MatBuyDate,
-                        MatCost,
                         MatInitDist,
                         MatRecTime,
                         MatRecDist,
@@ -937,7 +936,8 @@ namespace TrainIt {
                         TotDistCalc,
                         TotTimeCalc,
                         MatInitTime,
-                        MatShortInitTime};
+                        MatShortInitTime,
+                        MatCost};
                 rowMaterialsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMaterialsRow);
                 return rowMaterialsRow;
@@ -974,7 +974,6 @@ namespace TrainIt {
                 this.columnMatSize = base.Columns["MatSize"];
                 this.columnMatWeight = base.Columns["MatWeight"];
                 this.columnMatBuyDate = base.Columns["MatBuyDate"];
-                this.columnMatCost = base.Columns["MatCost"];
                 this.columnMatInitDist = base.Columns["MatInitDist"];
                 this.columnMatRecTime = base.Columns["MatRecTime"];
                 this.columnMatRecDist = base.Columns["MatRecDist"];
@@ -985,6 +984,7 @@ namespace TrainIt {
                 this.columnTotTimeCalc = base.Columns["TotTimeCalc"];
                 this.columnMatInitTime = base.Columns["MatInitTime"];
                 this.columnMatShortInitTime = base.Columns["MatShortInitTime"];
+                this.columnMatCost = base.Columns["MatCost"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1004,8 +1004,6 @@ namespace TrainIt {
                 base.Columns.Add(this.columnMatWeight);
                 this.columnMatBuyDate = new global::System.Data.DataColumn("MatBuyDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMatBuyDate);
-                this.columnMatCost = new global::System.Data.DataColumn("MatCost", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMatCost);
                 this.columnMatInitDist = new global::System.Data.DataColumn("MatInitDist", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMatInitDist);
                 this.columnMatRecTime = new global::System.Data.DataColumn("MatRecTime", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1026,6 +1024,8 @@ namespace TrainIt {
                 base.Columns.Add(this.columnMatInitTime);
                 this.columnMatShortInitTime = new global::System.Data.DataColumn("MatShortInitTime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMatShortInitTime);
+                this.columnMatCost = new global::System.Data.DataColumn("MatCost", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMatCost);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMatID}, true));
                 this.columnMatID.AutoIncrement = true;
@@ -4281,22 +4281,6 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal MatCost {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableMaterials.MatCostColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MatCost\' in table \'Materials\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableMaterials.MatCostColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal MatInitDist {
                 get {
                     try {
@@ -4452,6 +4436,22 @@ namespace TrainIt {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal MatCost {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableMaterials.MatCostColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MatCost\' in table \'Materials\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMaterials.MatCostColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsMatModelNull() {
                 return this.IsNull(this.tableMaterials.MatModelColumn);
             }
@@ -4508,18 +4508,6 @@ namespace TrainIt {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetMatBuyDateNull() {
                 this[this.tableMaterials.MatBuyDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMatCostNull() {
-                return this.IsNull(this.tableMaterials.MatCostColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMatCostNull() {
-                this[this.tableMaterials.MatCostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4628,6 +4616,18 @@ namespace TrainIt {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetMatShortInitTimeNull() {
                 this[this.tableMaterials.MatShortInitTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMatCostNull() {
+                return this.IsNull(this.tableMaterials.MatCostColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMatCostNull() {
+                this[this.tableMaterials.MatCostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6484,7 +6484,6 @@ namespace TrainIt.TrainITDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("MatSize", "MatSize");
             tableMapping.ColumnMappings.Add("MatWeight", "MatWeight");
             tableMapping.ColumnMappings.Add("MatBuyDate", "MatBuyDate");
-            tableMapping.ColumnMappings.Add("MatCost", "MatCost");
             tableMapping.ColumnMappings.Add("MatInitDist", "MatInitDist");
             tableMapping.ColumnMappings.Add("MatRecTime", "MatRecTime");
             tableMapping.ColumnMappings.Add("MatRecDist", "MatRecDist");
@@ -6495,6 +6494,7 @@ namespace TrainIt.TrainITDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("TotTimeCalc", "TotTimeCalc");
             tableMapping.ColumnMappings.Add("MatInitTime", "MatInitTime");
             tableMapping.ColumnMappings.Add("MatShortInitTime", "MatShortInitTime");
+            tableMapping.ColumnMappings.Add("MatCost", "MatCost");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -6504,7 +6504,7 @@ namespace TrainIt.TrainITDataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [Materials] ([MatName], [MatModel], [MatBrand], [MatSize], [MatWeight], [MatBuyDate], [MatCost], [MatInitTime], [MatInitDist], [MatRecTime], [MatRecDist], [MatBuyMemo], [userID], [MatImage]) VALUES (@MatName, @MatModel, @MatBrand, @MatSize, @MatWeight, @MatBuyDate, @MatCost, @MatInitTime, @MatInitDist, @MatRecTime, @MatRecDist, @MatBuyMemo, @userID, @MatImage);
-SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, CONVERT (char(9), MatInitTime, 108) AS MatShortInitTime, MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, (SELECT CAST(SUM(Sessions.Distance) + (SELECT MatInitDist FROM Materials WHERE (MatID = A.MatID)) AS Decimal(7 , 2)) AS TotDist FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID WHERE (MaterialSession.MatID = A.MatID)) AS TotDistCalc, (SELECT CONVERT (CHAR(8), CAST(SUM(CAST(Sessions_1.Time AS float)) + CAST((SELECT MatInitTime FROM Materials AS Materials_1 WHERE (MatID = A.MatID)) AS float) AS DateTime), 108) AS TotTime FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON MaterialSession_1.SessionID = Sessions_1.SessionID WHERE (MaterialSession_1.MatID = A.MatID)) AS TotTimeCalc FROM Materials AS A WHERE (MatID = SCOPE_IDENTITY())";
+SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, CONVERT (char(9), MatInitTime, 108) AS MatShortInitTime, MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, (SELECT CAST(SUM(Sessions.Distance) + (SELECT MatInitDist FROM Materials WHERE (MatID = A.MatID)) AS Decimal(7 , 2)) AS TotDist FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID WHERE (MaterialSession.MatID = A.MatID) AND (Sessions.UserID = @userID)) AS TotDistCalc, dbo.floatToTimeChar((SELECT SUM(CAST(Sessions_1.Time AS float) * 24 * 60 * 60) + CAST((SELECT MatInitTime FROM Materials AS Materials_1 WHERE (MatID = A.MatID)) AS float) * 24 * 60 * 60 AS TotTime FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON MaterialSession_1.SessionID = Sessions_1.SessionID WHERE (MaterialSession_1.MatID = A.MatID) AND (Sessions_1.UserID = @userID))) AS TotTimeCalc FROM Materials AS A WHERE (MatID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatModel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatModel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6523,7 +6523,7 @@ SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCo
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [Materials] SET [MatName] = @MatName, [MatModel] = @MatModel, [MatBrand] = @MatBrand, [MatSize] = @MatSize, [MatWeight] = @MatWeight, [MatBuyDate] = @MatBuyDate, [MatCost] = @MatCost, [MatInitTime] = @MatInitTime, [MatInitDist] = @MatInitDist, [MatRecTime] = @MatRecTime, [MatRecDist] = @MatRecDist, [MatBuyMemo] = @MatBuyMemo, [userID] = @userID, [MatImage] = @MatImage WHERE (([MatID] = @Original_MatID));
-SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, CONVERT (char(9), MatInitTime, 108) AS MatShortInitTime, MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, (SELECT CAST(SUM(Sessions.Distance) + (SELECT MatInitDist FROM Materials WHERE (MatID = A.MatID)) AS Decimal(7 , 2)) AS TotDist FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID WHERE (MaterialSession.MatID = A.MatID)) AS TotDistCalc, (SELECT CONVERT (CHAR(8), CAST(SUM(CAST(Sessions_1.Time AS float)) + CAST((SELECT MatInitTime FROM Materials AS Materials_1 WHERE (MatID = A.MatID)) AS float) AS DateTime), 108) AS TotTime FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON MaterialSession_1.SessionID = Sessions_1.SessionID WHERE (MaterialSession_1.MatID = A.MatID)) AS TotTimeCalc FROM Materials AS A WHERE (MatID = @MatID)";
+SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime, CONVERT (char(9), MatInitTime, 108) AS MatShortInitTime, MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, (SELECT CAST(SUM(Sessions.Distance) + (SELECT MatInitDist FROM Materials WHERE (MatID = A.MatID)) AS Decimal(7 , 2)) AS TotDist FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID WHERE (MaterialSession.MatID = A.MatID) AND (Sessions.UserID = @userID)) AS TotDistCalc, dbo.floatToTimeChar((SELECT SUM(CAST(Sessions_1.Time AS float) * 24 * 60 * 60) + CAST((SELECT MatInitTime FROM Materials AS Materials_1 WHERE (MatID = A.MatID)) AS float) * 24 * 60 * 60 AS TotTime FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON MaterialSession_1.SessionID = Sessions_1.SessionID WHERE (MaterialSession_1.MatID = A.MatID) AND (Sessions_1.UserID = @userID))) AS TotTimeCalc FROM Materials AS A WHERE (MatID = @MatID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MatModel", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MatModel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6557,20 +6557,31 @@ SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCo
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT MatID, MatName, MatModel, MatBrand, MatSize, MatWeight, MatBuyDate, MatCost, MatInitTime,
-              CONVERT(char(9),MatInitTime,108) AS MatShortInitTime,
-              MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, 
-               ( SELECT CAST(SUM(Sessions.Distance)+( SELECT Materials.MatInitDist FROM Materials WHERE                                           Materials.MatID=A.MatID ) AS Decimal(7 , 2)) AS TotDist 
-                 FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID 
-                 WHERE (MaterialSession.MatID = A.MatID)) AS TotDistCalc, 
-              ( SELECT CONVERT (CHAR(8), CAST(SUM(CAST(Sessions_1.Time AS float)) + 
-                  CAST( (SELECT Materials.MatInitTime FROM Materials WHERE Materials.MatID=A.MatID) AS float )
-                  AS DateTime), 108) AS  TotTime 
-                 FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON                                                          MaterialSession_1.SessionID = Sessions_1.SessionID 
-                WHERE (MaterialSession_1.MatID = A.MatID)) AS TotTimeCalc 
+       CONVERT(char(9),MatInitTime,108) AS MatShortInitTime,
+       MatInitDist, MatRecTime, MatRecDist, MatBuyMemo, userID, MatImage, 
+                            
+       (SELECT CAST( SUM(Sessions.Distance)
+                     +(SELECT Materials.MatInitDist FROM Materials 
+                       WHERE  Materials.MatID=A.MatID ) 
+               AS Decimal(7 , 2)) AS TotDist 
+        FROM MaterialSession INNER JOIN Sessions ON MaterialSession.SessionID = Sessions.SessionID 
+        WHERE (MaterialSession.MatID = A.MatID) AND (UserID=@userID)
+        ) AS TotDistCalc, 
+                                               
+        dbo.floatToTimeChar(
+           (SELECT SUM(CAST(Sessions_1.Time AS float)*24*60*60)
+                   +CAST((SELECT Materials.MatInitTime FROM Materials 
+                          WHERE Materials.MatID=A.MatID) 
+                        AS float )*24*60*60
+                        AS  TotTime 
+            FROM MaterialSession AS MaterialSession_1 INNER JOIN Sessions AS Sessions_1 ON                                                          MaterialSession_1.SessionID = Sessions_1.SessionID 
+            WHERE (MaterialSession_1.MatID = A.MatID) AND (UserID=@userID) 
+           )
+        ) AS TotTimeCalc 
 
 FROM Materials AS A 
 
-WHERE (userID = @userID)";
+WHERE (UserID = @userID)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@userID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "userID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();

@@ -45,9 +45,10 @@
             System.Windows.Forms.Label matRecTimeLabel;
             System.Windows.Forms.Label matRecDistLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMaterial));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusS1 = new System.Windows.Forms.StatusStrip();
             this.tslUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.tslConnString = new System.Windows.Forms.ToolStripStatusLabel();
@@ -100,10 +101,10 @@
             this.txtUseDist = new System.Windows.Forms.TextBox();
             this.txtInitDist = new System.Windows.Forms.TextBox();
             this.txtBarsBack = new System.Windows.Forms.TextBox();
+            this.mtxtInitTimeLong = new System.Windows.Forms.MaskedTextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.materialsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.MaterialsTableAdapter();
             this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
-            this.mtxtInitTimeLong = new System.Windows.Forms.MaskedTextBox();
             matInitTimeLabel = new System.Windows.Forms.Label();
             matInitDistLabel = new System.Windows.Forms.Label();
             matBuyMemoLabel = new System.Windows.Forms.Label();
@@ -440,15 +441,17 @@
             this.dgvMat.AllowUserToAddRows = false;
             this.dgvMat.AllowUserToDeleteRows = false;
             this.dgvMat.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Aqua;
+            this.dgvMat.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvMat.AutoGenerateColumns = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvMat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMat.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
@@ -463,17 +466,17 @@
             this.dgvMat.Location = new System.Drawing.Point(0, 437);
             this.dgvMat.Name = "dgvMat";
             this.dgvMat.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMat.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMat.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvMat.RowHeadersVisible = false;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvMat.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvMat.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvMat.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvMat.Size = new System.Drawing.Size(950, 298);
             this.dgvMat.TabIndex = 4;
@@ -898,6 +901,21 @@
             this.txtBarsBack.TabIndex = 33;
             this.txtBarsBack.TabStop = false;
             // 
+            // mtxtInitTimeLong
+            // 
+            this.mtxtInitTimeLong.BeepOnError = true;
+            this.mtxtInitTimeLong.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mtxtInitTimeLong.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.materialsBindingSource, "MatInitTime", true));
+            this.mtxtInitTimeLong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtxtInitTimeLong.Location = new System.Drawing.Point(6, 51);
+            this.mtxtInitTimeLong.Name = "mtxtInitTimeLong";
+            this.mtxtInitTimeLong.ReadOnly = true;
+            this.mtxtInitTimeLong.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.mtxtInitTimeLong.Size = new System.Drawing.Size(122, 26);
+            this.mtxtInitTimeLong.SkipLiterals = false;
+            this.mtxtInitTimeLong.TabIndex = 35;
+            this.mtxtInitTimeLong.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -919,21 +937,6 @@
             this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserRegsTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
-            // 
-            // mtxtInitTimeLong
-            // 
-            this.mtxtInitTimeLong.BeepOnError = true;
-            this.mtxtInitTimeLong.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mtxtInitTimeLong.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.materialsBindingSource, "MatInitTime", true));
-            this.mtxtInitTimeLong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtxtInitTimeLong.Location = new System.Drawing.Point(6, 51);
-            this.mtxtInitTimeLong.Name = "mtxtInitTimeLong";
-            this.mtxtInitTimeLong.ReadOnly = true;
-            this.mtxtInitTimeLong.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mtxtInitTimeLong.Size = new System.Drawing.Size(122, 26);
-            this.mtxtInitTimeLong.SkipLiterals = false;
-            this.mtxtInitTimeLong.TabIndex = 35;
-            this.mtxtInitTimeLong.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FMaterial
             // 
