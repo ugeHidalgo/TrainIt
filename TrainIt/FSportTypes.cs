@@ -326,7 +326,7 @@ namespace TrainIt
 
             if (sigue)
             {
-                string mensaje = "Va a borrar el tipo de deporte " + txtSportTypeID.Text + ". ¿Esta seguro?";
+                string mensaje = "Va a borrar el tipo de deporte " + txtSportTypeID.Text + "/"+txtSportTypeName.Text+". ¿Esta seguro?";
                 DialogResult delMat = MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (delMat == DialogResult.OK)
                 {

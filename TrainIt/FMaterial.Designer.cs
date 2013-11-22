@@ -45,10 +45,10 @@
             System.Windows.Forms.Label matRecTimeLabel;
             System.Windows.Forms.Label matRecDistLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMaterial));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusS1 = new System.Windows.Forms.StatusStrip();
             this.tslUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.tslConnString = new System.Windows.Forms.ToolStripStatusLabel();
@@ -92,16 +92,16 @@
             this.dtpBuyDate = new System.Windows.Forms.DateTimePicker();
             this.txtCost = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.mtxtInitTimeShort = new System.Windows.Forms.MaskedTextBox();
+            this.mtxtInitTimeFloat = new System.Windows.Forms.TextBox();
             this.txtUseTime = new System.Windows.Forms.TextBox();
             this.txtTimeBar = new System.Windows.Forms.TextBox();
             this.txtDistBar = new System.Windows.Forms.TextBox();
             this.mtxtRecTime = new System.Windows.Forms.MaskedTextBox();
-            this.mtxtInitTimeShort = new System.Windows.Forms.MaskedTextBox();
             this.txtRecDist = new System.Windows.Forms.TextBox();
             this.txtUseDist = new System.Windows.Forms.TextBox();
             this.txtInitDist = new System.Windows.Forms.TextBox();
             this.txtBarsBack = new System.Windows.Forms.TextBox();
-            this.mtxtInitTimeLong = new System.Windows.Forms.MaskedTextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.materialsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.MaterialsTableAdapter();
             this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
@@ -269,7 +269,7 @@
             matRecTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             matRecTimeLabel.Location = new System.Drawing.Point(334, 29);
             matRecTimeLabel.Name = "matRecTimeLabel";
-            matRecTimeLabel.Size = new System.Drawing.Size(177, 20);
+            matRecTimeLabel.Size = new System.Drawing.Size(191, 20);
             matRecTimeLabel.TabIndex = 27;
             matRecTimeLabel.Text = "Tiempo Recomendado";
             matRecTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -277,7 +277,7 @@
             // matRecDistLabel
             // 
             matRecDistLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            matRecDistLabel.Location = new System.Drawing.Point(302, 181);
+            matRecDistLabel.Location = new System.Drawing.Point(311, 180);
             matRecDistLabel.Name = "matRecDistLabel";
             matRecDistLabel.Size = new System.Drawing.Size(215, 20);
             matRecDistLabel.TabIndex = 28;
@@ -291,7 +291,7 @@
             this.tslConnString});
             this.statusS1.Location = new System.Drawing.Point(0, 735);
             this.statusS1.Name = "statusS1";
-            this.statusS1.Size = new System.Drawing.Size(950, 22);
+            this.statusS1.Size = new System.Drawing.Size(953, 22);
             this.statusS1.TabIndex = 3;
             this.statusS1.Text = "statusStrip1";
             // 
@@ -331,7 +331,7 @@
             this.materialsBindingNavigator.MovePreviousItem = this.tsBtnPrevious;
             this.materialsBindingNavigator.Name = "materialsBindingNavigator";
             this.materialsBindingNavigator.PositionItem = null;
-            this.materialsBindingNavigator.Size = new System.Drawing.Size(950, 25);
+            this.materialsBindingNavigator.Size = new System.Drawing.Size(953, 25);
             this.materialsBindingNavigator.TabIndex = 4;
             this.materialsBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -441,17 +441,17 @@
             this.dgvMat.AllowUserToAddRows = false;
             this.dgvMat.AllowUserToDeleteRows = false;
             this.dgvMat.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Aqua;
-            this.dgvMat.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Aqua;
+            this.dgvMat.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvMat.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMat.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvMat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMat.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
@@ -466,22 +466,21 @@
             this.dgvMat.Location = new System.Drawing.Point(0, 437);
             this.dgvMat.Name = "dgvMat";
             this.dgvMat.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMat.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMat.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvMat.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvMat.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvMat.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvMat.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMat.Size = new System.Drawing.Size(950, 298);
+            this.dgvMat.Size = new System.Drawing.Size(953, 298);
             this.dgvMat.TabIndex = 4;
             this.dgvMat.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMat_CellDoubleClick);
-            this.dgvMat.SelectionChanged += new System.EventHandler(this.dgvMat_SelectionChanged);
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -766,11 +765,12 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.mtxtInitTimeShort);
+            this.groupBox3.Controls.Add(this.mtxtInitTimeFloat);
             this.groupBox3.Controls.Add(this.txtUseTime);
             this.groupBox3.Controls.Add(this.txtTimeBar);
             this.groupBox3.Controls.Add(this.txtDistBar);
             this.groupBox3.Controls.Add(this.mtxtRecTime);
-            this.groupBox3.Controls.Add(this.mtxtInitTimeShort);
             this.groupBox3.Controls.Add(matRecDistLabel);
             this.groupBox3.Controls.Add(this.txtRecDist);
             this.groupBox3.Controls.Add(matRecTimeLabel);
@@ -781,21 +781,44 @@
             this.groupBox3.Controls.Add(matInitDistLabel);
             this.groupBox3.Controls.Add(this.txtInitDist);
             this.groupBox3.Controls.Add(this.txtBarsBack);
-            this.groupBox3.Controls.Add(this.mtxtInitTimeLong);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(416, 207);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(526, 224);
+            this.groupBox3.Size = new System.Drawing.Size(537, 224);
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Uso";
+            // 
+            // mtxtInitTimeShort
+            // 
+            this.mtxtInitTimeShort.BeepOnError = true;
+            this.mtxtInitTimeShort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mtxtInitTimeShort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtxtInitTimeShort.Location = new System.Drawing.Point(7, 51);
+            this.mtxtInitTimeShort.Name = "mtxtInitTimeShort";
+            this.mtxtInitTimeShort.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.mtxtInitTimeShort.Size = new System.Drawing.Size(122, 26);
+            this.mtxtInitTimeShort.SkipLiterals = false;
+            this.mtxtInitTimeShort.TabIndex = 9;
+            this.mtxtInitTimeShort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mtxtInitTimeShort.Validating += new System.ComponentModel.CancelEventHandler(this.mtxtInitTime_Validating);
+            // 
+            // mtxtInitTimeFloat
+            // 
+            this.mtxtInitTimeFloat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mtxtInitTimeFloat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.materialsBindingSource, "MatInitTime", true));
+            this.mtxtInitTimeFloat.Location = new System.Drawing.Point(7, 51);
+            this.mtxtInitTimeFloat.Name = "mtxtInitTimeFloat";
+            this.mtxtInitTimeFloat.ReadOnly = true;
+            this.mtxtInitTimeFloat.Size = new System.Drawing.Size(121, 26);
+            this.mtxtInitTimeFloat.TabIndex = 35;
             // 
             // txtUseTime
             // 
             this.txtUseTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUseTime.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.materialsBindingSource, "TotTimeCalc", true));
             this.txtUseTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUseTime.Location = new System.Drawing.Point(182, 55);
+            this.txtUseTime.Location = new System.Drawing.Point(178, 55);
             this.txtUseTime.Name = "txtUseTime";
             this.txtUseTime.ReadOnly = true;
             this.txtUseTime.Size = new System.Drawing.Size(122, 19);
@@ -809,7 +832,7 @@
             this.txtTimeBar.Location = new System.Drawing.Point(7, 87);
             this.txtTimeBar.Name = "txtTimeBar";
             this.txtTimeBar.ReadOnly = true;
-            this.txtTimeBar.Size = new System.Drawing.Size(503, 26);
+            this.txtTimeBar.Size = new System.Drawing.Size(516, 26);
             this.txtTimeBar.TabIndex = 34;
             this.txtTimeBar.TabStop = false;
             // 
@@ -819,7 +842,7 @@
             this.txtDistBar.Location = new System.Drawing.Point(7, 115);
             this.txtDistBar.Name = "txtDistBar";
             this.txtDistBar.ReadOnly = true;
-            this.txtDistBar.Size = new System.Drawing.Size(503, 26);
+            this.txtDistBar.Size = new System.Drawing.Size(516, 26);
             this.txtDistBar.TabIndex = 32;
             this.txtDistBar.TabStop = false;
             // 
@@ -829,34 +852,19 @@
             this.mtxtRecTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mtxtRecTime.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.materialsBindingSource, "MatRecTime", true));
             this.mtxtRecTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtxtRecTime.Location = new System.Drawing.Point(382, 54);
+            this.mtxtRecTime.Location = new System.Drawing.Point(396, 53);
             this.mtxtRecTime.Name = "mtxtRecTime";
             this.mtxtRecTime.Size = new System.Drawing.Size(129, 26);
             this.mtxtRecTime.TabIndex = 10;
             this.mtxtRecTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mtxtRecTime.Validating += new System.ComponentModel.CancelEventHandler(this.mtxtRecTime_Validating);
             // 
-            // mtxtInitTimeShort
-            // 
-            this.mtxtInitTimeShort.BeepOnError = true;
-            this.mtxtInitTimeShort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mtxtInitTimeShort.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.materialsBindingSource, "MatShortInitTime", true));
-            this.mtxtInitTimeShort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtxtInitTimeShort.Location = new System.Drawing.Point(6, 51);
-            this.mtxtInitTimeShort.Name = "mtxtInitTimeShort";
-            this.mtxtInitTimeShort.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mtxtInitTimeShort.Size = new System.Drawing.Size(122, 26);
-            this.mtxtInitTimeShort.SkipLiterals = false;
-            this.mtxtInitTimeShort.TabIndex = 9;
-            this.mtxtInitTimeShort.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.mtxtInitTimeShort.Validating += new System.ComponentModel.CancelEventHandler(this.mtxtInitTime_Validating);
-            // 
             // txtRecDist
             // 
             this.txtRecDist.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRecDist.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.materialsBindingSource, "MatRecDist", true));
             this.txtRecDist.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecDist.Location = new System.Drawing.Point(389, 149);
+            this.txtRecDist.Location = new System.Drawing.Point(403, 150);
             this.txtRecDist.Name = "txtRecDist";
             this.txtRecDist.Size = new System.Drawing.Size(122, 26);
             this.txtRecDist.TabIndex = 12;
@@ -897,24 +905,9 @@
             this.txtBarsBack.Multiline = true;
             this.txtBarsBack.Name = "txtBarsBack";
             this.txtBarsBack.ReadOnly = true;
-            this.txtBarsBack.Size = new System.Drawing.Size(505, 61);
+            this.txtBarsBack.Size = new System.Drawing.Size(519, 61);
             this.txtBarsBack.TabIndex = 33;
             this.txtBarsBack.TabStop = false;
-            // 
-            // mtxtInitTimeLong
-            // 
-            this.mtxtInitTimeLong.BeepOnError = true;
-            this.mtxtInitTimeLong.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.mtxtInitTimeLong.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.materialsBindingSource, "MatInitTime", true));
-            this.mtxtInitTimeLong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtxtInitTimeLong.Location = new System.Drawing.Point(6, 51);
-            this.mtxtInitTimeLong.Name = "mtxtInitTimeLong";
-            this.mtxtInitTimeLong.ReadOnly = true;
-            this.mtxtInitTimeLong.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mtxtInitTimeLong.Size = new System.Drawing.Size(122, 26);
-            this.mtxtInitTimeLong.SkipLiterals = false;
-            this.mtxtInitTimeLong.TabIndex = 35;
-            this.mtxtInitTimeLong.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // openFileDialog1
             // 
@@ -942,7 +935,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 757);
+            this.ClientSize = new System.Drawing.Size(953, 757);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -1033,7 +1026,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MatCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn MatTotTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn MatTotDist;
-        private System.Windows.Forms.MaskedTextBox mtxtInitTimeLong;
+        private System.Windows.Forms.TextBox mtxtInitTimeFloat;
 
     }
 }

@@ -231,6 +231,114 @@ namespace TrainItTests
         }
 
         [TestMethod]
+        public void Time_ConvertStringTimeToDouble()
+        {
+            //Prepare values
+            String strTime = "2:00:00";
+            double expDouble = (double)((2*3600)+(0*60)+0)/3600;
+            double convertedTime = 0;
+            //convert to StringTime
+            convertedTime = Time.ConvertStringTimeToDouble(strTime);            
+            Assert.AreEqual(expDouble, convertedTime, 0.000000001);
+
+            //Prepare values
+            strTime = "2:10:00";
+            expDouble = (double)((2 * 3600) + (10 * 60) + 0) / 3600; 
+            //convert to StringTime
+            convertedTime = Time.ConvertStringTimeToDouble(strTime);
+            Assert.AreEqual(expDouble, convertedTime);
+
+            //Prepare values
+            strTime = "2:01:00";
+            expDouble = (double)((2 * 3600) + (1 * 60) + 0) / 3600; 
+            //convert to StringTime
+            convertedTime = Time.ConvertStringTimeToDouble(strTime);
+            Assert.AreEqual(expDouble, convertedTime);
+
+            //Prepare values
+            strTime = "2:00:10";
+            expDouble = (double)((2 * 3600) + (0 * 60) + 10) / 3600; 
+            //convert to StringTime
+            convertedTime = Time.ConvertStringTimeToDouble(strTime);
+            Assert.AreEqual(expDouble, convertedTime);
+
+            //Prepare values
+            strTime = "2:00:01";
+            expDouble = (double)((2 * 3600) + (0 * 60) + 1) / 3600; 
+            //convert to StringTime
+            convertedTime = Time.ConvertStringTimeToDouble(strTime);
+            Assert.AreEqual(expDouble, convertedTime);
+
+            //Prepare values
+            strTime = "100:59:59";
+            expDouble = (double)((100 * 3600) + (59 * 60) + 59) / 3600; 
+            //convert to StringTime
+            convertedTime = Time.ConvertStringTimeToDouble(strTime);
+            Assert.AreEqual(expDouble, convertedTime);
+
+            //Prepare values
+            strTime = "1000:59:59";
+            expDouble = (double)((1000 * 3600) + (59 * 60) + 59) / 3600;
+            //convert to StringTime
+            convertedTime = Time.ConvertStringTimeToDouble(strTime);
+            Assert.AreEqual(expDouble, convertedTime);
+        }
+
+        [TestMethod]
+        public void Time_ConvertDoubleToStringTime()
+        {
+            //Prepare values
+            string expStrTime = "2:00:00";
+            double aDouble = (double)((2 * 3600) + (0 * 60) + 0) / 3600;
+            string convertedStrTime;
+            //convert to StringTime
+            convertedStrTime = Time.ConvertDoubleToStringTime(aDouble);
+            Assert.AreEqual(expStrTime, convertedStrTime);
+
+            //Prepare values
+            expStrTime = "2:10:00";
+            aDouble = (double)((2 * 3600) + (10 * 60) + 0) / 3600;            
+            //convert to StringTime
+            convertedStrTime = Time.ConvertDoubleToStringTime(aDouble);
+            Assert.AreEqual(expStrTime, convertedStrTime);
+
+            //Prepare values
+            expStrTime = "2:01:00";
+            aDouble = (double)((2 * 3600) + (01 * 60) + 0) / 3600;
+            //convert to StringTime
+            convertedStrTime = Time.ConvertDoubleToStringTime(aDouble);
+            Assert.AreEqual(expStrTime, convertedStrTime);
+
+            //Prepare values
+            expStrTime = "2:00:10";
+            aDouble = (double)((2 * 3600) + (0 * 60) + 10) / 3600;
+            //convert to StringTime
+            convertedStrTime = Time.ConvertDoubleToStringTime(aDouble);
+            Assert.AreEqual(expStrTime, convertedStrTime);
+
+            //Prepare values
+            expStrTime = "2:00:01";
+            aDouble = (double)((2 * 3600) + (0 * 60) + 1) / 3600;
+            //convert to StringTime
+            convertedStrTime = Time.ConvertDoubleToStringTime(aDouble);
+            Assert.AreEqual(expStrTime, convertedStrTime);
+
+            //Prepare values
+            expStrTime = "20:59:59";
+            aDouble = (double)((20 * 3600) + (59 * 60) + 59) / 3600;
+            //convert to StringTime
+            convertedStrTime = Time.ConvertDoubleToStringTime(aDouble);
+            Assert.AreEqual(expStrTime, convertedStrTime);
+
+            //Prepare values
+            expStrTime = "200:59:59";
+            aDouble = (double)((200 * 3600) + (59 * 60) + 59) / 3600;
+            //convert to StringTime
+            convertedStrTime = Time.ConvertDoubleToStringTime(aDouble);
+            Assert.AreEqual(expStrTime, convertedStrTime);
+        }
+
+        [TestMethod]
         public void Time_ConvertToTime()
         {
             //Prepare values
@@ -247,9 +355,9 @@ namespace TrainItTests
 
             //convert to long
             timeExpected = Time.ConvertStringToTime(aTimeString);
-            long value = Time.ConvertTimeToLong(timeExpected);            
+            long value = Time.ConvertTimeToLong(timeExpected);
             Assert.AreEqual(res, value);
-            
+
             //convert to time
             timeNew = Time.ConvertLongToTime(value);
             Assert.AreEqual(timeExpected.hours, timeNew.hours);
@@ -279,6 +387,5 @@ namespace TrainItTests
             Assert.AreEqual(timeExpected.minutes, timeNew.minutes);
             Assert.AreEqual(timeExpected.seconds, timeNew.seconds);
         }
-
     }
 }

@@ -20,7 +20,7 @@ namespace TrainItLibrary
         private static decimal matWeight;
         private static DateTime matBuyDate;
         private static SqlMoney matCost;
-        private static DateTime matInitTime;
+        private static double matInitTime;
         private static decimal matInitDist;
         private static string matRecTime;
         private static decimal matRecDist;
@@ -67,7 +67,7 @@ namespace TrainItLibrary
             get { return matCost; }
             set { matCost = value; }
         }
-        public DateTime MatInitTime
+        public double MatInitTime
         {
             get { return matInitTime; }
             set { matInitTime = value; }
@@ -109,16 +109,16 @@ namespace TrainItLibrary
             matWeight=0.00M;
             matBuyDate=DateTime.Now;
             matCost=(SqlMoney)0;
-            matInitTime=Convert.ToDateTime("01/01/1900 00:00:00.000");
+            matInitTime=0;
             matInitDist=0.000M;
-            matRecTime="";
+            matRecTime="00:00:00";
             matRecDist=0.000M;
             matBuyMemo="";
             userID=-1;
         }
 
         public Material(Int64 MatID, string MatName, string MatModel, string MatBrand, string MatSize, decimal MatWeight, DateTime MatBuyDate,
-                        SqlMoney MatCost, DateTime MatinitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist,  
+                        SqlMoney MatCost, double MatinitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist,  
                         string MatBuyMemo, Int64 UserID)
         {
             matID=MatID;
@@ -138,7 +138,7 @@ namespace TrainItLibrary
         }
 
         public void LoadData(Int64 MatID, string MatName, string MatModel, string MatBrand, string MatSize, decimal MatWeight, DateTime MatBuyDate,
-                        SqlMoney MatCost, DateTime MatInitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist,  
+                        SqlMoney MatCost, double MatInitTime, decimal MatInitDist, string MatRecTime, decimal MatRecDist,  
                         string MatBuyMemo, Int64 UserID)
         {
             matID = MatID;
@@ -224,18 +224,6 @@ namespace TrainItLibrary
             {
                 try
                 {
-                    matInitTime = Convert.ToDateTime(aMatInitTime);
-                }
-                catch (Exception)
-                {
-                    sigue = false;
-                }
-            }
-
-            if (sigue)
-            {
-                try
-                {
                     matRecDist = Convert.ToDecimal(aMatRecDist);
                 }
                 catch (Exception)
@@ -262,6 +250,7 @@ namespace TrainItLibrary
                 matModel = aMatModel;
                 matBrand = aMatBrand;
                 matSize = aMatSize;
+                matInitTime = Time.ConvertStringTimeToLong(aMatInitTime);
                 matRecTime = aMatRecTime;
                 matBuyMemo = aMatBuyMemo;
             }
@@ -281,7 +270,7 @@ namespace TrainItLibrary
             matWeight = 0.00M;
             matBuyDate = DateTime.Now;
             matCost = (SqlMoney)0;
-            matInitTime = Convert.ToDateTime("01/01/1900 00:00:00.000");
+            matInitTime = 0;
             matInitDist = 0.000M;
             matRecTime = "";
             matRecDist = 0.000M;
@@ -310,7 +299,7 @@ namespace TrainItLibrary
                         reader.GetBytes(14, 0, image, 0, (int)len);
                         aMaterial.LoadData(reader.GetInt64(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
                                            reader.GetString(4), reader.GetDecimal(5), Convert.ToDateTime(reader.GetDateTime(6)),
-                                           reader.GetSqlMoney(7), reader.GetDateTime(8), reader.GetDecimal(9), reader.GetString(10),
+                                           reader.GetSqlMoney(7), reader.GetDouble(8), reader.GetDecimal(9), reader.GetString(10),
                                            reader.GetDecimal(11), reader.GetString(12), reader.GetInt64(13));
                     }
                     reader.Close();

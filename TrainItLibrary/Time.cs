@@ -248,6 +248,15 @@ namespace TrainItLibrary
             return res;
         }
 
+        public static Double ConvertTimeToDouble(Time aTime)
+        {
+            long h = Convert.ToInt64(aTime.hours);
+            long m = Convert.ToInt64(aTime.minutes);
+            long s = Convert.ToInt64(aTime.seconds);
+            double res = (double)((h * 3600) + (m * 60) + s)/3600;
+            return res;
+        }
+
         public static Time ConvertLongToTime(long value)
         {
             long h = value / 3600;
@@ -278,6 +287,17 @@ namespace TrainItLibrary
             return result;
         }
 
+        public static double ConvertStringTimeToDouble(string aString)
+        {
+            double result;
+            Time aTime = new Time();
+
+            aTime = ConvertStringToTime(aString);
+            result = ConvertTimeToDouble(aTime);
+
+            return result;
+        }
+
         public static string ConvertLongToStringTime(long aLong)
         {
             string result = "";
@@ -288,5 +308,13 @@ namespace TrainItLibrary
 
             return result;
         }
+
+        public static string ConvertDoubleToStringTime(double aDouble)
+        {            
+            long aLong = (long)Math.Round((aDouble * 3600),2);
+            string res = ConvertLongToStringTime(aLong);
+            return res;
+        }
+
     }
 }

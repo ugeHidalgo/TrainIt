@@ -15,8 +15,8 @@ namespace TrainIt
     public partial class FMaterial : Form
     {
         private static bool onSearchMode;
-        string connString = TrainItLibrary.Utilities.GetConnString();
-        Int64 userIDWorking = TrainItLibrary.Global.userIDWorking;
+        string connString = Utilities.GetConnString();
+        Int64 userIDWorking = Global.userIDWorking;
         bool onEdition = false;
         bool returnValue = false;
 
@@ -30,7 +30,7 @@ namespace TrainIt
         {
             InitializeComponent();
             tslConnString.Text = connString;
-            tslUser.Text = "Usuario=(" + TrainItLibrary.Global.userIDWorking+")"+TrainItLibrary.Global.userNameWorking;
+            tslUser.Text = "Usuario=(" + Global.userIDWorking+")"+Global.userNameWorking;
 
             setNormalMode();
         }
@@ -151,21 +151,49 @@ namespace TrainIt
             btnChoose.Visible = OnSearchMode;
             btnCancel.Visible = OnSearchMode;
 
+            fillDataForMaterial();
+
             //Set the masks for text box
             mtxtWeight.ValidatingType = typeof(float);           
         }
 
         private void fillDataForMaterial()
         {           
+            //load Data into Model
+            TrainItLibrary.Global.materialUsed = LoadObject();
+
+            //Set Value for init time box
+            try
+            {
+                double dTime = Convert.ToDouble(mtxtInitTimeFloat.Text);
+                mtxtInitTimeShort.Text = Time.ConvertDoubleToStringTime(dTime);
+            }
+            catch
+            {
+                mtxtInitTimeShort.Text = Time.ConvertDoubleToStringTime(0);
+            }
+
             //Set the values for the progress bars
+            if (txtUseDist.Text == "")
+                txtUseDist.Text = "0";
+            if (txtUseTime.Text == "")
+                txtUseTime.Text = "0:00:00";
             calculateDistBar(txtDistBar, txtBarsBack);
-            calculateTimeBar(txtTimeBar, txtBarsBack);            
+            calculateTimeBar(txtTimeBar, txtBarsBack);         
         }
 
         private Material LoadObject()
         {//Loads the object in the screen into the model.
             Material aMat = new Material();
-            aMat.MatID = Convert.ToInt64(txtID.Text);
+            try
+            {
+                aMat.MatID = Convert.ToInt64(txtID.Text);
+            }
+            catch
+            {
+                aMat.MatID = -1;
+            }
+            
             aMat.MatName = txtName.Text;
             aMat.MatModel = txtModel.Text;
             aMat.MatBrand = txtBrand.Text;
@@ -201,21 +229,15 @@ namespace TrainIt
                 }
             }
 
-            if (mtxtInitTimeShort.Text == "")
-                aMat.MatInitTime = Convert.ToDateTime("01/01/1900 00:00:00.000");
-            else
+            try
             {
-                try
-                {
-                    aMat.MatInitTime = Convert.ToDateTime(mtxtInitTimeShort.Text);
-                }
-                catch (Exception)
-                {
-                    aMat.MatInitTime = Convert.ToDateTime("01/01/1900 00:00:00.000");
-                }
+                aMat.MatInitTime = Time.ConvertStringTimeToDouble(mtxtInitTimeShort.Text);
             }
+            catch (Exception)
+            {
+                aMat.MatInitTime = 0;
+            }        
            
-
             if (txtInitDist.Text == "")
                 aMat.MatInitDist = 0.000M;
             else
@@ -266,6 +288,7 @@ namespace TrainIt
 
             try
             {
+                if (txtUseDist.Text == "0") txtUseDist.Text = txtInitDist.Text;
                 actualValue = Convert.ToDouble(txtUseDist.Text);
                 applyValues = true;
             }
@@ -324,6 +347,7 @@ namespace TrainIt
 
             try
             {
+                if (txtUseTime.Text=="0:00:00") txtUseTime.Text=mtxtInitTimeShort.Text;
                 actualValue = Time.ConvertStringTimeToLong(txtUseTime.Text);
                 applyValues = true;
             }
@@ -388,6 +412,7 @@ namespace TrainIt
             {
                 this.materialsBindingSource.CancelEdit();
                 setNormalMode();
+                fillDataForMaterial();
             }
         }
 
@@ -405,12 +430,10 @@ namespace TrainIt
                 this.materialsBindingSource.EndEdit();
                 this.tableAdapterManager.UpdateAll(this.trainITDataSet);
 
-                MessageBox.Show("Ficha guardada corectamente");
-
                 setNormalMode();
+                fillDataForMaterial();
 
-                calculateDistBar(txtDistBar, txtBarsBack);
-                calculateTimeBar(txtTimeBar, txtBarsBack);
+                MessageBox.Show("Ficha guardada corectamente");
             }
 
         }
@@ -578,7 +601,7 @@ namespace TrainIt
                 else
                 {//Format correct
                     mtxtInitTimeShort.BackColor = SystemColors.Window;
-                    mtxtInitTimeLong.Text = "01/01/1900 " + mtxtInitTimeShort.Text;
+                    mtxtInitTimeFloat.Text = Time.ConvertStringTimeToDouble(mtxtInitTimeShort.Text).ToString();
                 }
             }
         }
@@ -608,8 +631,7 @@ namespace TrainIt
 
         private void materialsBindingSource_PositionChanged(object sender, EventArgs e)
         {
-            calculateDistBar(txtDistBar,txtBarsBack);
-            calculateTimeBar(txtTimeBar, txtBarsBack);
+            fillDataForMaterial();
         }
 
         private void btnCancelImage_Click(object sender, EventArgs e)
@@ -638,6 +660,7 @@ namespace TrainIt
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+
             this.Close();
         }
 
@@ -649,10 +672,5 @@ namespace TrainIt
             }
         }
 
-        private void dgvMat_SelectionChanged(object sender, EventArgs e)
-        {
-            //Loads data into object
-            TrainItLibrary.Global.materialUsed = LoadObject();
-        }
     }
 }

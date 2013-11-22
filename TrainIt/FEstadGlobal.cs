@@ -112,7 +112,7 @@ namespace TrainIt
                     cmd.Parameters["@minDate"].Value = dtpIni.Value;
 
                     cmd.Parameters.Add(new SqlParameter("@maxDate", SqlDbType.DateTime));
-                    cmd.Parameters["@maxDate"].Value = dtpFin.Value;
+                    cmd.Parameters["@maxDate"].Value = dtpFin.Value.AddDays(-1);
 
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -223,7 +223,7 @@ namespace TrainIt
                     cmd.Parameters["@userID"].Value = userIDWorking;
 
                     cmd.Parameters.Add(new SqlParameter("@minDate", SqlDbType.DateTime));
-                    cmd.Parameters["@minDate"].Value = dtpIni.Value;
+                    cmd.Parameters["@minDate"].Value = dtpIni.Value.AddDays(-1);
 
                     cmd.Parameters.Add(new SqlParameter("@maxDate", SqlDbType.DateTime));
                     cmd.Parameters["@maxDate"].Value = dtpFin.Value;
@@ -292,7 +292,7 @@ namespace TrainIt
                     cmd.Parameters["@userID"].Value = userIDWorking;
 
                     cmd.Parameters.Add(new SqlParameter("@minDate", SqlDbType.DateTime));
-                    cmd.Parameters["@minDate"].Value = dtpIni.Value;
+                    cmd.Parameters["@minDate"].Value = dtpIni.Value.AddDays(-1);
 
                     cmd.Parameters.Add(new SqlParameter("@maxDate", SqlDbType.DateTime));
                     cmd.Parameters["@maxDate"].Value = dtpFin.Value;

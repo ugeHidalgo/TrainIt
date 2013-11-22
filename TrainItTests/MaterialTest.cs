@@ -26,7 +26,7 @@ namespace TrainItTests
         public decimal aMatWeight=10.90M;
         public DateTime aMatBuyDate=DateTime.Now;
         public SqlMoney aMatCost=(SqlMoney)600.10F;
-        public DateTime aMatInitTime=Convert.ToDateTime("01/01/1900 00:00:00.000");
+        public double aMatInitTime=0;
         public decimal aMatInitDist=100.340M;
         public string aMatRecTime="1000:00:00";
         public decimal aMatRecDist=3450.340M;
@@ -81,7 +81,7 @@ namespace TrainItTests
             aMatWeight = 12.5M;
             aMatBuyDate = Convert.ToDateTime("01/04/2011");
             aMatCost =  (SqlMoney)600.00F;
-            aMatInitTime = Convert.ToDateTime("01/01/1900 650:30:20.000");
+            aMatInitTime = 0;
             aMatInitDist = 2500.000M;
             aMatRecTime = "1000:00:00";
             aMatRecDist = 10000.000M;

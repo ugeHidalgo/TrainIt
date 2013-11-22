@@ -463,10 +463,17 @@ namespace TrainIt
             {
                 this.sessionsBindingSource.CancelEdit();
                 setNormalMode();
-                LoadDataForSessionMaterial(Convert.ToInt64(txtSessionID.Text));
-                //calculate Speed
-                if ((txtDist.Text != "") && (txtTime.Text != ""))
-                    txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);                
+                try
+                {
+                    LoadDataForSessionMaterial(Convert.ToInt64(txtSessionID.Text));
+                    //calculate Speed
+                    if ((txtDist.Text != "") && (txtTime.Text != ""))
+                        txtSpeed.Text = Utilities.calculateSpeed(txtDist.Text, txtTime.Text);
+                }
+                catch
+                {
+                }
+
             }
         }
 
@@ -935,6 +942,12 @@ namespace TrainIt
                 this.sessionsBindingSource.RemoveCurrent();
                 this.tableAdapterManager.UpdateAll(this.trainITDataSet);                
                 LoadData();
+
+                //Delete all materials in temp table
+                Global.materialUsed.delTempMaterial(connString);
+                // Loads data into the 'trainITDataSet.TempMaterial' table. 
+                this.tempMaterialTableAdapter.Fill(this.trainITDataSet.TempMaterial);
+
                 MessageBox.Show("Sesión borrada corectamente");
 
                 //If Training of Session does not have more sessions then delete it.

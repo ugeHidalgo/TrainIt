@@ -37,9 +37,7 @@
             System.Windows.Forms.Label userBDateLabel;
             System.Windows.Forms.Label userMailLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FUserProfile));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bTShowPass = new System.Windows.Forms.Button();
@@ -350,17 +348,9 @@
             this.dgvUserSports.AllowUserToAddRows = false;
             this.dgvUserSports.AllowUserToDeleteRows = false;
             this.dgvUserSports.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Aqua;
-            this.dgvUserSports.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Aqua;
+            this.dgvUserSports.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUserSports.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUserSports.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUserSports.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUserSports.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
@@ -372,14 +362,6 @@
             this.dgvUserSports.Location = new System.Drawing.Point(3, 68);
             this.dgvUserSports.Name = "dgvUserSports";
             this.dgvUserSports.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUserSports.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvUserSports.RowHeadersVisible = false;
             this.dgvUserSports.Size = new System.Drawing.Size(475, 347);
             this.dgvUserSports.TabIndex = 49;
@@ -546,10 +528,9 @@
             this.Controls.Add(userBDateLabel);
             this.Controls.Add(this.dtpBDate);
             this.Controls.Add(userMailLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(963, 496);
-            this.MinimumSize = new System.Drawing.Size(963, 496);
             this.Name = "FUserProfile";
             this.Text = "Perfil de Usuario";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FUserProfile_FormClosing);
