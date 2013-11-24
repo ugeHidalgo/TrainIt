@@ -46,7 +46,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbtGenerales = new System.Windows.Forms.ToolStripButton();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.manual = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -57,11 +56,16 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtPrint = new System.Windows.Forms.ToolStripButton();
             this.laName = new System.Windows.Forms.Label();
+            this.dgv = new System.Windows.Forms.DataGridView();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.global = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnReCalc = new System.Windows.Forms.Button();
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.dtpIni = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.dgv = new System.Windows.Forms.DataGridView();
+            this.SportTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SportName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.days = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sesionscant = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,35 +83,28 @@
             this.MaxValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtGenerales,
             this.toolStripDropDownButton1,
             this.toolStripSeparator1,
             this.tsbtPrint});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1020, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(931, 25);
             this.toolStrip1.TabIndex = 40;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // tsbtGenerales
-            // 
-            this.tsbtGenerales.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtGenerales.Image = ((System.Drawing.Image)(resources.GetObject("tsbtGenerales.Image")));
-            this.tsbtGenerales.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtGenerales.Name = "tsbtGenerales";
-            this.tsbtGenerales.Size = new System.Drawing.Size(23, 22);
-            this.tsbtGenerales.Text = "Estadísticas generales ";
             // 
             // toolStripDropDownButton1
             // 
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.manual,
+            this.toolStripSeparator3,
+            this.global,
             this.toolStripSeparator2,
             this.anual,
             this.mensual,
@@ -124,6 +121,7 @@
             this.manual.Name = "manual";
             this.manual.Size = new System.Drawing.Size(158, 22);
             this.manual.Text = "Periodo manual";
+            this.manual.Click += new System.EventHandler(this.manual_Click);
             // 
             // toolStripSeparator2
             // 
@@ -135,24 +133,28 @@
             this.anual.Name = "anual";
             this.anual.Size = new System.Drawing.Size(158, 22);
             this.anual.Text = "Año";
+            this.anual.Click += new System.EventHandler(this.anual_Click);
             // 
             // mensual
             // 
             this.mensual.Name = "mensual";
             this.mensual.Size = new System.Drawing.Size(158, 22);
             this.mensual.Text = "Mes";
+            this.mensual.Click += new System.EventHandler(this.mensual_Click);
             // 
             // semanal
             // 
             this.semanal.Name = "semanal";
             this.semanal.Size = new System.Drawing.Size(158, 22);
             this.semanal.Text = "Semana";
+            this.semanal.Click += new System.EventHandler(this.semanal_Click);
             // 
             // diario
             // 
             this.diario.Name = "diario";
             this.diario.Size = new System.Drawing.Size(158, 22);
             this.diario.Text = "Dia";
+            this.diario.Click += new System.EventHandler(this.diario_Click);
             // 
             // toolStripSeparator1
             // 
@@ -175,48 +177,10 @@
             this.laName.ForeColor = System.Drawing.Color.Red;
             this.laName.Location = new System.Drawing.Point(0, 25);
             this.laName.Name = "laName";
-            this.laName.Size = new System.Drawing.Size(1020, 25);
+            this.laName.Size = new System.Drawing.Size(931, 25);
             this.laName.TabIndex = 41;
             this.laName.Text = "Datos Globales Almacenados";
             this.laName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dtpFin
-            // 
-            this.dtpFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFin.Location = new System.Drawing.Point(138, 90);
-            this.dtpFin.Name = "dtpFin";
-            this.dtpFin.Size = new System.Drawing.Size(124, 26);
-            this.dtpFin.TabIndex = 45;
-            // 
-            // dtpIni
-            // 
-            this.dtpIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpIni.Location = new System.Drawing.Point(138, 63);
-            this.dtpIni.Name = "dtpIni";
-            this.dtpIni.Size = new System.Drawing.Size(124, 26);
-            this.dtpIni.TabIndex = 44;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(30, 96);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(99, 20);
-            this.label16.TabIndex = 43;
-            this.label16.Text = "Fecha Fin :";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(12, 68);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(117, 20);
-            this.label14.TabIndex = 42;
-            this.label14.Text = "Fecha Inicio :";
             // 
             // dgv
             // 
@@ -236,6 +200,7 @@
             this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SportTypeID,
             this.SportName,
             this.days,
             this.Sesionscant,
@@ -252,12 +217,95 @@
             this.AvgValue,
             this.MaxValue});
             this.dgv.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgv.Location = new System.Drawing.Point(0, 311);
+            this.dgv.Location = new System.Drawing.Point(0, 136);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowHeadersVisible = false;
-            this.dgv.Size = new System.Drawing.Size(1020, 346);
+            this.dgv.Size = new System.Drawing.Size(931, 442);
             this.dgv.TabIndex = 46;
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(155, 6);
+            // 
+            // global
+            // 
+            this.global.Name = "global";
+            this.global.Size = new System.Drawing.Size(158, 22);
+            this.global.Text = "Globales";
+            this.global.Click += new System.EventHandler(this.global_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dtpFin);
+            this.groupBox1.Controls.Add(this.dtpIni);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.btnReCalc);
+            this.groupBox1.Location = new System.Drawing.Point(5, 64);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(920, 63);
+            this.groupBox1.TabIndex = 47;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Periodo";
+            // 
+            // btnReCalc
+            // 
+            this.btnReCalc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReCalc.Image = ((System.Drawing.Image)(resources.GetObject("btnReCalc.Image")));
+            this.btnReCalc.Location = new System.Drawing.Point(451, 19);
+            this.btnReCalc.Name = "btnReCalc";
+            this.btnReCalc.Size = new System.Drawing.Size(45, 26);
+            this.btnReCalc.TabIndex = 36;
+            this.btnReCalc.UseVisualStyleBackColor = true;
+            this.btnReCalc.Click += new System.EventHandler(this.btnReCalc_Click);
+            // 
+            // dtpFin
+            // 
+            this.dtpFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFin.Location = new System.Drawing.Point(624, 19);
+            this.dtpFin.Name = "dtpFin";
+            this.dtpFin.Size = new System.Drawing.Size(124, 26);
+            this.dtpFin.TabIndex = 49;
+            // 
+            // dtpIni
+            // 
+            this.dtpIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpIni.Location = new System.Drawing.Point(295, 19);
+            this.dtpIni.Name = "dtpIni";
+            this.dtpIni.Size = new System.Drawing.Size(124, 26);
+            this.dtpIni.TabIndex = 48;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(519, 24);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(99, 20);
+            this.label16.TabIndex = 47;
+            this.label16.Text = "Fecha Fin :";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(169, 24);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(117, 20);
+            this.label14.TabIndex = 46;
+            this.label14.Text = "Fecha Inicio :";
+            // 
+            // SportTypeID
+            // 
+            this.SportTypeID.DataPropertyName = "SportTypeID";
+            this.SportTypeID.HeaderText = "";
+            this.SportTypeID.Name = "SportTypeID";
+            this.SportTypeID.ReadOnly = true;
+            this.SportTypeID.Width = 40;
             // 
             // SportName
             // 
@@ -411,12 +459,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 657);
+            this.ClientSize = new System.Drawing.Size(931, 578);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgv);
-            this.Controls.Add(this.dtpFin);
-            this.Controls.Add(this.dtpIni);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.label14);
             this.Controls.Add(this.laName);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FEstadSport";
@@ -425,6 +470,8 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -433,7 +480,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton tsbtGenerales;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem manual;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
@@ -444,11 +490,16 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbtPrint;
         private System.Windows.Forms.Label laName;
+        private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem global;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DateTimePicker dtpFin;
         private System.Windows.Forms.DateTimePicker dtpIni;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.Button btnReCalc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SportTypeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn SportName;
         private System.Windows.Forms.DataGridViewTextBoxColumn days;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sesionscant;

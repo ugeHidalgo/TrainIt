@@ -1780,7 +1780,7 @@ namespace TrainIt {
                 this.columnTrainID.AllowDBNull = false;
                 this.columnUserID.AllowDBNull = false;
                 this.columnSportTypeID.AllowDBNull = false;
-                this.columnMemo.MaxLength = 50;
+                this.columnMemo.MaxLength = 2147483647;
                 this.columnDate.AllowDBNull = false;
                 this.columnCompetition1.Caption = "Competition";
                 this.columnTransition1.Caption = "Transition";

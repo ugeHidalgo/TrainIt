@@ -30,7 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FEstadGlobal));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -47,7 +46,25 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FEstadGlobal));
             this.dgv = new System.Windows.Forms.DataGridView();
+            this.SportName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.days = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sesionscant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvgDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotTimeCalc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvgTimeCalc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxTimeCalc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvgMedHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxMedHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvgMaxHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxMaxHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvgValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txbxSesiones = new System.Windows.Forms.TextBox();
             this.txbxDist = new System.Windows.Forms.TextBox();
@@ -89,7 +106,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbtGenerales = new System.Windows.Forms.ToolStripButton();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.manual = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -100,23 +116,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbtPrint = new System.Windows.Forms.ToolStripButton();
             this.laName = new System.Windows.Forms.Label();
-            this.SportName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.days = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sesionscant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AvgDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxDist = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotTimeCalc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AvgTimeCalc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxTimeCalc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AvgMedHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxMedHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AvgMaxHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxMaxHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AvgValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReCalc = new System.Windows.Forms.Button();
+            this.global = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -168,6 +170,174 @@
             this.dgv.RowHeadersVisible = false;
             this.dgv.Size = new System.Drawing.Size(1050, 264);
             this.dgv.TabIndex = 0;
+            // 
+            // SportName
+            // 
+            this.SportName.DataPropertyName = "SportName";
+            this.SportName.HeaderText = "Deporte";
+            this.SportName.Name = "SportName";
+            this.SportName.ReadOnly = true;
+            this.SportName.Width = 150;
+            // 
+            // firstDate
+            // 
+            this.firstDate.DataPropertyName = "firstDate";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.firstDate.DefaultCellStyle = dataGridViewCellStyle3;
+            this.firstDate.HeaderText = "Inicio";
+            this.firstDate.Name = "firstDate";
+            this.firstDate.ReadOnly = true;
+            this.firstDate.Width = 80;
+            // 
+            // lastDate
+            // 
+            this.lastDate.DataPropertyName = "lastDate";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.lastDate.DefaultCellStyle = dataGridViewCellStyle4;
+            this.lastDate.HeaderText = "Final";
+            this.lastDate.Name = "lastDate";
+            this.lastDate.ReadOnly = true;
+            this.lastDate.Width = 80;
+            // 
+            // days
+            // 
+            this.days.DataPropertyName = "days";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.days.DefaultCellStyle = dataGridViewCellStyle5;
+            this.days.HeaderText = "Días";
+            this.days.Name = "days";
+            this.days.ReadOnly = true;
+            this.days.Width = 35;
+            // 
+            // Sesionscant
+            // 
+            this.Sesionscant.DataPropertyName = "SesionsCant";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Sesionscant.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Sesionscant.HeaderText = "Uds.";
+            this.Sesionscant.Name = "Sesionscant";
+            this.Sesionscant.ReadOnly = true;
+            this.Sesionscant.Width = 35;
+            // 
+            // TotDist
+            // 
+            this.TotDist.DataPropertyName = "TotDist";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.TotDist.DefaultCellStyle = dataGridViewCellStyle7;
+            this.TotDist.HeaderText = "Dist. Total";
+            this.TotDist.Name = "TotDist";
+            this.TotDist.ReadOnly = true;
+            this.TotDist.Width = 70;
+            // 
+            // AvgDist
+            // 
+            this.AvgDist.DataPropertyName = "AvgDist";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AvgDist.DefaultCellStyle = dataGridViewCellStyle8;
+            this.AvgDist.HeaderText = "Dist. Media";
+            this.AvgDist.Name = "AvgDist";
+            this.AvgDist.ReadOnly = true;
+            this.AvgDist.Width = 60;
+            // 
+            // MaxDist
+            // 
+            this.MaxDist.DataPropertyName = "MaxDist";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxDist.DefaultCellStyle = dataGridViewCellStyle9;
+            this.MaxDist.HeaderText = "Sesión mas Dist.";
+            this.MaxDist.Name = "MaxDist";
+            this.MaxDist.ReadOnly = true;
+            this.MaxDist.Width = 50;
+            // 
+            // TotTimeCalc
+            // 
+            this.TotTimeCalc.DataPropertyName = "TotTimeCalc";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.TotTimeCalc.DefaultCellStyle = dataGridViewCellStyle10;
+            this.TotTimeCalc.HeaderText = "Tiempo Total";
+            this.TotTimeCalc.Name = "TotTimeCalc";
+            this.TotTimeCalc.ReadOnly = true;
+            this.TotTimeCalc.Width = 60;
+            // 
+            // AvgTimeCalc
+            // 
+            this.AvgTimeCalc.DataPropertyName = "AvgTimeCalc";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.AvgTimeCalc.DefaultCellStyle = dataGridViewCellStyle11;
+            this.AvgTimeCalc.HeaderText = "Tiempo Medio";
+            this.AvgTimeCalc.Name = "AvgTimeCalc";
+            this.AvgTimeCalc.ReadOnly = true;
+            this.AvgTimeCalc.Width = 60;
+            // 
+            // MaxTimeCalc
+            // 
+            this.MaxTimeCalc.DataPropertyName = "MaxTimeCalc";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.MaxTimeCalc.DefaultCellStyle = dataGridViewCellStyle12;
+            this.MaxTimeCalc.HeaderText = "Sesión mas Tiempo";
+            this.MaxTimeCalc.Name = "MaxTimeCalc";
+            this.MaxTimeCalc.ReadOnly = true;
+            this.MaxTimeCalc.Width = 60;
+            // 
+            // AvgMedHR
+            // 
+            this.AvgMedHR.DataPropertyName = "AvgMedHR";
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AvgMedHR.DefaultCellStyle = dataGridViewCellStyle13;
+            this.AvgMedHR.HeaderText = "Media Pulso";
+            this.AvgMedHR.Name = "AvgMedHR";
+            this.AvgMedHR.ReadOnly = true;
+            this.AvgMedHR.Width = 50;
+            // 
+            // MaxMedHR
+            // 
+            this.MaxMedHR.DataPropertyName = "MaxMedHR";
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxMedHR.DefaultCellStyle = dataGridViewCellStyle14;
+            this.MaxMedHR.HeaderText = "Mayor Media Pulso";
+            this.MaxMedHR.Name = "MaxMedHR";
+            this.MaxMedHR.ReadOnly = true;
+            this.MaxMedHR.Width = 50;
+            // 
+            // AvgMaxHR
+            // 
+            this.AvgMaxHR.DataPropertyName = "AvgMaxHR";
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AvgMaxHR.DefaultCellStyle = dataGridViewCellStyle15;
+            this.AvgMaxHR.HeaderText = "Media Pulso Máximo";
+            this.AvgMaxHR.Name = "AvgMaxHR";
+            this.AvgMaxHR.ReadOnly = true;
+            this.AvgMaxHR.Width = 50;
+            // 
+            // MaxMaxHR
+            // 
+            this.MaxMaxHR.DataPropertyName = "MaxMaxHR";
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxMaxHR.DefaultCellStyle = dataGridViewCellStyle16;
+            this.MaxMaxHR.HeaderText = "Mayor Pulso Máximo";
+            this.MaxMaxHR.Name = "MaxMaxHR";
+            this.MaxMaxHR.ReadOnly = true;
+            this.MaxMaxHR.Width = 50;
+            // 
+            // AvgValue
+            // 
+            this.AvgValue.DataPropertyName = "AvgValue";
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.AvgValue.DefaultCellStyle = dataGridViewCellStyle17;
+            this.AvgValue.HeaderText = "Valor Medio";
+            this.AvgValue.Name = "AvgValue";
+            this.AvgValue.ReadOnly = true;
+            this.AvgValue.Width = 40;
+            // 
+            // MaxValue
+            // 
+            this.MaxValue.DataPropertyName = "MaxValue";
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.MaxValue.DefaultCellStyle = dataGridViewCellStyle18;
+            this.MaxValue.HeaderText = "Mayor Valor";
+            this.MaxValue.Name = "MaxValue";
+            this.MaxValue.ReadOnly = true;
+            this.MaxValue.Width = 40;
             // 
             // label1
             // 
@@ -501,6 +671,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnReCalc);
             this.groupBox1.Controls.Add(this.dtpFin);
             this.groupBox1.Controls.Add(this.dtpIni);
             this.groupBox1.Controls.Add(this.label16);
@@ -602,7 +773,6 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtGenerales,
             this.toolStripDropDownButton1,
             this.toolStripSeparator1,
             this.tsbtPrint});
@@ -612,21 +782,13 @@
             this.toolStrip1.TabIndex = 39;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // tsbtGenerales
-            // 
-            this.tsbtGenerales.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbtGenerales.Image = ((System.Drawing.Image)(resources.GetObject("tsbtGenerales.Image")));
-            this.tsbtGenerales.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtGenerales.Name = "tsbtGenerales";
-            this.tsbtGenerales.Size = new System.Drawing.Size(23, 22);
-            this.tsbtGenerales.Text = "Estadísticas generales ";
-            this.tsbtGenerales.Click += new System.EventHandler(this.tsbtGenerales_Click);
-            // 
             // toolStripDropDownButton1
             // 
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.manual,
+            this.toolStripSeparator3,
+            this.global,
             this.toolStripSeparator2,
             this.anual,
             this.mensual,
@@ -705,173 +867,28 @@
             this.laName.Text = "us";
             this.laName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // SportName
+            // btnReCalc
             // 
-            this.SportName.DataPropertyName = "SportName";
-            this.SportName.HeaderText = "Deporte";
-            this.SportName.Name = "SportName";
-            this.SportName.ReadOnly = true;
-            this.SportName.Width = 150;
+            this.btnReCalc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReCalc.Image = ((System.Drawing.Image)(resources.GetObject("btnReCalc.Image")));
+            this.btnReCalc.Location = new System.Drawing.Point(233, 37);
+            this.btnReCalc.Name = "btnReCalc";
+            this.btnReCalc.Size = new System.Drawing.Size(45, 26);
+            this.btnReCalc.TabIndex = 36;
+            this.btnReCalc.UseVisualStyleBackColor = true;
+            this.btnReCalc.Click += new System.EventHandler(this.btnReCalc_Click);
             // 
-            // firstDate
+            // global
             // 
-            this.firstDate.DataPropertyName = "firstDate";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.firstDate.DefaultCellStyle = dataGridViewCellStyle3;
-            this.firstDate.HeaderText = "Inicio";
-            this.firstDate.Name = "firstDate";
-            this.firstDate.ReadOnly = true;
-            this.firstDate.Width = 80;
+            this.global.Name = "global";
+            this.global.Size = new System.Drawing.Size(158, 22);
+            this.global.Text = "Globales";
+            this.global.Click += new System.EventHandler(this.global_Click);
             // 
-            // lastDate
+            // toolStripSeparator3
             // 
-            this.lastDate.DataPropertyName = "lastDate";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.lastDate.DefaultCellStyle = dataGridViewCellStyle4;
-            this.lastDate.HeaderText = "Final";
-            this.lastDate.Name = "lastDate";
-            this.lastDate.ReadOnly = true;
-            this.lastDate.Width = 80;
-            // 
-            // days
-            // 
-            this.days.DataPropertyName = "days";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.days.DefaultCellStyle = dataGridViewCellStyle5;
-            this.days.HeaderText = "Días";
-            this.days.Name = "days";
-            this.days.ReadOnly = true;
-            this.days.Width = 35;
-            // 
-            // Sesionscant
-            // 
-            this.Sesionscant.DataPropertyName = "SesionsCant";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Sesionscant.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Sesionscant.HeaderText = "Uds.";
-            this.Sesionscant.Name = "Sesionscant";
-            this.Sesionscant.ReadOnly = true;
-            this.Sesionscant.Width = 35;
-            // 
-            // TotDist
-            // 
-            this.TotDist.DataPropertyName = "TotDist";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.TotDist.DefaultCellStyle = dataGridViewCellStyle7;
-            this.TotDist.HeaderText = "Dist. Total";
-            this.TotDist.Name = "TotDist";
-            this.TotDist.ReadOnly = true;
-            this.TotDist.Width = 70;
-            // 
-            // AvgDist
-            // 
-            this.AvgDist.DataPropertyName = "AvgDist";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.AvgDist.DefaultCellStyle = dataGridViewCellStyle8;
-            this.AvgDist.HeaderText = "Dist. Media";
-            this.AvgDist.Name = "AvgDist";
-            this.AvgDist.ReadOnly = true;
-            this.AvgDist.Width = 60;
-            // 
-            // MaxDist
-            // 
-            this.MaxDist.DataPropertyName = "MaxDist";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxDist.DefaultCellStyle = dataGridViewCellStyle9;
-            this.MaxDist.HeaderText = "Sesión mas Dist.";
-            this.MaxDist.Name = "MaxDist";
-            this.MaxDist.ReadOnly = true;
-            this.MaxDist.Width = 50;
-            // 
-            // TotTimeCalc
-            // 
-            this.TotTimeCalc.DataPropertyName = "TotTimeCalc";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.TotTimeCalc.DefaultCellStyle = dataGridViewCellStyle10;
-            this.TotTimeCalc.HeaderText = "Tiempo Total";
-            this.TotTimeCalc.Name = "TotTimeCalc";
-            this.TotTimeCalc.ReadOnly = true;
-            this.TotTimeCalc.Width = 60;
-            // 
-            // AvgTimeCalc
-            // 
-            this.AvgTimeCalc.DataPropertyName = "AvgTimeCalc";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.AvgTimeCalc.DefaultCellStyle = dataGridViewCellStyle11;
-            this.AvgTimeCalc.HeaderText = "Tiempo Medio";
-            this.AvgTimeCalc.Name = "AvgTimeCalc";
-            this.AvgTimeCalc.ReadOnly = true;
-            this.AvgTimeCalc.Width = 60;
-            // 
-            // MaxTimeCalc
-            // 
-            this.MaxTimeCalc.DataPropertyName = "MaxTimeCalc";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.MaxTimeCalc.DefaultCellStyle = dataGridViewCellStyle12;
-            this.MaxTimeCalc.HeaderText = "Sesión mas Tiempo";
-            this.MaxTimeCalc.Name = "MaxTimeCalc";
-            this.MaxTimeCalc.ReadOnly = true;
-            this.MaxTimeCalc.Width = 60;
-            // 
-            // AvgMedHR
-            // 
-            this.AvgMedHR.DataPropertyName = "AvgMedHR";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.AvgMedHR.DefaultCellStyle = dataGridViewCellStyle13;
-            this.AvgMedHR.HeaderText = "Media Pulso";
-            this.AvgMedHR.Name = "AvgMedHR";
-            this.AvgMedHR.ReadOnly = true;
-            this.AvgMedHR.Width = 50;
-            // 
-            // MaxMedHR
-            // 
-            this.MaxMedHR.DataPropertyName = "MaxMedHR";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxMedHR.DefaultCellStyle = dataGridViewCellStyle14;
-            this.MaxMedHR.HeaderText = "Mayor Media Pulso";
-            this.MaxMedHR.Name = "MaxMedHR";
-            this.MaxMedHR.ReadOnly = true;
-            this.MaxMedHR.Width = 50;
-            // 
-            // AvgMaxHR
-            // 
-            this.AvgMaxHR.DataPropertyName = "AvgMaxHR";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.AvgMaxHR.DefaultCellStyle = dataGridViewCellStyle15;
-            this.AvgMaxHR.HeaderText = "Media Pulso Máximo";
-            this.AvgMaxHR.Name = "AvgMaxHR";
-            this.AvgMaxHR.ReadOnly = true;
-            this.AvgMaxHR.Width = 50;
-            // 
-            // MaxMaxHR
-            // 
-            this.MaxMaxHR.DataPropertyName = "MaxMaxHR";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxMaxHR.DefaultCellStyle = dataGridViewCellStyle16;
-            this.MaxMaxHR.HeaderText = "Mayor Pulso Máximo";
-            this.MaxMaxHR.Name = "MaxMaxHR";
-            this.MaxMaxHR.ReadOnly = true;
-            this.MaxMaxHR.Width = 50;
-            // 
-            // AvgValue
-            // 
-            this.AvgValue.DataPropertyName = "AvgValue";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.AvgValue.DefaultCellStyle = dataGridViewCellStyle17;
-            this.AvgValue.HeaderText = "Valor Medio";
-            this.AvgValue.Name = "AvgValue";
-            this.AvgValue.ReadOnly = true;
-            this.AvgValue.Width = 40;
-            // 
-            // MaxValue
-            // 
-            this.MaxValue.DataPropertyName = "MaxValue";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.MaxValue.DefaultCellStyle = dataGridViewCellStyle18;
-            this.MaxValue.HeaderText = "Mayor Valor";
-            this.MaxValue.Name = "MaxValue";
-            this.MaxValue.ReadOnly = true;
-            this.MaxValue.Width = 40;
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(155, 6);
             // 
             // FEstadGlobal
             // 
@@ -949,7 +966,6 @@
         private System.Windows.Forms.DateTimePicker dtpFin;
         private System.Windows.Forms.DateTimePicker dtpIni;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton tsbtGenerales;
         private System.Windows.Forms.Label laName;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbtPrint;
@@ -977,5 +993,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MaxMaxHR;
         private System.Windows.Forms.DataGridViewTextBoxColumn AvgValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaxValue;
+        private System.Windows.Forms.Button btnReCalc;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem global;
     }
 }

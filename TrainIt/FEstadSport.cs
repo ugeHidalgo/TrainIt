@@ -26,10 +26,12 @@ namespace TrainIt
 
         private void FEstadSport_Load(object sender, EventArgs e)
         {
-            //dtpIni.Value = Utilities.firstDayOfWeek(DateTime.Now);
-            dtpIni.Value = Utilities.firstDayOfYear(DateTime.Now);
-            dtpFin.Value = Utilities.lastDayOfWeek(DateTime.Now);
+           //Load data for current week
+            semanal_Click(this,e);
+        }
 
+        private void loadDatedData()
+        {
             //Create temp table with favourites sports and his childs.
             string query;
             using (SqlConnection conn = new SqlConnection(connString))
@@ -68,14 +70,14 @@ namespace TrainIt
                 query = @"delete from TempSessionData;
                           select * from TempUserSports";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
-                {                    
+                {
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
                         if (!reader.IsDBNull(0))
                         {
-                            addSessionDataForSport(connString, reader.GetInt64(0), reader.GetInt64(1), reader.GetInt64(2));                            
+                            addSessionDataForSport(connString, reader.GetInt64(0), reader.GetInt64(1), reader.GetInt64(2));
                         }
                     }
                     reader.Close();
@@ -119,7 +121,7 @@ namespace TrainIt
                         cmd.Parameters["@userID"].Value = userIDWorking;
 
                         cmd.Parameters.Add(new SqlParameter("@minDate", SqlDbType.DateTime));
-                        cmd.Parameters["@minDate"].Value = dtpIni.Value;
+                        cmd.Parameters["@minDate"].Value = dtpIni.Value.AddDays(-1);
 
                         cmd.Parameters.Add(new SqlParameter("@maxDate", SqlDbType.DateTime));
                         cmd.Parameters["@maxDate"].Value = dtpFin.Value;
@@ -233,7 +235,7 @@ namespace TrainIt
                     cmd.Parameters["@childSportTypeID"].Value = aChildSportTypeID;
 
                     cmd.Parameters.Add(new SqlParameter("@minDate", SqlDbType.DateTime));
-                    cmd.Parameters["@minDate"].Value = dtpIni.Value;
+                    cmd.Parameters["@minDate"].Value = dtpIni.Value.AddDays(-1);
 
                     cmd.Parameters.Add(new SqlParameter("@maxDate", SqlDbType.DateTime));
                     cmd.Parameters["@maxDate"].Value = dtpFin.Value;
@@ -337,6 +339,97 @@ namespace TrainIt
                     cmd.ExecuteNonQuery();                    
                 }
             }
+        }
+
+        private void manual_Click(object sender, EventArgs e)
+        {
+            loadDatedData();
+            laName.Text = "Datos acumulados del " + dtpIni.Value.ToShortDateString() + " al " + dtpFin.Value.ToShortDateString();
+        }
+
+        private void global_Click(object sender, EventArgs e)
+        {
+            //Search for max and min date of regs in BD.
+            string query;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                query = @"select
+                               MIN(Date) as firstDate,
+                               Max(Date) as lastDate
+              
+                        from Sessions 
+                        where UserID=@userID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
+                    cmd.Parameters["@userID"].Value = userIDWorking;
+
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        if (reader.IsDBNull(0))
+                        {
+                            laName.Text = "No hay datos disponibles";
+                        }
+                        else
+                        {
+                            dtpIni.Value = Convert.ToDateTime(reader["firstDate"]);
+                            dtpFin.Value = Convert.ToDateTime(reader["lastDate"]);
+                        }
+                    }
+                    reader.Close();
+                }
+            }
+
+            //Search for data.
+            loadDatedData();
+            laName.Text = "Datos globales: Primera sesión : " + dtpIni.Value.ToShortDateString() + "    Última sesión : " + dtpFin.Value.ToShortDateString();
+        }
+
+        private void anual_Click(object sender, EventArgs e)
+        {
+            //dtpIni.Value = Utilities.firstDayOfWeek(DateTime.Now);
+            dtpIni.Value = Utilities.firstDayOfYear(DateTime.Now);
+            dtpFin.Value = Utilities.lastDayOfYear(DateTime.Now);
+
+            loadDatedData();
+            laName.Text = "Sesiones realizadas en el año en curso : " + Convert.ToString(DateTime.Now.Year);
+        }
+
+        private void mensual_Click(object sender, EventArgs e)
+        {
+            //dtpIni.Value = Utilities.firstDayOfWeek(DateTime.Now);
+            dtpIni.Value = Utilities.firstDayOfMonth(DateTime.Now);
+            dtpFin.Value = Utilities.lastDayOfMonth(DateTime.Now);
+
+            loadDatedData();
+            laName.Text = "Sesiones realizadas en el mes en curso : " + DateTime.Now.Month;
+        }
+
+        private void semanal_Click(object sender, EventArgs e)
+        {
+            //dtpIni.Value = Utilities.firstDayOfWeek(DateTime.Now);
+            dtpIni.Value = Utilities.firstDayOfWeek(DateTime.Now);
+            dtpFin.Value = Utilities.lastDayOfWeek(DateTime.Now);
+
+            loadDatedData();
+            laName.Text = "Sesiones realizadas en la semana actual: " + dtpIni.Value.ToShortDateString() + " al " + dtpFin.Value.ToShortDateString();
+        }
+
+        private void diario_Click(object sender, EventArgs e)
+        {
+            //dtpIni.Value = Utilities.firstDayOfWeek(DateTime.Now);
+            dtpIni.Value = DateTime.Now;
+            dtpFin.Value = DateTime.Now;
+
+            loadDatedData();
+            laName.Text = "Sesiones realizadas hoy día "+DateTime.Now.ToShortDateString();
+        }
+
+        private void btnReCalc_Click(object sender, EventArgs e)
+        {
+            manual_Click(this, e);
         }
     }
 }

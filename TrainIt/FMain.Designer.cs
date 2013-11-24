@@ -44,7 +44,6 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiIntrdatoPersonal = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMarcasPersonales = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOrganizarGroup = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,9 +56,6 @@
             this.entrenamientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEntrenos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSesiones = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRegistros = new System.Windows.Forms.ToolStripMenuItem();
-            this.biologicosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.marcasPersonalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estadísticasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiGlobales = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeporte = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,6 +76,19 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnClose = new System.Windows.Forms.ToolStripButton();
+            this.tsmiRegistros = new System.Windows.Forms.ToolStripMenuItem();
+            this.marcasPersonalesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsBtnBioRegs = new System.Windows.Forms.ToolStripButton();
+            this.tsBtnPersonalBests = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.sS.SuspendLayout();
             this.mS.SuspendLayout();
             this.tsPrincipal.SuspendLayout();
@@ -138,14 +147,17 @@
             // archivoToolStripMenuItem
             // 
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiMaterial,
             this.tsmiUsuarios,
-            this.toolStripSeparator3,
-            this.tsmiTiposDeportes,
-            this.toolStripMenuItem1,
+            this.toolStripSeparator4,
+            this.tsmiMaterial,
             this.tsmiIntrdatoPersonal,
             this.tsmiMarcasPersonales,
-            this.toolStripSeparator4,
+            this.toolStripSeparator3,
+            this.tsmiTiposDeportes,
+            this.toolStripMenuItem6,
+            this.toolStripMenuItem7,
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem8,
             this.tsmiSalir});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
             this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
@@ -155,59 +167,54 @@
             // 
             this.tsmiMaterial.Image = ((System.Drawing.Image)(resources.GetObject("tsmiMaterial.Image")));
             this.tsmiMaterial.Name = "tsmiMaterial";
-            this.tsmiMaterial.Size = new System.Drawing.Size(171, 22);
-            this.tsmiMaterial.Text = "Material";
+            this.tsmiMaterial.Size = new System.Drawing.Size(219, 22);
+            this.tsmiMaterial.Text = "Materiales";
             this.tsmiMaterial.Click += new System.EventHandler(this.mSMaterial_Click);
             // 
             // tsmiUsuarios
             // 
             this.tsmiUsuarios.Image = ((System.Drawing.Image)(resources.GetObject("tsmiUsuarios.Image")));
             this.tsmiUsuarios.Name = "tsmiUsuarios";
-            this.tsmiUsuarios.Size = new System.Drawing.Size(171, 22);
+            this.tsmiUsuarios.Size = new System.Drawing.Size(219, 22);
             this.tsmiUsuarios.Text = "Perfil de Usuario";
             this.tsmiUsuarios.Click += new System.EventHandler(this.msUsuarios_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(168, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(216, 6);
             // 
             // tsmiTiposDeportes
             // 
             this.tsmiTiposDeportes.Image = ((System.Drawing.Image)(resources.GetObject("tsmiTiposDeportes.Image")));
             this.tsmiTiposDeportes.Name = "tsmiTiposDeportes";
-            this.tsmiTiposDeportes.Size = new System.Drawing.Size(171, 22);
+            this.tsmiTiposDeportes.Size = new System.Drawing.Size(219, 22);
             this.tsmiTiposDeportes.Text = "Tipos de Deporte";
             this.tsmiTiposDeportes.Click += new System.EventHandler(this.msTiposDeportes_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(168, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(216, 6);
             // 
             // tsmiIntrdatoPersonal
             // 
             this.tsmiIntrdatoPersonal.Name = "tsmiIntrdatoPersonal";
-            this.tsmiIntrdatoPersonal.Size = new System.Drawing.Size(171, 22);
+            this.tsmiIntrdatoPersonal.Size = new System.Drawing.Size(219, 22);
             this.tsmiIntrdatoPersonal.Text = "Datos Personales";
             // 
             // tsmiMarcasPersonales
             // 
             this.tsmiMarcasPersonales.Name = "tsmiMarcasPersonales";
-            this.tsmiMarcasPersonales.Size = new System.Drawing.Size(171, 22);
+            this.tsmiMarcasPersonales.Size = new System.Drawing.Size(219, 22);
             this.tsmiMarcasPersonales.Text = "Marcas Personales";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(168, 6);
             // 
             // tsmiSalir
             // 
             this.tsmiSalir.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSalir.Image")));
             this.tsmiSalir.Name = "tsmiSalir";
             this.tsmiSalir.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.tsmiSalir.Size = new System.Drawing.Size(171, 22);
+            this.tsmiSalir.Size = new System.Drawing.Size(219, 22);
             this.tsmiSalir.Text = "Salir";
             this.tsmiSalir.Click += new System.EventHandler(this.mSSalir_Click);
             // 
@@ -277,16 +284,18 @@
             this.entrenamientosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiEntrenos,
             this.tsmiSesiones,
-            this.tsmiRegistros});
+            this.toolStripSeparator5,
+            this.tsmiRegistros,
+            this.marcasPersonalesToolStripMenuItem1});
             this.entrenamientosToolStripMenuItem.Name = "entrenamientosToolStripMenuItem";
-            this.entrenamientosToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
-            this.entrenamientosToolStripMenuItem.Text = "Actividades";
+            this.entrenamientosToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.entrenamientosToolStripMenuItem.Text = "Registro";
             // 
             // tsmiEntrenos
             // 
             this.tsmiEntrenos.Image = ((System.Drawing.Image)(resources.GetObject("tsmiEntrenos.Image")));
             this.tsmiEntrenos.Name = "tsmiEntrenos";
-            this.tsmiEntrenos.Size = new System.Drawing.Size(157, 22);
+            this.tsmiEntrenos.Size = new System.Drawing.Size(171, 22);
             this.tsmiEntrenos.Text = "Entrenamientos";
             this.tsmiEntrenos.Click += new System.EventHandler(this.tsBtnTrainings_Click);
             // 
@@ -294,30 +303,9 @@
             // 
             this.tsmiSesiones.Image = ((System.Drawing.Image)(resources.GetObject("tsmiSesiones.Image")));
             this.tsmiSesiones.Name = "tsmiSesiones";
-            this.tsmiSesiones.Size = new System.Drawing.Size(157, 22);
+            this.tsmiSesiones.Size = new System.Drawing.Size(171, 22);
             this.tsmiSesiones.Text = "Sesiones";
             this.tsmiSesiones.Click += new System.EventHandler(this.tsBtnSessions_Click);
-            // 
-            // tsmiRegistros
-            // 
-            this.tsmiRegistros.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.biologicosToolStripMenuItem,
-            this.marcasPersonalesToolStripMenuItem});
-            this.tsmiRegistros.Name = "tsmiRegistros";
-            this.tsmiRegistros.Size = new System.Drawing.Size(157, 22);
-            this.tsmiRegistros.Text = "Registros";
-            // 
-            // biologicosToolStripMenuItem
-            // 
-            this.biologicosToolStripMenuItem.Name = "biologicosToolStripMenuItem";
-            this.biologicosToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.biologicosToolStripMenuItem.Text = "Biologicos";
-            // 
-            // marcasPersonalesToolStripMenuItem
-            // 
-            this.marcasPersonalesToolStripMenuItem.Name = "marcasPersonalesToolStripMenuItem";
-            this.marcasPersonalesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.marcasPersonalesToolStripMenuItem.Text = "Marcas Personales";
             // 
             // estadísticasToolStripMenuItem
             // 
@@ -383,13 +371,19 @@
             // tsPrincipal
             // 
             this.tsPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsBtnMaterial,
+            this.toolStripLabel4,
             this.tsBtnUsuarios,
+            this.toolStripSeparator6,
+            this.tsBtnMaterial,
+            this.toolStripSeparator7,
             this.tsBtnSportTypes,
             this.toolStripLabel2,
             this.toolStripSeparator1,
+            this.toolStripLabel3,
             this.tsBtnTrainings,
             this.tsBtnSessions,
+            this.tsBtnBioRegs,
+            this.tsBtnPersonalBests,
             this.toolStripLabel1,
             this.toolStripSeparator2,
             this.tsBtnClose});
@@ -448,7 +442,7 @@
             this.tsBtnTrainings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnTrainings.Name = "tsBtnTrainings";
             this.tsBtnTrainings.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnTrainings.Text = "Entrenamientos";
+            this.tsBtnTrainings.Text = "Registro de Entrenamientos";
             this.tsBtnTrainings.Click += new System.EventHandler(this.tsBtnTrainings_Click);
             // 
             // tsBtnSessions
@@ -458,7 +452,7 @@
             this.tsBtnSessions.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnSessions.Name = "tsBtnSessions";
             this.tsBtnSessions.Size = new System.Drawing.Size(23, 22);
-            this.tsBtnSessions.Text = "Sesiones";
+            this.tsBtnSessions.Text = "Registro de Sesiones";
             this.tsBtnSessions.Click += new System.EventHandler(this.tsBtnSessions_Click);
             // 
             // toolStripLabel1
@@ -481,6 +475,87 @@
             this.tsBtnClose.Size = new System.Drawing.Size(23, 22);
             this.tsBtnClose.Text = "Cerrar aplicación";
             this.tsBtnClose.Click += new System.EventHandler(this.tsBtnClose_Click);
+            // 
+            // tsmiRegistros
+            // 
+            this.tsmiRegistros.Image = ((System.Drawing.Image)(resources.GetObject("tsmiRegistros.Image")));
+            this.tsmiRegistros.Name = "tsmiRegistros";
+            this.tsmiRegistros.Size = new System.Drawing.Size(171, 22);
+            this.tsmiRegistros.Text = "Datos Personales";
+            // 
+            // marcasPersonalesToolStripMenuItem1
+            // 
+            this.marcasPersonalesToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("marcasPersonalesToolStripMenuItem1.Image")));
+            this.marcasPersonalesToolStripMenuItem1.Name = "marcasPersonalesToolStripMenuItem1";
+            this.marcasPersonalesToolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
+            this.marcasPersonalesToolStripMenuItem1.Text = "Marcas Personales";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(168, 6);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItem6.Text = "Tipos de Datos Personales";
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(219, 22);
+            this.toolStripMenuItem7.Text = "Tipos de Marcas Personales";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(216, 6);
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(219, 22);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsBtnBioRegs
+            // 
+            this.tsBtnBioRegs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnBioRegs.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnBioRegs.Image")));
+            this.tsBtnBioRegs.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnBioRegs.Name = "tsBtnBioRegs";
+            this.tsBtnBioRegs.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnBioRegs.Text = "Registro de Datos Personales";
+            // 
+            // tsBtnPersonalBests
+            // 
+            this.tsBtnPersonalBests.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsBtnPersonalBests.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnPersonalBests.Image")));
+            this.tsBtnPersonalBests.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsBtnPersonalBests.Name = "tsBtnPersonalBests";
+            this.tsBtnPersonalBests.Size = new System.Drawing.Size(23, 22);
+            this.tsBtnPersonalBests.Text = "Registro de Marcas Personales";
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(50, 22);
+            this.toolStripLabel3.Text = "Registro";
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(48, 22);
+            this.toolStripLabel4.Text = "Archivo";
             // 
             // FMain
             // 
@@ -533,9 +608,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem tsmiOrganizarGroup;
         private System.Windows.Forms.ToolStripMenuItem tsmiCerrarTodas;
-        private System.Windows.Forms.ToolStripMenuItem tsmiRegistros;
-        private System.Windows.Forms.ToolStripMenuItem biologicosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem marcasPersonalesToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton tsBtnSportTypes;
         private System.Windows.Forms.ToolStripButton tsBtnTrainings;
         private System.Windows.Forms.ToolStripButton tsBtnSessions;
@@ -552,12 +624,24 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiMosaicoVer;
         private System.Windows.Forms.ToolStripMenuItem tsmiIntrdatoPersonal;
         private System.Windows.Forms.ToolStripMenuItem tsmiMarcasPersonales;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem tsmiPantallaCompleta;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem tsmiDatosPers;
         private System.Windows.Forms.ToolStripMenuItem tsmiMarcasPers;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRegistros;
+        private System.Windows.Forms.ToolStripMenuItem marcasPersonalesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripButton tsBtnBioRegs;
+        private System.Windows.Forms.ToolStripButton tsBtnPersonalBests;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
     }
 }
 
