@@ -84,7 +84,7 @@
             // bioRegIDLabel
             // 
             bioRegIDLabel.AutoSize = true;
-            bioRegIDLabel.Location = new System.Drawing.Point(153, 97);
+            bioRegIDLabel.Location = new System.Drawing.Point(12, 43);
             bioRegIDLabel.Name = "bioRegIDLabel";
             bioRegIDLabel.Size = new System.Drawing.Size(62, 13);
             bioRegIDLabel.TabIndex = 22;
@@ -93,7 +93,7 @@
             // bioRegTypeIDLabel
             // 
             bioRegTypeIDLabel.AutoSize = true;
-            bioRegTypeIDLabel.Location = new System.Drawing.Point(153, 123);
+            bioRegTypeIDLabel.Location = new System.Drawing.Point(12, 69);
             bioRegTypeIDLabel.Name = "bioRegTypeIDLabel";
             bioRegTypeIDLabel.Size = new System.Drawing.Size(89, 13);
             bioRegTypeIDLabel.TabIndex = 24;
@@ -102,7 +102,7 @@
             // bioRegDateLabel
             // 
             bioRegDateLabel.AutoSize = true;
-            bioRegDateLabel.Location = new System.Drawing.Point(153, 150);
+            bioRegDateLabel.Location = new System.Drawing.Point(12, 96);
             bioRegDateLabel.Name = "bioRegDateLabel";
             bioRegDateLabel.Size = new System.Drawing.Size(74, 13);
             bioRegDateLabel.TabIndex = 26;
@@ -111,7 +111,7 @@
             // valueLabel
             // 
             valueLabel.AutoSize = true;
-            valueLabel.Location = new System.Drawing.Point(153, 175);
+            valueLabel.Location = new System.Drawing.Point(12, 121);
             valueLabel.Name = "valueLabel";
             valueLabel.Size = new System.Drawing.Size(37, 13);
             valueLabel.TabIndex = 28;
@@ -120,7 +120,7 @@
             // memoLabel
             // 
             memoLabel.AutoSize = true;
-            memoLabel.Location = new System.Drawing.Point(153, 201);
+            memoLabel.Location = new System.Drawing.Point(12, 147);
             memoLabel.Name = "memoLabel";
             memoLabel.Size = new System.Drawing.Size(39, 13);
             memoLabel.TabIndex = 30;
@@ -152,7 +152,7 @@
             // btnFindBioRegType
             // 
             this.btnFindBioRegType.Image = ((System.Drawing.Image)(resources.GetObject("btnFindBioRegType.Image")));
-            this.btnFindBioRegType.Location = new System.Drawing.Point(296, 120);
+            this.btnFindBioRegType.Location = new System.Drawing.Point(155, 66);
             this.btnFindBioRegType.Name = "btnFindBioRegType";
             this.btnFindBioRegType.Size = new System.Drawing.Size(24, 24);
             this.btnFindBioRegType.TabIndex = 21;
@@ -254,7 +254,7 @@
             // txtBioRegID
             // 
             this.txtBioRegID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bioRegsBindingSource, "BioRegID", true));
-            this.txtBioRegID.Location = new System.Drawing.Point(248, 94);
+            this.txtBioRegID.Location = new System.Drawing.Point(107, 40);
             this.txtBioRegID.Name = "txtBioRegID";
             this.txtBioRegID.Size = new System.Drawing.Size(42, 20);
             this.txtBioRegID.TabIndex = 23;
@@ -262,7 +262,7 @@
             // txtBioRegTypeID
             // 
             this.txtBioRegTypeID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bioRegsBindingSource, "BioRegTypeID", true));
-            this.txtBioRegTypeID.Location = new System.Drawing.Point(248, 120);
+            this.txtBioRegTypeID.Location = new System.Drawing.Point(107, 66);
             this.txtBioRegTypeID.Name = "txtBioRegTypeID";
             this.txtBioRegTypeID.Size = new System.Drawing.Size(42, 20);
             this.txtBioRegTypeID.TabIndex = 25;
@@ -271,7 +271,7 @@
             // 
             this.dtpBioRegDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bioRegsBindingSource, "BioRegDate", true));
             this.dtpBioRegDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBioRegDate.Location = new System.Drawing.Point(248, 146);
+            this.dtpBioRegDate.Location = new System.Drawing.Point(107, 92);
             this.dtpBioRegDate.Name = "dtpBioRegDate";
             this.dtpBioRegDate.Size = new System.Drawing.Size(200, 20);
             this.dtpBioRegDate.TabIndex = 27;
@@ -279,7 +279,7 @@
             // txtValue
             // 
             this.txtValue.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bioRegsBindingSource, "Value", true));
-            this.txtValue.Location = new System.Drawing.Point(248, 172);
+            this.txtValue.Location = new System.Drawing.Point(107, 118);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(42, 20);
             this.txtValue.TabIndex = 29;
@@ -287,7 +287,7 @@
             // txtMemo
             // 
             this.txtMemo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bioRegsBindingSource, "Memo", true));
-            this.txtMemo.Location = new System.Drawing.Point(248, 198);
+            this.txtMemo.Location = new System.Drawing.Point(107, 144);
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.Size = new System.Drawing.Size(200, 20);
             this.txtMemo.TabIndex = 31;
@@ -295,7 +295,7 @@
             // txtUserID
             // 
             this.txtUserID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bioRegsBindingSource, "UserID", true));
-            this.txtUserID.Location = new System.Drawing.Point(296, 94);
+            this.txtUserID.Location = new System.Drawing.Point(155, 40);
             this.txtUserID.Name = "txtUserID";
             this.txtUserID.Size = new System.Drawing.Size(30, 20);
             this.txtUserID.TabIndex = 33;
@@ -419,7 +419,7 @@
             // 
             // txtBioRegName
             // 
-            this.txtBioRegName.Location = new System.Drawing.Point(327, 120);
+            this.txtBioRegName.Location = new System.Drawing.Point(186, 66);
             this.txtBioRegName.Name = "txtBioRegName";
             this.txtBioRegName.Size = new System.Drawing.Size(100, 20);
             this.txtBioRegName.TabIndex = 35;
