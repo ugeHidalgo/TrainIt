@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,6 @@ namespace TrainIt
         Int64 userIDWorking = Global.userIDWorking;
         bool onEdition = false;
 
-
         public FBioRegs()
         {
             InitializeComponent();
@@ -33,38 +33,78 @@ namespace TrainIt
             // TODO: This line of code loads data into the 'trainITDataSet.BioRegs' table. You can move, or remove it, as needed.
             this.bioRegsTableAdapter.Fill(this.trainITDataSet.BioRegs);
 
+            //Load data into model object
+            Global.aBioRegUsed = LoadDataFromGrid();
 
-            Global.aBioRegUsed = LoadData();
-
+            //Load Data into boxes
+            LoadDataIntoBoxes(Global.aBioRegUsed);
         }
 
-        private BioReg LoadData()
+        /// <summary>
+        /// Load data from the grid to the object model
+        /// </summary>
+        /// <returns>BioReg Object</returns>
+        private BioReg LoadDataFromGrid()
         {
             BioReg aBioReg = new BioReg();
-
-            aBioReg.bioRegID = Convert.ToInt64(txtBioRegID.Text);
-            aBioReg.bioRegTypeID = Convert.ToInt64(txtBioRegTypeID.Text);
-            aBioReg.bioRegDate = dtpBioRegDate.Value;
-            if (String.IsNullOrEmpty(txtValue.Text))
-            {
-                txtValue.Text = "0";
-            }
-            aBioReg.value = Convert.ToDouble(txtValue.Text);
-            aBioReg.memo = txtMemo.Text;
-            aBioReg.userID = Global.userIDWorking;
-
-
+            aBioReg.bioRegID = Convert.ToInt64(dgvBioRegs["BioRegID", dgvBioRegs.CurrentRow.Index].Value);
+            aBioReg.bioRegTypeID = Convert.ToInt64(dgvBioRegs["BioRegTypeID", dgvBioRegs.CurrentRow.Index].Value);
+            aBioReg.bioRegDate = Convert.ToDateTime(dgvBioRegs["BioRegdate", dgvBioRegs.CurrentRow.Index].Value);
+            aBioReg.value = Convert.ToDouble(dgvBioRegs["Value", dgvBioRegs.CurrentRow.Index].Value);
+            aBioReg.memo = Convert.ToString(dgvBioRegs["Memo", dgvBioRegs.CurrentRow.Index].Value);
+            aBioReg.userID = Convert.ToInt64(dgvBioRegs["UserID", dgvBioRegs.CurrentRow.Index].Value);
             return aBioReg;
         }
 
-        private void LoadDataOnGrid(BioReg aBioReg)
+        /// <summary>
+        /// Load Data from boxes to the model object
+        /// </summary>
+        /// <returns>BioReg object</returns>
+        private BioReg LoadDataFromBoxes()
         {
-            //dgvBioRegs[0, dgvBioRegs.CurrentRow.Index].Value = aBioReg.bioRegID;
-            //dgvBioRegs[1, dgvBioRegs.CurrentRow.Index].Value = aBioReg.userID;
-            //dgvBioRegs[2, dgvBioRegs.CurrentRow.Index].Value = aBioReg.bioRegTypeID;            
-            //dgvBioRegs[4, dgvBioRegs.CurrentRow.Index].Value = aBioReg.bioRegDate;
-            //dgvBioRegs[5, dgvBioRegs.CurrentRow.Index].Value = aBioReg.value;
-            //dgvBioRegs[6, dgvBioRegs.CurrentRow.Index].Value = aBioReg.memo;
+            BioReg aBioReg = new BioReg();
+            aBioReg.bioRegID = Convert.ToInt64(txtBioRegID.Text);
+            aBioReg.bioRegTypeID = Convert.ToInt64(txtBioRegTypeID.Text);
+            aBioReg.bioRegDate = Convert.ToDateTime(dtpBioRegDate.Value);
+            try
+            {
+                aBioReg.value = Convert.ToDouble(txtValue.Text);
+            }
+            catch
+            {
+                aBioReg.value = 0;
+            }
+            aBioReg.memo = Convert.ToString(txtMemo.Text);
+            aBioReg.userID = Convert.ToInt64(txtUserID.Text);
+            return aBioReg;
+        }
+
+        /// <summary>
+        /// Load data from the object model to the boxes in display
+        /// </summary>
+        /// <param name="aBioReg">A BioReg object</param>
+        private void LoadDataIntoBoxes(BioReg aBioReg)
+        {
+            txtBioRegID.Text = aBioReg.bioRegID.ToString();
+            txtUserID.Text = aBioReg.userID.ToString();
+            if ((txtBioRegTypeID.Text != "") && (txtBioRegTypeID.Text != "-1"))
+                txtBioRegName.Text = this.bioRegTypesTableAdapter1.GetBioRegTypeName(Convert.ToInt64(txtBioRegTypeID.Text));
+            txtBioRegTypeID.Text = aBioReg.bioRegTypeID.ToString();
+            dtpBioRegDate.Value = aBioReg.bioRegDate;
+            txtValue.Text = aBioReg.value.ToString();
+            txtMemo.Text = aBioReg.memo.ToString();
+        }
+
+        /// <summary>
+        /// Load data from the object model to the grid
+        /// </summary>
+        private void LoadDataIntoGrid(BioReg aBioReg)
+        {
+            dgvBioRegs["BioRegTypeID", dgvBioRegs.CurrentRow.Index].Value = aBioReg.bioRegTypeID;
+            dgvBioRegs["BioRegdate", dgvBioRegs.CurrentRow.Index].Value = aBioReg.bioRegDate;
+            dgvBioRegs["Value", dgvBioRegs.CurrentRow.Index].Value = aBioReg.value;
+            dgvBioRegs["Memo", dgvBioRegs.CurrentRow.Index].Value = aBioReg.memo;
+            dgvBioRegs["UserID", dgvBioRegs.CurrentRow.Index].Value = aBioReg.userID;
         }
 
         private void setEditMode()
@@ -76,7 +116,7 @@ namespace TrainIt
             txtMemo.ReadOnly = false;
             dtpBioRegDate.Enabled = true;
 
-            dgvBioRegs.Enabled = true;
+            dgvBioRegs.Enabled = false;
 
             tsBtnFirst.Enabled = false;
             tsBtnPrevious.Enabled = false;
@@ -100,7 +140,7 @@ namespace TrainIt
             txtMemo.ReadOnly = true;
             dtpBioRegDate.Enabled = true;
 
-            dgvBioRegs.Enabled = false;
+            dgvBioRegs.Enabled = true;
 
             tsBtnFirst.Enabled = true;
             tsBtnPrevious.Enabled = true;
@@ -117,6 +157,7 @@ namespace TrainIt
 
         private void resetFields()
         {
+            //Clear boxes
             txtBioRegID.Text = "-1";
             txtBioRegTypeID.Text = "";
             txtBioRegName.Text = "";
@@ -124,6 +165,9 @@ namespace TrainIt
             dtpBioRegDate.Value = DateTime.Now;
             txtMemo.Text = "";
             txtUserID.Text = Global.userIDWorking.ToString();
+
+            //Clear model obejct
+            Global.aBioRegUsed.Clear();
         }
 
         private void btnFindSportType_Click(object sender, EventArgs e)
@@ -134,11 +178,12 @@ namespace TrainIt
             if (Global.bioRegTypeIDSelected != 0)
             {
                 txtBioRegTypeID.Text = Global.bioRegTypeIDSelected.ToString();
+                txtBioRegName.Text = this.bioRegTypesTableAdapter1.GetBioRegTypeName(Convert.ToInt64(txtBioRegTypeID.Text));
             }
         }
 
         private void tsBtnNew_Click(object sender, EventArgs e)
-        {            
+        {
             setEditMode();
             resetFields();
             txtBioRegTypeID.Focus();
@@ -158,20 +203,23 @@ namespace TrainIt
             {
                 this.bioRegsBindingSource.CancelEdit();
                 setNormalMode();
+
+                //Load data into boxes and model object
+                movingRecords(sender, e);
             }
         }
 
         private void tsBtnSave_Click(object sender, EventArgs e)
         {
-            string mensaje = "¿Desea guardar la ficha creada?";
+            string mensaje = "¿Desea guardar el registro creado?";
             DialogResult delMat = MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (delMat == DialogResult.OK)
             {
                 //Load data into object
-                Global.aBioRegUsed = LoadData();
+                Global.aBioRegUsed = LoadDataFromBoxes();
 
-                //Load all data on grid
-                LoadDataOnGrid(Global.aBioRegUsed);
+                //Load data into grid 
+                LoadDataIntoGrid(Global.aBioRegUsed);
 
                 this.Validate();
                 this.bioRegsBindingSource.EndEdit();
@@ -179,25 +227,71 @@ namespace TrainIt
 
                 setNormalMode();
 
+                //Stores the BioRegID into model, and into box
+                Global.aBioRegUsed.bioRegID = Convert.ToInt64(dgvBioRegs["BioRegID", dgvBioRegs.CurrentRow.Index].Value);
+                txtBioRegID.Text = Global.aBioRegUsed.bioRegID.ToString();
+
                 MessageBox.Show("Ficha guardada corectamente");
+
             }
         }
 
         private void tsBtnDel_Click(object sender, EventArgs e)
         {
-            string mensaje = "Va a borrar el registro relativo a: " + txtBioRegName.Text + ". ¿Esta seguro?";
+            string mensaje = "Va a borrar el registro nº " + txtBioRegID + "/" + txtUserID + " del tipo: " + txtBioRegName.Text + ". ¿Esta seguro?";
             DialogResult delMat = MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (delMat == DialogResult.OK)
             {
                 this.bioRegsBindingSource.RemoveCurrent();
                 this.tableAdapterManager.UpdateAll(this.trainITDataSet);
+
+                //Load data into boxes and model object
+                movingRecords(sender, e);
             }
         }
 
+        private void txtBioRegTypeID_Validating(object sender, CancelEventArgs e)
+        {
+            Int64 anID;
+            e.Cancel = false;
+            txtBioRegTypeID.BackColor = SystemColors.Window;
+            if (!string.IsNullOrEmpty(txtBioRegTypeID.Text))
+            {
+                try
+                {
+                    anID = Convert.ToInt64(txtBioRegTypeID.Text);
+                    txtBioRegName.Text = this.bioRegTypesTableAdapter1.GetBioRegTypeName(anID);
+                    txtBioRegTypeID.BackColor = SystemColors.Window;
+                    if (txtBioRegName.Text == "")
+                    {
+                        txtBioRegTypeID.BackColor = Color.Red;
+                        MessageBox.Show("El código de tipo de registro no existe en la base de datos.");
+                        txtBioRegTypeID.Text = "";
+                        e.Cancel = true;
+                    }
+                }
+                catch (Exception)
+                {
+                    txtBioRegTypeID.BackColor = Color.Red;
+                    MessageBox.Show("El código de tipo de registro debe ser un número.");
+                    txtBioRegTypeID.Text = "";
+                    e.Cancel = true;
+                }
+            }
+        }
 
+        /// <summary>
+        /// Loads data into object model and boxes after a record moves
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void movingRecords(object sender, EventArgs e)
+        {
+            //Load data into model object
+            Global.aBioRegUsed = LoadDataFromGrid();
 
-
-
-
+            //Load Data into boxes
+            LoadDataIntoBoxes(Global.aBioRegUsed);
+        }
     }
 }

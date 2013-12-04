@@ -44,12 +44,6 @@
             this.bioRegsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.BioRegsTableAdapter();
             this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
             this.dgvBioRegs = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtBioRegID = new System.Windows.Forms.TextBox();
             this.txtBioRegTypeID = new System.Windows.Forms.TextBox();
             this.dtpBioRegDate = new System.Windows.Forms.DateTimePicker();
@@ -68,6 +62,13 @@
             this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
             this.tsBtnDel = new System.Windows.Forms.ToolStripButton();
             this.txtBioRegName = new System.Windows.Forms.TextBox();
+            this.bioRegTypesTableAdapter1 = new TrainIt.TrainITDataSetTableAdapters.BioRegTypesTableAdapter();
+            this.BioRegID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BioRegTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BioRegDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Memo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             bioRegIDLabel = new System.Windows.Forms.Label();
             bioRegTypeIDLabel = new System.Windows.Forms.Label();
             bioRegDateLabel = new System.Windows.Forms.Label();
@@ -84,54 +85,59 @@
             // bioRegIDLabel
             // 
             bioRegIDLabel.AutoSize = true;
-            bioRegIDLabel.Location = new System.Drawing.Point(12, 43);
+            bioRegIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            bioRegIDLabel.Location = new System.Drawing.Point(62, 43);
             bioRegIDLabel.Name = "bioRegIDLabel";
-            bioRegIDLabel.Size = new System.Drawing.Size(62, 13);
+            bioRegIDLabel.Size = new System.Drawing.Size(77, 20);
             bioRegIDLabel.TabIndex = 22;
-            bioRegIDLabel.Text = "Bio Reg ID:";
+            bioRegIDLabel.Text = "Registro :";
             // 
             // bioRegTypeIDLabel
             // 
             bioRegTypeIDLabel.AutoSize = true;
-            bioRegTypeIDLabel.Location = new System.Drawing.Point(12, 69);
+            bioRegTypeIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            bioRegTypeIDLabel.Location = new System.Drawing.Point(66, 74);
             bioRegTypeIDLabel.Name = "bioRegTypeIDLabel";
-            bioRegTypeIDLabel.Size = new System.Drawing.Size(89, 13);
+            bioRegTypeIDLabel.Size = new System.Drawing.Size(73, 20);
             bioRegTypeIDLabel.TabIndex = 24;
-            bioRegTypeIDLabel.Text = "Bio Reg Type ID:";
+            bioRegTypeIDLabel.Text = "Nombre :";
             // 
             // bioRegDateLabel
             // 
             bioRegDateLabel.AutoSize = true;
-            bioRegDateLabel.Location = new System.Drawing.Point(12, 96);
+            bioRegDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            bioRegDateLabel.Location = new System.Drawing.Point(77, 107);
             bioRegDateLabel.Name = "bioRegDateLabel";
-            bioRegDateLabel.Size = new System.Drawing.Size(74, 13);
+            bioRegDateLabel.Size = new System.Drawing.Size(62, 20);
             bioRegDateLabel.TabIndex = 26;
-            bioRegDateLabel.Text = "Bio Reg Date:";
+            bioRegDateLabel.Text = "Fecha :";
             // 
             // valueLabel
             // 
             valueLabel.AutoSize = true;
-            valueLabel.Location = new System.Drawing.Point(12, 121);
+            valueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            valueLabel.Location = new System.Drawing.Point(85, 136);
             valueLabel.Name = "valueLabel";
-            valueLabel.Size = new System.Drawing.Size(37, 13);
+            valueLabel.Size = new System.Drawing.Size(54, 20);
             valueLabel.TabIndex = 28;
-            valueLabel.Text = "Value:";
+            valueLabel.Text = "Valor :";
             // 
             // memoLabel
             // 
             memoLabel.AutoSize = true;
-            memoLabel.Location = new System.Drawing.Point(12, 147);
+            memoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            memoLabel.Location = new System.Drawing.Point(17, 164);
             memoLabel.Name = "memoLabel";
-            memoLabel.Size = new System.Drawing.Size(39, 13);
+            memoLabel.Size = new System.Drawing.Size(122, 20);
             memoLabel.TabIndex = 30;
-            memoLabel.Text = "Memo:";
+            memoLabel.Text = "Observaciones :";
             // 
             // statusS1
             // 
             this.statusS1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tslUser,
             this.tslConnString});
-            this.statusS1.Location = new System.Drawing.Point(0, 608);
+            this.statusS1.Location = new System.Drawing.Point(0, 636);
             this.statusS1.Name = "statusS1";
             this.statusS1.Size = new System.Drawing.Size(523, 22);
             this.statusS1.TabIndex = 7;
@@ -151,8 +157,9 @@
             // 
             // btnFindBioRegType
             // 
+            this.btnFindBioRegType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFindBioRegType.Image = ((System.Drawing.Image)(resources.GetObject("btnFindBioRegType.Image")));
-            this.btnFindBioRegType.Location = new System.Drawing.Point(155, 66);
+            this.btnFindBioRegType.Location = new System.Drawing.Point(190, 72);
             this.btnFindBioRegType.Name = "btnFindBioRegType";
             this.btnFindBioRegType.Size = new System.Drawing.Size(24, 24);
             this.btnFindBioRegType.TabIndex = 21;
@@ -191,113 +198,90 @@
             // 
             // dgvBioRegs
             // 
+            this.dgvBioRegs.AllowUserToAddRows = false;
+            this.dgvBioRegs.AllowUserToDeleteRows = false;
+            this.dgvBioRegs.AllowUserToOrderColumns = true;
             this.dgvBioRegs.AutoGenerateColumns = false;
             this.dgvBioRegs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBioRegs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
+            this.BioRegID,
+            this.BioRegTypeID,
+            this.BioRegDate,
+            this.Value,
+            this.Memo,
+            this.UserID});
             this.dgvBioRegs.DataSource = this.bioRegsBindingSource;
             this.dgvBioRegs.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvBioRegs.Location = new System.Drawing.Point(0, 248);
+            this.dgvBioRegs.Location = new System.Drawing.Point(0, 276);
             this.dgvBioRegs.Name = "dgvBioRegs";
             this.dgvBioRegs.ReadOnly = true;
             this.dgvBioRegs.RowHeadersVisible = false;
             this.dgvBioRegs.Size = new System.Drawing.Size(523, 360);
             this.dgvBioRegs.TabIndex = 22;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "BioRegID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "BioRegID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "BioRegTypeID";
-            this.dataGridViewTextBoxColumn2.HeaderText = "BioRegTypeID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "BioRegDate";
-            this.dataGridViewTextBoxColumn3.HeaderText = "BioRegDate";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Value";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Value";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Memo";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Memo";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "UserID";
-            this.dataGridViewTextBoxColumn6.HeaderText = "UserID";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dgvBioRegs.TabStop = false;
+            this.dgvBioRegs.Click += new System.EventHandler(this.movingRecords);
             // 
             // txtBioRegID
             // 
-            this.txtBioRegID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bioRegsBindingSource, "BioRegID", true));
-            this.txtBioRegID.Location = new System.Drawing.Point(107, 40);
+            this.txtBioRegID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBioRegID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBioRegID.Location = new System.Drawing.Point(145, 37);
             this.txtBioRegID.Name = "txtBioRegID";
-            this.txtBioRegID.Size = new System.Drawing.Size(42, 20);
+            this.txtBioRegID.ReadOnly = true;
+            this.txtBioRegID.Size = new System.Drawing.Size(42, 26);
             this.txtBioRegID.TabIndex = 23;
             // 
             // txtBioRegTypeID
             // 
-            this.txtBioRegTypeID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bioRegsBindingSource, "BioRegTypeID", true));
-            this.txtBioRegTypeID.Location = new System.Drawing.Point(107, 66);
+            this.txtBioRegTypeID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBioRegTypeID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBioRegTypeID.Location = new System.Drawing.Point(145, 71);
             this.txtBioRegTypeID.Name = "txtBioRegTypeID";
-            this.txtBioRegTypeID.Size = new System.Drawing.Size(42, 20);
+            this.txtBioRegTypeID.ReadOnly = true;
+            this.txtBioRegTypeID.Size = new System.Drawing.Size(42, 26);
             this.txtBioRegTypeID.TabIndex = 25;
+            this.txtBioRegTypeID.Validating += new System.ComponentModel.CancelEventHandler(this.txtBioRegTypeID_Validating);
             // 
             // dtpBioRegDate
             // 
             this.dtpBioRegDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bioRegsBindingSource, "BioRegDate", true));
+            this.dtpBioRegDate.Enabled = false;
+            this.dtpBioRegDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBioRegDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBioRegDate.Location = new System.Drawing.Point(107, 92);
+            this.dtpBioRegDate.Location = new System.Drawing.Point(145, 102);
             this.dtpBioRegDate.Name = "dtpBioRegDate";
-            this.dtpBioRegDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpBioRegDate.Size = new System.Drawing.Size(129, 26);
             this.dtpBioRegDate.TabIndex = 27;
             // 
             // txtValue
             // 
-            this.txtValue.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bioRegsBindingSource, "Value", true));
-            this.txtValue.Location = new System.Drawing.Point(107, 118);
+            this.txtValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValue.Location = new System.Drawing.Point(145, 133);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(42, 20);
+            this.txtValue.ReadOnly = true;
+            this.txtValue.Size = new System.Drawing.Size(42, 26);
             this.txtValue.TabIndex = 29;
             // 
             // txtMemo
             // 
-            this.txtMemo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bioRegsBindingSource, "Memo", true));
-            this.txtMemo.Location = new System.Drawing.Point(107, 144);
+            this.txtMemo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMemo.Location = new System.Drawing.Point(145, 164);
+            this.txtMemo.Multiline = true;
             this.txtMemo.Name = "txtMemo";
-            this.txtMemo.Size = new System.Drawing.Size(200, 20);
+            this.txtMemo.ReadOnly = true;
+            this.txtMemo.Size = new System.Drawing.Size(366, 88);
             this.txtMemo.TabIndex = 31;
             // 
             // txtUserID
             // 
-            this.txtUserID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bioRegsBindingSource, "UserID", true));
-            this.txtUserID.Location = new System.Drawing.Point(155, 40);
+            this.txtUserID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtUserID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserID.Location = new System.Drawing.Point(186, 37);
             this.txtUserID.Name = "txtUserID";
-            this.txtUserID.Size = new System.Drawing.Size(30, 20);
+            this.txtUserID.ReadOnly = true;
+            this.txtUserID.Size = new System.Drawing.Size(30, 26);
             this.txtUserID.TabIndex = 33;
             // 
             // bioRegsBindingNavigator
@@ -346,6 +330,7 @@
             this.tsBtnFirst.RightToLeftAutoMirrorImage = true;
             this.tsBtnFirst.Size = new System.Drawing.Size(23, 22);
             this.tsBtnFirst.Text = "Primer Registro";
+            this.tsBtnFirst.Click += new System.EventHandler(this.movingRecords);
             // 
             // tsBtnPrevious
             // 
@@ -355,6 +340,7 @@
             this.tsBtnPrevious.RightToLeftAutoMirrorImage = true;
             this.tsBtnPrevious.Size = new System.Drawing.Size(23, 22);
             this.tsBtnPrevious.Text = "Registro Anterior";
+            this.tsBtnPrevious.Click += new System.EventHandler(this.movingRecords);
             // 
             // tsBtnNext
             // 
@@ -364,6 +350,7 @@
             this.tsBtnNext.RightToLeftAutoMirrorImage = true;
             this.tsBtnNext.Size = new System.Drawing.Size(23, 22);
             this.tsBtnNext.Text = "Siguiente Registro";
+            this.tsBtnNext.Click += new System.EventHandler(this.movingRecords);
             // 
             // tsBtnLast
             // 
@@ -373,6 +360,7 @@
             this.tsBtnLast.RightToLeftAutoMirrorImage = true;
             this.tsBtnLast.Size = new System.Drawing.Size(23, 22);
             this.tsBtnLast.Text = "Último Registro";
+            this.tsBtnLast.Click += new System.EventHandler(this.movingRecords);
             // 
             // bindingNavigatorSeparator2
             // 
@@ -416,19 +404,69 @@
             this.tsBtnDel.RightToLeftAutoMirrorImage = true;
             this.tsBtnDel.Size = new System.Drawing.Size(23, 22);
             this.tsBtnDel.Text = "Borrar registro";
+            this.tsBtnDel.Click += new System.EventHandler(this.tsBtnDel_Click);
             // 
             // txtBioRegName
             // 
-            this.txtBioRegName.Location = new System.Drawing.Point(186, 66);
+            this.txtBioRegName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBioRegName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBioRegName.Location = new System.Drawing.Point(219, 72);
             this.txtBioRegName.Name = "txtBioRegName";
-            this.txtBioRegName.Size = new System.Drawing.Size(100, 20);
+            this.txtBioRegName.ReadOnly = true;
+            this.txtBioRegName.Size = new System.Drawing.Size(292, 26);
             this.txtBioRegName.TabIndex = 35;
+            // 
+            // bioRegTypesTableAdapter1
+            // 
+            this.bioRegTypesTableAdapter1.ClearBeforeFill = true;
+            // 
+            // BioRegID
+            // 
+            this.BioRegID.DataPropertyName = "BioRegID";
+            this.BioRegID.HeaderText = "BioRegID";
+            this.BioRegID.Name = "BioRegID";
+            this.BioRegID.ReadOnly = true;
+            // 
+            // BioRegTypeID
+            // 
+            this.BioRegTypeID.DataPropertyName = "BioRegTypeID";
+            this.BioRegTypeID.HeaderText = "BioRegTypeID";
+            this.BioRegTypeID.Name = "BioRegTypeID";
+            this.BioRegTypeID.ReadOnly = true;
+            // 
+            // BioRegDate
+            // 
+            this.BioRegDate.DataPropertyName = "BioRegDate";
+            this.BioRegDate.HeaderText = "BioRegDate";
+            this.BioRegDate.Name = "BioRegDate";
+            this.BioRegDate.ReadOnly = true;
+            // 
+            // Value
+            // 
+            this.Value.DataPropertyName = "Value";
+            this.Value.HeaderText = "Value";
+            this.Value.Name = "Value";
+            this.Value.ReadOnly = true;
+            // 
+            // Memo
+            // 
+            this.Memo.DataPropertyName = "Memo";
+            this.Memo.HeaderText = "Memo";
+            this.Memo.Name = "Memo";
+            this.Memo.ReadOnly = true;
+            // 
+            // UserID
+            // 
+            this.UserID.DataPropertyName = "UserID";
+            this.UserID.HeaderText = "UserID";
+            this.UserID.Name = "UserID";
+            this.UserID.ReadOnly = true;
             // 
             // FBioRegs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 630);
+            this.ClientSize = new System.Drawing.Size(523, 658);
             this.Controls.Add(this.txtBioRegName);
             this.Controls.Add(this.bioRegsBindingNavigator);
             this.Controls.Add(bioRegIDLabel);
@@ -467,18 +505,11 @@
         private System.Windows.Forms.ToolStripStatusLabel tslUser;
         private System.Windows.Forms.ToolStripStatusLabel tslConnString;
         private System.Windows.Forms.Button btnFindBioRegType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private TrainITDataSet trainITDataSet;
         private System.Windows.Forms.BindingSource bioRegsBindingSource;
         private TrainITDataSetTableAdapters.BioRegsTableAdapter bioRegsTableAdapter;
         private TrainITDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.DataGridView dgvBioRegs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.TextBox txtBioRegID;
         private System.Windows.Forms.TextBox txtBioRegTypeID;
         private System.Windows.Forms.DateTimePicker dtpBioRegDate;
@@ -497,5 +528,12 @@
         private System.Windows.Forms.ToolStripButton tsBtnSave;
         private System.Windows.Forms.ToolStripButton tsBtnDel;
         private System.Windows.Forms.TextBox txtBioRegName;
+        private TrainITDataSetTableAdapters.BioRegTypesTableAdapter bioRegTypesTableAdapter1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BioRegID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BioRegTypeID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BioRegDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Memo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserID;
     }
 }

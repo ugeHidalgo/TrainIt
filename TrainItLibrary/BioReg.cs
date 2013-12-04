@@ -56,6 +56,14 @@ namespace TrainItLibrary
             UserID = -1;
         }
 
-
+        public void Clear()
+        {
+            BioRegID = -1;
+            BioRegTypeID = -1;
+            BioRegDate = DateTime.Now;
+            Value = 0;
+            Memo = "";
+            UserID = -1;
+        }
     }
 }

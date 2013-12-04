@@ -47,7 +47,7 @@ namespace TrainIt
         private void timer1_Tick(object sender, EventArgs e)
         {
            sSTime.Text = DateTime.Now.ToString("HH:mm:ss");
-            sSDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+           sSDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
         private void mSMaterial_Click(object sender, EventArgs e)
