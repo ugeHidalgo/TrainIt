@@ -35,6 +35,21 @@ namespace TrainIt
             setNormalMode();
         }
 
+        private void FMaterial_Load(object sender, EventArgs e)
+        {
+            // Loads data into the 'trainITDataSet.Materials' table.
+            this.materialsTableAdapter.Fill(this.trainITDataSet.Materials, userIDWorking);
+
+            //if this form is shomw in order to search, then enable buttons for search
+            btnChoose.Visible = OnSearchMode;
+            btnCancel.Visible = OnSearchMode;
+
+            fillDataForMaterial();
+
+            //Set the masks for text box
+            mtxtWeight.ValidatingType = typeof(float);
+        }
+
         private void FMaterial_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (onEdition)
@@ -142,21 +157,6 @@ namespace TrainIt
             txtDistBar.Width = 0;
         }
        
-        private void FMaterial_Load(object sender, EventArgs e)
-        {
-            // Loads data into the 'trainITDataSet.Materials' table.
-            this.materialsTableAdapter.Fill(this.trainITDataSet.Materials, userIDWorking);            
-            
-            //if this form is shomw in order to search, then enable buttons for search
-            btnChoose.Visible = OnSearchMode;
-            btnCancel.Visible = OnSearchMode;
-
-            fillDataForMaterial();
-
-            //Set the masks for text box
-            mtxtWeight.ValidatingType = typeof(float);           
-        }
-
         private void fillDataForMaterial()
         {           
             //load Data into Model

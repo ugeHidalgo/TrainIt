@@ -33,16 +33,22 @@
             System.Windows.Forms.Label trainDateLabel;
             System.Windows.Forms.Label trainNameLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FTrainings));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.Label label3;
+            System.Windows.Forms.Label label4;
+            System.Windows.Forms.Label label5;
             this.trainingsBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.tsBtnNew = new System.Windows.Forms.ToolStripButton();
             this.trainingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -66,15 +72,6 @@
             this.txtUserID = new System.Windows.Forms.TextBox();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.sessionsDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sessionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.trainingsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.TrainingsTableAdapter();
             this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
@@ -83,17 +80,34 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnChoose = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.materialSessionTableAdapter = new TrainIt.TrainITDataSetTableAdapters.MaterialSessionTableAdapter();
+            this.sessionsDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Competition = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Deporte = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pace = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtTotDist = new System.Windows.Forms.TextBox();
+            this.txtTotTime = new System.Windows.Forms.TextBox();
             trainIDLabel = new System.Windows.Forms.Label();
             trainDateLabel = new System.Windows.Forms.Label();
             trainNameLabel = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trainingsBindingNavigator)).BeginInit();
             this.trainingsBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trainingsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trainITDataSet)).BeginInit();
             this.statusS1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTrainings)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sessionsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessionsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sessionsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // trainIDLabel
@@ -110,7 +124,7 @@
             // 
             trainDateLabel.AutoSize = true;
             trainDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            trainDateLabel.Location = new System.Drawing.Point(448, 134);
+            trainDateLabel.Location = new System.Drawing.Point(846, 43);
             trainDateLabel.Name = "trainDateLabel";
             trainDateLabel.Size = new System.Drawing.Size(74, 20);
             trainDateLabel.TabIndex = 10;
@@ -150,7 +164,7 @@
             this.trainingsBindingNavigator.MovePreviousItem = this.tsBtnPrevious;
             this.trainingsBindingNavigator.Name = "trainingsBindingNavigator";
             this.trainingsBindingNavigator.PositionItem = null;
-            this.trainingsBindingNavigator.Size = new System.Drawing.Size(1057, 25);
+            this.trainingsBindingNavigator.Size = new System.Drawing.Size(1070, 25);
             this.trainingsBindingNavigator.TabIndex = 5;
             this.trainingsBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -259,9 +273,9 @@
             this.statusS1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tslUser,
             this.tslConnString});
-            this.statusS1.Location = new System.Drawing.Point(0, 537);
+            this.statusS1.Location = new System.Drawing.Point(0, 546);
             this.statusS1.Name = "statusS1";
-            this.statusS1.Size = new System.Drawing.Size(1057, 22);
+            this.statusS1.Size = new System.Drawing.Size(1070, 22);
             this.statusS1.TabIndex = 6;
             this.statusS1.Text = "statusStrip1";
             // 
@@ -282,17 +296,17 @@
             this.dgvTrainings.AllowUserToAddRows = false;
             this.dgvTrainings.AllowUserToDeleteRows = false;
             this.dgvTrainings.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Aqua;
-            this.dgvTrainings.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.Aqua;
+            this.dgvTrainings.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvTrainings.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTrainings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTrainings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvTrainings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTrainings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
@@ -354,7 +368,7 @@
             this.dtpDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.trainingsBindingSource, "TrainDate", true));
             this.dtpDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(527, 129);
+            this.dtpDate.Location = new System.Drawing.Point(925, 38);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dtpDate.Size = new System.Drawing.Size(133, 26);
@@ -368,125 +382,9 @@
             this.txtName.Location = new System.Drawing.Point(527, 85);
             this.txtName.MaxLength = 50;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(516, 26);
+            this.txtName.Size = new System.Drawing.Size(531, 26);
             this.txtName.TabIndex = 1;
             this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
-            // 
-            // sessionsDataGridView
-            // 
-            this.sessionsDataGridView.AllowUserToAddRows = false;
-            this.sessionsDataGridView.AllowUserToDeleteRows = false;
-            this.sessionsDataGridView.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.sessionsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.sessionsDataGridView.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.sessionsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.sessionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sessionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn14,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12});
-            this.sessionsDataGridView.DataSource = this.sessionsBindingSource;
-            this.sessionsDataGridView.Location = new System.Drawing.Point(415, 217);
-            this.sessionsDataGridView.Name = "sessionsDataGridView";
-            this.sessionsDataGridView.ReadOnly = true;
-            this.sessionsDataGridView.RowHeadersVisible = false;
-            this.sessionsDataGridView.Size = new System.Drawing.Size(634, 308);
-            this.sessionsDataGridView.TabIndex = 12;
-            this.sessionsDataGridView.TabStop = false;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.DataPropertyName = "Date";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewTextBoxColumn14.HeaderText = "Fecha Sesión";
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            this.dataGridViewTextBoxColumn14.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Competition";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Com.";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn6.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "Transition";
-            this.dataGridViewTextBoxColumn7.HeaderText = "Tran.";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn7.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "Distance";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewTextBoxColumn8.HeaderText = "Distancia";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "Time";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewTextBoxColumn9.HeaderText = "Tiempo";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "MedHR";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewTextBoxColumn10.HeaderText = "Pulso Medio";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            this.dataGridViewTextBoxColumn10.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "MaxHR";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewTextBoxColumn11.HeaderText = "Pulso Máximo";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            this.dataGridViewTextBoxColumn11.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "Value";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewTextBoxColumn12.HeaderText = "Valor";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            this.dataGridViewTextBoxColumn12.Width = 40;
             // 
             // sessionsBindingSource
             // 
@@ -500,10 +398,12 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.BioRegTypesTableAdapter = null;
             this.tableAdapterManager.MaterialSessionTableAdapter = null;
             this.tableAdapterManager.MaterialsTableAdapter = null;
             this.tableAdapterManager.SessionsTableAdapter = null;
             this.tableAdapterManager.SportTypesTableAdapter = null;
+            this.tableAdapterManager.TempBioRegTypesTableAdapter = null;
             this.tableAdapterManager.TempMaterialTableAdapter = null;
             this.tableAdapterManager.TrainingsTableAdapter = this.trainingsTableAdapter;
             this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
@@ -562,13 +462,210 @@
             this.label2.TabIndex = 29;
             this.label2.Text = "Entrenamientos :";
             // 
+            // materialSessionTableAdapter
+            // 
+            this.materialSessionTableAdapter.ClearBeforeFill = true;
+            // 
+            // sessionsDataGridView
+            // 
+            this.sessionsDataGridView.AllowUserToAddRows = false;
+            this.sessionsDataGridView.AllowUserToDeleteRows = false;
+            this.sessionsDataGridView.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.sessionsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            this.sessionsDataGridView.AutoGenerateColumns = false;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.sessionsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            this.sessionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sessionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn13,
+            this.Competition,
+            this.Deporte,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn15,
+            this.Pace,
+            this.dataGridViewTextBoxColumn14,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11});
+            this.sessionsDataGridView.DataSource = this.sessionsBindingSource;
+            this.sessionsDataGridView.Location = new System.Drawing.Point(415, 207);
+            this.sessionsDataGridView.Name = "sessionsDataGridView";
+            this.sessionsDataGridView.ReadOnly = true;
+            this.sessionsDataGridView.RowHeadersVisible = false;
+            this.sessionsDataGridView.Size = new System.Drawing.Size(643, 318);
+            this.sessionsDataGridView.TabIndex = 29;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "Date";
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dataGridViewTextBoxColumn13.HeaderText = "Fecha";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Width = 80;
+            // 
+            // Competition
+            // 
+            this.Competition.DataPropertyName = "Competition";
+            this.Competition.HeaderText = "Comp.";
+            this.Competition.Name = "Competition";
+            this.Competition.ReadOnly = true;
+            this.Competition.Width = 50;
+            // 
+            // Deporte
+            // 
+            this.Deporte.DataPropertyName = "SportName";
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Deporte.DefaultCellStyle = dataGridViewCellStyle19;
+            this.Deporte.HeaderText = "Deporte";
+            this.Deporte.Name = "Deporte";
+            this.Deporte.ReadOnly = true;
+            this.Deporte.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "Distance";
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle20;
+            this.dataGridViewTextBoxColumn8.HeaderText = "Dist.";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "SessionTime";
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle21;
+            this.dataGridViewTextBoxColumn15.HeaderText = "Tiempo";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            this.dataGridViewTextBoxColumn15.Width = 60;
+            // 
+            // Pace
+            // 
+            this.Pace.DataPropertyName = "Pace";
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Pace.DefaultCellStyle = dataGridViewCellStyle22;
+            this.Pace.HeaderText = "Ritmo el";
+            this.Pace.Name = "Pace";
+            this.Pace.ReadOnly = true;
+            this.Pace.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "DistForPace";
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle23;
+            this.dataGridViewTextBoxColumn14.HeaderText = "Km";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            this.dataGridViewTextBoxColumn14.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "MedHR";
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle24;
+            this.dataGridViewTextBoxColumn9.HeaderText = "Pulso Medio";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "MaxHR";
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle25;
+            this.dataGridViewTextBoxColumn10.HeaderText = "Pulso Máximo";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "Value";
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle26;
+            this.dataGridViewTextBoxColumn11.HeaderText = "Valor";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Width = 50;
+            // 
+            // txtTotDist
+            // 
+            this.txtTotDist.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTotDist.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotDist.Location = new System.Drawing.Point(527, 129);
+            this.txtTotDist.Name = "txtTotDist";
+            this.txtTotDist.ReadOnly = true;
+            this.txtTotDist.Size = new System.Drawing.Size(100, 26);
+            this.txtTotDist.TabIndex = 30;
+            this.txtTotDist.TabStop = false;
+            this.txtTotDist.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtTotTime
+            // 
+            this.txtTotTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTotTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotTime.Location = new System.Drawing.Point(958, 129);
+            this.txtTotTime.Name = "txtTotTime";
+            this.txtTotTime.ReadOnly = true;
+            this.txtTotTime.Size = new System.Drawing.Size(100, 26);
+            this.txtTotTime.TabIndex = 31;
+            this.txtTotTime.TabStop = false;
+            this.txtTotTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label3.Location = new System.Drawing.Point(423, 129);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(99, 20);
+            label3.TabIndex = 32;
+            label3.Text = "Distancia  :";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label4.Location = new System.Drawing.Point(866, 131);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(82, 20);
+            label4.TabIndex = 33;
+            label4.Text = "Tiempo  :";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label5.Location = new System.Drawing.Point(631, 131);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(40, 20);
+            label5.TabIndex = 34;
+            label5.Text = "Kms";
+            // 
             // FTrainings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1057, 559);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(1070, 568);
+            this.Controls.Add(label5);
+            this.Controls.Add(label4);
+            this.Controls.Add(label3);
+            this.Controls.Add(this.txtTotTime);
+            this.Controls.Add(this.txtTotDist);
             this.Controls.Add(this.sessionsDataGridView);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvTrainings);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnChoose);
@@ -596,8 +693,8 @@
             this.statusS1.ResumeLayout(false);
             this.statusS1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTrainings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sessionsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessionsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sessionsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -630,20 +727,25 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrainName;
         private TrainITDataSetTableAdapters.SessionsTableAdapter sessionsTableAdapter;
-        private System.Windows.Forms.DataGridView sessionsDataGridView;
         private System.Windows.Forms.BindingSource sessionsBindingSource;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnChoose;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ToolStripButton tsBtnDelTraining;     
+        private System.Windows.Forms.ToolStripButton tsBtnDelTraining;
+        private TrainITDataSetTableAdapters.MaterialSessionTableAdapter materialSessionTableAdapter;
+        private System.Windows.Forms.DataGridView sessionsDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Competition;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Deporte;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pace;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.TextBox txtTotDist;
+        private System.Windows.Forms.TextBox txtTotTime;     
     }
 }

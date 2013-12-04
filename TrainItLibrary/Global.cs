@@ -15,6 +15,8 @@ namespace TrainItLibrary
         public static Material materialUsed = new Material();
         public static SportTypes sportTypeUsed = new SportTypes();
         public static Users userUsed = new Users();
+        public static BioReg aBioRegUsed = new BioReg();
+        public static Int64 bioRegTypeIDSelected;
 
         public static Exception noCreated = new Exception("NO implementado");
     }

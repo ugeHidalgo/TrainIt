@@ -11,6 +11,22 @@
     <AssemblyName>TrainIt</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\uge\Desktop\publisheds\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +47,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>2D1095E4E4E1B5B840A7531830425949CFC57F91</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TrainIt_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -47,6 +75,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FBioRegs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FBioRegs.Designer.cs">
+      <DependentUpon>FBioRegs.cs</DependentUpon>
+    </Compile>
     <Compile Include="FEstadGlobal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +143,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search_Forms\FSBioRegsTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Search_Forms\FSBioRegsTypes.Designer.cs">
+      <DependentUpon>FSBioRegsTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrainITDataSet.cs">
       <DependentUpon>TrainITDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -118,6 +158,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TrainITDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FBioRegs.resx">
+      <DependentUpon>FBioRegs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FEstadGlobal.resx">
       <DependentUpon>FEstadGlobal.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,6 +200,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Search_Forms\FSBioRegsTypes.resx">
+      <DependentUpon>FSBioRegsTypes.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -177,6 +223,7 @@
     <None Include="TrainITDataSet.xss">
       <DependentUpon>TrainITDataSet.xsd</DependentUpon>
     </None>
+    <None Include="TrainIt_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -186,6 +233,23 @@
       <Project>{77bc6b6a-6956-48a4-9a35-c0f3e4d3c825}</Project>
       <Name>TrainItLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

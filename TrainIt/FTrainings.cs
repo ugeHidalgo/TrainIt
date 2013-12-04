@@ -37,6 +37,10 @@ namespace TrainIt
 
         private void FTrainings_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'trainITDataSet.Sessions' table. You can move, or remove it, as needed.
+            this.sessionsTableAdapter.Fill(this.trainITDataSet.Sessions);
+            // TODO: This line of code loads data into the 'trainITDataSet.MaterialSession' table. You can move, or remove it, as needed.
+            this.materialSessionTableAdapter.Fill(this.trainITDataSet.MaterialSession);
             //if this form is shomw in order to search, then enable buttons for search
             btnChoose.Visible = OnSearchMode;
             btnCancel.Visible = OnSearchMode;
@@ -111,15 +115,29 @@ namespace TrainIt
 
         private void resetFields()
         {
+            //Clear data in textboxes
             txtUserID.Text = userIDWorking.ToString();
             dtpDate.Value = DateTime.Now;
+            txtTotDist.Text = "0";
+            txtTotTime.Text = "00:00:00";
         }       
 
         private void tsBtnNew_Click(object sender, EventArgs e)
         {
             resetFields();
             setEditMode();
-            txtName.Focus();            
+            txtName.Focus();
+
+            //Reloads sessions for new session: this avoid show data when New is clicked
+            this.sessionsTableAdapter.FillByUserAndTrain(this.trainITDataSet.Sessions, userIDWorking, -1);
+            if (this.sessionsTableAdapter.TotDist(userIDWorking, -1) == null)
+                txtTotDist.Text = "0";
+            else 
+                txtTotDist.Text = this.sessionsTableAdapter.TotDist(userIDWorking, -1).ToString();
+            if (this.sessionsTableAdapter.TotTime(userIDWorking, -1) == null)
+                txtTotTime.Text = "00:00:00";
+            else
+                txtTotTime.Text = this.sessionsTableAdapter.TotTime(userIDWorking, -1).ToString();  
         }
 
         private void tsBtnEdit_Click(object sender, EventArgs e)
@@ -174,7 +192,14 @@ namespace TrainIt
             //Load data for the Sessions grid.
             trainIDUsing = Convert.ToInt64(txtID.Text);
             if (trainIDUsing > 0)
+            {
                 this.sessionsTableAdapter.FillByUserAndTrain(this.trainITDataSet.Sessions, userIDWorking, trainIDUsing);
+                if (this.sessionsTableAdapter.TotDist(userIDWorking, trainIDUsing)!=null)                
+                    txtTotDist.Text=this.sessionsTableAdapter.TotDist(userIDWorking, trainIDUsing).ToString();
+                
+                if (this.sessionsTableAdapter.TotTime(userIDWorking, trainIDUsing)!=null)
+                    txtTotTime.Text = this.sessionsTableAdapter.TotTime(userIDWorking, trainIDUsing).ToString();
+            }
         }
 
         private void txtName_Validating(object sender, CancelEventArgs e)

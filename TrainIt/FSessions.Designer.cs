@@ -40,7 +40,6 @@
             System.Windows.Forms.Label memoLabel;
             System.Windows.Forms.Label dateLabel;
             System.Windows.Forms.Label competitionLabel1;
-            System.Windows.Forms.Label transitionLabel;
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label2;
             System.Windows.Forms.Label label3;
@@ -52,26 +51,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FSessions));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusS1 = new System.Windows.Forms.StatusStrip();
             this.tslUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.tslConnString = new System.Windows.Forms.ToolStripStatusLabel();
-            this.trainITDataSet = new TrainIt.TrainITDataSet();
-            this.sessionsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.SessionsTableAdapter();
             this.sessionsBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.tsBtnNew = new System.Windows.Forms.ToolStripButton();
-            this.sessionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tsBtnFirst = new System.Windows.Forms.ToolStripButton();
             this.tsBtnPrevious = new System.Windows.Forms.ToolStripButton();
             this.tsBtnNext = new System.Windows.Forms.ToolStripButton();
@@ -82,6 +78,12 @@
             this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
             this.tsBtnDelSession = new System.Windows.Forms.ToolStripButton();
             this.dgvSessions = new System.Windows.Forms.DataGridView();
+            this.SportTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShortTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Speed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pace = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DistForPace = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrainName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSessionID = new System.Windows.Forms.TextBox();
             this.txtTrainID = new System.Windows.Forms.TextBox();
             this.txtUserID = new System.Windows.Forms.TextBox();
@@ -94,30 +96,14 @@
             this.txtMemo = new System.Windows.Forms.TextBox();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.chbxComp = new System.Windows.Forms.CheckBox();
-            this.chBxTrans = new System.Windows.Forms.CheckBox();
-            this.trainingsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.TrainingsTableAdapter();
             this.txtTrainName = new System.Windows.Forms.TextBox();
-            this.trainingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sportTypesTableAdapter = new TrainIt.TrainITDataSetTableAdapters.SportTypesTableAdapter();
             this.txtSportTypeName = new System.Windows.Forms.TextBox();
-            this.sportTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnFindTrain = new System.Windows.Forms.Button();
             this.btnFindSportType = new System.Windows.Forms.Button();
             this.btnFindMaterial = new System.Windows.Forms.Button();
-            this.materialsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.MaterialsTableAdapter();
-            this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnDelMat = new System.Windows.Forms.Button();
             this.txtSpeed = new System.Windows.Forms.TextBox();
-            this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
-            this.tempMaterialBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tempMaterialTableAdapter = new TrainIt.TrainITDataSetTableAdapters.TempMaterialTableAdapter();
             this.dgvMats = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cms1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cms1Add = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -126,24 +112,35 @@
             this.btnDelAllMat = new System.Windows.Forms.Button();
             this.txtPace = new System.Windows.Forms.TextBox();
             this.txtDistForPace = new System.Windows.Forms.TextBox();
+            this.sessionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.trainITDataSet = new TrainIt.TrainITDataSet();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tempMaterialBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sportTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.trainingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SportTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShortTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Speed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pace = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DistForPace = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrainName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sessionsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.SessionsTableAdapter();
+            this.trainingsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.TrainingsTableAdapter();
+            this.sportTypesTableAdapter = new TrainIt.TrainITDataSetTableAdapters.SportTypesTableAdapter();
+            this.materialsTableAdapter = new TrainIt.TrainITDataSetTableAdapters.MaterialsTableAdapter();
+            this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tableAdapterManager = new TrainIt.TrainITDataSetTableAdapters.TableAdapterManager();
+            this.tempMaterialTableAdapter = new TrainIt.TrainITDataSetTableAdapters.TempMaterialTableAdapter();
             sessionIDLabel = new System.Windows.Forms.Label();
             trainIDLabel = new System.Windows.Forms.Label();
             sportTypeIDLabel = new System.Windows.Forms.Label();
@@ -155,7 +152,6 @@
             memoLabel = new System.Windows.Forms.Label();
             dateLabel = new System.Windows.Forms.Label();
             competitionLabel1 = new System.Windows.Forms.Label();
-            transitionLabel = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
@@ -165,24 +161,24 @@
             label7 = new System.Windows.Forms.Label();
             label8 = new System.Windows.Forms.Label();
             this.statusS1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trainITDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessionsBindingNavigator)).BeginInit();
             this.sessionsBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sessionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSessions)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trainingsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sportTypesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tempMaterialBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMats)).BeginInit();
             this.cms1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sessionsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trainITDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tempMaterialBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sportTypesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trainingsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // sessionIDLabel
             // 
             sessionIDLabel.AutoSize = true;
             sessionIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            sessionIDLabel.Location = new System.Drawing.Point(52, 39);
+            sessionIDLabel.Location = new System.Drawing.Point(53, 43);
             sessionIDLabel.Name = "sessionIDLabel";
             sessionIDLabel.Size = new System.Drawing.Size(53, 13);
             sessionIDLabel.TabIndex = 8;
@@ -192,7 +188,7 @@
             // 
             trainIDLabel.AutoSize = true;
             trainIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            trainIDLabel.Location = new System.Drawing.Point(10, 68);
+            trainIDLabel.Location = new System.Drawing.Point(10, 90);
             trainIDLabel.Name = "trainIDLabel";
             trainIDLabel.Size = new System.Drawing.Size(96, 13);
             trainIDLabel.TabIndex = 10;
@@ -202,7 +198,7 @@
             // 
             sportTypeIDLabel.AutoSize = true;
             sportTypeIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            sportTypeIDLabel.Location = new System.Drawing.Point(18, 91);
+            sportTypeIDLabel.Location = new System.Drawing.Point(18, 113);
             sportTypeIDLabel.Name = "sportTypeIDLabel";
             sportTypeIDLabel.Size = new System.Drawing.Size(87, 13);
             sportTypeIDLabel.TabIndex = 14;
@@ -212,7 +208,7 @@
             // 
             distanceLabel.AutoSize = true;
             distanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            distanceLabel.Location = new System.Drawing.Point(40, 251);
+            distanceLabel.Location = new System.Drawing.Point(95, 264);
             distanceLabel.Name = "distanceLabel";
             distanceLabel.Size = new System.Drawing.Size(68, 13);
             distanceLabel.TabIndex = 20;
@@ -222,7 +218,7 @@
             // 
             timeLabel.AutoSize = true;
             timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            timeLabel.Location = new System.Drawing.Point(52, 278);
+            timeLabel.Location = new System.Drawing.Point(107, 291);
             timeLabel.Name = "timeLabel";
             timeLabel.Size = new System.Drawing.Size(56, 13);
             timeLabel.TabIndex = 22;
@@ -232,7 +228,7 @@
             // 
             medHRLabel.AutoSize = true;
             medHRLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            medHRLabel.Location = new System.Drawing.Point(248, 145);
+            medHRLabel.Location = new System.Drawing.Point(234, 166);
             medHRLabel.Name = "medHRLabel";
             medHRLabel.Size = new System.Drawing.Size(84, 13);
             medHRLabel.TabIndex = 24;
@@ -242,7 +238,7 @@
             // 
             maxHRLabel.AutoSize = true;
             maxHRLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            maxHRLabel.Location = new System.Drawing.Point(240, 170);
+            maxHRLabel.Location = new System.Drawing.Point(226, 191);
             maxHRLabel.Name = "maxHRLabel";
             maxHRLabel.Size = new System.Drawing.Size(92, 13);
             maxHRLabel.TabIndex = 26;
@@ -252,7 +248,7 @@
             // 
             valueLabel.AutoSize = true;
             valueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            valueLabel.Location = new System.Drawing.Point(288, 198);
+            valueLabel.Location = new System.Drawing.Point(274, 219);
             valueLabel.Name = "valueLabel";
             valueLabel.Size = new System.Drawing.Size(44, 13);
             valueLabel.TabIndex = 28;
@@ -272,7 +268,7 @@
             // 
             dateLabel.AutoSize = true;
             dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dateLabel.Location = new System.Drawing.Point(267, 37);
+            dateLabel.Location = new System.Drawing.Point(268, 41);
             dateLabel.Name = "dateLabel";
             dateLabel.Size = new System.Drawing.Size(50, 13);
             dateLabel.TabIndex = 32;
@@ -282,27 +278,17 @@
             // 
             competitionLabel1.AutoSize = true;
             competitionLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            competitionLabel1.Location = new System.Drawing.Point(22, 149);
+            competitionLabel1.Location = new System.Drawing.Point(55, 187);
             competitionLabel1.Name = "competitionLabel1";
             competitionLabel1.Size = new System.Drawing.Size(84, 13);
             competitionLabel1.TabIndex = 33;
             competitionLabel1.Text = "Competición :";
             // 
-            // transitionLabel
-            // 
-            transitionLabel.AutoSize = true;
-            transitionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            transitionLabel.Location = new System.Drawing.Point(30, 173);
-            transitionLabel.Name = "transitionLabel";
-            transitionLabel.Size = new System.Drawing.Size(74, 13);
-            transitionLabel.TabIndex = 34;
-            transitionLabel.Text = "Transición :";
-            // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(37, 304);
+            label1.Location = new System.Drawing.Point(92, 317);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(71, 13);
             label1.TabIndex = 44;
@@ -312,7 +298,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label2.Location = new System.Drawing.Point(189, 304);
+            label2.Location = new System.Drawing.Point(244, 317);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(33, 13);
             label2.TabIndex = 47;
@@ -322,7 +308,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label3.Location = new System.Drawing.Point(189, 253);
+            label3.Location = new System.Drawing.Point(244, 266);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(22, 13);
             label3.TabIndex = 48;
@@ -332,7 +318,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label4.Location = new System.Drawing.Point(379, 144);
+            label4.Location = new System.Drawing.Point(365, 165);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(27, 13);
             label4.TabIndex = 49;
@@ -342,7 +328,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label5.Location = new System.Drawing.Point(379, 170);
+            label5.Location = new System.Drawing.Point(365, 191);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(27, 13);
             label5.TabIndex = 50;
@@ -352,7 +338,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label6.Location = new System.Drawing.Point(61, 329);
+            label6.Location = new System.Drawing.Point(116, 342);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(47, 13);
             label6.TabIndex = 52;
@@ -362,7 +348,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label7.Location = new System.Drawing.Point(189, 329);
+            label7.Location = new System.Drawing.Point(244, 342);
             label7.Name = "label7";
             label7.Size = new System.Drawing.Size(31, 13);
             label7.TabIndex = 54;
@@ -372,7 +358,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label8.Location = new System.Drawing.Point(279, 329);
+            label8.Location = new System.Drawing.Point(335, 342);
             label8.Name = "label8";
             label8.Size = new System.Drawing.Size(22, 13);
             label8.TabIndex = 55;
@@ -400,15 +386,6 @@
             this.tslConnString.Name = "tslConnString";
             this.tslConnString.Size = new System.Drawing.Size(79, 17);
             this.tslConnString.Text = "Conn String : ";
-            // 
-            // trainITDataSet
-            // 
-            this.trainITDataSet.DataSetName = "TrainITDataSet";
-            this.trainITDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // sessionsTableAdapter
-            // 
-            this.sessionsTableAdapter.ClearBeforeFill = true;
             // 
             // sessionsBindingNavigator
             // 
@@ -447,11 +424,6 @@
             this.tsBtnNew.Size = new System.Drawing.Size(23, 22);
             this.tsBtnNew.Text = "Nuevo registro";
             this.tsBtnNew.Click += new System.EventHandler(this.tsBtnNew_Click);
-            // 
-            // sessionsBindingSource
-            // 
-            this.sessionsBindingSource.DataMember = "Sessions";
-            this.sessionsBindingSource.DataSource = this.trainITDataSet;
             // 
             // tsBtnFirst
             // 
@@ -555,7 +527,6 @@
             this.dataGridViewTextBoxColumn13,
             this.SportTypeName,
             this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
             this.ShortTime,
             this.Speed,
@@ -579,11 +550,68 @@
             this.dgvSessions.Size = new System.Drawing.Size(992, 355);
             this.dgvSessions.TabIndex = 8;
             // 
+            // SportTypeName
+            // 
+            this.SportTypeName.DataPropertyName = "SportTypeName";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.SportTypeName.DefaultCellStyle = dataGridViewCellStyle4;
+            this.SportTypeName.HeaderText = "Deporte";
+            this.SportTypeName.Name = "SportTypeName";
+            this.SportTypeName.ReadOnly = true;
+            this.SportTypeName.Width = 180;
+            // 
+            // ShortTime
+            // 
+            this.ShortTime.DataPropertyName = "ShortTime";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ShortTime.DefaultCellStyle = dataGridViewCellStyle6;
+            this.ShortTime.HeaderText = "Tiempo";
+            this.ShortTime.Name = "ShortTime";
+            this.ShortTime.ReadOnly = true;
+            // 
+            // Speed
+            // 
+            this.Speed.DataPropertyName = "Speed";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Speed.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Speed.HeaderText = "Velocidad";
+            this.Speed.Name = "Speed";
+            this.Speed.ReadOnly = true;
+            this.Speed.Width = 80;
+            // 
+            // Pace
+            // 
+            this.Pace.DataPropertyName = "Pace";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Pace.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Pace.HeaderText = "Tiempo x";
+            this.Pace.Name = "Pace";
+            this.Pace.ReadOnly = true;
+            this.Pace.Width = 85;
+            // 
+            // DistForPace
+            // 
+            this.DistForPace.DataPropertyName = "DistForPace";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.DistForPace.DefaultCellStyle = dataGridViewCellStyle9;
+            this.DistForPace.HeaderText = "Km";
+            this.DistForPace.Name = "DistForPace";
+            this.DistForPace.ReadOnly = true;
+            this.DistForPace.Width = 80;
+            // 
+            // TrainName
+            // 
+            this.TrainName.DataPropertyName = "TrainName";
+            this.TrainName.HeaderText = "Column1";
+            this.TrainName.Name = "TrainName";
+            this.TrainName.ReadOnly = true;
+            this.TrainName.Visible = false;
+            // 
             // txtSessionID
             // 
             this.txtSessionID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSessionID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sessionsBindingSource, "SessionID", true));
-            this.txtSessionID.Location = new System.Drawing.Point(111, 37);
+            this.txtSessionID.Location = new System.Drawing.Point(112, 41);
             this.txtSessionID.Name = "txtSessionID";
             this.txtSessionID.ReadOnly = true;
             this.txtSessionID.Size = new System.Drawing.Size(29, 20);
@@ -596,7 +624,7 @@
             // 
             this.txtTrainID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTrainID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sessionsBindingSource, "TrainID", true));
-            this.txtTrainID.Location = new System.Drawing.Point(111, 63);
+            this.txtTrainID.Location = new System.Drawing.Point(111, 85);
             this.txtTrainID.Name = "txtTrainID";
             this.txtTrainID.ReadOnly = true;
             this.txtTrainID.Size = new System.Drawing.Size(29, 20);
@@ -609,7 +637,7 @@
             // 
             this.txtUserID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sessionsBindingSource, "UserID", true));
-            this.txtUserID.Location = new System.Drawing.Point(139, 37);
+            this.txtUserID.Location = new System.Drawing.Point(140, 41);
             this.txtUserID.Name = "txtUserID";
             this.txtUserID.ReadOnly = true;
             this.txtUserID.Size = new System.Drawing.Size(32, 20);
@@ -620,7 +648,7 @@
             // 
             this.txtSportTypeID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSportTypeID.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sessionsBindingSource, "SportTypeID", true));
-            this.txtSportTypeID.Location = new System.Drawing.Point(111, 89);
+            this.txtSportTypeID.Location = new System.Drawing.Point(111, 111);
             this.txtSportTypeID.Name = "txtSportTypeID";
             this.txtSportTypeID.ReadOnly = true;
             this.txtSportTypeID.Size = new System.Drawing.Size(29, 20);
@@ -633,7 +661,7 @@
             // 
             this.txtDist.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDist.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sessionsBindingSource, "Distance", true));
-            this.txtDist.Location = new System.Drawing.Point(111, 249);
+            this.txtDist.Location = new System.Drawing.Point(166, 262);
             this.txtDist.MaxLength = 8;
             this.txtDist.Name = "txtDist";
             this.txtDist.Size = new System.Drawing.Size(78, 20);
@@ -644,8 +672,8 @@
             // txtTime
             // 
             this.txtTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTime.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sessionsBindingSource, "Time", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "T"));
-            this.txtTime.Location = new System.Drawing.Point(111, 274);
+            this.txtTime.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sessionsBindingSource, "SessionTime", true));
+            this.txtTime.Location = new System.Drawing.Point(166, 287);
             this.txtTime.MaxLength = 9;
             this.txtTime.Name = "txtTime";
             this.txtTime.Size = new System.Drawing.Size(78, 20);
@@ -658,7 +686,7 @@
             // 
             this.txtMedHR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMedHR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sessionsBindingSource, "MedHR", true));
-            this.txtMedHR.Location = new System.Drawing.Point(338, 142);
+            this.txtMedHR.Location = new System.Drawing.Point(324, 163);
             this.txtMedHR.MaxLength = 3;
             this.txtMedHR.Name = "txtMedHR";
             this.txtMedHR.Size = new System.Drawing.Size(40, 20);
@@ -670,7 +698,7 @@
             // 
             this.txtMaxHR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMaxHR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sessionsBindingSource, "MaxHR", true));
-            this.txtMaxHR.Location = new System.Drawing.Point(338, 168);
+            this.txtMaxHR.Location = new System.Drawing.Point(324, 189);
             this.txtMaxHR.MaxLength = 3;
             this.txtMaxHR.Name = "txtMaxHR";
             this.txtMaxHR.Size = new System.Drawing.Size(40, 20);
@@ -682,7 +710,7 @@
             // 
             this.txtValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtValue.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sessionsBindingSource, "Value", true));
-            this.txtValue.Location = new System.Drawing.Point(338, 195);
+            this.txtValue.Location = new System.Drawing.Point(324, 216);
             this.txtValue.MaxLength = 2;
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(19, 20);
@@ -705,7 +733,7 @@
             this.dtpDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.sessionsBindingSource, "Date", true));
             this.dtpDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sessionsBindingSource, "Date", true));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(323, 32);
+            this.dtpDate.Location = new System.Drawing.Point(324, 36);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.RightToLeftLayout = true;
             this.dtpDate.Size = new System.Drawing.Size(84, 20);
@@ -715,65 +743,38 @@
             // chbxComp
             // 
             this.chbxComp.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.sessionsBindingSource, "Competition", true));
-            this.chbxComp.Location = new System.Drawing.Point(111, 144);
+            this.chbxComp.Location = new System.Drawing.Point(144, 182);
             this.chbxComp.Name = "chbxComp";
             this.chbxComp.Size = new System.Drawing.Size(17, 24);
             this.chbxComp.TabIndex = 4;
             this.chbxComp.UseVisualStyleBackColor = true;
             // 
-            // chBxTrans
-            // 
-            this.chBxTrans.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.sessionsBindingSource, "Transition", true));
-            this.chBxTrans.Location = new System.Drawing.Point(111, 168);
-            this.chBxTrans.Name = "chBxTrans";
-            this.chBxTrans.Size = new System.Drawing.Size(17, 24);
-            this.chBxTrans.TabIndex = 5;
-            this.chBxTrans.UseVisualStyleBackColor = true;
-            // 
-            // trainingsTableAdapter
-            // 
-            this.trainingsTableAdapter.ClearBeforeFill = true;
-            // 
             // txtTrainName
             // 
             this.txtTrainName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTrainName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.trainingsBindingSource, "TrainName", true));
-            this.txtTrainName.Location = new System.Drawing.Point(166, 63);
+            this.txtTrainName.Location = new System.Drawing.Point(166, 85);
             this.txtTrainName.Name = "txtTrainName";
             this.txtTrainName.ReadOnly = true;
             this.txtTrainName.Size = new System.Drawing.Size(239, 20);
             this.txtTrainName.TabIndex = 36;
             this.txtTrainName.TabStop = false;
             // 
-            // trainingsBindingSource
-            // 
-            this.trainingsBindingSource.DataMember = "Trainings";
-            this.trainingsBindingSource.DataSource = this.trainITDataSet;
-            // 
-            // sportTypesTableAdapter
-            // 
-            this.sportTypesTableAdapter.ClearBeforeFill = true;
-            // 
             // txtSportTypeName
             // 
             this.txtSportTypeName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSportTypeName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sportTypesBindingSource, "SportTypeName", true));
-            this.txtSportTypeName.Location = new System.Drawing.Point(166, 89);
+            this.txtSportTypeName.Location = new System.Drawing.Point(166, 111);
             this.txtSportTypeName.Name = "txtSportTypeName";
             this.txtSportTypeName.ReadOnly = true;
             this.txtSportTypeName.Size = new System.Drawing.Size(239, 20);
             this.txtSportTypeName.TabIndex = 37;
             this.txtSportTypeName.TabStop = false;
             // 
-            // sportTypesBindingSource
-            // 
-            this.sportTypesBindingSource.DataMember = "SportTypes";
-            this.sportTypesBindingSource.DataSource = this.trainITDataSet;
-            // 
             // btnFindTrain
             // 
             this.btnFindTrain.Image = ((System.Drawing.Image)(resources.GetObject("btnFindTrain.Image")));
-            this.btnFindTrain.Location = new System.Drawing.Point(141, 61);
+            this.btnFindTrain.Location = new System.Drawing.Point(141, 83);
             this.btnFindTrain.Name = "btnFindTrain";
             this.btnFindTrain.Size = new System.Drawing.Size(24, 24);
             this.btnFindTrain.TabIndex = 2;
@@ -783,7 +784,7 @@
             // btnFindSportType
             // 
             this.btnFindSportType.Image = ((System.Drawing.Image)(resources.GetObject("btnFindSportType.Image")));
-            this.btnFindSportType.Location = new System.Drawing.Point(141, 87);
+            this.btnFindSportType.Location = new System.Drawing.Point(141, 109);
             this.btnFindSportType.Name = "btnFindSportType";
             this.btnFindSportType.Size = new System.Drawing.Size(24, 24);
             this.btnFindSportType.TabIndex = 3;
@@ -804,15 +805,6 @@
             this.btnFindMaterial.UseVisualStyleBackColor = true;
             this.btnFindMaterial.Click += new System.EventHandler(this.btnFindMaterial_Click);
             // 
-            // materialsTableAdapter
-            // 
-            this.materialsTableAdapter.ClearBeforeFill = true;
-            // 
-            // materialsBindingSource
-            // 
-            this.materialsBindingSource.DataMember = "Materials";
-            this.materialsBindingSource.DataSource = this.trainITDataSet;
-            // 
             // btnDelMat
             // 
             this.btnDelMat.Image = ((System.Drawing.Image)(resources.GetObject("btnDelMat.Image")));
@@ -830,7 +822,7 @@
             // txtSpeed
             // 
             this.txtSpeed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSpeed.Location = new System.Drawing.Point(111, 300);
+            this.txtSpeed.Location = new System.Drawing.Point(166, 313);
             this.txtSpeed.MaxLength = 8;
             this.txtSpeed.Name = "txtSpeed";
             this.txtSpeed.ReadOnly = true;
@@ -838,28 +830,6 @@
             this.txtSpeed.TabIndex = 43;
             this.txtSpeed.TabStop = false;
             this.txtSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.MaterialSessionTableAdapter = null;
-            this.tableAdapterManager.MaterialsTableAdapter = null;
-            this.tableAdapterManager.SessionsTableAdapter = this.sessionsTableAdapter;
-            this.tableAdapterManager.SportTypesTableAdapter = null;
-            this.tableAdapterManager.TempMaterialTableAdapter = null;
-            this.tableAdapterManager.TrainingsTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserRegsTableAdapter = null;
-            this.tableAdapterManager.UsersTableAdapter = null;
-            // 
-            // tempMaterialBindingSource
-            // 
-            this.tempMaterialBindingSource.DataMember = "TempMaterial";
-            this.tempMaterialBindingSource.DataSource = this.trainITDataSet;
-            // 
-            // tempMaterialTableAdapter
-            // 
-            this.tempMaterialTableAdapter.ClearBeforeFill = true;
             // 
             // dgvMats
             // 
@@ -894,55 +864,6 @@
             this.dgvMats.RowTemplate.Height = 45;
             this.dgvMats.Size = new System.Drawing.Size(546, 220);
             this.dgvMats.TabIndex = 44;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.DataPropertyName = "MatImage";
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ReadOnly = true;
-            this.dataGridViewImageColumn1.Width = 45;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.DataPropertyName = "MatName";
-            this.dataGridViewTextBoxColumn14.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            this.dataGridViewTextBoxColumn14.Width = 180;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.DataPropertyName = "MatModel";
-            this.dataGridViewTextBoxColumn15.HeaderText = "Modelo";
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ReadOnly = true;
-            this.dataGridViewTextBoxColumn15.Width = 180;
-            // 
-            // dataGridViewTextBoxColumn16
-            // 
-            this.dataGridViewTextBoxColumn16.DataPropertyName = "MatBrand";
-            this.dataGridViewTextBoxColumn16.HeaderText = "Marca";
-            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-            this.dataGridViewTextBoxColumn16.ReadOnly = true;
-            this.dataGridViewTextBoxColumn16.Width = 180;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "matID";
-            this.dataGridViewTextBoxColumn8.HeaderText = "matID";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn17
-            // 
-            this.dataGridViewTextBoxColumn17.DataPropertyName = "SessionID";
-            this.dataGridViewTextBoxColumn17.HeaderText = "SessionID";
-            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
-            this.dataGridViewTextBoxColumn17.ReadOnly = true;
-            this.dataGridViewTextBoxColumn17.Visible = false;
             // 
             // cms1
             // 
@@ -998,7 +919,7 @@
             // txtPace
             // 
             this.txtPace.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPace.Location = new System.Drawing.Point(111, 327);
+            this.txtPace.Location = new System.Drawing.Point(166, 340);
             this.txtPace.MaxLength = 8;
             this.txtPace.Name = "txtPace";
             this.txtPace.ReadOnly = true;
@@ -1011,12 +932,86 @@
             // 
             this.txtDistForPace.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDistForPace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sessionsBindingSource, "DistForPace", true));
-            this.txtDistForPace.Location = new System.Drawing.Point(226, 327);
+            this.txtDistForPace.Location = new System.Drawing.Point(281, 340);
             this.txtDistForPace.Name = "txtDistForPace";
             this.txtDistForPace.ReadOnly = true;
             this.txtDistForPace.Size = new System.Drawing.Size(48, 20);
             this.txtDistForPace.TabIndex = 56;
             this.txtDistForPace.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // sessionsBindingSource
+            // 
+            this.sessionsBindingSource.DataMember = "Sessions";
+            this.sessionsBindingSource.DataSource = this.trainITDataSet;
+            // 
+            // trainITDataSet
+            // 
+            this.trainITDataSet.DataSetName = "TrainITDataSet";
+            this.trainITDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.DataPropertyName = "MatImage";
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Width = 45;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "MatName";
+            this.dataGridViewTextBoxColumn14.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            this.dataGridViewTextBoxColumn14.Width = 180;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "MatModel";
+            this.dataGridViewTextBoxColumn15.HeaderText = "Modelo";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            this.dataGridViewTextBoxColumn15.Width = 180;
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.DataPropertyName = "MatBrand";
+            this.dataGridViewTextBoxColumn16.HeaderText = "Marca";
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.ReadOnly = true;
+            this.dataGridViewTextBoxColumn16.Width = 180;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "matID";
+            this.dataGridViewTextBoxColumn8.HeaderText = "matID";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn17
+            // 
+            this.dataGridViewTextBoxColumn17.DataPropertyName = "SessionID";
+            this.dataGridViewTextBoxColumn17.HeaderText = "SessionID";
+            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            this.dataGridViewTextBoxColumn17.ReadOnly = true;
+            this.dataGridViewTextBoxColumn17.Visible = false;
+            // 
+            // tempMaterialBindingSource
+            // 
+            this.tempMaterialBindingSource.DataMember = "TempMaterial";
+            this.tempMaterialBindingSource.DataSource = this.trainITDataSet;
+            // 
+            // sportTypesBindingSource
+            // 
+            this.sportTypesBindingSource.DataMember = "SportTypes";
+            this.sportTypesBindingSource.DataSource = this.trainITDataSet;
+            // 
+            // trainingsBindingSource
+            // 
+            this.trainingsBindingSource.DataMember = "Trainings";
+            this.trainingsBindingSource.DataSource = this.trainITDataSet;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1036,16 +1031,6 @@
             this.dataGridViewTextBoxColumn13.ReadOnly = true;
             this.dataGridViewTextBoxColumn13.Width = 80;
             // 
-            // SportTypeName
-            // 
-            this.SportTypeName.DataPropertyName = "SportTypeName";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.SportTypeName.DefaultCellStyle = dataGridViewCellStyle4;
-            this.SportTypeName.HeaderText = "Deporte";
-            this.SportTypeName.Name = "SportTypeName";
-            this.SportTypeName.ReadOnly = true;
-            this.SportTypeName.Width = 180;
-            // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "Competition";
@@ -1056,16 +1041,6 @@
             this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewTextBoxColumn5.Width = 40;
             // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Transition";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Tran";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn6.Width = 40;
-            // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "Distance";
@@ -1074,45 +1049,6 @@
             this.dataGridViewTextBoxColumn7.HeaderText = "Distancia";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // ShortTime
-            // 
-            this.ShortTime.DataPropertyName = "ShortTime";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ShortTime.DefaultCellStyle = dataGridViewCellStyle6;
-            this.ShortTime.HeaderText = "Tiempo";
-            this.ShortTime.Name = "ShortTime";
-            this.ShortTime.ReadOnly = true;
-            // 
-            // Speed
-            // 
-            this.Speed.DataPropertyName = "Speed";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Speed.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Speed.HeaderText = "Velocidad";
-            this.Speed.Name = "Speed";
-            this.Speed.ReadOnly = true;
-            this.Speed.Width = 80;
-            // 
-            // Pace
-            // 
-            this.Pace.DataPropertyName = "Pace";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Pace.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Pace.HeaderText = "Tiempo x";
-            this.Pace.Name = "Pace";
-            this.Pace.ReadOnly = true;
-            this.Pace.Width = 85;
-            // 
-            // DistForPace
-            // 
-            this.DistForPace.DataPropertyName = "DistForPace";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.DistForPace.DefaultCellStyle = dataGridViewCellStyle9;
-            this.DistForPace.HeaderText = "Km";
-            this.DistForPace.Name = "DistForPace";
-            this.DistForPace.ReadOnly = true;
-            this.DistForPace.Width = 80;
             // 
             // dataGridViewTextBoxColumn9
             // 
@@ -1143,14 +1079,6 @@
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.ReadOnly = true;
             this.dataGridViewTextBoxColumn11.Width = 40;
-            // 
-            // TrainName
-            // 
-            this.TrainName.DataPropertyName = "TrainName";
-            this.TrainName.HeaderText = "Column1";
-            this.TrainName.Name = "TrainName";
-            this.TrainName.ReadOnly = true;
-            this.TrainName.Visible = false;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -1184,6 +1112,46 @@
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
             this.dataGridViewTextBoxColumn12.Visible = false;
             // 
+            // sessionsTableAdapter
+            // 
+            this.sessionsTableAdapter.ClearBeforeFill = true;
+            // 
+            // trainingsTableAdapter
+            // 
+            this.trainingsTableAdapter.ClearBeforeFill = true;
+            // 
+            // sportTypesTableAdapter
+            // 
+            this.sportTypesTableAdapter.ClearBeforeFill = true;
+            // 
+            // materialsTableAdapter
+            // 
+            this.materialsTableAdapter.ClearBeforeFill = true;
+            // 
+            // materialsBindingSource
+            // 
+            this.materialsBindingSource.DataMember = "Materials";
+            this.materialsBindingSource.DataSource = this.trainITDataSet;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.BioRegTypesTableAdapter = null;
+            this.tableAdapterManager.MaterialSessionTableAdapter = null;
+            this.tableAdapterManager.MaterialsTableAdapter = null;
+            this.tableAdapterManager.SessionsTableAdapter = this.sessionsTableAdapter;
+            this.tableAdapterManager.SportTypesTableAdapter = null;
+            this.tableAdapterManager.TempBioRegTypesTableAdapter = null;
+            this.tableAdapterManager.TempMaterialTableAdapter = null;
+            this.tableAdapterManager.TrainingsTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = TrainIt.TrainITDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserRegsTableAdapter = null;
+            this.tableAdapterManager.UsersTableAdapter = null;
+            // 
+            // tempMaterialTableAdapter
+            // 
+            this.tempMaterialTableAdapter.ClearBeforeFill = true;
+            // 
             // FSessions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1208,8 +1176,6 @@
             this.Controls.Add(this.btnFindTrain);
             this.Controls.Add(this.txtSportTypeName);
             this.Controls.Add(this.txtTrainName);
-            this.Controls.Add(transitionLabel);
-            this.Controls.Add(this.chBxTrans);
             this.Controls.Add(competitionLabel1);
             this.Controls.Add(this.chbxComp);
             this.Controls.Add(sessionIDLabel);
@@ -1243,18 +1209,18 @@
             this.Load += new System.EventHandler(this.FSessions_Load);
             this.statusS1.ResumeLayout(false);
             this.statusS1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trainITDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sessionsBindingNavigator)).EndInit();
             this.sessionsBindingNavigator.ResumeLayout(false);
             this.sessionsBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sessionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSessions)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trainingsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sportTypesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tempMaterialBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMats)).EndInit();
             this.cms1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sessionsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trainITDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tempMaterialBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sportTypesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trainingsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1290,7 +1256,6 @@
         private System.Windows.Forms.TextBox txtMemo;
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.CheckBox chbxComp;
-        private System.Windows.Forms.CheckBox chBxTrans;
         private System.Windows.Forms.BindingSource trainingsBindingSource;
         private TrainITDataSetTableAdapters.TrainingsTableAdapter trainingsTableAdapter;
         private System.Windows.Forms.TextBox txtTrainName;
@@ -1328,7 +1293,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn SportTypeName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn ShortTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Speed;

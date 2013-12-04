@@ -163,5 +163,16 @@ namespace TrainIt
             }
         }
 
+        private void tsmiPersonalBestTypes_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("At work");
+        }
+
+        private void tsmiRegistros_Click(object sender, EventArgs e)
+        {
+            FBioRegs fBioRegs = new FBioRegs();
+            fBioRegs.ShowDialog();
+        }
+
     }
 }

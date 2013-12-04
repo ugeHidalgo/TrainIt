@@ -37,11 +37,10 @@ namespace TrainIt
             txbxMaxMax.Text = "";
             txbxValMed.Text = "";
             txbxValMax.Text = "";
-            txbxDias.Text = "";
         }
 
         // To Delete-------------------------------------------------------------------------
-        private void loadGeneralData()
+        /*private void loadGeneralData()
         {
             string query;            
             clearData();
@@ -185,15 +184,22 @@ namespace TrainIt
 
                 }
             }//Get grouped data by sportType for the grid           
-        }
+        }*/
         // To Delete-------------------------------------------------------------------------
 
         private void loadDatedData()
         {
             string query;
             clearData();
-            bool noData = false;            
-            //Get global data for the text boxes
+            //bool noData = false;            
+
+            //Get global data for the text boxes                       
+            //All type os sessions true/false, Competitions only true/true, Non competitions false/false
+            if ((!chbxComp.Checked) && (!chbxNoComp.Checked))
+                chbxNoComp.Checked = true;                            
+            bool comp=chbxComp.Checked;
+            bool noComp = !(chbxNoComp.Checked);
+                        
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 query = @"select
@@ -216,7 +222,7 @@ namespace TrainIt
                                DATEDIFF (day, CONVERT(varchar,@minDate,106), CONVERT(varchar,@maxDate,106))+1 as days
        
                         from Sessions 
-                        where UserID=@userID AND date Between @minDate AND @maxDate ";
+                        where (UserID=@userID) AND (date Between @minDate AND @maxDate) AND ((Competition=@competition) OR (Competition=@noCompetition))";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
@@ -228,13 +234,19 @@ namespace TrainIt
                     cmd.Parameters.Add(new SqlParameter("@maxDate", SqlDbType.DateTime));
                     cmd.Parameters["@maxDate"].Value = dtpFin.Value;
 
+                    cmd.Parameters.Add(new SqlParameter("@competition", SqlDbType.Bit));
+                    cmd.Parameters["@competition"].Value = comp;
+
+                    cmd.Parameters.Add(new SqlParameter("@noCompetition", SqlDbType.Bit));
+                    cmd.Parameters["@noCompetition"].Value = noComp;
+
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
                         if (reader.IsDBNull(1))
                         {
-                            noData = true;
+                            //noData = true;
                             laName.Text = "No hay datos disponibles entra las fechas " + dtpIni.Value.ToShortDateString() + " y " + dtpFin.Value.ToShortDateString();
                         }
                         else
@@ -252,7 +264,6 @@ namespace TrainIt
                             txbxMaxMax.Text = reader["MaxMaxHR"].ToString();
                             txbxValMed.Text = reader["AvgValue"].ToString();
                             txbxValMax.Text = reader["MaxValue"].ToString();
-                            txbxDias.Text = reader["days"].ToString();
                         }
                     }
                     reader.Close();
@@ -284,7 +295,7 @@ namespace TrainIt
                                DATEDIFF (day, CONVERT(varchar,@minDate,106), CONVERT(varchar,@maxDate,106))+1 as days
        
                         from Sessions 
-                        where UserID=@userID AND date Between @minDate AND @maxDate
+                        where (UserID=@userID) AND (date Between @minDate AND @maxDate) AND ((Competition=@competition) OR (Competition=@noCompetition))
                         group by SportTypeID;";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -296,6 +307,12 @@ namespace TrainIt
 
                     cmd.Parameters.Add(new SqlParameter("@maxDate", SqlDbType.DateTime));
                     cmd.Parameters["@maxDate"].Value = dtpFin.Value;
+
+                    cmd.Parameters.Add(new SqlParameter("@competition", SqlDbType.Bit));
+                    cmd.Parameters["@competition"].Value = comp;
+
+                    cmd.Parameters.Add(new SqlParameter("@noCompetition", SqlDbType.Bit));
+                    cmd.Parameters["@noCompetition"].Value = noComp;
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     DataTable dataTable = new DataTable();
@@ -311,42 +328,6 @@ namespace TrainIt
         {
             //Load data for current week
             semanal_Click(this, e);
-
-//            string query;
-//            clearData();
-//            //Get Max and Min Date for sessions
-//            using (SqlConnection conn = new SqlConnection(connString))
-//            {
-//                query = @"select
-//                               MIN(Date) as firstDate,
-//                               Max(Date) as lastDate
-//              
-//                        from Sessions 
-//                        where UserID=@userID";
-//                using (SqlCommand cmd = new SqlCommand(query, conn))
-//                {
-//                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
-//                    cmd.Parameters["@userID"].Value = userIDWorking;
-
-//                    conn.Open();
-//                    SqlDataReader reader = cmd.ExecuteReader();
-//                    while (reader.Read())
-//                    {
-//                        if (reader.IsDBNull(0))
-//                        {
-//                            laName.Text = "No hay datos disponibles";
-//                        }
-//                        else
-//                        {
-//                            dtpIni.Value = Convert.ToDateTime(reader["firstDate"]);
-//                            dtpFin.Value = Convert.ToDateTime(reader["lastDate"]);
-//                        }
-//                    }
-//                    reader.Close();
-//                }
-//            }
-//            loadDatedData();
-//            laName.Text = "Datos globales: Primera sesión : " + dtpIni.Value.ToShortDateString() + "    Última sesión : " + dtpFin.Value.ToShortDateString();
         }
 
         private void tsbtPrint_Click(object sender, EventArgs e)
@@ -362,7 +343,40 @@ namespace TrainIt
 
         private void global_Click(object sender, EventArgs e)
         {
-            loadGeneralData();
+            //loadGeneralData();
+            string query;            
+            //Get Max and Min Date for sessions
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                query = @"select
+                               MIN(Date) as firstDate,
+                               Max(Date) as lastDate
+              
+                        from Sessions 
+                        where UserID=@userID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@userID", SqlDbType.BigInt));
+                    cmd.Parameters["@userID"].Value = userIDWorking;
+
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        if (reader.IsDBNull(0))
+                        {
+                            laName.Text = "No hay datos disponibles";
+                        }
+                        else
+                        {
+                            dtpIni.Value = Convert.ToDateTime(reader["firstDate"]);
+                            dtpFin.Value = Convert.ToDateTime(reader["lastDate"]);
+                        }
+                    }
+                    reader.Close();
+                }
+            }
+            loadDatedData();
             laName.Text = "Datos globales: Primera sesión : " + dtpIni.Value.ToShortDateString() + "    Última sesión : " + dtpFin.Value.ToShortDateString();
         }
 

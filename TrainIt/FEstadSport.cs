@@ -16,8 +16,8 @@ namespace TrainIt
 {
     public partial class FEstadSport : Form
     {
-        string connString = TrainItLibrary.Utilities.GetConnString();
-        Int64 userIDWorking = TrainItLibrary.Global.userIDWorking;
+        string connString = Utilities.GetConnString();
+        Int64 userIDWorking = Global.userIDWorking;
 
         public FEstadSport()
         {
@@ -32,6 +32,12 @@ namespace TrainIt
 
         private void loadDatedData()
         {
+            //All type os sessions true/false, Competitions only true/true, Non competitions false/false
+            if ((!chbxComp.Checked) && (!chbxNoComp.Checked))
+                chbxNoComp.Checked = true;
+            bool comp = chbxComp.Checked;
+            bool noComp = !(chbxNoComp.Checked);
+
             //Create temp table with favourites sports and his childs.
             string query;
             using (SqlConnection conn = new SqlConnection(connString))
@@ -77,14 +83,14 @@ namespace TrainIt
                     {
                         if (!reader.IsDBNull(0))
                         {
-                            addSessionDataForSport(connString, reader.GetInt64(0), reader.GetInt64(1), reader.GetInt64(2));
+                            addSessionDataForSport(connString, reader.GetInt64(0), reader.GetInt64(1), reader.GetInt64(2), comp, noComp);
                         }
                     }
                     reader.Close();
                 }
             }
 
-            //Extract data form temp table to use in the dgv
+            //Extract data from temp table to use in the dgv
 
             //Get grouped data by sportType for the grid
             using (SqlConnection conn = new SqlConnection(connString))
@@ -197,8 +203,9 @@ namespace TrainIt
             }
         }
 
-        private void addSessionDataForSport(string connString, Int64 aUserID, Int64 aSportTypeID, Int64 aChildSportTypeID)
+        private void addSessionDataForSport(string connString, Int64 aUserID, Int64 aSportTypeID, Int64 aChildSportTypeID, bool comp, bool noComp)
         {
+            //All type os sessions true/false, Competitions only true/true, Non competitions false/false            
             string query;
             using (SqlConnection conn = new SqlConnection(connString))
             {
@@ -224,7 +231,8 @@ namespace TrainIt
                                DATEDIFF (day, CONVERT(varchar,@minDate,106), CONVERT(varchar,@maxDate,106))+1 as Days
        
                         from Sessions 
-                        where UserID=@userID AND SportTypeID=@childSportTypeID AND date Between @minDate AND @maxDate";
+                        where (UserID=@userID) AND (SportTypeID=@childSportTypeID) AND (date Between @minDate AND @maxDate) 
+                                AND ((Competition=@competition) OR (Competition=@noCompetition)) ";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -239,6 +247,12 @@ namespace TrainIt
 
                     cmd.Parameters.Add(new SqlParameter("@maxDate", SqlDbType.DateTime));
                     cmd.Parameters["@maxDate"].Value = dtpFin.Value;
+
+                    cmd.Parameters.Add(new SqlParameter("@competition", SqlDbType.Bit));
+                    cmd.Parameters["@competition"].Value = comp;
+
+                    cmd.Parameters.Add(new SqlParameter("@noCompetition", SqlDbType.Bit));
+                    cmd.Parameters["@noCompetition"].Value = noComp;
 
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();

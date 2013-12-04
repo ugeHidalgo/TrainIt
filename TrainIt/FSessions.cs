@@ -81,7 +81,6 @@ namespace TrainIt
             txtValue.ReadOnly = true;
             txtMemo.ReadOnly = true;
             chbxComp.Enabled = false;
-            chBxTrans.Enabled = false;
         }
 
         private void setEditMode()
@@ -115,7 +114,6 @@ namespace TrainIt
             txtValue.ReadOnly = false;
             txtMemo.ReadOnly = false;
             chbxComp.Enabled = true;
-            chBxTrans.Enabled = true;
         }
 
         private void LoadData()
@@ -443,7 +441,6 @@ namespace TrainIt
             setEditMode();
             txtSpeed.Text = "";
             chbxComp.Checked = false;
-            chBxTrans.Checked = false;
             btnFindTrain.Focus();
             sessionIDToUpdate = -1;
         }
@@ -561,8 +558,8 @@ namespace TrainIt
                     //2º Save session data 
                     conn.Close();
                     Int64 aSessionID = -1;  
-                    query = @"INSERT INTO Sessions(TrainID, UserID, SportTypeID, Competition, Transition, Distance, Time, MedHR, MaxHR, Value, Memo, Date)
-                                            VALUES(@trainID, @userID, @sportTypeID, @competition, @transition, @distance, @time, @medHR, @maxHR, @value, @memo, @date)
+                    query = @"INSERT INTO Sessions(TrainID, UserID, SportTypeID, Competition, Distance, Time, MedHR, MaxHR, Value, Memo, Date)
+                                            VALUES(@trainID, @userID, @sportTypeID, @competition, @distance, @time, @medHR, @maxHR, @value, @memo, @date)
                               SELECT SCOPE_IDENTITY()";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -577,9 +574,6 @@ namespace TrainIt
 
                         cmd.Parameters.Add(new SqlParameter("@competition", SqlDbType.Bit));
                         cmd.Parameters["@competition"].Value = chbxComp.Checked;
-
-                        cmd.Parameters.Add(new SqlParameter("@transition", SqlDbType.Bit));
-                        cmd.Parameters["@transition"].Value = chBxTrans.Checked;
 
                         double aDist = 0;
                         if (txtDist.Text != "")
@@ -654,7 +648,7 @@ namespace TrainIt
                 //2º Delete materials for the session into table: matSessions
                 //4º Save material in TempMaterial to matSessions
                 conn.Close();
-                query = @"UPDATE Sessions SET TrainID=@trainID, UserID=@userID, SportTypeID=@sportTypeID, Competition=@competition, Transition=@transition, 
+                query = @"UPDATE Sessions SET TrainID=@trainID, UserID=@userID, SportTypeID=@sportTypeID, Competition=@competition, 
                                               Distance=@distance, Time=@time, MedHR=@medHR, MaxHR=@maxHR, Value=@value, Memo=@memo, Date=@date
                           WHERE SessionID=@sessionID;
                           DELETE FROM MaterialSession WHERE SessionID=@sessionID;
@@ -676,9 +670,6 @@ namespace TrainIt
 
                     cmd.Parameters.Add(new SqlParameter("@competition", SqlDbType.Bit));
                     cmd.Parameters["@competition"].Value = chbxComp.Checked;
-
-                    cmd.Parameters.Add(new SqlParameter("@transition", SqlDbType.Bit));
-                    cmd.Parameters["@transition"].Value = chBxTrans.Checked;
 
                     double aDist = 0;
                     if (txtDist.Text != "")

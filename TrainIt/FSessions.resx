@@ -150,9 +150,6 @@
   <metadata name="competitionLabel1.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
-  <metadata name="transitionLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
   <metadata name="label1.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
@@ -180,12 +177,6 @@
   <metadata name="statusS1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="trainITDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>261, 11</value>
-  </metadata>
-  <metadata name="sessionsTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>41, 52</value>
-  </metadata>
   <metadata name="sessionsBindingNavigator.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>597, 12</value>
   </metadata>
@@ -208,6 +199,9 @@
   </data>
   <metadata name="sessionsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>34, 83</value>
+  </metadata>
+  <metadata name="trainITDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>261, 11</value>
   </metadata>
   <data name="tsBtnFirst.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -292,21 +286,21 @@
   <data name="tsBtnCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
   </data>
   <data name="tsBtnSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -359,14 +353,8 @@
   <metadata name="TrainName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="trainingsTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>205, 56</value>
-  </metadata>
   <metadata name="trainingsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>203, 84</value>
-  </metadata>
-  <metadata name="sportTypesTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>558, 51</value>
   </metadata>
   <metadata name="sportTypesBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>553, 82</value>
@@ -470,12 +458,6 @@
         Gk0AAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="materialsTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>394, 51</value>
-  </metadata>
-  <metadata name="materialsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>386, 85</value>
-  </metadata>
   <data name="btnDelMat.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -492,17 +474,11 @@
         y91aPNqxa1t4M8hDXmIEQRB+A1oxl4nImRi3AAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="tableAdapterManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>385, 12</value>
+  <metadata name="cms1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>102, 15</value>
   </metadata>
   <metadata name="tempMaterialBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>737, 86</value>
-  </metadata>
-  <metadata name="tempMaterialTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>743, 59</value>
-  </metadata>
-  <metadata name="cms1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>102, 15</value>
   </metadata>
   <data name="btnDelAllMat.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -521,6 +497,27 @@
         2CI5DdGsdZKzcNuUxxIb+F66Ml2j0Wh+AdhjR3ZU7QUnAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="sessionsTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>41, 52</value>
+  </metadata>
+  <metadata name="trainingsTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>205, 56</value>
+  </metadata>
+  <metadata name="sportTypesTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>558, 51</value>
+  </metadata>
+  <metadata name="materialsTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>394, 51</value>
+  </metadata>
+  <metadata name="materialsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>386, 85</value>
+  </metadata>
+  <metadata name="tableAdapterManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>385, 12</value>
+  </metadata>
+  <metadata name="tempMaterialTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>743, 59</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>136</value>
   </metadata>
