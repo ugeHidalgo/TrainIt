@@ -26,7 +26,7 @@ namespace TrainIt.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HPDESPACHO\\SQLSERVER1;Initial Catalog=TrainIT;Integrated Security=Tru" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HPDESPACHO\\SQLEXPRESS;Initial Catalog=TrainIT;Integrated Security=Tru" +
             "e")]
         public string TrainITConnectionString {
             get {
