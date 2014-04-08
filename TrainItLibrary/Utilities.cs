@@ -20,7 +20,8 @@ namespace TrainItLibrary
         {
             string value = null;
 
-            ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings["TrainIt.Properties.Settings.TrainITConnectionString"];
+            ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings
+                ["TrainIt.Properties.Settings.TrainITConnectionString"];
             if (settings != null)
                 value = settings.ConnectionString;
             return value;
